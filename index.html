@@ -1,70 +1,185 @@
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Hello mein-impfrechner.de</title>
+
+    <!-- imports -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <link rel="stylesheet" href="main.css">
+
+    <script>
+        $(function() {
+            $('#datepicker').datepicker({
+                    currentText: 'heute', currentStatus: '',
+                    todayText: 'heute', todayStatus: '',
+                    clearText: '-', clearStatus: '',
+                    closeText: 'schließen', closeStatus: '',
+                    monthNames: ['Januar','Februar','März','April','Mai','Juni',
+                        'Juli','August','September','Oktober','November','Dezember'],
+                    monthNamesShort: ['Jan','Feb','Mär','Apr','Mai','Jun',
+                        'Jul','Aug','Sep','Okt','Nov','Dez'],
+                    dayNames: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
+                    dayNamesShort: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+                    dayNamesMin: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+                    showMonthAfterYear: false,
+                    dateFormat:'d MM, yy'
+                }
+            );
+
+        });
+    </script>
+
 </head>
+
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Mein Impfrechner</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="bi bi-calculator"></i>
+                        Impfrechner
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="bi bi-info-circle"></i>
+                        Informationen
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="bi bi-question-diamond"></i>
+                        FAQs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="impressum.html">
+                        <i class="bi bi-binoculars"></i>
+                        Impressum
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
 
 
 
+    <h1>Aktuelle Seite: mein-impfrechner.de</h1>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Mein Impfrechner</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    disclaimer: Dies sind keine direkten Empfehlungen, die Aussagen der Website basieren jedoch auf den Empfehlungen der Ständigen Impfkommission.
+    Wir übernehmen keine Haftung für eventuelle Falschaussagen. <br>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="bi bi-calculator"></i>
-                    Impfrechner
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="bi bi-info-circle"></i>
-                    Informationen
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="bi bi-question-diamond"></i>
-                    FAQs
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="impressum.html">
-                    <i class="bi bi-binoculars"></i>
-                    Impressum
-                </a>
-            </li>
-        </ul>
+    <!-- Card: vaccination-->
+    <div class="card" style="width: 30rem;">
+        <div class="card-body">
+
+            <!-- Card header-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <h5 class="card-title">X-te Impfung</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Infos</h6>
+                    </div>
+                    <div class="col-md-auto">
+                        <a href="" title="" style="color:gray"><h3><i class="bi bi-trash"></i></h3></a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Card body-->
+            <p class="card-text">Bitte geben Sie den Terimin und den Impfstoff an.</p>
+            <form>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1" data-toggle="modal" data-target="#impfstoffmodal">Impfstoff <i class="bi bi-info-circle"></i> :</label>
+                    <select class="form-select" id="exampleFormControlSelect1">
+                        <option selected>bitte auswählen</option>
+                        <option>BioNTech/Pfizer</option>
+                        <option>Moderna</option>
+                        <option>AstraZeneca</option>
+                        <option>Sinovac</option>
+                        <option>Sinopharm</option>
+                        <option>Sputnik</option>
+                    </select>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1" data-toggle="modal" data-target="#datummodal">Datum <i class="bi bi-info-circle"></i> :</label>
+                    <input type="text" id="datepicker" class="form-control" placeholder="bitte auswählen">
+                </div>
+            </form>
+            <br>
+            <!-- Buttons TODO @Moritz switch active/inactive when pressed -->
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <button type="button" class="btn btn-secondary btn-lg" disabled>Bearbeiten</button>
+                <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Bestätigen</a>
+            </div>
+        </div>
     </div>
-</nav>
 
 
 
 
-<h1>Aktuelle Seite: mein-impfrechner.de</h1>
+    <!-- Button trigger modal: Impfstoff und Datum -->
+    <div class="modal fade" id="impfstoffmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title Impfstoff</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ... <!-- TODO @Ole add Impfstoff info-text-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-disclaimer: Dies sind keine direkten Empfehlungen, die Aussagen der Website basieren jedoch auf den Empfehlungen der Ständigen Impfkommission.
-Wir übernehmen keine Haftung für eventuelle Falschaussagen. <br>
-<a href="impressum.html">Impressum</a>
+    <div class="modal fade" id="datummodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="datumTitle">Modal title Datum</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ... <!-- TODO @Ole add Date info-text-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- TODO @Moritz Card: Vaccinated-->
+
+    <!-- TODO @Moritz Card: past SARS-CoV-2 infection-->
 
 </body>
 </html>
