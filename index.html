@@ -11,29 +11,43 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <link rel="stylesheet" href="main.css">
 
-    <script>
-        $(function() {
-            $('#datepicker').datepicker({
-                    currentText: 'heute', currentStatus: '',
-                    todayText: 'heute', todayStatus: '',
-                    clearText: '-', clearStatus: '',
-                    closeText: 'schließen', closeStatus: '',
-                    monthNames: ['Januar','Februar','März','April','Mai','Juni',
-                        'Juli','August','September','Oktober','November','Dezember'],
-                    monthNamesShort: ['Jan','Feb','Mär','Apr','Mai','Jun',
-                        'Jul','Aug','Sep','Okt','Nov','Dez'],
-                    dayNames: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
-                    dayNamesShort: ['So','Mo','Di','Mi','Do','Fr','Sa'],
-                    dayNamesMin: ['So','Mo','Di','Mi','Do','Fr','Sa'],
-                    showMonthAfterYear: false,
-                    dateFormat:'d MM, yy'
-                }
-            );
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 
+
+
+
+
+
+
+
+    <script>
+        var datepicker_german = {
+            currentText: 'heute', currentStatus: '',
+            todayText: 'heute', todayStatus: '',
+            clearText: '-', clearStatus: '',
+            closeText: 'schließen', closeStatus: '',
+            monthNames: ['Januar','Februar','März','April','Mai','Juni',
+                'Juli','August','September','Oktober','November','Dezember'],
+            monthNamesShort: ['Jan','Feb','Mär','Apr','Mai','Jun',
+                'Jul','Aug','Sep','Okt','Nov','Dez'],
+            dayNames: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
+            dayNamesShort: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+            dayNamesMin: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+            showMonthAfterYear: false,
+            dateFormat:'d MM, yy'
+        };
+
+        $(function() {
+            $('#datepicker_impftermin').datepicker(datepicker_german
+            );
+        });
+
+        $(function() {
+            $('#datepicker_infection').datepicker(datepicker_german
+            );
         });
     </script>
 
@@ -82,7 +96,10 @@
     <h1>Aktuelle Seite: mein-impfrechner.de</h1>
 
     disclaimer: Dies sind keine direkten Empfehlungen, die Aussagen der Website basieren jedoch auf den Empfehlungen der Ständigen Impfkommission.
-    Wir übernehmen keine Haftung für eventuelle Falschaussagen. <br>
+    Wir übernehmen keine Haftung für eventuelle Falschaussagen. <br><br>
+
+
+
 
     <!-- Card: vaccination-->
     <div class="card" style="width: 30rem;">
@@ -93,7 +110,6 @@
                 <div class="row">
                     <div class="col-sm">
                         <h5 class="card-title">X-te Impfung</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Infos</h6>
                     </div>
                     <div class="col-md-auto">
                         <a href="" title="" style="color:gray"><h3><i class="bi bi-trash"></i></h3></a>
@@ -106,7 +122,7 @@
             <p class="card-text">Bitte geben Sie den Terimin und den Impfstoff an.</p>
             <form>
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1" data-toggle="modal" data-target="#impfstoffmodal">Impfstoff <i class="bi bi-info-circle"></i> :</label>
+                    <label for="exampleFormControlSelect1" data-toggle="modal" data-target="#modal_impfstoff">Impfstoff <i class="bi bi-info-circle"></i> :</label>
                     <select class="form-select" id="exampleFormControlSelect1">
                         <option selected>bitte auswählen</option>
                         <option>BioNTech/Pfizer</option>
@@ -119,8 +135,8 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1" data-toggle="modal" data-target="#datummodal">Datum <i class="bi bi-info-circle"></i> :</label>
-                    <input type="text" id="datepicker" class="form-control" placeholder="bitte auswählen">
+                    <label for="exampleFormControlSelect2" data-toggle="modal" data-target="#modal_impfdatum">Datum <i class="bi bi-info-circle"></i> :</label>
+                    <input id="exampleFormControlSelect2" type="text" id="datepicker_impftermin" class="form-control" placeholder="bitte auswählen">
                 </div>
             </form>
             <br>
@@ -133,10 +149,152 @@
     </div>
 
 
+    <br>
+
+    <!-- Card: Vaccinated-->
+    <div class="card" style="width: 30rem;">
+        <div class="card-body">
+
+            <!-- Card header-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <h5 class="card-title">Impfung?</h5>
+                    </div>
+                    <div class="col-md-auto">
+                        <a href="" title="" style="color:gray"><h3><i class="bi bi-trash"></i></h3></a>
+                    </div>
+                </div>
+            </div>
 
 
-    <!-- Button trigger modal: Impfstoff und Datum -->
-    <div class="modal fade" id="impfstoffmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <!-- Card body-->
+            <form>
+                <div class="form-group">
+                    <label>Haben Sie bereits eine Corona-Schutzimpfung erhalten? :</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Ja
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Nein
+                        </label>
+                    </div>
+                </div>
+            </form>
+            <br>
+            <!-- Buttons TODO @Moritz switch active/inactive when pressed -->
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <button type="button" class="btn btn-secondary btn-lg" disabled>Bearbeiten</button>
+                <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Bestätigen</a>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <!-- Card: past SARS-CoV-2 infection-->
+    <div class="card" style="width: 30rem;">
+        <div class="card-body">
+
+            <!-- Card header-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <h5 class="card-title">Genesen oder positiv getestet?</h5>
+                    </div>
+                    <div class="col-md-auto">
+                        <a href="" title="" style="color:gray"><h3><i class="bi bi-trash"></i></h3></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card body-->
+            <form>
+                <div class="form-group">
+                    <label>Wurden Sie bereits positiv auf Corona (SARS-CoV-2) getestet (Kein Selbsttest)? :</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1_pos_getestet">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Ja
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2_pos_getestet" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Nein
+                        </label>
+                    </div>
+                </div>
+            </form>
+
+            <br>
+
+            <!-- TODO @moritzblum Datepicker nur anzeigen, wenn positiv getestet ausgewählt ist. -->
+            <div class="form-group">
+                <label for="exampleFormControlSelect3" data-toggle="modal" data-target="#modal_datum_postest">Datum <i class="bi bi-info-circle"></i> :</label>
+                <input id="exampleFormControlSelect3" type="text" id="datepicker_infection" class="form-control" placeholder="bitte auswählen">
+            </div>
+
+            <br>
+
+            <!-- Buttons TODO @Moritz switch active/inactive when pressed -->
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <button type="button" class="btn btn-secondary btn-lg" disabled>Bearbeiten</button>
+                <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Bestätigen</a>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <!-- Card: age-->
+    <div class="card" style="width: 30rem;">
+        <div class="card-body">
+
+            <!-- Card header-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <h5 class="card-title">Ihr Alter?</h5>
+                    </div>
+                    <div class="col-md-auto">
+                        <a href="" title="" style="color:gray"><h3><i class="bi bi-trash"></i></h3></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card body-->
+            <form>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Alter">
+            </form>
+
+            <br>
+
+            <!-- Buttons TODO @Moritz switch active/inactive when pressed -->
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <button type="button" class="btn btn-secondary btn-lg" disabled>Bearbeiten</button>
+                <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Bestätigen</a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Button trigger modal-->
+    <div class="modal fade" id="modal_impfstoff" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -155,18 +313,36 @@
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="datummodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal fade" id="modal_impfdatum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="datumTitle">Modal title Datum</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitleDatum">Modal title Impfdarum</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    ... <!-- TODO @Ole add Date info-text-->
+                    ... <!-- TODO @Ole add Impfstoff info-text-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal_datum_postest" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitleDatum" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitledatePosttest">Modal title PosTestDatum</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ... <!-- TODO @Ole add Impfstoff info-text-->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -177,10 +353,11 @@
     </div>
 
 
-    <!-- TODO @Moritz Card: Vaccinated-->
 
-    <!-- TODO @Moritz Card: past SARS-CoV-2 infection-->
 
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
 
