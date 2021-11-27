@@ -1,8 +1,24 @@
 body {
+    height: 100vh;
     background-color: lightblue;
+    position:relative;
 }
 
 h1 {
     color: navy;
     margin-left: 20px;
+}
+
+.card{
+    position:absolute;
+}
+
+div.inactive {
+    opacity: 0;
+    pointer-events: none;
+}
+
+div.active{
+    opacity: 1;
+    pointer-events: all;
 }
