@@ -1,8 +1,5 @@
 'use strict';
 
-
-
-
 class Card extends React.Component {
     constructor(props) {
         super(props);
@@ -15,11 +12,13 @@ class Card extends React.Component {
                     <div className="card" style={{width: "18rem"}}>
                         <div className="card-body">
                             <h5 className="card-title">{this.props.title}</h5>
-
                             {this.props.form_body}
                             <br />
-                            <button className="btn btn-primary" onClick={this.props.handler} id={this.props.id_input}>
-                                {this.props.text}
+                            <button className="btn btn-primary" onClick={this.props.handler} id={this.props.id_back}>
+                                back
+                            </button>
+                            <button className="btn btn-primary" onClick={this.props.handler} id={this.props.id_next}>
+                                next
                             </button>
                         </div>
                     </div>
@@ -28,7 +27,6 @@ class Card extends React.Component {
         );
     }
 }
-
 
 
 let form_body_vaccination =
@@ -59,8 +57,6 @@ function handle_vaccination_submit(){
 
 
 
-
-
 class Card_start extends React.Component {
     constructor(props) {
         super(props);
@@ -83,71 +79,60 @@ class Card_start extends React.Component {
 
 
 class CardManager extends React.Component {
-
-
-
     constructor(props) {
         super(props);
-        this.test_click_2 = this.test_click_2.bind(this);
+        this.control_click_handler = this.control_click_handler.bind(this);
 
-        this.state = {step: 'start'};
-
-
+        this.state = {
+            step: 'start',
+            history: []
+        };
     }
 
 
-    test_click_2(e){
+    control_click_handler(e){
+        console.log('click next on: ' + e.target.id);
 
-
-        console.log('click');
-        console.log(e.target.id);
         if(e.target.id == "card_start_button_next"){
             this.setState({step : 'vaccination'});
-
+            this.setState({history: this.state.history.concat(['start'])});
         }
-        if(e.target.id == "card2_input"){
-            handle_vaccination_submit();
+        if(e.target.id == "card_vaccination_back"){
+            //handle_vaccination_submit();
+            console.log('back');
         }
-
-        e.preventDefault();
-
-
-
-
-
 
         e.preventDefault();
     }
 
     render() {
         const step = this.state.step;
-        console.log(step)
 
         switch(step) {
             case 'start':
                 return (
-                    <Card_start handler={this.test_click_2} />
+                    <Card_start handler={this.control_click_handler} />
                 );
             case 'vaccination':
                 return (
-                    <Card title={"Test 2"} text={"next2"} id_input={"card2_input"} form_body={form_body_vaccination} handler={this.test_click_2}/>
+                    <Card title={"Test 2"} id_next={"card_vaccination_next"} id_back={"card_vaccination_back"} form_body={form_body_vaccination} handler={this.control_click_handler}/>
+                );
+            case 'vaccinated':
+                return (
+                    <Card_start handler={this.control_click_handler} />
+                );
+            case 'past_infection':
+                return (
+                    <Card_start handler={this.control_click_handler} />
                 );
             default:
                 console.log('Rendering default.')
                 return (
                     <div>
-                        <Card title={"Test Title"} text={"next"} id_input={"card1_input"} form_body={<input className="form-control" handler={this.test_click_2} />}/>
-                        <Card title={"Test 2"} text={"next2"} id_input={"card2_input"} form_body={form_body_vaccination} handler={this.test_click_2}/>
-                        <div>{card_start}</div>
-
+                        ERROR: Not a render case!
                     </div>
                 )
-
-
-
         }
-
-
     }
 }
 
