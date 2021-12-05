@@ -10,9 +10,9 @@ class Card extends React.Component {
         return (
             <div>
                 <form onSubmit={this.props.handler}>
-                    <div className="card" style={{width: "18rem"}}>
+                    <div className="card" >
                         <div className="card-body">
-                            <h5 className="card-title">{this.props.title}</h5>
+                            <h2 className="card-title">{this.props.title}</h2>
                             {this.props.form_body}
                             <br/>
                             <button className="btn btn-primary button_back" onClick={this.props.handler}
@@ -236,15 +236,16 @@ class Form_body_symptoms_end extends React.Component {
 
 
 class Form_body_age extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.input_filed_change = this.input_filed_change.bind(this);
         this.state = {value: 45};
+        this.props.input_data_handler({target: {value: [this.state.value], name: [this.props.input_name_age]}});
     }
 
     input_filed_change(e){
-        this.props.input_data_handler(e);
         this.setState({value: e.target.value});
+        this.props.input_data_handler({target: {value: [e.target.value], name: [this.props.input_name_age]}});
     }
 
     render(){
@@ -313,14 +314,20 @@ class Card_start extends React.Component {
 
     render() {
         return (
-            <div className="card inactive" id="card_start" style={{width: "30rem"}}>
+            <div className="card inactive" id="card_start">
                 <div className="card-body">
-                    <div className="col-sm">
-                        <h5 className="card-title">Start card</h5>
+                    <div className="row">
+                        <div className="col-sm">
+                            <h1 className="card-title" style={{textAlign: "center"}}>Impfrechner</h1>
+                        </div>
                     </div>
-                    <button type="button" className="btn btn-primary btn-lg button_next" id="card_start_button_next"
-                            onClick={this.props.handler}>Starten
-                    </button>
+                    <div className="row">
+                        <div className="col text-center">
+                            <button type="button" className="btn btn-primary btn-lg button_next" id="card_start_button_next"
+                                    onClick={this.props.handler} >Starten
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
@@ -329,16 +336,16 @@ class Card_start extends React.Component {
 
 
 let button_id_2_card_id = {
-    'card_start_button_next': 'start',
-    'card_vaccination_next': 'vaccination',
-    'card_vaccinated_next': 'vaccinated',
-    'card_past_infection_next': 'card_past_infection_next',
-    'card_infection_date_next': 'infection_date',
-    'card_age_next': 'age',
-    'card_symptoms_next': 'symptoms',
-    'card_symptoms_end_next': 'symptoms_end',
-    'card_risk_group_next': 'risk_group',
-    'card_number_vaccinations_next': 'risk_group'
+    'card_start_button_next': 'start', // works
+    'card_vaccination_next': 'vaccination', //
+    'card_vaccinated_next': 'vaccinated', // works
+    'card_past_infection_next': 'past_infection', // works
+    'card_infection_date_next': 'infection_date', // works
+    'card_age_next': 'age', // works
+    'card_symptoms_next': 'symptoms', // works
+    'card_symptoms_end_next': 'symptoms_end', // works
+    'card_risk_group_next': 'risk_group', // works
+    'card_number_vaccinations_next': 'number_vaccinations' // works
 };
 
 
@@ -356,19 +363,20 @@ class CardManager extends React.Component {
 
 
     control_click_handler(e) {
-        console.log('click next on: ' + e.target.className);
-        console.log('entered_data:' + this.state.entered_data.date);
+        //console.log('click next on: ' + e.target.className);
+        //console.log('entered_data:' + this.state.entered_data.date);
 
         if (e.target.classList.contains('button_next')) {
             const current_card_id = button_id_2_card_id[e.target.id];
-            console.log('current card id:' + current_card_id)
+            console.log('current card id:' + current_card_id);
+            console.log('submitted data:' + JSON.stringify(this.state.entered_data));
             add_to_history(current_card_id, this.state.entered_data);
             let next_card_id = get_next_card(current_card_id);
             this.setState({step: next_card_id, entered_data: {}});
         }
         if (e.target.classList.contains('button_back')) {
             const last_step = get_last_card();
-            console.log('back to:' + last_step)
+            //console.log('back to:' + last_step)
             this.setState({step: last_step});
         }
 
@@ -377,18 +385,15 @@ class CardManager extends React.Component {
 
 
     handleInputChange(event) {
-
+        const entered_data = this.state.entered_data;
         const target = event.target;
-        console.log('name: ' + target.name);
+        console.log('handleInputChange event: name: ' + target.name + '; value : ' + target.value);
+        entered_data[target.name] = target.value;
+        console.log('new entered_data state: ' + JSON.stringify(entered_data))
 
-        console.log('value : ' + target.value);
-
-
-
-
-        //this.setState({
-        //    entered_data: {[name]: value}
-        //});
+        this.setState({
+            entered_data: entered_data
+        });
     }
 
 
@@ -408,7 +413,7 @@ class CardManager extends React.Component {
                           id_back={"card_vaccination_back"}
                           handler={this.control_click_handler}
                           form_body={<Form_body_vaccination input_data_handler={this.handleInputChange}
-                                                            input_name_vaccine='vaccine'
+                                                            input_name_vaccine='value'
                                                             input_name_vaccination_date='date'/>}/>
                 );
             case 'vaccinated':
@@ -418,7 +423,7 @@ class CardManager extends React.Component {
                           id_back={"card_vaccinated_back"}
                           handler={this.control_click_handler}
                           form_body={<Form_body_vaccinated input_data_handler={this.handleInputChange}
-                                                           input_name_vaccinated='vaccinated'/>}/>
+                                                           input_name_vaccinated='value'/>}/>
                 );
             case 'past_infection':
                 return (
@@ -427,7 +432,7 @@ class CardManager extends React.Component {
                           id_back={"card_past_infection_back"}
                           handler={this.control_click_handler}
                           form_body={<Form_body_past_infection input_data_handler={this.handleInputChange}
-                                                               input_name_past_infection='past_infection' />}/>
+                                                               input_name_past_infection='value' />}/>
                 );
             case 'infection_date':
                 return (
@@ -445,7 +450,7 @@ class CardManager extends React.Component {
                           id_back={"card_age_back"}
                           handler={this.control_click_handler}
                           form_body={<Form_body_age input_data_handler={this.handleInputChange}
-                                                               input_name_age='age'/>}/>
+                                                               input_name_age='value'/>}/>
                 );
             case 'symptoms':
                 return (
@@ -454,7 +459,7 @@ class CardManager extends React.Component {
                           id_back={"card_symptoms_back"}
                           handler={this.control_click_handler}
                           form_body={<Form_body_symptoms input_data_handler={this.handleInputChange}
-                                                               input_name_symptoms='symptoms' />}/>
+                                                               input_name_symptoms='value' />}/>
                 );
             case 'symptoms_end':
                 return (
@@ -472,7 +477,7 @@ class CardManager extends React.Component {
                           id_back={"card_risk_group_back"}
                           handler={this.control_click_handler}
                           form_body={<Form_body_past_infection input_data_handler={this.handleInputChange}
-                                                               input_name_past_infection='risk_group' />}/>
+                                                               input_name_past_infection='value' />}/>
                 );
             case 'number_vaccinations':
                 return (
@@ -481,7 +486,7 @@ class CardManager extends React.Component {
                           id_back={"card_number_vaccinations_back"}
                           handler={this.control_click_handler}
                           form_body={<Form_body_number_vaccinations input_data_handler={this.handleInputChange}
-                                                               input_name_number_vaccinations='number_vaccinations' />}/>
+                                                               input_name_number_vaccinations='value' />}/>
                 );
 
             default:
