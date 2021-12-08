@@ -1,21 +1,9 @@
-@media only screen and (max-width: 768px) {
-
-    .html {
-        font-size: 40em;
-    }
-
-    .h1 {
-        font-size: 2em;
-    }
-
-
+html {
+    height: 100%;
 }
 
-
-
 body {
-    height: 100vh;
-
+    height: 100%;
     position:relative;
 }
 
@@ -26,44 +14,41 @@ h1 {
 
 .card{
     position:relative;
-    background-color: blueviolet;
-    top: 0%;
-    left: 0%;
-    width: 100%;
-    height: 100%;
+    width: 500px;
+    height: 400px;
+    background-color: #f7f7f7;
 }
 
 
 
 
-
-
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 500px) {
 
     html {
-        font-size: 6vw;
+        font-size: 4vw;
+        height: 100%;
     }
 
 
     body {
-        background-color: black;
+        height: 100%;
         position:relative;
     }
 
     .h1 {
         color: navy;
         margin-left: 20px;
-        font-size: 10vw;
+        font-size: 4vw;
     }
 
     .card{
         position:relative;
-        background-color: blueviolet;
-        top: 0%;
-        left: 0%;
-        width: 100%;
-        height: 100%;
+        width: 95%;
+        height: 95%;
+    }
 
+    .app{
+        height: 60%;
     }
 }
 
