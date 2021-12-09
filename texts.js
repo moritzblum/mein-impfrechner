@@ -1,7 +1,7 @@
 texts_german = {
   "start": {
     "header": "Impfrechner",
-    "welcome": "Begrüßungstext",
+    "welcome": "Guten Tag, hier können Sie Ihren Impftermin berechnen.",
     "info_data_storage": "Alle Daten bleiben im Browser."
   },
   "vaccination": {
