@@ -70,8 +70,16 @@ texts_german = {
     "moderna": "Moderna",
     "astra": "AstraZeneca"
   }
-
-
-
-
 };
+
+constants = {
+  'age_groups': {
+    // the two values specify the range of age, e.g. [13,200] means everybody with an age of 13 up to 200
+    'age_group_1': [0,12],
+    'age_group_2': [13,200],
+    'age_group_3': [200,Number.MAX_SAFE_INTEGER],
+  }
+
+
+
+}

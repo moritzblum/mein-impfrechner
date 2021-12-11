@@ -14,10 +14,10 @@
 
   <body>
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
       <div class="container-fluid">
 
-        <a class="navbar-brand" href="#">Mein Impfrechner</a>
+        <a class="navbar-brand" href="#"><i class="bi bi-bandaid"></i> Mein Impfrechner</a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -25,12 +25,6 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="bi bi-calculator"></i>
-                Impfrechner
-              </a>
-            </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="bi bi-info-circle"></i>
@@ -54,11 +48,17 @@
       </div>
     </nav>
 
-    <br>
-    <h1>Willkommen auf mein-impfrechner.de</h1>
 
-    disclaimer: Dies sind keine direkten Empfehlungen, die Aussagen der Website basieren jedoch auf den Empfehlungen der Ständigen Impfkommission.
-    Wir übernehmen keine Haftung für eventuelle Falschaussagen. <br><br>
+
+
+    <br>
+    <div class="main_page_text container">
+      <h1 class="text-center">Willkommen auf mein-impfrechner.de</h1>
+
+      disclaimer: Dies sind keine direkten Empfehlungen, die Aussagen der Website basieren jedoch auf den Empfehlungen der Ständigen Impfkommission.
+      Wir übernehmen keine Haftung für eventuelle Falschaussagen. <br><br>
+
+    </div>
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -75,6 +75,7 @@
 
     <script src="form_logic.js"></script>
     <script src="texts.js"></script>
+    <script src="test_form_logic.js"></script>
     <script src="render_form.js" type="text/babel"></script>
   </body>
 

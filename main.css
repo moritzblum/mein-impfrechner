@@ -12,6 +12,11 @@ h1 {
     margin-left: 20px;
 }
 
+.main_page_text{
+    position:relative;
+    width: 50%;
+}
+
 .card{
     position:relative;
     width: 500px;
@@ -20,6 +25,15 @@ h1 {
 }
 
 
+
+@media screen and (max-width: 1000px) {
+    .main_page_text{
+        position:relative;
+        width: 500px;
+    }
+
+
+}
 
 
 @media screen and (max-width: 500px) {
@@ -39,6 +53,11 @@ h1 {
         color: navy;
         margin-left: 20px;
         font-size: 4vw;
+    }
+
+    .main_page_text{
+        position:relative;
+        width: 100%;
     }
 
     .card{

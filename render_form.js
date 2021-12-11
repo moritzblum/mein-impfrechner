@@ -348,7 +348,7 @@ class Card_start extends React.Component {
                         </div>
                         <div className="col position-absolute top-50 start-50 translate-middle">
                             <button type="button" className="btn btn-outline-secondary btn-lg button_next" id="card_start_button_next"
-                                    onClick={this.props.handler} style={{"font-size":"40px"}}>  Starten
+                                    onClick={this.props.handler} style={{"fontSize":"40px"}}>  Starten
                             </button>
                         </div>
                 </div>
@@ -359,19 +359,43 @@ class Card_start extends React.Component {
     }
 }
 
+function button_id_2_card_id(button_id){
+    if (button_id.includes('_start_')){
+        return 'start';
+    }
+    if (button_id.includes('_vaccination_')){
+        return 'vaccination';
+    }
+    if (button_id.includes('_vaccinated_')){
+        return 'vaccinated';
+    }
+    if (button_id.includes('_past_infection_')){
+        return 'past_infection';
+    }
+    if (button_id.includes('_infection_date_')){
+        return 'infection_date';
+    }
+    if (button_id.includes('_age_')){
+        return 'age';
+    }
+    if (button_id.includes('_symptoms_end_')){
+        return 'symptoms_end';
+    }
+    if (button_id.includes('_symptoms_')){
+        return 'symptoms';
+    }
+    if (button_id.includes('_risk_group_')){
+        return 'risk_group';
+    }
+    if (button_id.includes('_number_vaccinations_')){
+        return 'number_vaccinations';
+    }
 
-let button_id_2_card_id = {
-    'card_start_button_next': 'start', // works
-    'card_vaccination_next': 'vaccination', //
-    'card_vaccinated_next': 'vaccinated', // works
-    'card_past_infection_next': 'past_infection', // works
-    'card_infection_date_next': 'infection_date', // works
-    'card_age_next': 'age', // works
-    'card_symptoms_next': 'symptoms', // works
-    'card_symptoms_end_next': 'symptoms_end', // works
-    'card_risk_group_next': 'risk_group', // works
-    'card_number_vaccinations_next': 'number_vaccinations' // works
-};
+
+
+}
+
+
 
 
 class CardManager extends React.Component {
@@ -381,27 +405,35 @@ class CardManager extends React.Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.state = {
             step: 'start',
-            entered_data: 'test'
+            entered_data: {},
+            card_history: [],
+            user_data: {}
         };
 
     }
 
 
     control_click_handler(e) {
-        //console.log('click next on: ' + e.target.className);
-        //console.log('entered_data:' + this.state.entered_data.date);
+        let current_card_history = this.state.card_history;
+        let current_user_data = this.state.user_data;
+        let current_card_id = button_id_2_card_id(e.target.id);
 
         if (e.target.classList.contains('button_next')) {
-            const current_card_id = button_id_2_card_id[e.target.id];
-            console.log('current card id:' + current_card_id);
-            console.log('submitted data:' + JSON.stringify(this.state.entered_data));
-            add_to_history(current_card_id, this.state.entered_data);
-            let next_card_id = get_next_card(current_card_id);
+            current_card_history.push(current_card_id);
+            current_user_data[current_card_id] = this.state.entered_data;
+            let next_card_id = get_next_card(current_card_history, current_user_data);
+
+            this.setState({card_history: this.state.card_history});
+            this.setState({user_data: current_user_data});
             this.setState({step: next_card_id, entered_data: {}});
         }
         if (e.target.classList.contains('button_back')) {
-            const last_step = get_last_card();
-            //console.log('back to:' + last_step)
+            let last_step = current_card_history.pop();
+            delete current_user_data[current_card_id];
+
+            this.setState({card_history: current_card_history});
+            this.setState({user_data: current_user_data});
+            this.setState({entered_data: {value:0}});
             this.setState({step: last_step});
         }
 
@@ -502,7 +534,7 @@ class CardManager extends React.Component {
                           id_back={"card_risk_group_back"}
                           handler={this.control_click_handler}
                           form_body={<Form_body_risk_group input_data_handler={this.handleInputChange}
-                                                               input_name_past_infection='value' />}/>
+                                                           input_name_risk_group='value' />}/>
                 );
             case 'number_vaccinations':
                 return (
