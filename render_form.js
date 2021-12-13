@@ -48,7 +48,7 @@ class Card extends React.Component {
 }
 
 
-class Form_body_vaccination extends React.Component {
+class Form_body_vaccination_last extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -57,8 +57,8 @@ class Form_body_vaccination extends React.Component {
         return (
             <div>
                 <div className="form-group">
-                    <div>{texts_german["vaccination"]["instruction"]}</div>
-                    <label>{texts_german["vaccination"]["vaccination_label"]} <i className="bi bi-info-circle"></i> :</label>
+                    <div>{texts_german["vaccination_last"]["instruction"]}</div>
+                    <label>{texts_german["vaccination_last"]["vaccination_label"]} <i className="bi bi-info-circle"></i> :</label>
                     <select className="form-select" id="exampleFormControlSelect1"
                             onChange={this.props.input_data_handler} name={this.props.input_name_vaccine}>
                         <option value>{texts_german["vaccination"]["vaccination_instruction"]}</option>
@@ -69,9 +69,33 @@ class Form_body_vaccination extends React.Component {
                     </select>
                 </div>
                 <div className="form-group">
-                    <label>{texts_german["vaccination"]["date_labe"]} <i className="bi bi-info-circle"></i> :</label>
+                    <label>{texts_german["vaccination_last"]["date_labe"]} <i className="bi bi-info-circle"></i> :</label>
                     <DatePicker onChange={this.props.input_data_handler}
                                 date_picker_name={this.props.input_name_vaccination_date}/>
+                </div>
+            </div>);
+    }
+}
+
+class Form_body_vaccination_x extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div>
+                <div className="form-group">
+                    <div>{texts_german["vaccination_x"]["instruction"]}</div>
+                    <label>{texts_german["vaccination_x"]["vaccination_label"]} <i className="bi bi-info-circle"></i> :</label>
+                    <select className="form-select" id="exampleFormControlSelect1"
+                            onChange={this.props.input_data_handler} name={this.props.input_name_vaccine}>
+                        <option value>{texts_german["vaccination"]["vaccination_instruction"]}</option>
+                        <option>{texts_german["vaccines"]["biontec"]}</option>
+                        <option>{texts_german["vaccines"]["moderna"]}</option>
+                        <option>{texts_german["vaccines"]["astra"]}</option>
+                        <option>{texts_german["vaccination"]["other_vaccines"]}</option>
+                    </select>
                 </div>
             </div>);
     }
@@ -157,19 +181,19 @@ class Form_body_symptoms extends React.Component {
             <div className="form-group">
                 <label>{texts_german["symptoms"]["instructions"]} :</label>
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" id="flexRadioDefault3" onChange={this.props.input_data_handler} name={this.props.input_name_symptoms} value={0}/>
+                    <input className="form-check-input" type="radio" id="flexRadioDefault3" onChange={this.props.input_data_handler} name={this.props.input_name_symptoms} value={'never'}/>
                     <label className="form-check-label" htmlFor="flexRadioDefault3">
                         {texts_german["symptoms"]["never"]}
                     </label>
                 </div>
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" id="flexRadioDefault4" onChange={this.props.input_data_handler} name={this.props.input_name_symptoms} value={1}/>
+                    <input className="form-check-input" type="radio" id="flexRadioDefault4" onChange={this.props.input_data_handler} name={this.props.input_name_symptoms} value={'still'}/>
                     <label className="form-check-label" htmlFor="flexRadioDefault4">
                         {texts_german["symptoms"]["still"]}
                     </label>
                 </div>
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" id="flexRadioDefault4" onChange={this.props.input_data_handler} name={this.props.input_name_symptoms} value={2}/>
+                    <input className="form-check-input" type="radio" id="flexRadioDefault4" onChange={this.props.input_data_handler} name={this.props.input_name_symptoms} value={'past'}/>
                     <label className="form-check-label" htmlFor="flexRadioDefault4">
                         {texts_german["symptoms"]["past"]}
                     </label>
@@ -363,6 +387,18 @@ function button_id_2_card_id(button_id){
     if (button_id.includes('_start_')){
         return 'start';
     }
+    if (button_id.includes('_vaccination_last_')){
+        return 'vaccination_last';
+    }
+    if (button_id.includes('_vaccination_1_')){
+        return 'vaccination_1';
+    }
+    if (button_id.includes('_vaccination_2_')){
+        return 'vaccination_2';
+    }
+    if (button_id.includes('_vaccination_3_')){
+        return 'vaccination_3';
+    }
     if (button_id.includes('_vaccination_')){
         return 'vaccination';
     }
@@ -390,9 +426,6 @@ function button_id_2_card_id(button_id){
     if (button_id.includes('_number_vaccinations_')){
         return 'number_vaccinations';
     }
-
-
-
 }
 
 
@@ -445,7 +478,17 @@ class CardManager extends React.Component {
         const entered_data = this.state.entered_data;
         const target = event.target;
         console.log('handleInputChange event: name: ' + target.name + '; value : ' + target.value);
-        entered_data[target.name] = target.value;
+
+        // typecast string value to boolean if required
+        let value = target.value;
+        if (value === 'true') {
+            value = true;
+        }
+        if (value === 'false') {
+            value = false;
+        }
+
+        entered_data[target.name] = value;
         console.log('new entered_data state: ' + JSON.stringify(entered_data))
 
         this.setState({
@@ -463,15 +506,42 @@ class CardManager extends React.Component {
                     <Card_start handler={this.control_click_handler}/>
                 );
 
-            case 'vaccination':
+            case 'vaccination_last':
                 return (
-                    <Card title={texts_german["vaccination"]["header"]}
-                          id_next={"card_vaccination_next"}
-                          id_back={"card_vaccination_back"}
+                    <Card title={texts_german["vaccination_last"]["header"]}
+                          id_next={"card_vaccination_last_next"}
+                          id_back={"card_vaccination_last_back"}
                           handler={this.control_click_handler}
-                          form_body={<Form_body_vaccination input_data_handler={this.handleInputChange}
+                          form_body={<Form_body_vaccination_last input_data_handler={this.handleInputChange}
                                                             input_name_vaccine='value'
                                                             input_name_vaccination_date='date'/>}/>
+                );
+            case 'vaccination_1':
+                return (
+                    <Card title={texts_german["vaccination_x"]["header"]}
+                          id_next={"card_vaccination_1_next"}
+                          id_back={"card_vaccination_1_back"}
+                          handler={this.control_click_handler}
+                          form_body={<Form_body_vaccination_x input_data_handler={this.handleInputChange}
+                                                            input_name_vaccine='value' />}/>
+                );
+            case 'vaccination_2':
+                return (
+                    <Card title={texts_german["vaccination_x"]["header"]}
+                          id_next={"card_vaccination_2_next"}
+                          id_back={"card_vaccination_2_back"}
+                          handler={this.control_click_handler}
+                          form_body={<Form_body_vaccination_x input_data_handler={this.handleInputChange}
+                                                              input_name_vaccine='value' />}/>
+                );
+            case 'vaccination_3':
+                return (
+                    <Card title={texts_german["vaccination_x"]["header"]}
+                          id_next={"card_vaccination_3_next"}
+                          id_back={"card_vaccination_3_back"}
+                          handler={this.control_click_handler}
+                          form_body={<Form_body_vaccination_x input_data_handler={this.handleInputChange}
+                                                              input_name_vaccine='value' />}/>
                 );
             case 'vaccinated':
                 return (

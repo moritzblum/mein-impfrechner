@@ -4,8 +4,18 @@ texts_german = {
     "welcome": "Guten Tag, hier können Sie Ihren Impftermin berechnen.",
     "info_data_storage": "Alle Daten bleiben im Browser."
   },
-  "vaccination": {
-    "header": "Vaccination",
+  "vaccination_last": {
+    "header": "Vaccination last",
+    "instruction": "Bitte angeben",
+    "vaccination_label": "Impfstoff",
+    "vaccination_instruction": "bitte auswählen",
+    "other_vaccines": "andere",
+    "info_vaccines": "Welcher Impfstoff, Erklärungen, ....",
+    "date_labe": "Datum",
+    "info_date": "Welches Datum, warum, wie, was"
+  },
+  "vaccination_x": {
+    "header": "Vaccination number x",
     "instruction": "Bitte angeben",
     "vaccination_label": "Impfstoff",
     "vaccination_instruction": "bitte auswählen",
@@ -78,6 +88,32 @@ constants = {
     'age_group_1': [0,12],
     'age_group_2': [13,200],
     'age_group_3': [200,Number.MAX_SAFE_INTEGER],
+  },
+  'symptoms': {
+    'never': 0,
+    'still': 1,
+    'past': 2
+  },
+  'registered_vaccination_brands': ['biontec', 'moderna', 'astra', 'johnson'],
+  'registered_vaccination_brands_one_shots': ['biontec', 'moderna', 'astra'],
+  'registered_vaccination_brands_two_shots': ['johnson'],
+  'time_gap': {
+    'other': {
+      'other': 'min 4 weeks'
+    },
+    'immunization': {
+      'biontec': '3-6 weeks',
+      'moderna': '4-6 weeks',
+      'astra': '8-10 weeks', // ?
+      'other': 'min 4 weeks'
+    },
+    'booster': {
+      'biontec': '5 month',
+      'moderna': '5 month',
+      'astra': '5 month',
+      'johnson': '5 month',
+      'other': 'min 4 weeks'
+    }
   }
 
 
