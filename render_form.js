@@ -170,6 +170,47 @@ class Form_body_risk_group extends React.Component {
     }
 }
 
+class Form_body_got_unregistered_vaccination extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render(){
+        return(
+            <div className="form-group">
+                <label>{texts_german['got_unregistered_vaccination']['instruction']} :</label>
+                <div className="form-check">
+                    <input className="form-check-input" type="radio" id="flexRadioDefault3" onChange={this.props.input_data_handler} name={this.props.input_name_got_unregistered_vaccination} value={true}/>
+                    <label className="form-check-label" htmlFor="flexRadioDefault3"> {texts_german["got_unregistered_vaccination"]["got_unregistered_vaccination_yes"]} </label>
+                </div>
+                <div className="form-check">
+                    <input className="form-check-input" type="radio" id="flexRadioDefault4" onChange={this.props.input_data_handler} name={this.props.input_name_got_unregistered_vaccination} value={false}/>
+                    <label className="form-check-label" htmlFor="flexRadioDefault4"> {texts_german["got_unregistered_vaccination"]["got_unregistered_vaccination_no"]} </label>
+                </div>
+            </div>
+        );
+    }
+}
+
+class Form_body_unregistered_vaccination_date extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div>
+                <div>{texts_german["symptoms_end"]["instructions"]}</div>
+
+                <label htmlFor="datepicker_infection" data-bs-toggle="modal"
+                       data-bs-target="#modal_datum_postest">{texts_german["unregistered_vaccination_date"]["label"]} <i className="bi bi-info-circle"></i> :</label>
+                <DatePicker onChange={this.props.input_data_handler}
+                            date_picker_name={this.props.input_unregistered_vaccination_date}/>
+            </div>
+        );
+    }
+}
+
 
 class Form_body_symptoms extends React.Component {
     constructor(props) {
@@ -387,6 +428,12 @@ function button_id_2_card_id(button_id){
     if (button_id.includes('_start_')){
         return 'start';
     }
+    if (button_id.includes('_got_unregistered_vaccination_')){
+        return 'got_unregistered_vaccination';
+    }
+    if (button_id.includes('_unregistered_vaccination_date_')){
+        return 'unregistered_vaccination_date';
+    }
     if (button_id.includes('_vaccination_last_')){
         return 'vaccination_last';
     }
@@ -452,6 +499,7 @@ class CardManager extends React.Component {
         let current_card_id = button_id_2_card_id(e.target.id);
 
         if (e.target.classList.contains('button_next')) {
+            console.log('clicked next');
             current_card_history.push(current_card_id);
             current_user_data[current_card_id] = this.state.entered_data;
             let next_card_id = get_next_card(current_card_history, current_user_data);
@@ -614,6 +662,24 @@ class CardManager extends React.Component {
                           handler={this.control_click_handler}
                           form_body={<Form_body_number_vaccinations input_data_handler={this.handleInputChange}
                                                                input_name_number_vaccinations='value' />}/>
+                );
+            case 'got_unregistered_vaccination':
+                return (
+                    <Card title={texts_german["got_unregistered_vaccination"]["header"]}
+                          id_next={"card_got_unregistered_vaccination_next"}
+                          id_back={"card_got_unregistered_vaccination_back"}
+                          handler={this.control_click_handler}
+                          form_body={<Form_body_got_unregistered_vaccination input_data_handler={this.handleInputChange}
+                                                           input_name_got_unregistered_vaccination='value' />}/>
+                );
+            case 'unregistered_vaccination_date':
+                return (
+                    <Card title={texts_german["unregistered_vaccination_date"]["header"]}
+                          id_next={"card_unregistered_vaccination_date_next"}
+                          id_back={"card_unregistered_vaccination_date_back"}
+                          handler={this.control_click_handler}
+                          form_body={<Form_body_unregistered_vaccination_date input_data_handler={this.handleInputChange}
+                                                                              input_unregistered_vaccination_date='date' />}/>
                 );
 
             default:

@@ -44,6 +44,18 @@ texts_german = {
     "risk_group_yes": "Ja",
     "risk_group_no": "Nein"
   },
+  "got_unregistered_vaccination": {
+    "header": "Nicht zugelassener Impfstoff",
+    "instruction": "Wurden Sie im Ausland mit einem nicht in Deutschland von der StIK zugelassenen Covid Impfstoff geimpft?",
+    "info_got_unregistered_vaccination": "Was, wann, warum problematisch?",
+    "got_unregistered_vaccination_yes": "Ja",
+    "got_unregistered_vaccination_no": "Nein"
+  },
+  "unregistered_vaccination_date": {
+    "header": "Date last vaccination with brand not registered in Germany",
+    "instructions": "Bitte Tag angeben!",
+    "label": "Datum"
+  },
   "symptoms": {
     "header": "Symptoms",
     "instructions": "Symptoms?",

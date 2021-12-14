@@ -3,7 +3,7 @@ let user_data = {};
 
 // todo get_next_card(user_input) -> card_id, empty_data_object
 function get_next_card(card_history, user_data) {
-    let possible_cards = ['vaccination', 'vaccinated', 'past_infection', 'infection_date', 'age', 'symptoms', 'symptoms_end', 'risk_group', 'number_vaccinations'];
+    let possible_cards = ['vaccination', 'vaccinated', 'past_infection', 'infection_date', 'age', 'symptoms', 'symptoms_end', 'risk_group', 'number_vaccinations', 'got_unregistered_vaccination', 'unregistered_vaccination_date'];
 
     if (card_history.length === 0) {
         return 'start';
@@ -60,6 +60,18 @@ function get_next_card(card_history, user_data) {
         }
     }
 
+    if (!('got_unregistered_vaccination' in user_data)){
+        return 'got_unregistered_vaccination';
+    }
+
+    console.log('logg:' + user_data['got_unregistered_vaccination']['value']);
+    if (user_data['got_unregistered_vaccination']['value']) {
+        if (!('unregistered_vaccination_date' in user_data)){
+            console.log('unregistered_vaccination_date');
+            return 'unregistered_vaccination_date';
+        }
+    }
+
     if (!('vaccinated' in user_data)) {
         return 'vaccinated';
     }
@@ -111,15 +123,15 @@ function get_next_card(card_history, user_data) {
 
     let vaccination_history = [];
 
-    if (user_data['number_vaccinations']['value'] >= 1) {
+    if (user_data['number_vaccinations']['value'] > 1) {
         vaccination_history.push(user_data['vaccination_1']['value']);
     }
 
-    if (user_data['number_vaccinations']['value'] >= 2) {
+    if (user_data['number_vaccinations']['value'] > 2) {
         vaccination_history.push(user_data['vaccination_2']['value']);
     }
 
-    if (user_data['number_vaccinations']['value'] >= 3) {
+    if (user_data['number_vaccinations']['value'] > 3) {
         vaccination_history.push(user_data['vaccination_3']['value']);
     }
 
