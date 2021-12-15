@@ -58,18 +58,19 @@ class Form_body_vaccination_last extends React.Component {
             <div>
                 <div className="form-group">
                     <div>{texts_german["vaccination_last"]["instruction"]}</div>
-                    <label>{texts_german["vaccination_last"]["vaccination_label"]} <i className="bi bi-info-circle"></i> :</label>
+                    <label>{texts_german["vaccination_last"]["vaccination_label"]}:</label>
                     <select className="form-select" id="exampleFormControlSelect1"
                             onChange={this.props.input_data_handler} name={this.props.input_name_vaccine}>
-                        <option value>{texts_german["vaccination"]["vaccination_instruction"]}</option>
+                        <option value>{texts_german["vaccination_last"]["vaccination_instruction"]}</option>
                         <option>{texts_german["vaccines"]["biontec"]}</option>
                         <option>{texts_german["vaccines"]["moderna"]}</option>
                         <option>{texts_german["vaccines"]["astra"]}</option>
-                        <option>{texts_german["vaccination"]["other_vaccines"]}</option>
+                        <option>{texts_german["vaccines"]["johnson"]}</option>
+
                     </select>
                 </div>
                 <div className="form-group">
-                    <label>{texts_german["vaccination_last"]["date_labe"]} <i className="bi bi-info-circle"></i> :</label>
+                    <label>{texts_german["vaccination_last"]["date_labe"]}:</label>
                     <DatePicker onChange={this.props.input_data_handler}
                                 date_picker_name={this.props.input_name_vaccination_date}/>
                 </div>
@@ -87,14 +88,14 @@ class Form_body_vaccination_x extends React.Component {
             <div>
                 <div className="form-group">
                     <div>{texts_german["vaccination_x"]["instruction"]}</div>
-                    <label>{texts_german["vaccination_x"]["vaccination_label"]} <i className="bi bi-info-circle"></i> :</label>
+                    <label>{texts_german["vaccination_x"]["vaccination_label"]} :</label>
                     <select className="form-select" id="exampleFormControlSelect1"
                             onChange={this.props.input_data_handler} name={this.props.input_name_vaccine}>
-                        <option value>{texts_german["vaccination"]["vaccination_instruction"]}</option>
+                        <option value>{texts_german["vaccination_x"]["vaccination_instruction"]}</option>
                         <option>{texts_german["vaccines"]["biontec"]}</option>
                         <option>{texts_german["vaccines"]["moderna"]}</option>
                         <option>{texts_german["vaccines"]["astra"]}</option>
-                        <option>{texts_german["vaccination"]["other_vaccines"]}</option>
+                        <option>{texts_german["vaccines"]["johnson"]}</option>
                     </select>
                 </div>
             </div>);
@@ -203,7 +204,7 @@ class Form_body_unregistered_vaccination_date extends React.Component {
                 <div>{texts_german["symptoms_end"]["instructions"]}</div>
 
                 <label htmlFor="datepicker_infection" data-bs-toggle="modal"
-                       data-bs-target="#modal_datum_postest">{texts_german["unregistered_vaccination_date"]["label"]} <i className="bi bi-info-circle"></i> :</label>
+                       data-bs-target="#modal_datum_postest">{texts_german["unregistered_vaccination_date"]["label"]}:</label>
                 <DatePicker onChange={this.props.input_data_handler}
                             date_picker_name={this.props.input_unregistered_vaccination_date}/>
             </div>
@@ -287,7 +288,7 @@ class Form_body_infection_date extends React.Component {
             <div>
                 <div>{texts_german["infection_date"]["instructions"]}</div>
                 <label htmlFor="datepicker_infection" data-bs-toggle="modal"
-                       data-bs-target="#modal_datum_postest">{texts_german["infection_date"]["label"]} <i className="bi bi-info-circle"></i> :</label>
+                       data-bs-target="#modal_datum_postest">{texts_german["infection_date"]["label"]}:</label>
                 <DatePicker onChange={this.props.input_data_handler}
                             date_picker_name={this.props.input_name_infection_date}/>
             </div>
@@ -307,7 +308,7 @@ class Form_body_symptoms_end extends React.Component {
                 <div>{texts_german["symptoms_end"]["instructions"]}</div>
 
                 <label htmlFor="datepicker_infection" data-bs-toggle="modal"
-                       data-bs-target="#modal_datum_postest">{texts_german["symptoms_end"]["label"]} <i className="bi bi-info-circle"></i> :</label>
+                       data-bs-target="#modal_datum_postest">{texts_german["symptoms_end"]["label"]}:</label>
                 <DatePicker onChange={this.props.input_data_handler}
                             date_picker_name={this.props.input_symptoms_end}/>
             </div>
@@ -400,27 +401,54 @@ class Card_start extends React.Component {
 
     render() {
         return (
-
             <div className="card inactive container" id="card_start">
                 <div className="row justify-content-md-center">
                     <div className="col-md-auto">
-                <div className="card-body">
-                        <div className="col-sm" style={{textAlign: "center"}}>
-                            <h1 className="card-title" > {texts_german['start']['header']} </h1>
-                            <div>
-                                {texts_german['start']['welcome']}
-                            </div>
+                        <div className="card-body">
+                                <div className="col-sm" style={{textAlign: "center"}}>
+                                    <h1 className="card-title" > {texts_german['start']['header']} </h1>
+                                    <div>
+                                        {texts_german['start']['welcome']}
+                                    </div>
+                                </div>
+                                <div className="col position-absolute top-50 start-50 translate-middle">
+                                    <button type="button" className="btn btn-outline-secondary btn-lg button_next" id="card_start_button_next"
+                                            onClick={this.props.handler} style={{"fontSize":"40px"}}>  Starten
+                                    </button>
+                                </div>
                         </div>
-                        <div className="col position-absolute top-50 start-50 translate-middle">
-                            <button type="button" className="btn btn-outline-secondary btn-lg button_next" id="card_start_button_next"
-                                    onClick={this.props.handler} style={{"fontSize":"40px"}}>  Starten
-                            </button>
-                        </div>
-                </div>
                     </div>
                 </div>
             </div>
         );
+    }
+}
+
+class Card_result extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render(){
+        return(
+            <div className="card inactive container">
+                <div className="card-body">
+                    <div className="" style={{"position": "relative", "height":"100%", "width":"100%"}}>
+                        <h1>Result</h1>
+                        <div>{JSON.stringify({'data': this.props.user_data}, null, '\t')}</div>
+                    </div>
+
+                    <div className="" style={{"position": "relative", "bottom": "10%", "width":"100%"}}>
+                        <div className="d-flex justify-content-between">
+                            <button className="btn btn-outline-secondary button_back" onClick={this.props.handler}
+                                    id={this.props.id_back}>
+                                Back
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
     }
 }
 
@@ -473,6 +501,9 @@ function button_id_2_card_id(button_id){
     if (button_id.includes('_number_vaccinations_')){
         return 'number_vaccinations';
     }
+    if (button_id.includes('_result_')){
+        return 'result';
+    }
 }
 
 
@@ -502,11 +533,11 @@ class CardManager extends React.Component {
             console.log('clicked next');
             current_card_history.push(current_card_id);
             current_user_data[current_card_id] = this.state.entered_data;
-            let next_card_id = get_next_card(current_card_history, current_user_data);
+            let next_card = get_next_card(current_card_history, current_user_data);
 
             this.setState({card_history: this.state.card_history});
             this.setState({user_data: current_user_data});
-            this.setState({step: next_card_id, entered_data: {}});
+            this.setState({step: next_card[0], entered_data: next_card[1]});
         }
         if (e.target.classList.contains('button_back')) {
             let last_step = current_card_history.pop();
@@ -681,10 +712,16 @@ class CardManager extends React.Component {
                           form_body={<Form_body_unregistered_vaccination_date input_data_handler={this.handleInputChange}
                                                                               input_unregistered_vaccination_date='date' />}/>
                 );
+            case 'result':
+                console.log(this.state.entered_data);
+                return (
+                    <Card_result handler={this.handleInputChange} user_data={this.state.user_data}/>
+                );
 
             default:
                 console.log('Rendering default.')
                 return (
+
                     <div>
                         ERROR: Not a render case!
                     </div>

@@ -90,7 +90,8 @@ texts_german = {
   "vaccines": {
     "biontec": "BioNTech/Pfizer",
     "moderna": "Moderna",
-    "astra": "AstraZeneca"
+    "astra": "AstraZeneca",
+    "johnson": "Johnson"
   }
 };
 
