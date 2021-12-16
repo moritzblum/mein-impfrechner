@@ -135,12 +135,6 @@ function get_next_card(card_history, user_data) {
         console.log('Auch durch mit Impfung');
     }
 
-
-
-
-
-
-
     if (user_data['number_vaccinations']['value'] === 1) {
         console.log('result_8: 1 Impfung')
         return ['result', {'result_8': true}];

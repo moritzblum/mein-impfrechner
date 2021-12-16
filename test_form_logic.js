@@ -1,5 +1,14 @@
-console.log('--- Start unit tests. ---')
+console.log('--- Example date operations ---');
+let test_date = ger_str_2_date("24.7.96");
+console.log('From german DD.MM.(YY)YY format to JS Date: ' + test_date);
+test_date = add_month_2_date(test_date, 2);
+console.log('Added 2 month: ' + test_date);
+test_date = add_weeks_2_date(test_date, 3);
+console.log('Added 2 weeks: ' + test_date);
+console.log('2 local string: ' + test_date.toLocaleString());
 
+
+console.log('--- Start unit tests. ---');
 let test_cases = [
     [['start'], ['age', 10], ['risk_group', true], ['result_1']],
     [['start'], ['age', 10], ['risk_group', false], ['result_2']],

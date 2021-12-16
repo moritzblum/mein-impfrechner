@@ -354,7 +354,7 @@ var datepicker_german = {
     dayNamesShort: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
     dayNamesMin: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
     showMonthAfterYear: false,
-    dateFormat: 'd MM, yy'
+    dateFormat: 'dd.mm.yy'
 };
 
 class DatePicker extends React.Component {
