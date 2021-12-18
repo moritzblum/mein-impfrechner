@@ -56,10 +56,10 @@ texts_german = {
     "instructions": "Bitte Tag angeben!",
     "label": "Datum"
   },
-  "symptoms": {
+  "symptoms_registered": {
     "header": "Symptoms",
     "instructions": "Symptoms?",
-    "info_symptoms": "Was sind Symptome, was sind Spätfolgen und wie muss ich die angeben...?",
+    "info_symptoms_registered": "Was sind Symptome, was sind Spätfolgen und wie muss ich die angeben...?",
     "never": "Nein, ich hatte nie Symptome",
     "still": "Ja, ich habe immer noch Symptome",
     "past": "Ja, ich hatte Symptome"
@@ -77,7 +77,7 @@ texts_german = {
     "label": "Datum",
     "info_infection_date": "Welches Datum, genauer ausführen: warum, wie, wo zu finden...",
   },
-  "symptoms_end": {
+  "symptoms_end_date": {
     "header": "Symptoms End Date",
     "instructions": "Intro",
     "label": "Datum"

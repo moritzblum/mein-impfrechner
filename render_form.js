@@ -201,7 +201,7 @@ class Form_body_unregistered_vaccination_date extends React.Component {
     render() {
         return (
             <div>
-                <div>{texts_german["symptoms_end"]["instructions"]}</div>
+                <div>{texts_german["symptoms_end_date"]["instructions"]}</div>
 
                 <label htmlFor="datepicker_infection" data-bs-toggle="modal"
                        data-bs-target="#modal_datum_postest">{texts_german["unregistered_vaccination_date"]["label"]}:</label>
@@ -213,7 +213,7 @@ class Form_body_unregistered_vaccination_date extends React.Component {
 }
 
 
-class Form_body_symptoms extends React.Component {
+class Form_body_symptoms_registered extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -221,23 +221,25 @@ class Form_body_symptoms extends React.Component {
     render(){
         return(
             <div className="form-group">
-                <label>{texts_german["symptoms"]["instructions"]} :</label>
+                <label>{texts_german["symptoms_registered"]["instructions"]} :</label>
+                <label>{texts_german["symptoms_registered"]["info_symptoms_registered"]} :</label>
+
                 <div className="form-check">
                     <input className="form-check-input" type="radio" id="flexRadioDefault3" onChange={this.props.input_data_handler} name={this.props.input_name_symptoms} value={'never'}/>
                     <label className="form-check-label" htmlFor="flexRadioDefault3">
-                        {texts_german["symptoms"]["never"]}
+                        {texts_german["symptoms_registered"]["never"]}
                     </label>
                 </div>
                 <div className="form-check">
                     <input className="form-check-input" type="radio" id="flexRadioDefault4" onChange={this.props.input_data_handler} name={this.props.input_name_symptoms} value={'still'}/>
                     <label className="form-check-label" htmlFor="flexRadioDefault4">
-                        {texts_german["symptoms"]["still"]}
+                        {texts_german["symptoms_registered"]["still"]}
                     </label>
                 </div>
                 <div className="form-check">
                     <input className="form-check-input" type="radio" id="flexRadioDefault4" onChange={this.props.input_data_handler} name={this.props.input_name_symptoms} value={'past'}/>
                     <label className="form-check-label" htmlFor="flexRadioDefault4">
-                        {texts_german["symptoms"]["past"]}
+                        {texts_german["symptoms_registered"]["past"]}
                     </label>
                 </div>
             </div>
@@ -297,7 +299,7 @@ class Form_body_infection_date extends React.Component {
 }
 
 
-class Form_body_symptoms_end extends React.Component {
+class Form_body_symptoms_end_date extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -305,12 +307,12 @@ class Form_body_symptoms_end extends React.Component {
     render() {
         return (
             <div>
-                <div>{texts_german["symptoms_end"]["instructions"]}</div>
+                <div>{texts_german["symptoms_end_date"]["instructions"]}</div>
 
                 <label htmlFor="datepicker_infection" data-bs-toggle="modal"
-                       data-bs-target="#modal_datum_postest">{texts_german["symptoms_end"]["label"]}:</label>
+                       data-bs-target="#modal_datum_postest">{texts_german["symptoms_end_date"]["label"]}:</label>
                 <DatePicker onChange={this.props.input_data_handler}
-                            date_picker_name={this.props.input_symptoms_end}/>
+                            date_picker_name={this.props.input_symptoms_end_date}/>
             </div>
         );
     }
@@ -468,15 +470,6 @@ function button_id_2_card_id(button_id){
     if (button_id.includes('_vaccination_1_')){
         return 'vaccination_1';
     }
-    if (button_id.includes('_vaccination_2_')){
-        return 'vaccination_2';
-    }
-    if (button_id.includes('_vaccination_3_')){
-        return 'vaccination_3';
-    }
-    if (button_id.includes('_vaccination_')){
-        return 'vaccination';
-    }
     if (button_id.includes('_vaccinated_')){
         return 'vaccinated';
     }
@@ -489,11 +482,11 @@ function button_id_2_card_id(button_id){
     if (button_id.includes('_age_')){
         return 'age';
     }
-    if (button_id.includes('_symptoms_end_')){
-        return 'symptoms_end';
+    if (button_id.includes('_symptoms_end_date_')){
+        return 'symptoms_end_date';
     }
-    if (button_id.includes('_symptoms_')){
-        return 'symptoms';
+    if (button_id.includes('_symptoms_registered_')){
+        return 'symptoms_registered';
     }
     if (button_id.includes('_risk_group_')){
         return 'risk_group';
@@ -658,23 +651,23 @@ class CardManager extends React.Component {
                           form_body={<Form_body_age input_data_handler={this.handleInputChange}
                                                                input_name_age='value'/>}/>
                 );
-            case 'symptoms':
+            case 'symptoms_registered':
                 return (
                     <Card title={texts_german["symptoms"]["header"]}
-                          id_next={"card_symptoms_next"}
-                          id_back={"card_symptoms_back"}
+                          id_next={"card_symptoms_registered_next"}
+                          id_back={"card_symptoms_registered_back"}
                           handler={this.control_click_handler}
-                          form_body={<Form_body_symptoms input_data_handler={this.handleInputChange}
+                          form_body={<Form_body_symptoms_registered input_data_handler={this.handleInputChange}
                                                                input_name_symptoms='value' />}/>
                 );
-            case 'symptoms_end':
+            case 'symptoms_end_date':
                 return (
-                    <Card title={texts_german["symptoms_end"]["header"]}
-                          id_next={"card_symptoms_end_next"}
-                          id_back={"card_symptoms_end_back"}
+                    <Card title={texts_german["symptoms_end_date"]["header"]}
+                          id_next={"card_symptoms_end_date_next"}
+                          id_back={"card_symptoms_end_date_back"}
                           handler={this.control_click_handler}
-                          form_body={<Form_body_symptoms_end input_data_handler={this.handleInputChange}
-                                                               input_symptoms_end='date'/>}/>
+                          form_body={<Form_body_symptoms_end_date input_data_handler={this.handleInputChange}
+                                                               input_symptoms_end_date='date'/>}/>
                 );
             case 'risk_group':
                 return (
@@ -715,7 +708,7 @@ class CardManager extends React.Component {
             case 'result':
                 console.log(this.state.entered_data);
                 return (
-                    <Card_result handler={this.handleInputChange} user_data={{'user_data': this.state.user_data, 'entered_data': this.state.entered_data}}/>
+                    <Card_result handler={this.control_click_handler} user_data={{'user_data': this.state.user_data, 'entered_data': this.state.entered_data}}/>
                 );
 
             default:

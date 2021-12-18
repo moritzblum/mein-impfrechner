@@ -2,7 +2,7 @@ let card_history = [];
 let user_data = {};
 
 function get_next_card(card_history, user_data) {
-    let possible_cards = ['vaccination', 'vaccinated', 'past_infection', 'infection_date', 'age', 'symptoms', 'symptoms_end', 'risk_group', 'number_vaccinations', 'got_unregistered_vaccination', 'unregistered_vaccination_date'];
+    let possible_cards = ['vaccination', 'vaccinated', 'past_infection', 'infection_date', 'age', 'symptoms_registered', 'symptoms_end_date', 'risk_group', 'number_vaccinations', 'got_unregistered_vaccination', 'unregistered_vaccination_date'];
 
     if (card_history.length == 0) {
         return ['start', {}];
@@ -43,23 +43,23 @@ function get_next_card(card_history, user_data) {
         if (!('infection_date' in user_data)) {
             return ['infection_date', {}];
         }
-        if (!('symptoms' in user_data)){
-            return ['symptoms', {}];
+        if (!('symptoms_registered' in user_data)){
+            return ['symptoms_registered', {}];
         }
-        if (user_data['symptoms']['value'] === 'past') {
-            if (!('symptoms_end' in user_data)){
-                return ['symptoms_end', {}];
+        if (user_data['symptoms_registered']['value'] === 'past') {
+            if (!('symptoms_end_date' in user_data)){
+                return ['symptoms_end_date', {}];
             }
         }
 
-        if (user_data['symptoms']['value'] === 'still') {
+        if (user_data['symptoms_registered']['value'] === 'still') {
             console.log('result_2: aktuell keine Impfempfehlung');
             return ['result', {'result_2': true}];
         }
 
         // infection date is the limiting factor concerning the vaccination date
-        if (user_data['symptoms']['value'] === 'never') {
-            user_data['symptoms_end'] = user_data['infection_date'];
+        if (user_data['symptoms_registered']['value'] === 'never') {
+            user_data['symptoms_end_date'] = user_data['infection_date'];
         }
     }
     else {
@@ -110,7 +110,7 @@ function get_next_card(card_history, user_data) {
             let first_possible_date = get_latest_date([Date.now(),
                 add_weeks_2_date(ger_str_2_date(user_data['unregistered_vaccination_date']['date']), 4),
                 add_weeks_2_date(ger_str_2_date(user_data['infection_date']['date']), 4),
-                add_weeks_2_date(ger_str_2_date(user_data['symptoms_end']['date']), 4)]);
+                add_weeks_2_date(ger_str_2_date(user_data['symptoms_end_date']['date']), 4)]);
 
             // age >= 30, first vaccination with past infection
             if (user_age >= constants['age_groups']['age_group_3'][0]) {
@@ -130,6 +130,11 @@ function get_next_card(card_history, user_data) {
     if (user_data['number_vaccinations']['value'] >= 5){
         console.log('result_7: 5 Impfungen sind auf jeden Fall genug, keine weitere Impfempfehlung.');
         return ['result', {'result_7': true}];
+    }
+
+    if (user_data['number_vaccinations']['value'] == 3){
+        console.log('result_21: Boostern schon durch');
+        return ['result', {'result_21': true}];
     }
 
     if (! ('vaccination_last' in user_data)) {

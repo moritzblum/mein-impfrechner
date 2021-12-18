@@ -12,14 +12,16 @@ console.log('--- Start unit tests. ---');
 let test_cases = [
     [['start'], ['age', 10], ['risk_group', true], ['result_1']],
     [['start'], ['age', 10], ['risk_group', false], ['result_2']],
-    [['start'], ['age', 21], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.21'], ['symptoms', 'still'], ['result_2']],
+    [['start'], ['age', 21], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.21'], ['symptoms_registered', 'still'], ['result_2']],
     [['start'], ['age', 200], ['result_3']],
     [['start'], ['age', 31], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', false], ['result_11']],
     [['start'], ['age', 21], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', false], ['result_12']],
-    [['start'], ['age', 21], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.21'],  ['symptoms', 'past'], ['symptoms_end', '11.05.21'], ['got_unregistered_vaccination', false], ['vaccinated', false], ['result_14']],
-    [['start'], ['age', 21], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.21'],  ['symptoms', 'past'], ['symptoms_end', '11.05.21'], ['got_unregistered_vaccination', false], ['vaccinated', true], ['result_10']],
-    [['start'], ['age', 31], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.21'],  ['symptoms', 'never'], ['got_unregistered_vaccination', false], ['vaccinated', false], ['result_13']],
+    [['start'], ['age', 21], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.21'],  ['symptoms_registered', 'past'], ['symptoms_end_date', '11.05.21'], ['got_unregistered_vaccination', false], ['vaccinated', false], ['result_14']],
+    [['start'], ['age', 21], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.21'],  ['symptoms_registered', 'past'], ['symptoms_end_date', '11.05.21'], ['got_unregistered_vaccination', false], ['vaccinated', true], ['result_10']],
+    [['start'], ['age', 31], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.21'],  ['symptoms_registered', 'never'], ['got_unregistered_vaccination', false], ['vaccinated', false], ['result_13']],
     [['start'], ['age', 21], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 5], ['result_7']],
+    [['start'], ['age', 21], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 3], ['result_21']],
+
     [['start'], ['age', 21], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'biontec', '11.05.21'], ['result_17']],
     [['start'], ['age', 31], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'biontec', '11.05.21'], ['result_16']],
     [['start'], ['age', 31], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'johnson', '11.05.21'], ['result_15']],
@@ -56,7 +58,7 @@ for (let test_case_number in test_cases) {
         }
 
         card_history_test.push(expe_card[0]);
-        if (['infection_date', 'symptoms_end', 'unregistered_vaccination_date'].includes(expe_card[0])){
+        if (['infection_date', 'symptoms_end_date', 'unregistered_vaccination_date'].includes(expe_card[0])){
             user_data_test[expe_card[0]] = {'date': test_case[step][1]};
         }
         else {
