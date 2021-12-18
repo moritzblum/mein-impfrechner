@@ -231,10 +231,6 @@ function get_next_card(card_history, user_data) {
     }
 
 
-
-    // TODO
-    console.log('TODO')
-
     console.log('Default case: sampled random card.')
     return possible_cards[Math.floor(Math.random() * possible_cards.length)];
 
@@ -242,10 +238,6 @@ function get_next_card(card_history, user_data) {
 }
 
 
-// todo get_last_card() -> card_id, past_user_input
-function get_last_card() {
-    return card_history.pop();
-}
 
 function get_user_data(card_id) {
     return user_data[card_id]
