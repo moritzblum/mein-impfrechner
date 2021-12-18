@@ -98,9 +98,10 @@ texts_german = {
 constants = {
   'age_groups': {
     // the two values specify the range of age, e.g. [13,200] means everybody with an age of 13 up to 200
-    'age_group_1': [0,12],
-    'age_group_2': [13,200],
-    'age_group_3': [200,Number.MAX_SAFE_INTEGER],
+    'age_group_1': [0,11],
+    'age_group_2': [12,29],
+    'age_group_3': [30,199],
+    'age_group_4': [200,Number.MAX_SAFE_INTEGER],
   },
   'symptoms': {
     'never': 0,
@@ -108,8 +109,8 @@ constants = {
     'past': 2
   },
   'registered_vaccination_brands': ['biontec', 'moderna', 'astra', 'johnson'],
-  'registered_vaccination_brands_one_shots': ['biontec', 'moderna', 'astra'],
-  'registered_vaccination_brands_two_shots': ['johnson'],
+  'registered_vaccination_brands_two_shots': ['biontec', 'moderna', 'astra'],
+  'registered_vaccination_brands_one_shots': ['johnson'],
   'time_gap': {
     'other': {
       'other': 'min 4 weeks'

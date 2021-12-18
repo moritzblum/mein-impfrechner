@@ -365,7 +365,7 @@ class DatePicker extends React.Component {
     }
 
     handle_date_selection_internal(date) {
-        this.props.onChange({target: {value: [date], name: [this.props.date_picker_name]}});
+        this.props.onChange({target: {value: date, name: [this.props.date_picker_name]}});
     }
 
     componentDidMount() {
@@ -715,7 +715,7 @@ class CardManager extends React.Component {
             case 'result':
                 console.log(this.state.entered_data);
                 return (
-                    <Card_result handler={this.handleInputChange} user_data={this.state.user_data}/>
+                    <Card_result handler={this.handleInputChange} user_data={{'user_data': this.state.user_data, 'entered_data': this.state.entered_data}}/>
                 );
 
             default:
