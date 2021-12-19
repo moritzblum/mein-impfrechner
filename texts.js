@@ -96,7 +96,11 @@ texts_german = {
   "results": {
     "no_general_recommendation": "Aktuell keine Impfempfehlung",
     "contact_dr": "Keine generelle Impfempfehlung, bitte besprechen Sie Ihre individuellen Umstände mit Ihrem Hausarzt.",
-    "no_recommendation_symptoms": "Aktuell keine Impfempfehlung, wenn noch Symptome bestehen.",
+    "no_recommendation_symptoms": "Aktuell keine Impfempfehlung, wenn noch Symptome oder Spätfolgen  bestehen.",
+    "no_further_recommendation": "Nach aktuellem Stand benötigen sie keine weitere Impfung.",
+    "next_possible_date": "Sie können sich mit <vaccination_brand> ab dem <date> Impfen lassen.",
+    "second_vaccination": "Ihre zweite Impfung sollten Sie mit dem Impfstoff <vaccination_brand> zwischen dem <date_first> und dem <date_second> bekommen.",
+    "third_vaccination": "Ihre dritte Impfung sollten Sie mit dem Impfstoff <vaccination_brand> nach dem  <date> bbekommen."
 
   }
 };

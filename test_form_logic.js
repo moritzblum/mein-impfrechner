@@ -16,18 +16,15 @@ let test_cases = [
     [['start'], ['age', 200], ['result_3']],
     [['start'], ['age', 31], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', false], ['result_11']],
     [['start'], ['age', 21], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', false], ['result_12']],
-    [['start'], ['age', 21], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.21'],  ['symptoms_registered', 'past'], ['symptoms_end_date', '11.05.21'], ['got_unregistered_vaccination', false], ['vaccinated', false], ['result_14']],
+    [['start'], ['age', 21], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.21'],  ['symptoms_registered', 'past'], ['symptoms_end_date', '11.05.21'], ['got_unregistered_vaccination', false], ['vaccinated', false], ['result_12']],
     [['start'], ['age', 21], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.21'],  ['symptoms_registered', 'past'], ['symptoms_end_date', '11.05.21'], ['got_unregistered_vaccination', false], ['vaccinated', true], ['result_10']],
-    [['start'], ['age', 31], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.21'],  ['symptoms_registered', 'never'], ['got_unregistered_vaccination', false], ['vaccinated', false], ['result_13']],
-    [['start'], ['age', 21], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 5], ['result_7']],
+    [['start'], ['age', 31], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.21'],  ['symptoms_registered', 'never'], ['got_unregistered_vaccination', false], ['vaccinated', false], ['result_11']],
     [['start'], ['age', 21], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 3], ['result_21']],
-
     [['start'], ['age', 21], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'biontec', '11.05.21'], ['result_17']],
-    [['start'], ['age', 31], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'biontec', '11.05.21'], ['result_16']],
-    [['start'], ['age', 31], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'johnson', '11.05.21'], ['result_15']],
+    [['start'], ['age', 31], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'biontec', '11.05.21'], ['result_15']],
+    [['start'], ['age', 31], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'johnson', '11.05.21'], ['result_16']],
     [['start'], ['age', 21], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 2], ['vaccination_1', 'biontec'], ['vaccination_last', 'biontec', '11.05.21'], ['result_19']],
     [['start'], ['age', 21], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 2], ['vaccination_1', 'johnson'], ['vaccination_last', 'biontec', '11.05.21'], ['result_20']],
-
     [['start'], ['age', 21], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', true], ['unregistered_vaccination_date', '11.05.21'], ['vaccinated', true], ['number_vaccinations', 2], ['vaccination_1', 'biontec'], ['vaccination_last', 'biontec', '11.05.21'], ['result_19']],
     [['start'], ['age', 31], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 2], ['vaccination_1', 'biontec'], ['vaccination_last', 'biontec', '11.05.21'], ['result_18']],
 
