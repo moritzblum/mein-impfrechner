@@ -92,6 +92,12 @@ texts_german = {
     "moderna": "Moderna",
     "astra": "AstraZeneca",
     "johnson": "Johnson"
+  },
+  "results": {
+    "no_general_recommendation": "Aktuell keine Impfempfehlung",
+    "contact_dr": "Keine generelle Impfempfehlung, bitte besprechen Sie Ihre individuellen Umstände mit Ihrem Hausarzt.",
+    "no_recommendation_symptoms": "Aktuell keine Impfempfehlung, wenn noch Symptome bestehen.",
+
   }
 };
 

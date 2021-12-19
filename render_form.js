@@ -437,6 +437,10 @@ class Card_result extends React.Component {
                 <div className="card-body">
                     <div className="" style={{"position": "relative", "height":"100%", "width":"100%"}}>
                         <h1>Result</h1>
+                        <div>{this.props.user_data["entered_data"]["value"]}</div>
+                        <br/>
+
+                        <h1>User Input</h1>
                         <div>{JSON.stringify({'data': this.props.user_data}, null, '\t')}</div>
                     </div>
 
@@ -653,7 +657,7 @@ class CardManager extends React.Component {
                 );
             case 'symptoms_registered':
                 return (
-                    <Card title={texts_german["symptoms"]["header"]}
+                    <Card title={texts_german["symptoms_registered"]["header"]}
                           id_next={"card_symptoms_registered_next"}
                           id_back={"card_symptoms_registered_back"}
                           handler={this.control_click_handler}

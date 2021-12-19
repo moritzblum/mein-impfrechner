@@ -26,11 +26,11 @@ function get_next_card(card_history, user_data) {
 
         if (user_data['risk_group']['value'] == true){
             console.log('result_1: bitte besprechen Sie das mit ihrem Arzt');
-            return ["result", {'result_1': true}];
+            return ["result", {'result_1': true, 'value': texts_german["results"]["contact_dr"]}];
         }
         else{
             console.log('result_2: aktuell keine Impfempfehlung');
-            return ["result", {'result_2': true}];
+            return ["result", {'result_2': true, 'value': texts_german["results"]["no_general_recommendation"]}];
         }
     }
 
@@ -54,7 +54,7 @@ function get_next_card(card_history, user_data) {
 
         if (user_data['symptoms_registered']['value'] === 'still') {
             console.log('result_2: aktuell keine Impfempfehlung');
-            return ['result', {'result_2': true}];
+            return ['result', {'result_2': true, 'value': texts_german["results"]["no_recommendation_symptoms"]}];
         }
 
         // infection date is the limiting factor concerning the vaccination date
