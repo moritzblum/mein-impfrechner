@@ -12,7 +12,7 @@ class Card extends React.Component {
                     <div className="card-body">
                             <div className="" style={{"position": "relative", "height":"100%", "width":"100%"}}>
                                 <div className="">
-                                    <form onSubmit={this.props.handler}>
+                                    <form onSubmit={this.props.handler} className="needs-validation">
                                             <div className="">
                                                 <h2 className="card-title text-center">{this.props.title}</h2>
                                                 <br/>
@@ -32,7 +32,7 @@ class Card extends React.Component {
                                             id={this.props.id_back}>
                                         back
                                     </button>
-                                    <button className="btn btn-outline-secondary sm-right mr-0 button_next" onClick={this.props.handler}
+                                    <button className="btn btn-outline-secondary sm-right mr-0 button_next" type="submit" onClick={this.props.handler}
                                             id={this.props.id_next}>
                                         next
                                     </button>
@@ -159,13 +159,15 @@ class Form_body_risk_group extends React.Component {
             <div className="form-group">
                 <label>{texts_german['risk_group']['instruction']} :</label>
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" id="flexRadioDefault3" onChange={this.props.input_data_handler} name={this.props.input_name_risk_group} value={true}/>
-                    <label className="form-check-label" htmlFor="flexRadioDefault3"> {texts_german["risk_group"]["risk_group_yes"]} </label>
+                    <input className="form-check-input" type="radio" id="risk_group_1_input" onChange={this.props.input_data_handler} name={this.props.input_name_risk_group} value={true}/>
+                    <label className="form-check-label" htmlFor="risk_group_1_input"> {texts_german["risk_group"]["risk_group_yes"]} </label>
                 </div>
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" id="flexRadioDefault4" onChange={this.props.input_data_handler} name={this.props.input_name_risk_group} value={false}/>
-                    <label className="form-check-label" htmlFor="flexRadioDefault4"> {texts_german["risk_group"]["risk_group_no"]} </label>
+                    <input className="form-check-input" type="radio" id="risk_group_2_input" onChange={this.props.input_data_handler} name={this.props.input_name_risk_group} value={false}/>
+                    <label className="form-check-label" htmlFor="risk_group_2_input"> {texts_german["risk_group"]["risk_group_no"]} </label>
                 </div>
+                <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
+                <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
             </div>
         );
     }
@@ -323,20 +325,22 @@ class Form_body_age extends React.Component {
     constructor(props) {
         super(props);
         this.input_filed_change = this.input_filed_change.bind(this);
-        this.state = {value: 45};
-        this.props.input_data_handler({target: {value: [this.state.value], name: [this.props.input_name_age]}});
+        this.state = {value: texts_german["age"]["age_placeholder"]};
+        this.props.input_data_handler({target: {value: [this.state.value], name: this.props.input_name_age}});
     }
 
     input_filed_change(e){
         this.setState({value: e.target.value});
-        this.props.input_data_handler({target: {value: [e.target.value], name: [this.props.input_name_age]}});
+        this.props.input_data_handler({target: {value: e.target.value, name: [this.props.input_name_age]}});
     }
 
     render(){
         return(
             <div>
                 <label>{texts_german["age"]["instructions"]} :</label>
-                <input value={this.state.value}  type="number" min="0" max="1000" step="1" className="form-control" id="exampleFormControlInput1" placeholder="Alter" onChange={this.input_filed_change} name={this.props.input_name_age} />
+                <input value={this.state.value}  type="number" min="0" max="1000" step="1" className="form-control" id="age_input_field" placeholder={texts_german["age"]["age_placeholder"]} onChange={this.input_filed_change} name={this.props.input_name_age} required/>
+                <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
+                <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
             </div>
         )
     }
@@ -432,16 +436,32 @@ class Card_result extends React.Component {
     }
 
     render(){
+        let result_text = [];
+
+        // single output
+        if (this.props.user_data["entered_data"]["value"].length === 1) {
+            result_text.push(this.props.user_data["entered_data"]["value"][0]);
+        }
+        // multiple outputs
+        else {
+            result_text.push(<div key={'result_list_multiple_options_intro'}>{texts_german['results']['multiple_options']}</div>);
+            const options = this.props.user_data["entered_data"]["value"];
+            for (var i = 0; i < options.length; i++) {
+                result_text.push(<li key={i}>{options[i]}</li>);
+            }
+        }
+
         return(
             <div className="card inactive container">
                 <div className="card-body">
                     <div className="" style={{"position": "relative", "height":"100%", "width":"100%"}}>
                         <h1>Result</h1>
-                        <div>{this.props.user_data["entered_data"]["value"]}</div>
+                        <div>{result_text}</div>
                         <br/>
 
                         <h1>User Input</h1>
                         <div>{JSON.stringify({'data': this.props.user_data}, null, '\t')}</div>
+                        {result_text}
                     </div>
 
                     <div className="" style={{"position": "relative", "bottom": "10%", "width":"100%"}}>
@@ -528,9 +548,65 @@ class CardManager extends React.Component {
 
         if (e.target.classList.contains('button_next')) {
             console.log('clicked next');
+
+
+            var forms = document.querySelectorAll('.needs-validation');
+
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!isNaN(this.state.entered_data['value'])) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            console.log('test');
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+
+
+            // form validation
+            if (current_card_id === 'age') {
+                if (isNaN(this.state.entered_data['value']) || this.state.entered_data['value'] === '') {
+                    console.log('Not Valid: Not a number!');
+                    document.getElementById("age_input_field").classList.remove("is-valid");
+                    document.getElementById("age_input_field").classList.add("is-invalid");
+                    return null;
+                }
+                else {
+                    console.log('Valid: Its a number!');
+                    document.getElementById("age_input_field").classList.remove("is-invalid");
+                    document.getElementById("age_input_field").classList.add("is-valid")
+                }
+            }
+            if (current_card_id === 'risk_group') {
+                if (isNaN(this.state.entered_data['value']) || this.state.entered_data['value'] === '') {
+                    console.log('Not Valid: Not a number!');
+                    document.getElementById("risk_group_1_input").classList.remove("is-valid");
+                    document.getElementById("risk_group_1_input").classList.add("is-invalid");
+                    document.getElementById("risk_group_2_input").classList.remove("is-valid");
+                    document.getElementById("risk_group_2_input").classList.add("is-invalid");
+                    return null;
+                }
+                else {
+                    console.log('Valid: Its a number!');
+                    document.getElementById("risk_group_1_input").classList.remove("is-invalid");
+                    document.getElementById("risk_group_1_input").classList.add("is-valid")
+                    document.getElementById("risk_group_2_input").classList.remove("is-invalid");
+                    document.getElementById("risk_group_2_input").classList.add("is-valid")
+                }
+            }
+        //risk_group_2_input
+
+
+
             current_card_history.push(current_card_id);
             current_user_data[current_card_id] = this.state.entered_data;
             let next_card = get_next_card(current_card_history, current_user_data);
+
+
+
 
             this.setState({card_history: this.state.card_history});
             this.setState({user_data: current_user_data});
@@ -542,7 +618,7 @@ class CardManager extends React.Component {
 
             this.setState({card_history: current_card_history});
             this.setState({user_data: current_user_data});
-            this.setState({entered_data: {value:0}});
+            this.setState({entered_data: {value:''}});
             this.setState({step: last_step});
         }
 
@@ -565,6 +641,7 @@ class CardManager extends React.Component {
         }
 
         entered_data[target.name] = value;
+
         console.log('new entered_data state: ' + JSON.stringify(entered_data))
 
         this.setState({

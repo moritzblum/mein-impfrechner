@@ -4,6 +4,10 @@ texts_german = {
     "welcome": "Guten Tag, hier können Sie Ihren Impftermin berechnen.",
     "info_data_storage": "Alle Daten bleiben im Browser."
   },
+  "form_validation": {
+    "valid": "Eingabe ist valide.",
+    "invalid" : "Bitte machen Sie eine valide Eingabe, um fortzufahren."
+  },
   "vaccination_last": {
     "header": "Vaccination last",
     "instruction": "Bitte angeben",
@@ -94,13 +98,15 @@ texts_german = {
     "johnson": "Johnson"
   },
   "results": {
+    "really_old": "Wenn du wirklich schon so lange gelegt hast, dann bringt dich auch Corona nicht mehr um.",
     "no_general_recommendation": "Aktuell keine Impfempfehlung",
     "contact_dr": "Keine generelle Impfempfehlung, bitte besprechen Sie Ihre individuellen Umstände mit Ihrem Hausarzt.",
     "no_recommendation_symptoms": "Aktuell keine Impfempfehlung, wenn noch Symptome oder Spätfolgen  bestehen.",
     "no_further_recommendation": "Nach aktuellem Stand benötigen sie keine weitere Impfung.",
+    "multiple_options": "Wir haben für sie folgende Optionen berechnet:",
     "next_possible_date": "Sie können sich mit <vaccination_brand> ab dem <date> Impfen lassen.",
     "second_vaccination": "Ihre zweite Impfung sollten Sie mit dem Impfstoff <vaccination_brand> zwischen dem <date_first> und dem <date_second> bekommen.",
-    "third_vaccination": "Ihre dritte Impfung sollten Sie mit dem Impfstoff <vaccination_brand> nach dem  <date> bbekommen."
+    "third_vaccination": "Ihre dritte Impfung sollten Sie mit dem Impfstoff <vaccination_brand> nach dem  <date> bekommen."
 
   }
 };
