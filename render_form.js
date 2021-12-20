@@ -59,7 +59,7 @@ class Form_body_vaccination_last extends React.Component {
                 <div className="form-group">
                     <div>{texts_german["vaccination_last"]["instruction"]}</div>
                     <label>{texts_german["vaccination_last"]["vaccination_label"]}:</label>
-                    <select className="form-select" id="exampleFormControlSelect1"
+                    <select className="form-select select-validation" id="exampleFormControlSelect1"
                             onChange={this.props.input_data_handler} name={this.props.input_name_vaccine}>
                         <option value>{texts_german["vaccination_last"]["vaccination_instruction"]}</option>
                         <option>{texts_german["vaccines"]["biontec"]}</option>
@@ -68,6 +68,8 @@ class Form_body_vaccination_last extends React.Component {
                         <option>{texts_german["vaccines"]["johnson"]}</option>
 
                     </select>
+                    <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
+                    <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
                 </div>
                 <div className="form-group">
                     <label>{texts_german["vaccination_last"]["date_labe"]}:</label>
@@ -89,7 +91,7 @@ class Form_body_vaccination_x extends React.Component {
                 <div className="form-group">
                     <div>{texts_german["vaccination_x"]["instruction"]}</div>
                     <label>{texts_german["vaccination_x"]["vaccination_label"]} :</label>
-                    <select className="form-select" id="exampleFormControlSelect1"
+                    <select className="form-select select-validation" id="exampleFormControlSelect1"
                             onChange={this.props.input_data_handler} name={this.props.input_name_vaccine}>
                         <option value>{texts_german["vaccination_x"]["vaccination_instruction"]}</option>
                         <option>{texts_german["vaccines"]["biontec"]}</option>
@@ -97,6 +99,8 @@ class Form_body_vaccination_x extends React.Component {
                         <option>{texts_german["vaccines"]["astra"]}</option>
                         <option>{texts_german["vaccines"]["johnson"]}</option>
                     </select>
+                    <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
+                    <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
                 </div>
             </div>);
     }
@@ -113,12 +117,14 @@ class Form_body_vaccinated extends React.Component {
                 <div className="form-group">
                     <label>{texts_german['vaccinated']['instruction']} :</label>
                     <div className="form-check">
-                        <input className="form-check-input" type="radio"  id="flexRadioDefault1" onChange={this.props.input_data_handler} name={this.props.input_name_vaccinated} value={true}/>
+                        <input className="form-check-input radio-validation" type="radio"  id="flexRadioDefault1" onChange={this.props.input_data_handler} name={this.props.input_name_vaccinated} value={true}/>
                         <label className="form-check-label" htmlFor="flexRadioDefault1"> {texts_german['vaccinated']['vaccinated_yes']} </label>
                     </div>
                     <div className="form-check">
-                        <input className="form-check-input" type="radio"  id="flexRadioDefault2" onChange={this.props.input_data_handler} name={this.props.input_name_vaccinated}  value={false}/>
+                        <input className="form-check-input radio-validation" type="radio"  id="flexRadioDefault2" onChange={this.props.input_data_handler} name={this.props.input_name_vaccinated}  value={false}/>
                         <label className="form-check-label" htmlFor="flexRadioDefault2"> {texts_german['vaccinated']['vaccinated_no']} </label>
+                        <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
+                        <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
                     </div>
                 </div>
             </div>
@@ -136,12 +142,14 @@ class Form_body_past_infection extends React.Component {
             <div className="form-group">
                 <label>{texts_german['past_infection']['instruction']} :</label>
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" id="flexRadioDefault3" onChange={this.props.input_data_handler} name={this.props.input_name_past_infection} value={true}/>
+                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault3" onChange={this.props.input_data_handler} name={this.props.input_name_past_infection} value={true}/>
                     <label className="form-check-label" htmlFor="flexRadioDefault3"> {texts_german["past_infection"]["past_infection_yes"]} </label>
                 </div>
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" id="flexRadioDefault4" onChange={this.props.input_data_handler} name={this.props.input_name_past_infection} value={false}/>
+                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault4" onChange={this.props.input_data_handler} name={this.props.input_name_past_infection} value={false}/>
                     <label className="form-check-label" htmlFor="flexRadioDefault4"> {texts_german["past_infection"]["past_infection_no"]} </label>
+                    <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
+                    <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
                 </div>
             </div>
         );
@@ -159,15 +167,16 @@ class Form_body_risk_group extends React.Component {
             <div className="form-group">
                 <label>{texts_german['risk_group']['instruction']} :</label>
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" id="risk_group_1_input" onChange={this.props.input_data_handler} name={this.props.input_name_risk_group} value={true}/>
+                    <input className="form-check-input radio-validation" type="radio" id="risk_group_1_input" onChange={this.props.input_data_handler} name={this.props.input_name_risk_group} value={true}/>
                     <label className="form-check-label" htmlFor="risk_group_1_input"> {texts_german["risk_group"]["risk_group_yes"]} </label>
                 </div>
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" id="risk_group_2_input" onChange={this.props.input_data_handler} name={this.props.input_name_risk_group} value={false}/>
+                    <input className="form-check-input radio-validation" type="radio" id="risk_group_2_input" onChange={this.props.input_data_handler} name={this.props.input_name_risk_group} value={false}/>
                     <label className="form-check-label" htmlFor="risk_group_2_input"> {texts_german["risk_group"]["risk_group_no"]} </label>
+                    <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
+                    <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
                 </div>
-                <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
-                <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
+
             </div>
         );
     }
@@ -183,12 +192,14 @@ class Form_body_got_unregistered_vaccination extends React.Component {
             <div className="form-group">
                 <label>{texts_german['got_unregistered_vaccination']['instruction']} :</label>
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" id="flexRadioDefault3" onChange={this.props.input_data_handler} name={this.props.input_name_got_unregistered_vaccination} value={true}/>
+                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault3" onChange={this.props.input_data_handler} name={this.props.input_name_got_unregistered_vaccination} value={true}/>
                     <label className="form-check-label" htmlFor="flexRadioDefault3"> {texts_german["got_unregistered_vaccination"]["got_unregistered_vaccination_yes"]} </label>
                 </div>
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" id="flexRadioDefault4" onChange={this.props.input_data_handler} name={this.props.input_name_got_unregistered_vaccination} value={false}/>
+                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault4" onChange={this.props.input_data_handler} name={this.props.input_name_got_unregistered_vaccination} value={false}/>
                     <label className="form-check-label" htmlFor="flexRadioDefault4"> {texts_german["got_unregistered_vaccination"]["got_unregistered_vaccination_no"]} </label>
+                    <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
+                    <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
                 </div>
             </div>
         );
@@ -227,22 +238,24 @@ class Form_body_symptoms_registered extends React.Component {
                 <label>{texts_german["symptoms_registered"]["info_symptoms_registered"]} :</label>
 
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" id="flexRadioDefault3" onChange={this.props.input_data_handler} name={this.props.input_name_symptoms} value={'never'}/>
+                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault3" onChange={this.props.input_data_handler} name={this.props.input_name_symptoms} value={'never'}/>
                     <label className="form-check-label" htmlFor="flexRadioDefault3">
                         {texts_german["symptoms_registered"]["never"]}
                     </label>
                 </div>
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" id="flexRadioDefault4" onChange={this.props.input_data_handler} name={this.props.input_name_symptoms} value={'still'}/>
+                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault4" onChange={this.props.input_data_handler} name={this.props.input_name_symptoms} value={'still'}/>
                     <label className="form-check-label" htmlFor="flexRadioDefault4">
                         {texts_german["symptoms_registered"]["still"]}
                     </label>
                 </div>
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" id="flexRadioDefault4" onChange={this.props.input_data_handler} name={this.props.input_name_symptoms} value={'past'}/>
+                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault4" onChange={this.props.input_data_handler} name={this.props.input_name_symptoms} value={'past'}/>
                     <label className="form-check-label" htmlFor="flexRadioDefault4">
                         {texts_german["symptoms_registered"]["past"]}
                     </label>
+                    <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
+                    <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
                 </div>
             </div>
         );
@@ -259,22 +272,24 @@ class Form_body_number_vaccinations extends React.Component {
             <div className="form-group">
                 <label>{texts_german["number_vaccinations"]["instructions"]} :</label>
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" id="flexRadioDefault3" onChange={this.props.input_data_handler} name={this.props.input_name_number_vaccinations} value={1}/>
+                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault3" onChange={this.props.input_data_handler} name={this.props.input_name_number_vaccinations} value={1}/>
                     <label className="form-check-label" htmlFor="flexRadioDefault3">
                         {texts_german["number_vaccinations"]["one"]}
                     </label>
                 </div>
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" id="flexRadioDefault4" onChange={this.props.input_data_handler} name={this.props.input_name_number_vaccinations} value={2}/>
+                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault4" onChange={this.props.input_data_handler} name={this.props.input_name_number_vaccinations} value={2}/>
                     <label className="form-check-label" htmlFor="flexRadioDefault4">
                         {texts_german["number_vaccinations"]["two"]}
                     </label>
                 </div>
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" id="flexRadioDefault4" onChange={this.props.input_data_handler} name={this.props.input_name_number_vaccinations} value={3}/>
+                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault4" onChange={this.props.input_data_handler} name={this.props.input_name_number_vaccinations} value={3}/>
                     <label className="form-check-label" htmlFor="flexRadioDefault4">
                         {texts_german["number_vaccinations"]["three"]}
                     </label>
+                    <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
+                    <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
                 </div>
             </div>
         );
@@ -368,11 +383,17 @@ class DatePicker extends React.Component {
         super(props);
         this.datepickerContainer = React.createRef();
         this.handle_date_selection_internal = this.handle_date_selection_internal.bind(this);
+        this.handle_manual_change = this.handle_manual_change.bind(this);
     }
 
     handle_date_selection_internal(date) {
         this.props.onChange({target: {value: date, name: [this.props.date_picker_name]}});
     }
+
+    handle_manual_change(event) {
+        this.handle_date_selection_internal(event.target.value);
+    }
+
 
     componentDidMount() {
 
@@ -390,8 +411,10 @@ class DatePicker extends React.Component {
     render() {
         return (
             <div>
-                <input id={this.props.date_picker_name} type="text" className="form-control" placeholder="bitte auswählen"
-                       ref="input_2"/>
+                <input id={this.props.date_picker_name} type="text" className="form-control date-validation" placeholder="bitte auswählen"
+                       ref="input_2" onChange={this.handle_manual_change}/>
+                <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
+                <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
                 <div className="DatePicker" ref={this.datepickerContainer}/>
             </div>
         );
@@ -546,6 +569,8 @@ class CardManager extends React.Component {
         let current_user_data = this.state.user_data;
         let current_card_id = button_id_2_card_id(e.target.id);
 
+        let invalid = false;
+
         if (e.target.classList.contains('button_next')) {
             console.log('clicked next');
 
@@ -567,12 +592,13 @@ class CardManager extends React.Component {
 
 
             // form validation
+            // number text-field
             if (current_card_id === 'age') {
                 if (isNaN(this.state.entered_data['value']) || this.state.entered_data['value'] === '') {
                     console.log('Not Valid: Not a number!');
                     document.getElementById("age_input_field").classList.remove("is-valid");
                     document.getElementById("age_input_field").classList.add("is-invalid");
-                    return null;
+                    invalid = true;
                 }
                 else {
                     console.log('Valid: Its a number!');
@@ -580,33 +606,71 @@ class CardManager extends React.Component {
                     document.getElementById("age_input_field").classList.add("is-valid")
                 }
             }
-            if (current_card_id === 'risk_group') {
-                if (isNaN(this.state.entered_data['value']) || this.state.entered_data['value'] === '') {
-                    console.log('Not Valid: Not a number!');
-                    document.getElementById("risk_group_1_input").classList.remove("is-valid");
-                    document.getElementById("risk_group_1_input").classList.add("is-invalid");
-                    document.getElementById("risk_group_2_input").classList.remove("is-valid");
-                    document.getElementById("risk_group_2_input").classList.add("is-invalid");
-                    return null;
+            // radio-button selection
+            if (['vaccinated', 'past_infection', 'symptoms_registered', 'risk_group', 'number_vaccinations', 'got_unregistered_vaccination', 'unregistered_vaccination_date'].includes(current_card_id)) {
+                let element = document.getElementsByClassName("radio-validation");
+
+                if (this.state.entered_data['value'] === undefined) {
+
+                    for(let i = 0; i < element.length; i++){
+                        element[i].classList.remove("is-valid");
+                        element[i].classList.add("is-invalid");
+                    }
+                    invalid = true;
                 }
                 else {
-                    console.log('Valid: Its a number!');
-                    document.getElementById("risk_group_1_input").classList.remove("is-invalid");
-                    document.getElementById("risk_group_1_input").classList.add("is-valid")
-                    document.getElementById("risk_group_2_input").classList.remove("is-invalid");
-                    document.getElementById("risk_group_2_input").classList.add("is-valid")
+                    for(let i = 0; i < element.length; i++){
+                        element[i].classList.remove("is-invalid");
+                        element[i].classList.add("is-valid");
+                    }
                 }
             }
-        //risk_group_2_input
+            // date
+            if (['vaccination_last', 'vaccination_x', 'infection_date', 'symptoms_end_date', 'unregistered_vaccination_date'].includes(current_card_id)) {
+                let element = document.getElementsByClassName("date-validation");
 
+                if (this.state.entered_data['date'] === undefined || !(is_valid_date_format(this.state.entered_data['date']))) {
 
+                    for(let i = 0; i < element.length; i++){
+                        element[i].classList.remove("is-valid");
+                        element[i].classList.add("is-invalid");
+                    }
+                    invalid = true;
+                }
+                else {
+                    for(let i = 0; i < element.length; i++){
+                        element[i].classList.remove("is-invalid");
+                        element[i].classList.add("is-valid");
+                    }
+                }
+            }
+            // select
+            if (['vaccination_last', 'vaccination_x'].includes(current_card_id)) {
+                let element = document.getElementsByClassName("select-validation");
+
+                if (this.state.entered_data['value'] === undefined || this.state.entered_data['value'] === '') {
+                    for(let i = 0; i < element.length; i++){
+                        element[i].classList.remove("is-valid");
+                        element[i].classList.add("is-invalid");
+                    }
+                    invalid = true;
+                }
+                else {
+                    for(let i = 0; i < element.length; i++){
+                        element[i].classList.remove("is-invalid");
+                        element[i].classList.add("is-valid");
+                    }
+                }
+
+            }
+
+            if (invalid) {
+                return null;
+            }
 
             current_card_history.push(current_card_id);
             current_user_data[current_card_id] = this.state.entered_data;
             let next_card = get_next_card(current_card_history, current_user_data);
-
-
-
 
             this.setState({card_history: this.state.card_history});
             this.setState({user_data: current_user_data});
@@ -629,7 +693,6 @@ class CardManager extends React.Component {
     handleInputChange(event) {
         const entered_data = this.state.entered_data;
         const target = event.target;
-        console.log('handleInputChange event: name: ' + target.name + '; value : ' + target.value);
 
         // typecast string value to boolean if required
         let value = target.value;
@@ -641,8 +704,6 @@ class CardManager extends React.Component {
         }
 
         entered_data[target.name] = value;
-
-        console.log('new entered_data state: ' + JSON.stringify(entered_data))
 
         this.setState({
             entered_data: entered_data

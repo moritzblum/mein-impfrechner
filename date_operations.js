@@ -2,6 +2,11 @@ function get_latest_date(dates) {
     return new Date(Math.max.apply(null, dates));
 }
 
+function is_valid_date_format(date_str) {
+    d = ger_str_2_date(date_str);
+    return d instanceof Date && !isNaN(d);
+}
+
 // e.g. ger_str_2_date("24.10.1996") returns Date(Thu Oct 24 1996 ...)
 function ger_str_2_date(ger_str) {
     let format = 'dd.mm.yyyy'
