@@ -248,3 +248,6 @@ function get_next_card(card_history, user_data) {
     return possible_cards[Math.floor(Math.random() * possible_cards.length)];
 }
 
+
+
+

@@ -24,7 +24,7 @@ class Card extends React.Component {
                             </div>
 
 
-                            <div className="" style={{"position": "relative", "bottom": "10%", "width":"100%"}}>
+                            <div className="" style={{"position": "relative", "bottom": "15%", "width":"100%"}}>
                                 <div className="">
 
                                 <div className="d-flex justify-content-between">
@@ -351,7 +351,7 @@ class Form_body_age extends React.Component {
 
     render(){
         return(
-            <div>
+            <div >
                 <label>{texts_german["age"]["instructions"]} :</label>
                 <input value={this.state.value}  type="number" min="0" max="1000" step="1" className="form-control" id="age_input_field" placeholder={texts_german["age"]["age_placeholder"]} onChange={this.input_filed_change} name={this.props.input_name_age} required/>
                 <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
@@ -476,15 +476,16 @@ class Card_result extends React.Component {
 
         return(
             <div className="card inactive container">
-                <div className="card-body">
-                    <div className="" style={{"position": "relative", "height":"100%", "width":"100%"}}>
-                        <h1>Result</h1>
-                        <div>{result_text}</div>
-                        <br/>
+                <div className="card-body" style={{"position": "relative", "height":"100%"}}>
+                    <div className="" style={{"position": "relative", "height":"100%"}}>
+                        <div className="" style={{"position": "relative", "height":"80%", "width":"100%", 'overflow-y': 'scroll'}}>
 
-                        <h1>User Input</h1>
-                        <div>{JSON.stringify({'data': this.props.user_data}, null, '\t')}</div>
-                        {result_text}
+                            <h1>Empfehlung</h1>
+                            <div>{result_text}</div>
+                            <br/>
+                            <h1>Deine Daten</h1>
+                            {vis_user_data(this.props.user_data)}
+                        </div>
                     </div>
 
                     <div className="" style={{"position": "relative", "bottom": "10%", "width":"100%"}}>
@@ -499,6 +500,76 @@ class Card_result extends React.Component {
             </div>
         )
     }
+}
+
+
+function vis_user_data (user_data) {
+    for (const [key, value] of Object.entries(user_data['user_data'])) {
+        console.log(key, value);
+    }
+
+    let user_data_list = [];
+    console.log(user_data);
+
+
+    if ('age' in user_data['user_data']){
+        console.log('in here');
+        user_data_list.push(<li>{texts_german['age']["header"]}: {user_data['user_data']['age']['value']}</li>);
+    }
+
+    if ('risk_group' in user_data['user_data']){
+        if (user_data['user_data']['risk_group']['value']){
+            user_data_list.push(<li>{texts_german['risk_group']["header"]}: {texts_german['risk_group']['risk_group_yes']}</li>);
+        }
+    }
+
+    if ('past_infection' in user_data['user_data']){
+        if (user_data['user_data']['past_infection']['value']){
+            user_data_list.push(<li>{texts_german['past_infection']["header"]}: {texts_german['past_infection']['past_infection_yes']}</li>);
+        }
+    }
+
+    if ('infection_date' in user_data['user_data']){
+        user_data_list.push(<li>{texts_german['infection_date']["header"]}: {user_data['user_data']['infection_date']['date']}</li>);
+    }
+
+    if ('symptoms_registered' in user_data['user_data']){
+        user_data_list.push(<li>{texts_german['symptoms_registered']["header"]}: {texts_german['symptoms_registered'][user_data['user_data']['symptoms_registered']['value']]}</li>);
+    }
+
+    if ('symptoms_end_date' in user_data['user_data']){
+        user_data_list.push(<li>{texts_german['symptoms_end_date']["header"]}: {user_data['user_data']['symptoms_end_date']['date']}</li>);
+    }
+
+    if ('got_unregistered_vaccination' in user_data['user_data']){
+        if (user_data['user_data']['got_unregistered_vaccination']['value']){
+            user_data_list.push(<li>{texts_german['got_unregistered_vaccination']["header"]}: {texts_german['got_unregistered_vaccination']['got_unregistered_vaccination_yes']}</li>);
+        }
+    }
+
+    if ('unregistered_vaccination_date' in user_data['user_data']){
+        user_data_list.push(<li>{texts_german['unregistered_vaccination_date']["header"]}: {user_data['user_data']['unregistered_vaccination_date']['date']}</li>);
+    }
+
+    if ('vaccinated' in user_data['user_data']){
+        if (user_data['user_data']['vaccinated']['value']){
+            user_data_list.push(<li>{texts_german['vaccinated']["header"]}: {texts_german['vaccinated']['vaccinated_yes']}</li>);
+        }
+    }
+
+    if ('vaccination_1' in user_data['user_data']){
+        user_data_list.push(<li>Impfung: {user_data['user_data']['vaccination_1']['value']}</li>);
+    }
+
+    if ('vaccination_2' in user_data['user_data']){
+        user_data_list.push(<li>Impfung: {user_data['user_data']['vaccination_2']['value']}</li>);
+    }
+
+    if ('vaccination_last' in user_data['user_data']) {
+        user_data_list.push(<li>Letzte Impfung: {user_data['user_data']['vaccination_last']['value']} am {user_data['user_data']['vaccination_last']['date']}</li>);
+    }
+
+    return <div>{user_data_list}</div>;
 }
 
 function button_id_2_card_id(button_id){
@@ -545,6 +616,8 @@ function button_id_2_card_id(button_id){
         return 'result';
     }
 }
+
+
 
 
 
@@ -607,7 +680,7 @@ class CardManager extends React.Component {
                 }
             }
             // radio-button selection
-            if (['vaccinated', 'past_infection', 'symptoms_registered', 'risk_group', 'number_vaccinations', 'got_unregistered_vaccination', 'unregistered_vaccination_date'].includes(current_card_id)) {
+            if (['vaccinated', 'past_infection', 'symptoms_registered', 'risk_group', 'number_vaccinations', 'got_unregistered_vaccination'].includes(current_card_id)) {
                 let element = document.getElementsByClassName("radio-validation");
 
                 if (this.state.entered_data['value'] === undefined) {
@@ -682,7 +755,7 @@ class CardManager extends React.Component {
 
             this.setState({card_history: current_card_history});
             this.setState({user_data: current_user_data});
-            this.setState({entered_data: {value:''}});
+            this.setState({entered_data: {value:undefined}});
             this.setState({step: last_step});
         }
 
