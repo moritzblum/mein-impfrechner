@@ -58,7 +58,7 @@ class Form_body_vaccination_last extends React.Component {
             <div>
                 <div className="form-group">
                     <div>{texts_german["vaccination_last"]["instruction"]}</div>
-                    <label>{texts_german["vaccination_last"]["vaccination_label"]}:</label>
+                    <label>{texts_german["vaccination_last"]["vaccination_label"]}</label>
                     <select className="form-select select-validation" id="exampleFormControlSelect1"
                             onChange={this.props.input_data_handler} name={this.props.input_name_vaccine}>
                         <option value>{texts_german["vaccination_last"]["vaccination_instruction"]}</option>
@@ -72,7 +72,7 @@ class Form_body_vaccination_last extends React.Component {
                     <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
                 </div>
                 <div className="form-group">
-                    <label>{texts_german["vaccination_last"]["date_labe"]}:</label>
+                    <label>{texts_german["vaccination_last"]["date_labe"]}</label>
                     <DatePicker onChange={this.props.input_data_handler}
                                 date_picker_name={this.props.input_name_vaccination_date}/>
                 </div>
@@ -90,7 +90,7 @@ class Form_body_vaccination_x extends React.Component {
             <div>
                 <div className="form-group">
                     <div>{texts_german["vaccination_x"]["instruction"]}</div>
-                    <label>{texts_german["vaccination_x"]["vaccination_label"]} :</label>
+                    <label>{texts_german["vaccination_x"]["vaccination_label"]}</label>
                     <select className="form-select select-validation" id="exampleFormControlSelect1"
                             onChange={this.props.input_data_handler} name={this.props.input_name_vaccine}>
                         <option value>{texts_german["vaccination_x"]["vaccination_instruction"]}</option>
@@ -115,7 +115,7 @@ class Form_body_vaccinated extends React.Component {
         return (
             <div>
                 <div className="form-group">
-                    <label>{texts_german['vaccinated']['instruction']} :</label>
+                    <label>{texts_german['vaccinated']['instruction']}</label>
                     <div className="form-check">
                         <input className="form-check-input radio-validation" type="radio"  id="flexRadioDefault1" onChange={this.props.input_data_handler} name={this.props.input_name_vaccinated} value={true}/>
                         <label className="form-check-label" htmlFor="flexRadioDefault1"> {texts_german['vaccinated']['vaccinated_yes']} </label>
@@ -140,7 +140,7 @@ class Form_body_past_infection extends React.Component {
     render(){
         return(
             <div className="form-group">
-                <label>{texts_german['past_infection']['instruction']} :</label>
+                <label>{texts_german['past_infection']['instruction']}</label>
                 <div className="form-check">
                     <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault3" onChange={this.props.input_data_handler} name={this.props.input_name_past_infection} value={true}/>
                     <label className="form-check-label" htmlFor="flexRadioDefault3"> {texts_german["past_infection"]["past_infection_yes"]} </label>
@@ -165,7 +165,7 @@ class Form_body_risk_group extends React.Component {
     render(){
         return(
             <div className="form-group">
-                <label>{texts_german['risk_group']['instruction']} :</label>
+                <label>{texts_german['risk_group']['instruction']}</label>
                 <div className="form-check">
                     <input className="form-check-input radio-validation" type="radio" id="risk_group_1_input" onChange={this.props.input_data_handler} name={this.props.input_name_risk_group} value={true}/>
                     <label className="form-check-label" htmlFor="risk_group_1_input"> {texts_german["risk_group"]["risk_group_yes"]} </label>
@@ -190,7 +190,7 @@ class Form_body_got_unregistered_vaccination extends React.Component {
     render(){
         return(
             <div className="form-group">
-                <label>{texts_german['got_unregistered_vaccination']['instruction']} :</label>
+                <label>{texts_german['got_unregistered_vaccination']['instruction']}</label>
                 <div className="form-check">
                     <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault3" onChange={this.props.input_data_handler} name={this.props.input_name_got_unregistered_vaccination} value={true}/>
                     <label className="form-check-label" htmlFor="flexRadioDefault3"> {texts_german["got_unregistered_vaccination"]["got_unregistered_vaccination_yes"]} </label>
@@ -217,7 +217,7 @@ class Form_body_unregistered_vaccination_date extends React.Component {
                 <div>{texts_german["symptoms_end_date"]["instructions"]}</div>
 
                 <label htmlFor="datepicker_infection" data-bs-toggle="modal"
-                       data-bs-target="#modal_datum_postest">{texts_german["unregistered_vaccination_date"]["label"]}:</label>
+                       data-bs-target="#modal_datum_postest">{texts_german["unregistered_vaccination_date"]["label"]}</label>
                 <DatePicker onChange={this.props.input_data_handler}
                             date_picker_name={this.props.input_unregistered_vaccination_date}/>
             </div>
@@ -235,7 +235,7 @@ class Form_body_symptoms_registered extends React.Component {
         return(
             <div className="form-group">
                 <label>{texts_german["symptoms_registered"]["instructions"]} :</label>
-                <label>{texts_german["symptoms_registered"]["info_symptoms_registered"]} :</label>
+                <label>{texts_german["symptoms_registered"]["info_symptoms_registered"]}</label>
 
                 <div className="form-check">
                     <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault3" onChange={this.props.input_data_handler} name={this.props.input_name_symptoms} value={'never'}/>
@@ -270,7 +270,7 @@ class Form_body_number_vaccinations extends React.Component {
     render(){
         return(
             <div className="form-group">
-                <label>{texts_german["number_vaccinations"]["instructions"]} :</label>
+                <label>{texts_german["number_vaccinations"]["instructions"]}</label>
                 <div className="form-check">
                     <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault3" onChange={this.props.input_data_handler} name={this.props.input_name_number_vaccinations} value={1}/>
                     <label className="form-check-label" htmlFor="flexRadioDefault3">
@@ -307,7 +307,7 @@ class Form_body_infection_date extends React.Component {
             <div>
                 <div>{texts_german["infection_date"]["instructions"]}</div>
                 <label htmlFor="datepicker_infection" data-bs-toggle="modal"
-                       data-bs-target="#modal_datum_postest">{texts_german["infection_date"]["label"]}:</label>
+                       data-bs-target="#modal_datum_postest">{texts_german["infection_date"]["label"]}</label>
                 <DatePicker onChange={this.props.input_data_handler}
                             date_picker_name={this.props.input_name_infection_date}/>
             </div>
@@ -327,7 +327,7 @@ class Form_body_symptoms_end_date extends React.Component {
                 <div>{texts_german["symptoms_end_date"]["instructions"]}</div>
 
                 <label htmlFor="datepicker_infection" data-bs-toggle="modal"
-                       data-bs-target="#modal_datum_postest">{texts_german["symptoms_end_date"]["label"]}:</label>
+                       data-bs-target="#modal_datum_postest">{texts_german["symptoms_end_date"]["label"]}</label>
                 <DatePicker onChange={this.props.input_data_handler}
                             date_picker_name={this.props.input_symptoms_end_date}/>
             </div>
@@ -352,7 +352,7 @@ class Form_body_age extends React.Component {
     render(){
         return(
             <div >
-                <label>{texts_german["age"]["instructions"]} :</label>
+                <label>{texts_german["age"]["instructions"]}</label>
                 <input value={this.state.value}  type="number" min="0" max="1000" step="1" className="form-control" id="age_input_field" placeholder={texts_german["age"]["age_placeholder"]} onChange={this.input_filed_change} name={this.props.input_name_age} required/>
                 <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
                 <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
