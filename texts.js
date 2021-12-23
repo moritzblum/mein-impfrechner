@@ -20,17 +20,15 @@ texts_german = {
   },
   "vaccination_x": {
     "header": "Angaben zur ersten Corona-Schutzimpfung", //muss angepasst werden, wenn 4 Impfungen zulässig werden.
-    "instruction": "Bitte angeben",
+    "instruction": "Welcher Impfstoff wurde bei Ihrer ersten Corona-Schutzimpfung verimpft?",
     "vaccination_label": "Impfstoff",
     "vaccination_instruction": "bitte auswählen",
     "other_vaccines": "andere",
-    "info_vaccines": "Welcher Impfstoff, Erklärungen, ....",
-    "date_labe": "Datum",
-    "info_date": "Welches Datum, warum, wie, was"
+    "info_vaccines": "Welcher Impfstoff, Erklärungen, ...."
   },
   "vaccinated": {
     "header": "Impfstatus",
-    "instruction": "Haben Sie bereits eine Corona-Schutzimpfung gegen das Coronavirus (SARS-CoV-2") erhalten?",
+    "instruction": "Haben Sie bereits eine Impfung gegen das Coronavirus (SARS-CoV-2) erhalten?",
     "vaccinated_yes": "Ja",
     "vaccinated_no": "Nein"
   },
@@ -50,40 +48,39 @@ texts_german = {
   },
   "got_unregistered_vaccination": {
     "header": "Impfstoff ohne STIKO- Zulassung",
-    "instruction": "Wurden Sie bereits mit einem in Deutschland unzulässigen Covid Impfstoff geimpft?",
+    "instruction": "Wurden Sie bereits mit einem in Deutschland nicht zulässigen Corona-Impfstoff geimpft?",
     "info_got_unregistered_vaccination": "Was, wann, warum problematisch?",
     "got_unregistered_vaccination_yes": "Ja",
     "got_unregistered_vaccination_no": "Nein"
   },
   "unregistered_vaccination_date": {
-    "header": "Date last vaccination with brand not registered in Germany",
-    "instructions": "Bitte Tag angeben!",
+    "header": "Angaben zur unzulässigen Corona-Schutzimpfung",
+    "instructions": "Wann haben Sie die letzte nicht zulässige Corona-Schutzimpfung erhalten?",
     "label": "Datum"
   },
   "symptoms_registered": {
-    "header": "Symptoms",
-    "instructions": "Symptoms?",
+    "header": "Symptome",
+    "instructions": "Hatten oder haben Sie Symptome in Folge Ihrer Corona-Infektion?",
     "info_symptoms_registered": "Was sind Symptome, was sind Spätfolgen und wie muss ich die angeben...?",
     "never": "Nein, ich hatte nie Symptome",
     "still": "Ja, ich habe immer noch Symptome",
     "past": "Ja, ich hatte Symptome"
   },
   "number_vaccinations": {
-    "header": "Anzahl erhaltene Impfungen",
-    "instructions": "Anzahl Impfungen?",
+    "header": "Anzahl der erhaltenen Corona-Schutzimpfungen",
+    "instructions": "Wie viele zugelassene Corona-Schutzimpfungen haben Sie erhalten?",
     "one": "1",
     "two": "2",
     "three": "3"
   },
   "infection_date": {
-    "header": "Infection Date",
-    "instructions": "Intro",
-    "label": "Datum",
-    "info_infection_date": "Welches Datum, genauer ausführen: warum, wie, wo zu finden...",
+    "header": "Erkrankungsdatum",
+    "instructions": "Wann haben Sie den ersten positiven Testnachweis über Ihre Coronainfektion erhalten (kein Selbsttest)?",
+    "label": "Datum"
   },
   "symptoms_end_date": {
-    "header": "Symptoms End Date",
-    "instructions": "Intro",
+    "header": "Ende der Symptomatik",
+    "instructions": "Wann haben ihre Symptome aufgehört?",
     "label": "Datum"
   },
   "age": {
@@ -95,13 +92,13 @@ texts_german = {
     "biontec": "BioNTech/Pfizer",
     "moderna": "Moderna",
     "astra": "AstraZeneca",
-    "johnson": "Johnson"
+    "johnson": "Janssen"
   },
   "results": {
-    "really_old": "Wenn du wirklich schon so lange gelegt hast, dann bringt dich auch Corona nicht mehr um.",
+    "really_old": "Wenn du wirklich schon so lange gelebt hast, dann bringt dich Corona auch nicht mehr um.",
     "no_general_recommendation": "Aktuell keine Impfempfehlung",
     "contact_dr": "Keine generelle Impfempfehlung, bitte besprechen Sie Ihre individuellen Umstände mit Ihrem Hausarzt.",
-    "no_recommendation_symptoms": "Aktuell keine Impfempfehlung, wenn noch Symptome oder Spätfolgen  bestehen.",
+    "no_recommendation_symptoms": "Aktuell keine Impfempfehlung, wenn noch Symptome oder Spätfolgen bestehen.",
     "no_further_recommendation": "Nach aktuellem Stand benötigen sie keine weitere Impfung.",
     "multiple_options": "Wir haben für sie folgende Optionen berechnet:",
     "next_possible_date": "Sie können sich mit <vaccination_brand> ab dem <date> Impfen lassen.",
