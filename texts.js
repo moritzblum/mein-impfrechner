@@ -1,25 +1,25 @@
 texts_german = {
   "start": {
     "header": "Impfrechner",
-    "welcome": "Guten Tag, hier können Sie Ihren Impftermin berechnen.",
-    "info_data_storage": "Alle Daten bleiben im Browser."
+    "welcome": "Hier können Sie Ihren Impftermin berechnen",
+    "data_storage": "Alle Daten bleiben im Browser"
   },
   "form_validation": {
-    "valid": "Eingabe ist valide.",
-    "invalid" : "Bitte machen Sie eine valide Eingabe, um fortzufahren."
+    "valid": "Eingabe ist valide",
+    "invalid" : "Bitte machen Sie eine valide Eingabe, um fortzufahren"
   },
   "vaccination_last": {
-    "header": "Vaccination last",
+    "header": "Angaben zur letzten Corona-Schutzimpfung (SARS-CoV-2)",
     "instruction": "Bitte angeben",
     "vaccination_label": "Impfstoff",
     "vaccination_instruction": "bitte auswählen",
     "other_vaccines": "andere",
     "info_vaccines": "Welcher Impfstoff, Erklärungen, ....",
     "date_labe": "Datum",
-    "info_date": "Welches Datum, warum, wie, was"
+    "info_date": "Welches Datum, warum, wie, was"// ggf. nicht benötigt
   },
   "vaccination_x": {
-    "header": "Vaccination number x",
+    "header": "Angaben zur ersten Corona-Schutzimpfung", //muss angepasst werden, wenn 4 Impfungen zulässig werden.
     "instruction": "Bitte angeben",
     "vaccination_label": "Impfstoff",
     "vaccination_instruction": "bitte auswählen",
@@ -29,28 +29,28 @@ texts_german = {
     "info_date": "Welches Datum, warum, wie, was"
   },
   "vaccinated": {
-    "header": "Vaccinated",
-    "instruction": "Haben Sie bereits eine Corona-Schutzimpfung erhalten? :",
+    "header": "Impfstatus",
+    "instruction": "Haben Sie bereits eine Corona-Schutzimpfung gegen das Coronavirus (SARS-CoV-2") erhalten?",
     "vaccinated_yes": "Ja",
     "vaccinated_no": "Nein"
   },
   "past_infection": {
-    "header": "Past Infection",
-    "instruction": "Wurden Sie bereits positiv auf Corona (SARS-CoV-2) getestet (Kein Selbsttest)? ",
+    "header": "Genesenenstatus",
+    "instruction": "Wurden Sie bereits positiv auf das Coronavirus (SARS-CoV-2) getestet (Kein Selbsttest)? ",
     "info_past_infection": "Warum nur kein Selbsttest, was zählt, wie, was...",
     "past_infection_yes": "Ja",
     "past_infection_no": "Nein"
   },
   "risk_group": {
     "header": "Risikogruppe",
-    "instruction": "Gehören Sie zu seiner Risikogruppe? :",
+    "instruction": "Sind Sie selbst einer Risikogruppe angehörig, oder haben Sie regelmäßig Kontakt zu Angehörigen einer Risikogruppe?",
     "info_risk_group": "Wann genau und warum ist man Teil einer Risikogruppe",
     "risk_group_yes": "Ja",
     "risk_group_no": "Nein"
   },
   "got_unregistered_vaccination": {
-    "header": "Nicht zugelassener Impfstoff",
-    "instruction": "Wurden Sie im Ausland mit einem nicht in Deutschland von der StIK zugelassenen Covid Impfstoff geimpft?",
+    "header": "Impfstoff ohne STIKO- Zulassung",
+    "instruction": "Wurden Sie bereits mit einem in Deutschland unzulässigen Covid Impfstoff geimpft?",
     "info_got_unregistered_vaccination": "Was, wann, warum problematisch?",
     "got_unregistered_vaccination_yes": "Ja",
     "got_unregistered_vaccination_no": "Nein"
@@ -88,7 +88,7 @@ texts_german = {
   },
   "age": {
     "header": "Alter",
-    "instructions": "Bitte Alter angeben!",
+    "instructions": "Bitte geben Sie Ihr Alter an",
     "age_placeholder": "Alter"
   },
   "vaccines": {
