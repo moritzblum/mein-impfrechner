@@ -28,7 +28,7 @@ texts_german = {
   },
   "vaccinated": {
     "header": "Impfstatus",
-    "instruction": "Haben Sie bereits eine Impfung gegen das Coronavirus (SARS-CoV-2) erhalten?",
+    "instruction": "Haben Sie bereits eine zulässige Impfung gegen das Coronavirus (SARS-CoV-2) erhalten?",
     "vaccinated_yes": "Ja",
     "vaccinated_no": "Nein"
   },
@@ -41,7 +41,7 @@ texts_german = {
   },
   "risk_group": {
     "header": "Risikogruppe",
-    "instruction": "Sind Sie selbst einer Risikogruppe angehörig, oder haben Sie regelmäßig Kontakt zu Angehörigen einer Risikogruppe?",
+    "instruction": "Sind Sie selbst einer Risikogruppe angehörig oder haben Sie regelmäßig Kontakt zu Angehörigen einer Risikogruppe?",
     "info_risk_group": "Wann genau und warum ist man Teil einer Risikogruppe",
     "risk_group_yes": "Ja",
     "risk_group_no": "Nein"
@@ -60,7 +60,7 @@ texts_german = {
   },
   "symptoms_registered": {
     "header": "Symptome",
-    "instructions": "Hatten oder haben Sie Symptome in Folge Ihrer Corona-Infektion?",
+    "instructions": "Hatten oder haben Sie Symptome in Folge Ihrer Corona-Infektion entwickelt?",
     "info_symptoms_registered": "Was sind Symptome, was sind Spätfolgen und wie muss ich die angeben...?",
     "never": "Nein, ich hatte nie Symptome",
     "still": "Ja, ich habe immer noch Symptome",
@@ -75,7 +75,7 @@ texts_german = {
   },
   "infection_date": {
     "header": "Erkrankungsdatum",
-    "instructions": "Wann haben Sie den ersten positiven Testnachweis über Ihre Coronainfektion erhalten (kein Selbsttest)?",
+    "instructions": "Wann wurden Sie erstmalig positiv auf das Coronavirus getestet (kein Selbsttest)?",
     "label": "Datum"
   },
   "symptoms_end_date": {
@@ -85,7 +85,7 @@ texts_german = {
   },
   "age": {
     "header": "Alter",
-    "instructions": "Bitte geben Sie Ihr Alter an",
+    "instructions": "Wie alt sind Sie?",
     "age_placeholder": "Alter"
   },
   "vaccines": {
@@ -103,7 +103,8 @@ texts_german = {
     "multiple_options": "Wir haben für sie folgende Optionen berechnet:",
     "next_possible_date": "Sie können sich mit <vaccination_brand> ab dem <date> Impfen lassen.",
     "second_vaccination": "Ihre zweite Impfung sollten Sie mit dem Impfstoff <vaccination_brand> zwischen dem <date_first> und dem <date_second> bekommen.",
-    "third_vaccination": "Ihre dritte Impfung sollten Sie mit dem Impfstoff <vaccination_brand> nach dem  <date> bekommen."
+    "third_vaccination": "Ihre dritte Impfung sollten Sie mit dem Impfstoff <vaccination_brand> nach dem  <date> bekommen.",
+    "check_data": "Bitte überprüfen Sie Ihre Eingaben:"
 
   }
 };

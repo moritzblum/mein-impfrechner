@@ -34,7 +34,7 @@ class Card extends React.Component {
                                     </button>
                                     <button className="btn btn-outline-secondary sm-right mr-0 button_next" type="submit" onClick={this.props.handler}
                                             id={this.props.id_next}>
-                                        next
+                                        weiter
                                     </button>
                                 </div>
                                 </div>
@@ -234,8 +234,7 @@ class Form_body_symptoms_registered extends React.Component {
     render(){
         return(
             <div className="form-group">
-                <label>{texts_german["symptoms_registered"]["instructions"]} :</label>
-                <label>{texts_german["symptoms_registered"]["info_symptoms_registered"]}</label>
+                <label>{texts_german["symptoms_registered"]["instructions"]}</label>
 
                 <div className="form-check">
                     <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault3" onChange={this.props.input_data_handler} name={this.props.input_name_symptoms} value={'never'}/>
@@ -430,23 +429,21 @@ class Card_start extends React.Component {
 
     render() {
         return (
-            <div className="card inactive container" id="card_start">
+            <div className="vc-card container" id="card_start" >
                 <div className="row justify-content-md-center">
-                    <div className="col-md-auto">
-                        <div className="card-body">
-                                <div className="col-sm" style={{textAlign: "center"}}>
-                                    <h1 className="card-title" > {texts_german['start']['header']} </h1>
-                                    <div>
-                                        {texts_german['start']['welcome']}
-                                    </div>
-                                </div>
-                                <div className="col position-absolute top-50 start-50 translate-middle">
-                                    <button type="button" className="btn btn-outline-secondary btn-lg button_next" id="card_start_button_next"
-                                            onClick={this.props.handler} style={{"fontSize":"40px"}}>  Starten
-                                    </button>
-                                </div>
+                        <div className="vc-card-header">
+                            <div className="col-sm" style={{textAlign: "center"}}>
+                                <h1 style={{color: "grey"}} className="card-title" > <b>{texts_german['start']['header']} </b></h1>
+
+                            </div>
                         </div>
-                    </div>
+                        <div className="vc-card-body tesaaaaaa">
+                            <div className="col" style={{"text-align": "center", "padding": "150px 0"}}>
+                                <button type="button" className="button-start button_next" id="card_start_button_next"
+                                        onClick={this.props.handler} style={{"fontSize":"40px"}}>  Starten
+                                </button>
+                            </div>
+                        </div>
                 </div>
             </div>
         );
@@ -483,7 +480,7 @@ class Card_result extends React.Component {
                             <h1>Empfehlung</h1>
                             <div>{result_text}</div>
                             <br/>
-                            <h1>Deine Daten</h1>
+                            <h1>Ihre Daten</h1>
                             {vis_user_data(this.props.user_data)}
                         </div>
                     </div>

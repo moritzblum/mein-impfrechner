@@ -1,27 +1,120 @@
+
+
 html {
     height: 100%;
+
+}
+
+.virus {
+    position: absolute;
+    fill: green;
+    width: 20%;
+    top: 40%;
+    left: 40%;
+    color: lightgreen;
+    overflow: hidden;
+    animation: orbit2 90s linear infinite;
+}
+
+.virus2 {
+    position: absolute;
+    fill: green;
+    width: 20%;
+    top: 40%;
+    left: 40%;
+    color: lightgreen;
+    overflow: hidden;
+    animation: orbit21 60s linear infinite;
+    transform: rotate(180deg);
+}
+
+
+@keyframes orbit2 {
+    from { 	transform: rotate(0deg) translate(-150%) rotate(360deg); }
+    to   {  transform: rotate(360deg) translate(-150%) rotate(-360deg); }
+}
+
+@keyframes orbit21 {
+    from { 	transform: rotate(180deg) translate(-150%) rotate(360deg); }
+    to   {  transform: rotate(540deg) translate(-150%) rotate(-360deg); }
+}
+
+.background{
+    position: absolute;
+    left:50%;
+    width: 50%;
+    height: 50%;
+}
+
+.background2{
+    position: absolute;
+    width: 50%;
+    height: 50%;
 }
 
 body {
     height: 100%;
     position:relative;
+    background-color: #69a5a4;
+    font-family:Helvetica, sans-serif;
+    font-style:normal;
+    font-weight:800;
+    letter-spacing:0;
+    text-rendering:geometricPrecision;
+    text-decoration:none;
+    font-size:15px;
+    line-height:1.26em;
+    color: white;
+}
+
+.button-start {
+    background-color: white;
+    transition-duration: 0.4s;
+    padding: 32px 32px;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid gray;
+    border-radius: 5px;
+    color: gray;
+}
+
+.button-start:hover {
+    background-color: gray;
+    color: white;
 }
 
 h1 {
-    color: navy;
+    color: white;
     margin-left: 20px;
 }
 
 .main_page_text{
     position:relative;
-    width: 50%;
+    width: 700px;
 }
 
-.card{
+.vc-card{
     position:relative;
-    width: 500px;
-    height: 400px;
-    background-color: #f7f7f7;
+    width: 700px;
+    height: 550px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.vc-card-header{
+    padding-top: 2.5%;
+
+}
+
+.vc-card-body{
+    background-color: #69a5a4;
+    position: absolute;
+    top: 15%;
+    right: 2%;
+    height: 83%;
+    width: 96%;
+    padding-top: 2%;
+    border-radius: 5px;
 }
 
 
@@ -31,12 +124,13 @@ h1 {
         position:relative;
         width: 500px;
     }
-
-
 }
 
 
-@media screen and (max-width: 500px) {
+
+
+
+@media screen and (max-width: 700px) {
 
     html {
         font-size: 4vw;
@@ -60,7 +154,13 @@ h1 {
         width: 100%;
     }
 
-    .card{
+    .card {
+        position:relative;
+        width: 95%;
+        height: 95%;
+    }
+
+    .vc-card{
         position:relative;
         width: 95%;
         height: 95%;
