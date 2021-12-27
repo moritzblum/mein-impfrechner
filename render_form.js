@@ -8,37 +8,31 @@ class Card extends React.Component {
 
     render() {
         return (
-                <div className="card inactive container">
-                    <div className="card-body">
-                            <div className="" style={{"position": "relative", "height":"100%", "width":"100%"}}>
-                                <div className="">
-                                    <form onSubmit={this.props.handler} className="needs-validation">
-                                            <div className="">
-                                                <h2 className="card-title text-center">{this.props.title}</h2>
-                                                <br/>
-                                                {this.props.form_body}
-                                                <br/>
-                                            </div>
-                                    </form>
-                                </div>
+                <div className="vc-card container">
+                    <div className="vc-card-header">
+                        <div className="col-sm" style={{textAlign: "center"}}>
+                            <h1 style={{color: "grey"}} className="card-title" >{this.props.title}</h1>
+                        </div>
+                    </div>
+                    <div className="vc-card-body">
+
+                        <form onSubmit={this.props.handler} className="needs-validation">
+                            {this.props.form_body}
+                        </form>
+
+
+                        <div className="" style={{"position": "absolute", "bottom": "2%", "width":"96%"}}>
+                            <div className="d-flex justify-content-between">
+                                <button className="button button_back" onClick={this.props.handler}
+                                        id={this.props.id_back}>
+                                    zurück
+                                </button>
+                                <button className="button button_next" type="submit" onClick={this.props.handler}
+                                        id={this.props.id_next}>
+                                    weiter
+                                </button>
                             </div>
-
-
-                            <div className="" style={{"position": "relative", "bottom": "15%", "width":"100%"}}>
-                                <div className="">
-
-                                <div className="d-flex justify-content-between">
-                                    <button className="btn btn-outline-secondary button_back" onClick={this.props.handler}
-                                            id={this.props.id_back}>
-                                        back
-                                    </button>
-                                    <button className="btn btn-outline-secondary sm-right mr-0 button_next" type="submit" onClick={this.props.handler}
-                                            id={this.props.id_next}>
-                                        weiter
-                                    </button>
-                                </div>
-                                </div>
-                            </div>
+                        </div>
 
                 </div>
 
@@ -58,6 +52,8 @@ class Form_body_vaccination_last extends React.Component {
             <div>
                 <div className="form-group">
                     <div>{texts_german["vaccination_last"]["instruction"]}</div>
+                    <br/>
+                    <br/>
                     <label>{texts_german["vaccination_last"]["vaccination_label"]}</label>
                     <select className="form-select select-validation" id="exampleFormControlSelect1"
                             onChange={this.props.input_data_handler} name={this.props.input_name_vaccine}>
@@ -66,16 +62,17 @@ class Form_body_vaccination_last extends React.Component {
                         <option>{texts_german["vaccines"]["moderna"]}</option>
                         <option>{texts_german["vaccines"]["astra"]}</option>
                         <option>{texts_german["vaccines"]["johnson"]}</option>
-
                     </select>
                     <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
                     <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
+
+                    <div className="form-group">
+                        <label>{texts_german["vaccination_last"]["date_labe"]}</label>
+                        <DatePicker onChange={this.props.input_data_handler}
+                                    date_picker_name={this.props.input_name_vaccination_date}/>
+                    </div>
                 </div>
-                <div className="form-group">
-                    <label>{texts_german["vaccination_last"]["date_labe"]}</label>
-                    <DatePicker onChange={this.props.input_data_handler}
-                                date_picker_name={this.props.input_name_vaccination_date}/>
-                </div>
+
             </div>);
     }
 }
@@ -90,6 +87,8 @@ class Form_body_vaccination_x extends React.Component {
             <div>
                 <div className="form-group">
                     <div>{texts_german["vaccination_x"]["instruction"]}</div>
+                    <br/>
+                    <br/>
                     <label>{texts_german["vaccination_x"]["vaccination_label"]}</label>
                     <select className="form-select select-validation" id="exampleFormControlSelect1"
                             onChange={this.props.input_data_handler} name={this.props.input_name_vaccine}>
@@ -116,6 +115,8 @@ class Form_body_vaccinated extends React.Component {
             <div>
                 <div className="form-group">
                     <label>{texts_german['vaccinated']['instruction']}</label>
+                    <br/>
+                    <br/>
                     <div className="form-check">
                         <input className="form-check-input radio-validation" type="radio"  id="flexRadioDefault1" onChange={this.props.input_data_handler} name={this.props.input_name_vaccinated} value={true}/>
                         <label className="form-check-label" htmlFor="flexRadioDefault1"> {texts_german['vaccinated']['vaccinated_yes']} </label>
@@ -141,6 +142,8 @@ class Form_body_past_infection extends React.Component {
         return(
             <div className="form-group">
                 <label>{texts_german['past_infection']['instruction']}</label>
+                <br/>
+                <br/>
                 <div className="form-check">
                     <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault3" onChange={this.props.input_data_handler} name={this.props.input_name_past_infection} value={true}/>
                     <label className="form-check-label" htmlFor="flexRadioDefault3"> {texts_german["past_infection"]["past_infection_yes"]} </label>
@@ -166,6 +169,8 @@ class Form_body_risk_group extends React.Component {
         return(
             <div className="form-group">
                 <label>{texts_german['risk_group']['instruction']}</label>
+                <br/>
+                <br/>
                 <div className="form-check">
                     <input className="form-check-input radio-validation" type="radio" id="risk_group_1_input" onChange={this.props.input_data_handler} name={this.props.input_name_risk_group} value={true}/>
                     <label className="form-check-label" htmlFor="risk_group_1_input"> {texts_german["risk_group"]["risk_group_yes"]} </label>
@@ -191,6 +196,8 @@ class Form_body_got_unregistered_vaccination extends React.Component {
         return(
             <div className="form-group">
                 <label>{texts_german['got_unregistered_vaccination']['instruction']}</label>
+                <br/>
+                <br/>
                 <div className="form-check">
                     <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault3" onChange={this.props.input_data_handler} name={this.props.input_name_got_unregistered_vaccination} value={true}/>
                     <label className="form-check-label" htmlFor="flexRadioDefault3"> {texts_german["got_unregistered_vaccination"]["got_unregistered_vaccination_yes"]} </label>
@@ -215,7 +222,8 @@ class Form_body_unregistered_vaccination_date extends React.Component {
         return (
             <div>
                 <div>{texts_german["symptoms_end_date"]["instructions"]}</div>
-
+                <br/>
+                <br/>
                 <label htmlFor="datepicker_infection" data-bs-toggle="modal"
                        data-bs-target="#modal_datum_postest">{texts_german["unregistered_vaccination_date"]["label"]}</label>
                 <DatePicker onChange={this.props.input_data_handler}
@@ -235,7 +243,8 @@ class Form_body_symptoms_registered extends React.Component {
         return(
             <div className="form-group">
                 <label>{texts_german["symptoms_registered"]["instructions"]}</label>
-
+                <br/>
+                <br/>
                 <div className="form-check">
                     <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault3" onChange={this.props.input_data_handler} name={this.props.input_name_symptoms} value={'never'}/>
                     <label className="form-check-label" htmlFor="flexRadioDefault3">
@@ -270,6 +279,8 @@ class Form_body_number_vaccinations extends React.Component {
         return(
             <div className="form-group">
                 <label>{texts_german["number_vaccinations"]["instructions"]}</label>
+                <br/>
+                <br/>
                 <div className="form-check">
                     <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault3" onChange={this.props.input_data_handler} name={this.props.input_name_number_vaccinations} value={1}/>
                     <label className="form-check-label" htmlFor="flexRadioDefault3">
@@ -305,6 +316,8 @@ class Form_body_infection_date extends React.Component {
         return (
             <div>
                 <div>{texts_german["infection_date"]["instructions"]}</div>
+                <br/>
+                <br/>
                 <label htmlFor="datepicker_infection" data-bs-toggle="modal"
                        data-bs-target="#modal_datum_postest">{texts_german["infection_date"]["label"]}</label>
                 <DatePicker onChange={this.props.input_data_handler}
@@ -324,7 +337,8 @@ class Form_body_symptoms_end_date extends React.Component {
         return (
             <div>
                 <div>{texts_german["symptoms_end_date"]["instructions"]}</div>
-
+                <br/>
+                <br/>
                 <label htmlFor="datepicker_infection" data-bs-toggle="modal"
                        data-bs-target="#modal_datum_postest">{texts_german["symptoms_end_date"]["label"]}</label>
                 <DatePicker onChange={this.props.input_data_handler}
@@ -352,6 +366,8 @@ class Form_body_age extends React.Component {
         return(
             <div >
                 <label>{texts_german["age"]["instructions"]}</label>
+                <br/>
+                <br/>
                 <input value={this.state.value}  type="number" min="0" max="1000" step="1" className="form-control" id="age_input_field" placeholder={texts_german["age"]["age_placeholder"]} onChange={this.input_filed_change} name={this.props.input_name_age} required/>
                 <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
                 <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
@@ -433,12 +449,12 @@ class Card_start extends React.Component {
                 <div className="row justify-content-md-center">
                         <div className="vc-card-header">
                             <div className="col-sm" style={{textAlign: "center"}}>
-                                <h1 style={{color: "grey"}} className="card-title" > <b>{texts_german['start']['header']} </b></h1>
-
+                                <h1 style={{color: "grey"}} className="card-title" >{texts_german['start']['header']}</h1>
                             </div>
                         </div>
-                        <div className="vc-card-body tesaaaaaa">
-                            <div className="col" style={{"text-align": "center", "padding": "150px 0"}}>
+
+                        <div className="vc-card-body">
+                            <div className="col" style={{"position": "relative", "textAlign": "center", "padding": "20% 0%"}}>
                                 <button type="button" className="button-start button_next" id="card_start_button_next"
                                         onClick={this.props.handler} style={{"fontSize":"40px"}}>  Starten
                                 </button>
@@ -472,28 +488,31 @@ class Card_result extends React.Component {
         }
 
         return(
-            <div className="card inactive container">
-                <div className="card-body" style={{"position": "relative", "height":"100%"}}>
-                    <div className="" style={{"position": "relative", "height":"100%"}}>
-                        <div className="" style={{"position": "relative", "height":"80%", "width":"100%", 'overflow-y': 'scroll'}}>
+            <div className="vc-card container">
+                    <div className="vc-card-header">
+                        <div className="col-sm" style={{textAlign: "center"}}>
+                            <h1 style={{color: "grey"}} className="card-title"> <b>Ergebnis </b></h1>
+                        </div>
+                    </div>
 
+                    <div className="vc-card-body">
+                        <div className="vc-result" style={{"position": "relative", "height":"90%", "width":"100%", 'overflow-y': 'scroll'}}>
                             <h1>Empfehlung</h1>
                             <div>{result_text}</div>
                             <br/>
                             <h1>Ihre Daten</h1>
-                            {vis_user_data(this.props.user_data)}
+                            <div>{vis_user_data(this.props.user_data)}</div>
                         </div>
-                    </div>
 
-                    <div className="" style={{"position": "relative", "bottom": "10%", "width":"100%"}}>
-                        <div className="d-flex justify-content-between">
-                            <button className="btn btn-outline-secondary button_back" onClick={this.props.handler}
-                                    id={this.props.id_back}>
-                                Back
-                            </button>
+                        <div className="" style={{"position": "absolute", "bottom": "2%", "top":"auto", "width":"100%"}}>
+                            <div className="d-flex justify-content-between">
+                                <button className="button button_back" onClick={this.props.handler}
+                                        id={this.props.id_back}>
+                                    Back
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
             </div>
         )
     }
