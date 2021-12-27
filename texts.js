@@ -41,7 +41,7 @@ texts_german = {
   },
   "risk_group": {
     "header": "Risikogruppe",
-    "instruction": "Sind Sie selbst einer Risikogruppe angehörig oder haben Sie regelmäßig Kontakt zu Angehörigen einer Risikogruppe?",
+    "instruction": "Sind Sie selbst einer Risikogruppe angehörig, haben Sie regelmäßig Kontakt zu Angehörigen einer Risikogruppe, oder sind Sie schwanger? ",
     "info_risk_group": "Wann genau und warum ist man Teil einer Risikogruppe",
     "risk_group_yes": "Ja",
     "risk_group_no": "Nein"
@@ -92,7 +92,7 @@ texts_german = {
     "biontec": "BioNTech/Pfizer",
     "moderna": "Moderna",
     "astra": "AstraZeneca",
-    "johnson": "Janssen"
+    "johnson": "Janssen",
   },
   "results": {
     "really_old": "Wenn du wirklich schon so lange gelebt hast, dann bringt dich Corona auch nicht mehr um.",
@@ -102,7 +102,8 @@ texts_german = {
     "no_further_recommendation": "Nach aktuellem Stand benötigen sie keine weitere Impfung.",
     "multiple_options": "Wir haben für sie folgende Optionen berechnet:",
     "next_possible_date": "Sie können sich mit <vaccination_brand> ab dem <date> Impfen lassen.",
-    "second_vaccination": "Ihre zweite Impfung sollten Sie mit dem Impfstoff <vaccination_brand> zwischen dem <date_first> und dem <date_second> bekommen.",
+    "second_vaccination": "Ihre zweite Impfung sollten Sie mit dem Impfstoff <vaccination_brand> nach dem <date_first> bekommen.",
+    "second_vaccination_range": "Ihre zweite Impfung sollten Sie mit dem Impfstoff <vaccination_brand> zwischen dem <date_first> und dem <date_second> bekommen.",
     "third_vaccination": "Ihre dritte Impfung sollten Sie mit dem Impfstoff <vaccination_brand> nach dem  <date> bekommen.",
     "check_data": "Bitte überprüfen Sie Ihre Eingaben:"
 
@@ -112,10 +113,13 @@ texts_german = {
 constants = {
   'age_groups': {
     // the two values specify the range of age, e.g. [13,200] means everybody with an age of 13 up to 200
-    'age_group_1': [0,11],
-    'age_group_2': [12,29],
-    'age_group_3': [30,199],
-    'age_group_4': [200,Number.MAX_SAFE_INTEGER],
+    'age_group_1': [0,4],
+    'age_group_2': [5,11],
+    'age_group_3': [12,17],
+    'age_group_4': [18,29],
+    'age_group_5': [30,59],
+    'age_group_6': [60,199],
+    'age_group_7': [200,Number.MAX_SAFE_INTEGER],
   },
   'symptoms': {
     'never': 0,
