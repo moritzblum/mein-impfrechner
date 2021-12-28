@@ -41,7 +41,7 @@ texts_german = {
   },
   "risk_group": {
     "header": "Risikogruppe",
-    "instruction": "Sind Sie selbst einer Risikogruppe angehörig, haben Sie regelmäßig Kontakt zu Angehörigen einer Risikogruppe, oder sind Sie schwanger? ",
+    "instruction": "Sind Sie zum aktuellen Zeitpunkt schwanger?",
     "info_risk_group": "Wann genau und warum ist man Teil einer Risikogruppe",
     "risk_group_yes": "Ja",
     "risk_group_no": "Nein"
@@ -108,7 +108,9 @@ texts_german = {
     "third_vaccination": "Ihre dritte Impfung sollten Sie mit dem Impfstoff <vaccination_brand> nach dem  <date> bekommen.",
     "check_data": "Bitte überprüfen Sie Ihre Eingaben:",
     "error": "Leider konnten wir Ihren persönlichen Fall nicht lösen. Wenden Sie sich für eine individuelle Beratung an ihren Hausarzt."
-  }
+  },
+  "disclaimer": "Haftungsausschluss: Die Inhalte dieser Seite dienen ausschließlich der allgemeinen Information der Öffentlichkeit. mein-impfrechner.de übernimmt keine Verantwortung für die Richtigkeit und Vollständigkeit der Daten und Informationen, ob auf dieser Seite angegeben oder verlinkt, für Abweichungen von Originaldaten, Übertragungsfehler oder Veränderung der Informationen durch Dritte."
+
 };
 
 constants = {

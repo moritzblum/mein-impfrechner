@@ -500,6 +500,8 @@ class Card_result extends React.Component {
                             <h1>Empfehlung</h1>
                             <div>{result_text}</div>
                             <br/>
+                            <div>{texts_german['disclaimer']}</div>
+                            <br/>
                             <h1>Ihre Daten</h1>
                             <div>{vis_user_data(this.props.user_data)}</div>
                         </div>
@@ -699,7 +701,7 @@ class CardManager extends React.Component {
                 }
             }
             // date
-            if (['vaccination_last', 'vaccination_x', 'infection_date', 'symptoms_end_date', 'unregistered_vaccination_date'].includes(current_card_id)) {
+            if (['vaccination_last', 'infection_date', 'symptoms_end_date', 'unregistered_vaccination_date'].includes(current_card_id)) {
                 let element = document.getElementsByClassName("date-validation");
 
                 if (this.state.entered_data['date'] === undefined || !(is_valid_date_format(this.state.entered_data['date']))) {
@@ -718,10 +720,12 @@ class CardManager extends React.Component {
                 }
             }
             // select
-            if (['vaccination_last', 'vaccination_x'].includes(current_card_id)) {
+            console.log(current_card_id);
+            if (['vaccination_last', 'vaccination_1'].includes(current_card_id)) {
+                console.log('in here');
                 let element = document.getElementsByClassName("select-validation");
 
-                if (this.state.entered_data['value'] === undefined || this.state.entered_data['value'] === '') {
+                if (this.state.entered_data['value'] === undefined || this.state.entered_data['value'] === '' || this.state.entered_data['value'] === true) {
                     for(let i = 0; i < element.length; i++){
                         element[i].classList.remove("is-valid");
                         element[i].classList.add("is-invalid");
