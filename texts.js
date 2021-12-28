@@ -89,9 +89,9 @@ texts_german = {
     "age_placeholder": "Alter"
   },
   "vaccines": {
-    "biontec": "BioNTech/Pfizer",
+    "biontec": "Biontech",
     "moderna": "Moderna",
-    "astra": "AstraZeneca",
+    "astra": "Astrazeneca",
     "johnson": "Janssen",
   },
   "results": {
@@ -102,11 +102,12 @@ texts_german = {
     "no_further_recommendation": "Nach aktuellem Stand benötigen sie keine weitere Impfung.",
     "multiple_options": "Wir haben für sie folgende Optionen berechnet:",
     "next_possible_date": "Sie können sich mit <vaccination_brand> ab dem <date> Impfen lassen.",
+    "next_possible_date_booster": "Sie können sich mit <vaccination_brand> ab dem <date> Boostern lassen.",
     "second_vaccination": "Ihre zweite Impfung sollten Sie mit dem Impfstoff <vaccination_brand> nach dem <date_first> bekommen.",
     "second_vaccination_range": "Ihre zweite Impfung sollten Sie mit dem Impfstoff <vaccination_brand> zwischen dem <date_first> und dem <date_second> bekommen.",
     "third_vaccination": "Ihre dritte Impfung sollten Sie mit dem Impfstoff <vaccination_brand> nach dem  <date> bekommen.",
-    "check_data": "Bitte überprüfen Sie Ihre Eingaben:"
-
+    "check_data": "Bitte überprüfen Sie Ihre Eingaben:",
+    "error": "Leider konnten wir Ihren persönlichen Fall nicht lösen. Wenden Sie sich für eine individuelle Beratung an ihren Hausarzt."
   }
 };
 

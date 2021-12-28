@@ -520,16 +520,9 @@ class Card_result extends React.Component {
 
 
 function vis_user_data (user_data) {
-    for (const [key, value] of Object.entries(user_data['user_data'])) {
-        console.log(key, value);
-    }
-
     let user_data_list = [];
-    console.log(user_data);
-
 
     if ('age' in user_data['user_data']){
-        console.log('in here');
         user_data_list.push(<li>{texts_german['age']["header"]}: {user_data['user_data']['age']['value']}</li>);
     }
 
@@ -634,10 +627,6 @@ function button_id_2_card_id(button_id){
 }
 
 
-
-
-
-
 class CardManager extends React.Component {
     constructor(props) {
         super(props);
@@ -649,7 +638,6 @@ class CardManager extends React.Component {
             card_history: [],
             user_data: {}
         };
-
     }
 
 
@@ -661,10 +649,8 @@ class CardManager extends React.Component {
         let invalid = false;
 
         if (e.target.classList.contains('button_next')) {
-            console.log('clicked next');
 
-
-            var forms = document.querySelectorAll('.needs-validation');
+            let forms = document.querySelectorAll('.needs-validation');
 
             Array.prototype.slice.call(forms)
                 .forEach(function (form) {
@@ -672,7 +658,7 @@ class CardManager extends React.Component {
                         if (!isNaN(this.state.entered_data['value'])) {
                             event.preventDefault();
                             event.stopPropagation();
-                            console.log('test');
+
                         }
 
                         form.classList.add('was-validated')
@@ -684,13 +670,11 @@ class CardManager extends React.Component {
             // number text-field
             if (current_card_id === 'age') {
                 if (isNaN(this.state.entered_data['value']) || this.state.entered_data['value'] === '') {
-                    console.log('Not Valid: Not a number!');
                     document.getElementById("age_input_field").classList.remove("is-valid");
                     document.getElementById("age_input_field").classList.add("is-invalid");
                     invalid = true;
                 }
                 else {
-                    console.log('Valid: Its a number!');
                     document.getElementById("age_input_field").classList.remove("is-invalid");
                     document.getElementById("age_input_field").classList.add("is-valid")
                 }
@@ -937,13 +921,12 @@ class CardManager extends React.Component {
                                                                               input_unregistered_vaccination_date='date' />}/>
                 );
             case 'result':
-                console.log(this.state.entered_data);
                 return (
                     <Card_result handler={this.control_click_handler} user_data={{'user_data': this.state.user_data, 'entered_data': this.state.entered_data}}/>
                 );
 
             default:
-                console.log('Rendering default.')
+                console.log('React rendering ERROR: Rendering default.')
                 return (
 
                     <div>

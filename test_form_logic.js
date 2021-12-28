@@ -14,36 +14,30 @@ let test_cases = [
     [['start'], ['age', 3], ['result_2']],
     [['start'], ['age', 31], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', false], ['result_12']],
     [['start'], ['age', 31], ['risk_group', true], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', false], ['result_13']],
-    [['start'], ['age', 31], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', true],  ['unregistered_vaccination_date', '11.05.21'], ['vaccinated', false], ['result_12']],
-    [['start'], ['age', 21], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'Biontec', '11.05.21'], ['result_14']],
-    [['start'], ['age', 21], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'Moderna', '11.05.21'], ['result_14']],
-    [['start'], ['age', 54], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'Moderna', '11.05.21'], ['result_17']],
-    [['start'], ['age', 31], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'AstraZeneca', '11.05.21'], ['result_15']],
+    [['start'], ['age', 31], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', true],  ['unregistered_vaccination_date', '11.05.2021'], ['vaccinated', false], ['result_12']],
+    [['start'], ['age', 21], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'Biontech', '11.05.2021'], ['result_18']],
+    [['start'], ['age', 21], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'Moderna', '11.05.2021'], ['result_18']],
+    [['start'], ['age', 54], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'Moderna', '11.05.2021'], ['result_21']],
+    [['start'], ['age', 31], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'Astrazeneca', '11.05.2021'], ['result_19']],
     [['start'], ['age', 15], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 2], ['result_16']],
-
-
-
-
-
-
-
-
-    //[['start'], ['age', 21], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.21'], ['symptoms_registered', 'still'], ['result_2']],
-    //[['start'], ['age', 200], ['result_3']],
-    //[['start'], ['age', 31], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', false], ['result_11']],
-    //[['start'], ['age', 21], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', false], ['result_12']],
-    //[['start'], ['age', 21], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.21'],  ['symptoms_registered', 'past'], ['symptoms_end_date', '11.05.21'], ['got_unregistered_vaccination', false], ['vaccinated', false], ['result_12']],
-    //[['start'], ['age', 21], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.21'],  ['symptoms_registered', 'past'], ['symptoms_end_date', '11.05.21'], ['got_unregistered_vaccination', false], ['vaccinated', true], ['result_10']],
-    //[['start'], ['age', 31], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.21'],  ['symptoms_registered', 'never'], ['got_unregistered_vaccination', false], ['vaccinated', false], ['result_11']],
-    //[['start'], ['age', 21], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 3], ['result_21']],
-    //[['start'], ['age', 21], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'biontec', '11.05.21'], ['result_17']],
-    //[['start'], ['age', 31], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'biontec', '11.05.21'], ['result_15']],
-    //[['start'], ['age', 31], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'johnson', '11.05.21'], ['result_16']],
-    //[['start'], ['age', 21], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 2], ['vaccination_1', 'biontec'], ['vaccination_last', 'biontec', '11.05.21'], ['result_19']],
-    //[['start'], ['age', 21], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 2], ['vaccination_1', 'johnson'], ['vaccination_last', 'biontec', '11.05.21'], ['result_20']],
-    //[['start'], ['age', 21], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', true], ['unregistered_vaccination_date', '11.05.21'], ['vaccinated', true], ['number_vaccinations', 2], ['vaccination_1', 'biontec'], ['vaccination_last', 'biontec', '11.05.21'], ['result_19']],
-    //[['start'], ['age', 31], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 2], ['vaccination_1', 'biontec'], ['vaccination_last', 'biontec', '11.05.21'], ['result_18']],
-
+    [['start'], ['age', 25], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 3], ['result_17']],
+    [['start'], ['age', 25], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'Astrazeneca', '11.05.2021'], ['result_18']],
+    [['start'], ['age', 31], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'Biontech', '11.05.2021'], ['result_20']],
+    [['start'], ['age', 31], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'Moderna', '11.05.2021'], ['result_21']],
+    [['start'], ['age', 31], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 2], ['vaccination_1', 'Biontech'], ['vaccination_last', 'Biontech', '11.05.2021'], ['result_22']],
+    [['start'], ['age', 31], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 2], ['vaccination_1', 'Moderna'], ['vaccination_last', 'Moderna', '11.05.2021'], ['result_23']],
+    [['start'], ['age', 62], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 2], ['vaccination_1', 'Moderna'], ['vaccination_last', 'Moderna', '11.05.2021'], ['result_24']],
+    [['start'], ['age', 62], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 2], ['vaccination_1', 'Astrazeneca'], ['vaccination_last', 'Biontech', '11.05.2021'], ['result_25']],
+    [['start'], ['age', 25], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 2], ['vaccination_1', 'Janssen'], ['vaccination_last', 'Biontech', '11.05.2021'], ['result_26']],
+    [['start'], ['age', 25], ['risk_group', false], ['past_infection', false], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 2], ['vaccination_1', 'Janssen'], ['vaccination_last', 'Astrazeneca', '11.05.2021'], ['result_27']],
+    [['start'], ['age', 25], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.2021'], ['symptoms_registered', 'never'], ['got_unregistered_vaccination', false], ['vaccinated', false], ['result_28']],
+    [['start'], ['age', 31], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.2021'], ['symptoms_registered', 'never'], ['got_unregistered_vaccination', false], ['vaccinated', false], ['result_29']],
+    [['start'], ['age', 25], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.2021'], ['symptoms_registered', 'never'], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'Astrazeneca', '10.05.2021'], ['result_30']],
+    [['start'], ['age', 31], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.2021'], ['symptoms_registered', 'never'], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'Astrazeneca', '10.05.2021'], ['result_31']],
+    [['start'], ['age', 25], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.2021'], ['symptoms_registered', 'never'], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'Astrazeneca', '12.05.2021'], ['result_32']],
+    [['start'], ['age', 31], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.2021'], ['symptoms_registered', 'never'], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 1], ['vaccination_last', 'Astrazeneca', '12.05.2021'], ['result_33']],
+    [['start'], ['age', 25], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.2021'], ['symptoms_registered', 'never'], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 2], ['vaccination_1', 'Astrazeneca'], ['vaccination_last', 'Astrazeneca', '12.05.2021'], ['result_34']],
+    [['start'], ['age', 31], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.2021'], ['symptoms_registered', 'never'], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 2], ['vaccination_1', 'Astrazeneca'], ['vaccination_last', 'Astrazeneca', '12.05.2021'], ['result_35']],
 ]
 
 errors = 0;
