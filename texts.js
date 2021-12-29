@@ -1,3 +1,5 @@
+
+
 texts_german = {
   "start": {
     "header": "Impfrechner",
@@ -10,7 +12,7 @@ texts_german = {
   },
   "vaccination_last": {
     "header": "Angaben zur letzten Corona-Schutzimpfung (SARS-CoV-2)",
-    "instruction": "Bitte angeben",
+    "instructions": "Bitte angeben",
     "vaccination_label": "Impfstoff",
     "vaccination_instruction": "bitte auswählen",
     "other_vaccines": "andere",
@@ -20,7 +22,7 @@ texts_german = {
   },
   "vaccination_x": {
     "header": "Angaben zur ersten Corona-Schutzimpfung", //muss angepasst werden, wenn 4 Impfungen zulässig werden.
-    "instruction": "Welcher Impfstoff wurde bei Ihrer ersten Corona-Schutzimpfung verimpft?",
+    "instructions": "Welcher Impfstoff wurde bei Ihrer ersten Corona-Schutzimpfung verimpft?",
     "vaccination_label": "Impfstoff",
     "vaccination_instruction": "bitte auswählen",
     "other_vaccines": "andere",
@@ -28,27 +30,27 @@ texts_german = {
   },
   "vaccinated": {
     "header": "Impfstatus",
-    "instruction": "Haben Sie bereits eine zulässige Impfung gegen das Coronavirus (SARS-CoV-2) erhalten?",
+    "instructions": "Haben Sie bereits eine zulässige Impfung gegen das Coronavirus (SARS-CoV-2) erhalten?",
     "vaccinated_yes": "Ja",
     "vaccinated_no": "Nein"
   },
   "past_infection": {
     "header": "Genesenenstatus",
-    "instruction": "Wurden Sie bereits positiv auf das Coronavirus (SARS-CoV-2) getestet (Kein Selbsttest)? ",
+    "instructions": "Wurden Sie bereits positiv auf das Coronavirus (SARS-CoV-2) getestet (Kein Selbsttest)? ",
     "info_past_infection": "Warum nur kein Selbsttest, was zählt, wie, was...",
     "past_infection_yes": "Ja",
     "past_infection_no": "Nein"
   },
   "risk_group": {
     "header": "Risikogruppe",
-    "instruction": "Sind Sie zum aktuellen Zeitpunkt schwanger?",
+    "instructions": "Sind Sie zum aktuellen Zeitpunkt schwanger?",
     "info_risk_group": "Wann genau und warum ist man Teil einer Risikogruppe",
     "risk_group_yes": "Ja",
     "risk_group_no": "Nein"
   },
   "got_unregistered_vaccination": {
     "header": "Impfstoff ohne STIKO- Zulassung",
-    "instruction": "Wurden Sie bereits mit einem in Deutschland nicht zulässigen Corona-Impfstoff geimpft?",
+    "instructions": "Wurden Sie bereits mit einem in Deutschland nicht zulässigen Corona-Impfstoff geimpft?",
     "info_got_unregistered_vaccination": "Was, wann, warum problematisch?",
     "got_unregistered_vaccination_yes": "Ja",
     "got_unregistered_vaccination_no": "Nein"

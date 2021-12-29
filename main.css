@@ -8,6 +8,13 @@ a {
     text-decoration: none;
 }
 
+.accordion-button {
+    color: gray;
+    font-weight: bold;
+    background: black;
+    background-active: green;
+}
+
 a:hover {
     color: black;
     font-weight: bold;

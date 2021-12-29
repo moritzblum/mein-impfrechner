@@ -1,5 +1,19 @@
 'use strict';
 
+let modal_risk_group_title = "Risikogruppe";
+let modal_risk_group_text = <div style={{"color": "red"}}><p>modal_risk_group Hier könnte Ihre Werbung stehen!</p></div>;
+let modal_vaccinated_title = "Impfung";
+let modal_vaccinated_text = <div style={{"color": "red"}}><p>modal_vaccinated Hier könnte Ihre Werbung stehen!</p></div>;
+let modal_got_unregistered_vaccination_title = "Nicht zugelassene Impfung";
+let modal_got_unregistered_vaccination_text = <div style={{"color": "red"}}><p>modal_got_unregistered_vaccination Hier könnte Ihre Werbung stehen!</p></div>;
+let modal_past_infection_title = "Genesenenstatus";
+let modal_past_infection_text = <div style={{"color": "red"}}><p>modal_past_infection Hier könnte Ihre Werbung stehen!</p></div>;
+let modal_infection_date_title = "Infektionsdatum";
+let modal_infection_date_text = <div style={{"color": "red"}}><p>modal_infection_date Hier könnte Ihre Werbung stehen!</p></div>;
+let modal_symptoms_registered_title = "Symptome";
+let modal_symptoms_registered_text = <div style={{"color": "red"}}><p>modal_symptoms_registered Hier könnte Ihre Werbung stehen!</p></div>;
+let modal_symptoms_end_date_title = "Ende der Symptome";
+let modal_symptoms_end_date_text = <div style={{"color": "red"}}><p>modal_symptoms_end_date Hier könnte Ihre Werbung stehen!</p></div>;
 
 class Card extends React.Component {
     constructor(props) {
@@ -42,6 +56,31 @@ class Card extends React.Component {
 }
 
 
+function Modal_popup(props) {
+    return (
+        <div className="modal fade" id={props.button_id} tabIndex="-1" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div className="modal-dialog">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLabel" style={{"color": "gray"}}>{props.title}</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"/>
+                    </div>
+                    <div className="modal-body" style={{"color": "gray"}}>
+                        {props.text}
+                    </div>
+                    <div className="modal-footer">
+                        <button type="button" className="button" data-bs-dismiss="modal">Schließen
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+
 class Form_body_vaccination_last extends React.Component {
     constructor(props) {
         super(props);
@@ -51,7 +90,7 @@ class Form_body_vaccination_last extends React.Component {
         return (
             <div>
                 <div className="form-group">
-                    <div>{texts_german["vaccination_last"]["instruction"]}</div>
+                    <div>{texts_german["vaccination_last"]["instructions"]}</div>
                     <br/>
                     <br/>
                     <label>{texts_german["vaccination_last"]["vaccination_label"]}</label>
@@ -86,7 +125,7 @@ class Form_body_vaccination_x extends React.Component {
         return (
             <div>
                 <div className="form-group">
-                    <div>{texts_german["vaccination_x"]["instruction"]}</div>
+                    <div>{texts_german["vaccination_x"]["instructions"]}</div>
                     <br/>
                     <br/>
                     <label>{texts_german["vaccination_x"]["vaccination_label"]}</label>
@@ -114,16 +153,17 @@ class Form_body_vaccinated extends React.Component {
         return (
             <div>
                 <div className="form-group">
-                    <label>{texts_german['vaccinated']['instruction']}</label>
+                    <label>{texts_german["vaccinated"]["instructions"]} <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_vaccinated"/></label>
+                    <Modal_popup button_id="modal_vaccinated" title={modal_vaccinated_title} text={modal_vaccinated_text} />
                     <br/>
                     <br/>
                     <div className="form-check">
                         <input className="form-check-input radio-validation" type="radio"  id="flexRadioDefault1" onChange={this.props.input_data_handler} name={this.props.input_name_vaccinated} value={true}/>
-                        <label className="form-check-label" htmlFor="flexRadioDefault1"> {texts_german['vaccinated']['vaccinated_yes']} </label>
+                        <label className="form-check-label" htmlFor="flexRadioDefault1"> {texts_german["vaccinated"]["vaccinated_yes"]} </label>
                     </div>
                     <div className="form-check">
                         <input className="form-check-input radio-validation" type="radio"  id="flexRadioDefault2" onChange={this.props.input_data_handler} name={this.props.input_name_vaccinated}  value={false}/>
-                        <label className="form-check-label" htmlFor="flexRadioDefault2"> {texts_german['vaccinated']['vaccinated_no']} </label>
+                        <label className="form-check-label" htmlFor="flexRadioDefault2"> {texts_german["vaccinated"]["vaccinated_no"]} </label>
                         <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
                         <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
                     </div>
@@ -141,7 +181,8 @@ class Form_body_past_infection extends React.Component {
     render(){
         return(
             <div className="form-group">
-                <label>{texts_german['past_infection']['instruction']}</label>
+                <label>{texts_german["past_infection"]["instructions"]} <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_past_infection"/></label>
+                <Modal_popup button_id="modal_past_infection" title={modal_past_infection_title} text={modal_past_infection_text} />
                 <br/>
                 <br/>
                 <div className="form-check">
@@ -168,7 +209,8 @@ class Form_body_risk_group extends React.Component {
     render(){
         return(
             <div className="form-group">
-                <label>{texts_german['risk_group']['instruction']}</label>
+                <label>{texts_german["risk_group"]["instructions"]} <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_risk_group"/></label>
+                <Modal_popup button_id="modal_risk_group" title={modal_risk_group_title} text={modal_risk_group_text} />
                 <br/>
                 <br/>
                 <div className="form-check">
@@ -181,11 +223,15 @@ class Form_body_risk_group extends React.Component {
                     <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
                     <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
                 </div>
-
             </div>
+
+
         );
     }
 }
+
+
+
 
 class Form_body_got_unregistered_vaccination extends React.Component {
     constructor(props) {
@@ -195,7 +241,8 @@ class Form_body_got_unregistered_vaccination extends React.Component {
     render(){
         return(
             <div className="form-group">
-                <label>{texts_german['got_unregistered_vaccination']['instruction']}</label>
+                <label>{texts_german["got_unregistered_vaccination"]["instructions"]} <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_got_unregistered_vaccination"/></label>
+                <Modal_popup button_id="modal_got_unregistered_vaccination" title={modal_got_unregistered_vaccination_title} text={modal_got_unregistered_vaccination_text} />
                 <br/>
                 <br/>
                 <div className="form-check">
@@ -242,7 +289,8 @@ class Form_body_symptoms_registered extends React.Component {
     render(){
         return(
             <div className="form-group">
-                <label>{texts_german["symptoms_registered"]["instructions"]}</label>
+                <label>{texts_german["symptoms_registered"]["instructions"]} <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_symptoms_registered"/></label>
+                <Modal_popup button_id="modal_symptoms_registered" title={modal_symptoms_registered_text} text={modal_symptoms_registered_title} />
                 <br/>
                 <br/>
                 <div className="form-check">
@@ -315,7 +363,8 @@ class Form_body_infection_date extends React.Component {
     render() {
         return (
             <div>
-                <div>{texts_german["infection_date"]["instructions"]}</div>
+                <label>{texts_german["infection_date"]["instructions"]} <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_infection_date"/></label>
+                <Modal_popup button_id="modal_infection_date" title={modal_infection_date_title} text={modal_infection_date_text} />
                 <br/>
                 <br/>
                 <label htmlFor="datepicker_infection" data-bs-toggle="modal"
@@ -336,7 +385,8 @@ class Form_body_symptoms_end_date extends React.Component {
     render() {
         return (
             <div>
-                <div>{texts_german["symptoms_end_date"]["instructions"]}</div>
+                <label>{texts_german["symptoms_end_date"]["instructions"]} <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_symptoms_end_date"/></label>
+                <Modal_popup button_id="modal_symptoms_end_date" title={modal_symptoms_end_date_text} text={modal_symptoms_end_date_title} />
                 <br/>
                 <br/>
                 <label htmlFor="datepicker_infection" data-bs-toggle="modal"
@@ -413,8 +463,8 @@ class DatePicker extends React.Component {
     componentDidMount() {
 
         let datepicker_setting = datepicker_german;
-        datepicker_setting['onSelect'] = this.handle_date_selection_internal;
-        datepicker_setting['name'] = this.props.date_picker_name;
+        datepicker_setting["onSelect"] = this.handle_date_selection_internal;
+        datepicker_setting["name"] = this.props.date_picker_name;
 
         $(this.refs.input_2).datepicker(datepicker_setting);
     }
@@ -449,7 +499,7 @@ class Card_start extends React.Component {
                 <div className="row justify-content-md-center">
                         <div className="vc-card-header">
                             <div className="col-sm" style={{textAlign: "center"}}>
-                                <h1 style={{color: "grey"}} className="card-title" >{texts_german['start']['header']}</h1>
+                                <h1 style={{color: "grey"}} className="card-title" >{texts_german["start"]["header"]}</h1>
                             </div>
                         </div>
 
@@ -480,7 +530,7 @@ class Card_result extends React.Component {
         }
         // multiple outputs
         else {
-            result_text.push(<div key={'result_list_multiple_options_intro'}>{texts_german['results']['multiple_options']}</div>);
+            result_text.push(<div key={"result_list_multiple_options_intro"}>{texts_german["results"]["multiple_options"]}</div>);
             const options = this.props.user_data["entered_data"]["value"];
             for (var i = 0; i < options.length; i++) {
                 result_text.push(<li key={i}>{options[i]}</li>);
@@ -496,11 +546,11 @@ class Card_result extends React.Component {
                     </div>
 
                     <div className="vc-card-body">
-                        <div className="vc-result" style={{"position": "relative", "height":"90%", "width":"100%", 'overflow-y': 'scroll'}}>
+                        <div className="vc-result" style={{"position": "relative", "height":"90%", "width":"100%", "overflow-y": 'scroll'}}>
                             <h1>Empfehlung</h1>
                             <div>{result_text}</div>
                             <br/>
-                            <div>{texts_german['disclaimer']}</div>
+                            <div>{texts_german["disclaimer"]}</div>
                             <br/>
                             <h1>Ihre Daten</h1>
                             <div>{vis_user_data(this.props.user_data)}</div>
@@ -943,6 +993,6 @@ class CardManager extends React.Component {
 
 ReactDOM.render(
     <CardManager/>,
-    document.getElementById('root')
+    document.getElementById("root")
 );
 
