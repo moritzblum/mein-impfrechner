@@ -2,12 +2,18 @@ let BIONTECH = "biontech";
 let MODERNA = "moderna";
 let BIONTECH_MODERNA = "biontech_moderna";
 let BIONTECH_MODERNA_ASTRA = "biontech_moderna_astra";
-let RESULT_01 = "no further recommendation";
-// ...
+
 
 
 function get_next_card(card_history, user_data) {
-    let possible_cards = ['vaccination', 'vaccinated', 'past_infection', 'infection_date', 'age', 'symptoms_registered', 'symptoms_end_date', 'risk_group', 'number_vaccinations', 'got_unregistered_vaccination', 'unregistered_vaccination_date'];
+    //  possible_cards: 'vaccination', 'vaccinated', 'past_infection', 'infection_date', 'age', 'symptoms_registered',
+    //  'symptoms_end_date', 'risk_group', 'number_vaccinations', 'got_unregistered_vaccination',
+    //  'unregistered_vaccination_date'
+
+
+    function create_output(result_id, result_value) {
+        return ["result", {[result_id]: true, 'value': result_value}];
+    }
 
     let infection_date, symptoms_end_date, unregistered_vaccination_date, vaccination_last_date;
 
@@ -21,11 +27,11 @@ function get_next_card(card_history, user_data) {
     let user_age = user_data['age']['value'];
 
     if (user_age >= constants['age_groups']['age_group_7'][0]) {
-        return ["result", {'result_3': true, 'value': [texts_german['results']['really_old']]}];
+        return create_output('result_1', [texts_german['results']['really_old']]);
     }
 
     if (user_age <= constants['age_groups']['age_group_1'][1]) {
-        return ["result", {'result_2': true, 'value': [texts_german["results"]["no_general_recommendation"]]}];
+        return create_output('result_2', [texts_german["results"]["no_general_recommendation"]]);
     }
 
     if (!('risk_group' in user_data)) {
@@ -36,7 +42,7 @@ function get_next_card(card_history, user_data) {
 
     if (user_age <= constants['age_groups']['age_group_2'][1]) {
         if (risk_group === false) {
-            return ["result", {'result_2': true, 'value': [texts_german["results"]["no_general_recommendation"]]}];
+            return create_output('result_2', [texts_german["results"]["no_general_recommendation"]]);
         }
     }
 
@@ -66,7 +72,7 @@ function get_next_card(card_history, user_data) {
         }
 
         if (user_data['symptoms_registered']['value'] === 'still') {
-            return ['result', {'result_2': true, 'value': [texts_german["results"]["no_recommendation_symptoms"]]}];
+            return create_output('result_3', [texts_german["results"]["no_recommendation_symptoms"]]);
         }
 
     }
@@ -96,19 +102,10 @@ function get_next_card(card_history, user_data) {
         if (past_infection) {
             if (user_age <= constants['age_groups']['age_group_2'][1]) {
                 if (risk_group) {
-                    return ['result', {
-                        'result_36': true,
-                        'value': [
-                            texts_german['results']['contact_dr']
-                        ]
-                    }];
+                    return create_output('result_4', [texts_german['results']['contact_dr']]);
+
                 } else {
-                    return ['result', {
-                        'result_37': true,
-                        'value': [
-                            texts_german['results']['no_general_recommendation']
-                        ]
-                    }];
+                    return create_output('result_2', [texts_german['results']['no_general_recommendation']]);
                 }
             }
 
@@ -139,35 +136,27 @@ function get_next_card(card_history, user_data) {
             add_weeks_2_date(symptoms_end_date, 4)]);
 
         if (vaccination_possibilities === BIONTECH) {
-            return ['result', {
-                'result_28': true,
-                'value': [
-                    texts_german['results']['next_possible_date_first'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
-                ]
-            }];
+            return create_output('result_5', [
+                texts_german['results']['next_possible_date_first'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
+            ]);
         }
         if (vaccination_possibilities === BIONTECH_MODERNA) {
-            return ['result', {
-                'result_12': true,
-                'value': [
+            return create_output('result_6', [
                     texts_german['results']['next_possible_date_first'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
                     texts_german['results']['next_possible_date_first'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['moderna']),
-                ]
-            }];
+            ]);
         }
         if (vaccination_possibilities === BIONTECH_MODERNA_ASTRA) {
-            return ['result', {
-                'result_11': true,
-                'value': [
+            return create_output('result_7', [
                     texts_german['results']['next_possible_date_first'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
                     texts_german['results']['next_possible_date_first'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['moderna']),
                     texts_german['results']['next_possible_date_first'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['johnson']),
                 ]
-            }];
+            );
         }
         else {
-            // todo error case
-            return "TODO";
+            console.log('ERROR')
+            create_output('result_25', texts_german['results']['error']);
         }
     }
 
@@ -175,22 +164,9 @@ function get_next_card(card_history, user_data) {
         return ['number_vaccinations', {}];
     }
 
-    if ((user_data['number_vaccinations']['value'] === 2) && (user_age <= constants['age_groups']['age_group_3'][1])){
-        return ['result', {
-            'result_16': true,
-            'value':[
-                texts_german['results']['no_further_recommendation']
-            ]
-        }];
-    }
-
-    if (user_data['number_vaccinations']['value'] == 3) {
-        return ['result', {
-            'result_17': true,
-            'value': [
-                texts_german['results']['no_further_recommendation']
-            ]
-        }];
+    if (((user_data['number_vaccinations']['value'] === 2) && (user_age <= constants['age_groups']['age_group_3'][1]))
+        || (user_data['number_vaccinations']['value'] == 3)){
+        return create_output('result_8', texts_german['results']['no_further_recommendation']);
     }
 
     // collect vaccination information
@@ -237,11 +213,9 @@ function get_next_card(card_history, user_data) {
         if ((user_age <= constants['age_groups']['age_group_4'][1]) || user_data['risk_group']['value']) {
             if (vaccination_history[0] !== texts_german['vaccines']['johnson']){
                 // bei Johnson Erstimpfung sollte mehr als 4 Wochen gewartet werden
-                return ['result', {'result_20': true,
-                    'value': [
-                        texts_german['results']['second_vaccination_range'].replace('<vaccination_brand>', texts_german['vaccines']['biontec']).replace('<date_first>', four_weeks_first_possible_date).replace('<date_second>', last_possible_date)
-                    ]
-                }];
+                return create_output('result_9', [
+                    texts_german['results']['second_vaccination_range'].replace('<vaccination_brand>', texts_german['vaccines']['biontec']).replace('<date_first>', four_weeks_first_possible_date).replace('<date_second>', last_possible_date)
+                ]);
 
             } else {
                 vaccination_possibilities_second_dose = BIONTECH;
@@ -264,31 +238,28 @@ function get_next_card(card_history, user_data) {
         }
 
         if (vaccination_possibilities_second_dose === BIONTECH) {
-            return ['result', {'result_20': true,
-                'value': [
-                    texts_german['results']['second_vaccination_range'].replace('<vaccination_brand>', texts_german['vaccines']['biontec']).replace('<date_first>', three_weeks_first_possible_date).replace('<date_second>', last_possible_date)
-                ]
-            }];
+            return create_output('result_10', [
+                texts_german['results']['second_vaccination_range'].replace('<vaccination_brand>', texts_german['vaccines']['biontec']).replace('<date_first>', three_weeks_first_possible_date).replace('<date_second>', last_possible_date)
+            ]);
+
         }
         if (vaccination_possibilities_second_dose === MODERNA) {
-            return ['result', {'result_21': true,
-                'value': [
-                    texts_german['results']['second_vaccination_range'].replace('<vaccination_brand>', texts_german['vaccines']['moderna']).replace('<date_first>', four_weeks_first_possible_date).replace('<date_second>', last_possible_date)
-                ]
-            }];
+            return create_output('result_11', [
+                texts_german['results']['second_vaccination_range'].replace('<vaccination_brand>', texts_german['vaccines']['moderna']).replace('<date_first>', four_weeks_first_possible_date).replace('<date_second>', last_possible_date)
+            ]);
+
         }
         if (vaccination_possibilities_second_dose === BIONTECH_MODERNA) {
-            return ['result', {
-                'result_19': true,
-                'value':[
-                    texts_german['results']['second_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['biontec']).replace('<date_first>', four_weeks_first_possible_date),
-                    texts_german['results']['second_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['moderna']).replace('<date_first>', four_weeks_first_possible_date)
-                ]
-            }];
+            return create_output('result_12', [
+                texts_german['results']['next_possible_date_second_dose'].replace('<vaccination_brand>', texts_german['vaccines']['biontec']).replace('<date_first>', four_weeks_first_possible_date),
+                texts_german['results']['next_possible_date_second_dose'].replace('<vaccination_brand>', texts_german['vaccines']['moderna']).replace('<date_first>', four_weeks_first_possible_date)
+            ]);
+
         }
         else {
-            // TODO Error case
-            return 'todo';
+            console.log('ERROR');
+            return create_output('result_25', [texts_german['results']['error']]);
+
         }
     }
 
@@ -306,21 +277,16 @@ function get_next_card(card_history, user_data) {
 
             // age <= 30
             if ((user_age <= constants['age_groups']['age_group_4'][1]) || user_data['risk_group']['value']) {
-                return ['result', {
-                    'result_30': true,
-                    'value':[
-                        texts_german['results']['second_vaccination_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
-                    ]
-                }];
+                return create_output('result_13', [
+                    texts_german['results']['second_vaccination_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
+                ]);
             }
             else {
-                return ['result', {
-                    'result_31': true,
-                    'value':[
-                        texts_german['results']['second_vaccination_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
-                        texts_german['results']['second_vaccination_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['moderna']),
-                    ]
-                }];
+                return create_output('result_14', [
+                    texts_german['results']['second_vaccination_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
+                    texts_german['results']['second_vaccination_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['moderna']),
+                ]);
+
             }
         }
         else {
@@ -335,22 +301,15 @@ function get_next_card(card_history, user_data) {
 
             // age <= 30
             if ((user_age <= constants['age_groups']['age_group_4'][1]) || risk_group) {
-
-                return ['result', {
-                    'result_32': true,
-                    'value':[
-                        texts_german['results']['next_possible_date_booster_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
-                    ]
-                }];
+                return create_output('result_15', [
+                    texts_german['results']['next_possible_date_booster_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
+                ]);
             }
             else {
-                return ['result', {
-                    'result_33': true,
-                    'value':[
-                        texts_german['results']['next_possible_date_booster_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
-                        texts_german['results']['next_possible_date_booster_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['moderna']),
-                    ]
-                }];
+                return create_output('result_16', [
+                    texts_german['results']['next_possible_date_booster_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
+                    texts_german['results']['next_possible_date_booster_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['moderna']),
+                ]);
             }
         }
     }
@@ -366,22 +325,18 @@ function get_next_card(card_history, user_data) {
         let second_dose = vaccination_history[1];
 
         if (first_dose === texts_german['vaccines']['biontec'] && second_dose === texts_german['vaccines']['biontec']){
-            return ['result', {'result_22': true,
-                'value': [
-                    texts_german['results']['third_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['biontec']).replace('<date>', first_possible_date)
-                ]
-            }];
+            return create_output('result_17', [
+                texts_german['results']['third_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['biontec']).replace('<date>', first_possible_date)
+            ])
         }
 
         // age 30-59
         if ((constants['age_groups']['age_group_5'][0] <= user_age) &&  (user_age <= constants['age_groups']['age_group_5'][1])) {
 
             if (first_dose === texts_german['vaccines']['moderna'] && second_dose === texts_german['vaccines']['moderna']){
-                return ['result', {'result_23': true,
-                    'value': [
-                        texts_german['results']['third_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['moderna']).replace('<date>', first_possible_date)
-                    ]
-                }];
+                return create_output('result_18', [
+                    texts_german['results']['third_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['moderna']).replace('<date>', first_possible_date)
+                ]);
             }
         }
         // age >= 60
@@ -391,31 +346,25 @@ function get_next_card(card_history, user_data) {
                 (first_dose === texts_german['vaccines']['johnson'] && second_dose === texts_german['vaccines']['moderna'])
 
             ){
-                return ['result', {'result_24': true,
-                    'value': [
-                        texts_german['results']['third_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['moderna']).replace('<date>', first_possible_date)
-                    ]
-                }];
+                return create_output('result_19', [
+                    texts_german['results']['third_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['moderna']).replace('<date>', first_possible_date)
+                ]);
             }
             if ((first_dose === texts_german['vaccines']['astra'] && second_dose === texts_german['vaccines']['biontec']) ||
                 (first_dose === texts_german['vaccines']['johnson'] && second_dose === texts_german['vaccines']['biontec'])
             ){
-                return ['result', {'result_25': true,
-                    'value': [
-                        texts_german['results']['third_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['biontec']).replace('<date>', first_possible_date)
-                    ]
-                }];
+                return create_output('result_20', [
+                    texts_german['results']['third_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['biontec']).replace('<date>', first_possible_date)
+                ]);
             }
         }
 
         // age 18-29
         if ((constants['age_groups']['age_group_4'][0] <= user_age) && (user_age <= constants['age_groups']['age_group_4'][1])) {
             if (first_dose === texts_german['vaccines']['johnson'] && second_dose === texts_german['vaccines']['biontec']){
-                return ['result', {'result_26': true,
-                    'value': [
-                        texts_german['results']['third_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['biontec']).replace('<date>', first_possible_date)
-                    ]
-                }];
+                return create_output('result_21', [
+                    texts_german['results']['third_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['biontec']).replace('<date>', first_possible_date)
+                ]);
             }
         }
 
@@ -428,12 +377,10 @@ function get_next_card(card_history, user_data) {
             first_dose === texts_german['vaccines']['moderna'] && second_dose === texts_german['vaccines']['moderna'] ||
             first_dose === texts_german['vaccines']['astra'] && second_dose === texts_german['vaccines']['biontec']
         ){
-            return ['result', {'result_27': true,
-                'value': [
-                    texts_german['results']['third_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['biontec']).replace('<date>', first_possible_date),
-                    texts_german['results']['third_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['moderna']).replace('<date>', first_possible_date)
-                ]
-            }];
+            return create_output('result_22', [
+                texts_german['results']['third_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['biontec']).replace('<date>', first_possible_date),
+                texts_german['results']['third_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['moderna']).replace('<date>', first_possible_date)
+            ]);
         }
     }
 
@@ -449,31 +396,22 @@ function get_next_card(card_history, user_data) {
 
         // age <= 30
         if ((user_age <= constants['age_groups']['age_group_4'][1]) || user_data['risk_group']['value']) {
-            return ['result', {
-                'result_34': true,
-                'value':[
-                    texts_german['results']['next_possible_date_booster_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
-                ]
-            }];
+            return create_output('result_23', [
+                texts_german['results']['next_possible_date_booster_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
+            ]);
         }
         else {
-            return ['result', {
-                'result_35': true,
-                'value':[
-                    texts_german['results']['next_possible_date_booster_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
-                    texts_german['results']['next_possible_date_booster_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['moderna']),
-                ]
-            }];
+            return create_output('result_24', [
+                texts_german['results']['next_possible_date_booster_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
+                texts_german['results']['next_possible_date_booster_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['moderna']),
+            ]);
         }
     }
 
     console.log('ERROR')
-    return ['result', {
-        'result_36': true,
-        'value':[
-            texts_german['results']['error']
-        ]
-    }];
+    return create_output('result_25', [
+        texts_german['results']['error']
+    ]);
 }
 
 

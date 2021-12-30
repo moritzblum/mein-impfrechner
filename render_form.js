@@ -546,14 +546,14 @@ class Card_result extends React.Component {
                     </div>
 
                     <div className="vc-card-body">
-                        <div className="vc-result" style={{"position": "relative", "height":"90%", "width":"100%", "overflow-y": 'scroll'}}>
+                        <div className="vc-result" style={{"position": "relative", "height":"90%", "width":"100%", "overflowY": 'scroll'}}>
                             <h1>Empfehlung</h1>
-                            <div>{result_text}</div>
+                            <div key="k1">{result_text}</div>
                             <br/>
-                            <div>{texts_german["disclaimer"]}</div>
+                            <div key="k2">{texts_german["disclaimer"]}</div>
                             <br/>
                             <h1>Ihre Daten</h1>
-                            <div>{vis_user_data(this.props.user_data)}</div>
+                            <div key="k3">{vis_user_data(this.props.user_data)}</div>
                         </div>
 
                         <div className="" style={{"position": "absolute", "bottom": "2%", "top":"auto", "width":"100%"}}>
@@ -575,59 +575,59 @@ function vis_user_data (user_data) {
     let user_data_list = [];
 
     if ('age' in user_data['user_data']){
-        user_data_list.push(<li>{texts_german['age']["header"]}: {user_data['user_data']['age']['value']}</li>);
+        user_data_list.push(<li key='age'>{texts_german['age']["header"]}: {user_data['user_data']['age']['value']}</li>);
     }
 
     if ('risk_group' in user_data['user_data']){
         if (user_data['user_data']['risk_group']['value']){
-            user_data_list.push(<li>{texts_german['risk_group']["header"]}: {texts_german['risk_group']['risk_group_yes']}</li>);
+            user_data_list.push(<li key='risk_group'>{texts_german['risk_group']["header"]}: {texts_german['risk_group']['risk_group_yes']}</li>);
         }
     }
 
     if ('past_infection' in user_data['user_data']){
         if (user_data['user_data']['past_infection']['value']){
-            user_data_list.push(<li>{texts_german['past_infection']["header"]}: {texts_german['past_infection']['past_infection_yes']}</li>);
+            user_data_list.push(<li key='past_infection'>{texts_german['past_infection']["header"]}: {texts_german['past_infection']['past_infection_yes']}</li>);
         }
     }
 
     if ('infection_date' in user_data['user_data']){
-        user_data_list.push(<li>{texts_german['infection_date']["header"]}: {user_data['user_data']['infection_date']['date']}</li>);
+        user_data_list.push(<li key='infection_date'>{texts_german['infection_date']["header"]}: {user_data['user_data']['infection_date']['date']}</li>);
     }
 
     if ('symptoms_registered' in user_data['user_data']){
-        user_data_list.push(<li>{texts_german['symptoms_registered']["header"]}: {texts_german['symptoms_registered'][user_data['user_data']['symptoms_registered']['value']]}</li>);
+        user_data_list.push(<li key='symptoms_registered'>{texts_german['symptoms_registered']["header"]}: {texts_german['symptoms_registered'][user_data['user_data']['symptoms_registered']['value']]}</li>);
     }
 
     if ('symptoms_end_date' in user_data['user_data']){
-        user_data_list.push(<li>{texts_german['symptoms_end_date']["header"]}: {user_data['user_data']['symptoms_end_date']['date']}</li>);
+        user_data_list.push(<li key='symptoms_end_date'>{texts_german['symptoms_end_date']["header"]}: {user_data['user_data']['symptoms_end_date']['date']}</li>);
     }
 
     if ('got_unregistered_vaccination' in user_data['user_data']){
         if (user_data['user_data']['got_unregistered_vaccination']['value']){
-            user_data_list.push(<li>{texts_german['got_unregistered_vaccination']["header"]}: {texts_german['got_unregistered_vaccination']['got_unregistered_vaccination_yes']}</li>);
+            user_data_list.push(<li key='got_unregistered_vaccination'>{texts_german['got_unregistered_vaccination']["header"]}: {texts_german['got_unregistered_vaccination']['got_unregistered_vaccination_yes']}</li>);
         }
     }
 
     if ('unregistered_vaccination_date' in user_data['user_data']){
-        user_data_list.push(<li>{texts_german['unregistered_vaccination_date']["header"]}: {user_data['user_data']['unregistered_vaccination_date']['date']}</li>);
+        user_data_list.push(<li key='unregistered_vaccination_date'>{texts_german['unregistered_vaccination_date']["header"]}: {user_data['user_data']['unregistered_vaccination_date']['date']}</li>);
     }
 
     if ('vaccinated' in user_data['user_data']){
         if (user_data['user_data']['vaccinated']['value']){
-            user_data_list.push(<li>{texts_german['vaccinated']["header"]}: {texts_german['vaccinated']['vaccinated_yes']}</li>);
+            user_data_list.push(<li key='vaccinated'>{texts_german['vaccinated']["header"]}: {texts_german['vaccinated']['vaccinated_yes']}</li>);
         }
     }
 
     if ('vaccination_1' in user_data['user_data']){
-        user_data_list.push(<li>Impfung: {user_data['user_data']['vaccination_1']['value']}</li>);
+        user_data_list.push(<li key='vaccination_1'>Impfung: {user_data['user_data']['vaccination_1']['value']}</li>);
     }
 
     if ('vaccination_2' in user_data['user_data']){
-        user_data_list.push(<li>Impfung: {user_data['user_data']['vaccination_2']['value']}</li>);
+        user_data_list.push(<li key='vaccination_2'>Impfung: {user_data['user_data']['vaccination_2']['value']}</li>);
     }
 
     if ('vaccination_last' in user_data['user_data']) {
-        user_data_list.push(<li>Letzte Impfung: {user_data['user_data']['vaccination_last']['value']} am {user_data['user_data']['vaccination_last']['date']}</li>);
+        user_data_list.push(<li key='vaccination_last'>Letzte Impfung: {user_data['user_data']['vaccination_last']['value']} am {user_data['user_data']['vaccination_last']['date']}</li>);
     }
 
     return <div>{user_data_list}</div>;
@@ -770,9 +770,7 @@ class CardManager extends React.Component {
                 }
             }
             // select
-            console.log(current_card_id);
             if (['vaccination_last', 'vaccination_1'].includes(current_card_id)) {
-                console.log('in here');
                 let element = document.getElementsByClassName("select-validation");
 
                 if (this.state.entered_data['value'] === undefined || this.state.entered_data['value'] === '' || this.state.entered_data['value'] === true) {
