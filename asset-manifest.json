@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/mein-impfrechner/static/css/main.073c9b0a.css",
+    "main.js": "/mein-impfrechner/static/js/main.d44beeee.js",
+    "static/js/787.fda262d1.chunk.js": "/mein-impfrechner/static/js/787.fda262d1.chunk.js",
+    "static/media/logo.svg": "/mein-impfrechner/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/mein-impfrechner/index.html",
+    "main.073c9b0a.css.map": "/mein-impfrechner/static/css/main.073c9b0a.css.map",
+    "main.d44beeee.js.map": "/mein-impfrechner/static/js/main.d44beeee.js.map",
+    "787.fda262d1.chunk.js.map": "/mein-impfrechner/static/js/787.fda262d1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.d44beeee.js"
+  ]
+}
