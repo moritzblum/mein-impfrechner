@@ -235,12 +235,20 @@ function get_next_card(card_history, user_data) {
 
         // age <= 29
         if ((user_age <= constants['age_groups']['age_group_4'][1]) || user_data['risk_group']['value']) {
-            vaccination_possibilities_second_dose = BIONTECH;
-            // todo bei Johnson Erstimpfung sollte mehr als 4 Wochen gewartet werden
+            if (vaccination_history[0] !== texts_german['vaccines']['johnson']){
+                // bei Johnson Erstimpfung sollte mehr als 4 Wochen gewartet werden
+                return ['result', {'result_20': true,
+                    'value': [
+                        texts_german['results']['second_vaccination_range'].replace('<vaccination_brand>', texts_german['vaccines']['biontec']).replace('<date_first>', four_weeks_first_possible_date).replace('<date_second>', last_possible_date)
+                    ]
+                }];
+
+            } else {
+                vaccination_possibilities_second_dose = BIONTECH;
+            }
         }
         // age >= 30
         else {
-            // todo bei Johnson Erstimpfung sollte mehr als 4 Wochen gewartet werden
             if ([texts_german['vaccines']['astra'],
                 texts_german['vaccines']['johnson']].includes(vaccination_history[0])){
                 vaccination_possibilities_second_dose = BIONTECH_MODERNA;
@@ -273,8 +281,8 @@ function get_next_card(card_history, user_data) {
             return ['result', {
                 'result_19': true,
                 'value':[
-                    texts_german['results']['second_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['biontec']).replace('<date_first>', three_weeks_first_possible_date),
-                    texts_german['results']['second_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['moderna']).replace('<date_first>', three_weeks_first_possible_date)
+                    texts_german['results']['second_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['biontec']).replace('<date_first>', four_weeks_first_possible_date),
+                    texts_german['results']['second_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['moderna']).replace('<date_first>', four_weeks_first_possible_date)
                 ]
             }];
         }
