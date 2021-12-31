@@ -1,5 +1,4 @@
-
-let texts_german = {
+export const texts_german = {
     "start": {
         "header": "Impfrechner",
         "welcome": "Hier können Sie Ihren Impftermin berechnen",
@@ -115,7 +114,7 @@ let texts_german = {
 
 };
 
-let constants = {
+export const constants = {
     'age_groups': {
         // the two values specify the range of age, e.g. [13,200] means everybody with an age of 13 up to 200
         'age_group_1': [0,4],

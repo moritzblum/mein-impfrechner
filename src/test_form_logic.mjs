@@ -1,3 +1,8 @@
+import {get_next_card} from "./form_logic.js";
+import ger_str_2_date from "./date_operations.js";
+import add_month_2_date from "./date_operations.js";
+import add_weeks_2_date from "./date_operations.js";
+
 console.log('--- Example date operations ---');
 let test_date = ger_str_2_date("24.7.96");
 console.log('From german DD.MM.(YY)YY format to JS Date: ' + test_date);
@@ -40,7 +45,7 @@ let test_cases = [
     [['start'], ['age', 31], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.2021'], ['symptoms_registered', 'never'], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 2], ['vaccination_1', 'Astrazeneca'], ['vaccination_last', 'Astrazeneca', '12.05.2021'], ['result_24']],
 ]
 
-errors = 0;
+let errors = 0;
 for (let test_case_number in test_cases) {
     let test_case = test_cases[test_case_number];
 

@@ -1,4 +1,4 @@
-function get_latest_date(dates) {
+export function get_latest_date(dates) {
     // filter out undefined list elements
     dates = dates.filter(function( date ) {
         return date !== undefined;
@@ -7,13 +7,13 @@ function get_latest_date(dates) {
     return new Date(Math.max.apply(null, dates));
 }
 
-function is_valid_date_format(date_str) {
-    d = ger_str_2_date(date_str);
+export function is_valid_date_format(date_str) {
+    let d = ger_str_2_date(date_str);
     return d instanceof Date && !isNaN(d);
 }
 
 // e.g. ger_str_2_date("24.10.1996") returns Date(Thu Oct 24 1996 ...)
-function ger_str_2_date(ger_str) {
+export function ger_str_2_date(ger_str) {
     if (ger_str === undefined){
         return undefined
     }
@@ -27,7 +27,7 @@ function ger_str_2_date(ger_str) {
 
 }
 
-function add_weeks_2_date(date, weeks) {
+export function add_weeks_2_date(date, weeks) {
     if (date === undefined){
         return undefined
     }
@@ -40,7 +40,7 @@ function add_weeks_2_date(date, weeks) {
 
 }
 
-function add_month_2_date(date, month) {
+export function add_month_2_date(date, month) {
     if (date === undefined){
         return undefined
     }

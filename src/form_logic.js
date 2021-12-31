@@ -1,15 +1,15 @@
-let BIONTECH = "biontech";
-let MODERNA = "moderna";
-let BIONTECH_MODERNA = "biontech_moderna";
-let BIONTECH_MODERNA_ASTRA = "biontech_moderna_astra";
+import * as date_operations from './date_operations.js';
+import {texts_german, constants} from "./texts.js";
 
+const BIONTECH = "biontech";
+const MODERNA = "moderna";
+const BIONTECH_MODERNA = "biontech_moderna";
+const BIONTECH_MODERNA_ASTRA = "biontech_moderna_astra";
 
-
-function get_next_card(card_history, user_data) {
+export function get_next_card(card_history, user_data) {
     //  possible_cards: 'vaccination', 'vaccinated', 'past_infection', 'infection_date', 'age', 'symptoms_registered',
     //  'symptoms_end_date', 'risk_group', 'number_vaccinations', 'got_unregistered_vaccination',
     //  'unregistered_vaccination_date'
-
 
     function create_output(result_id, result_value) {
         return ["result", {[result_id]: true, 'value': result_value}];
@@ -130,10 +130,10 @@ function get_next_card(card_history, user_data) {
             }
         }
 
-        let first_possible_date = get_latest_date([Date.now(),
-            add_weeks_2_date(unregistered_vaccination_date, 4),
-            add_month_2_date(infection_date, 3),
-            add_weeks_2_date(symptoms_end_date, 4)]);
+        let first_possible_date = date_operations.get_latest_date([Date.now(),
+            date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
+            date_operations.add_month_2_date(infection_date, 3),
+            date_operations.add_weeks_2_date(symptoms_end_date, 4)]);
 
         if (vaccination_possibilities === BIONTECH) {
             return create_output('result_5', [
@@ -197,15 +197,15 @@ function get_next_card(card_history, user_data) {
 
     // second shot
     if (user_data['number_vaccinations']['value'] == 1 && !past_infection) {
-        let three_weeks_first_possible_date = get_latest_date([Date.now(),
-            add_weeks_2_date(vaccination_last_date, 3)]).toLocaleDateString('de-DE');
-        let four_weeks_first_possible_date = get_latest_date([Date.now(),
-            add_weeks_2_date(vaccination_last_date, 4),
-            add_weeks_2_date(unregistered_vaccination_date, 4)]).toLocaleDateString('de-DE');
+        let three_weeks_first_possible_date = date_operations.get_latest_date([Date.now(),
+            date_operations.add_weeks_2_date(vaccination_last_date, 3)]).toLocaleDateString('de-DE');
+        let four_weeks_first_possible_date = date_operations.get_latest_date([Date.now(),
+            date_operations.add_weeks_2_date(vaccination_last_date, 4),
+            date_operations.add_weeks_2_date(unregistered_vaccination_date, 4)]).toLocaleDateString('de-DE');
 
-        let last_possible_date = get_latest_date([Date.now(),
-            add_weeks_2_date(vaccination_last_date, 6),
-            add_weeks_2_date(unregistered_vaccination_date, 4)]).toLocaleDateString('de-DE');
+        let last_possible_date = date_operations.get_latest_date([Date.now(),
+            date_operations.add_weeks_2_date(vaccination_last_date, 6),
+            date_operations.add_weeks_2_date(unregistered_vaccination_date, 4)]).toLocaleDateString('de-DE');
 
         let vaccination_possibilities_second_dose = undefined; // BIONTECH/BIONTECH_MODERNA/BIONTECH_MODERNA_ASTRA
 
@@ -266,13 +266,13 @@ function get_next_card(card_history, user_data) {
     if (user_data['number_vaccinations']['value'] == 1 && past_infection) {
 
         // Infektion innerhalb von 4 Wochen nach 1. Impfung
-        if ((vaccination_last_date <= infection_date) && (ger_str_2_date(infection_date) <= add_weeks_2_date(vaccination_last_date, 4))){
+        if ((vaccination_last_date <= infection_date) && (date_operations.ger_str_2_date(infection_date) <= date_operations.add_weeks_2_date(vaccination_last_date, 4))){
             // Grundimmunisierung durch Impfung nach 3 Monaten
-            let first_possible_date = get_latest_date([
+            let first_possible_date = date_operations.get_latest_date([
                 Date.now(),
-                add_weeks_2_date(unregistered_vaccination_date, 4),
-                add_month_2_date(infection_date, 3),
-                add_weeks_2_date(symptoms_end_date, 4)
+                date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
+                date_operations.add_month_2_date(infection_date, 3),
+                date_operations.add_weeks_2_date(symptoms_end_date, 4)
             ]);
 
             // age <= 30
@@ -291,12 +291,12 @@ function get_next_card(card_history, user_data) {
         }
         else {
             // nur noch Boostern nach 3 Monaten nötig
-            let first_possible_date = get_latest_date([
+            let first_possible_date = date_operations.get_latest_date([
                 Date.now(),
-                add_weeks_2_date(unregistered_vaccination_date, 4),
-                add_month_2_date(infection_date, 3),
-                add_weeks_2_date(symptoms_end_date, 4),
-                add_month_2_date(vaccination_last_date, 3)
+                date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
+                date_operations.add_month_2_date(infection_date, 3),
+                date_operations.add_weeks_2_date(symptoms_end_date, 4),
+                date_operations.add_month_2_date(vaccination_last_date, 3)
             ]);
 
             // age <= 30
@@ -317,9 +317,9 @@ function get_next_card(card_history, user_data) {
 
     // third shot
     if (user_data['number_vaccinations']['value'] == 2 && !past_infection) {
-        let first_possible_date = get_latest_date([Date.now(),
-            add_month_2_date(vaccination_last_date, 3),
-            add_weeks_2_date(unregistered_vaccination_date, 4)]).toLocaleDateString('de-DE');
+        let first_possible_date = date_operations.get_latest_date([Date.now(),
+            date_operations.add_month_2_date(vaccination_last_date, 3),
+            date_operations.add_weeks_2_date(unregistered_vaccination_date, 4)]).toLocaleDateString('de-DE');
 
         let first_dose = vaccination_history[0];
         let second_dose = vaccination_history[1];
@@ -386,12 +386,12 @@ function get_next_card(card_history, user_data) {
 
     if (user_data['number_vaccinations']['value'] == 2 && past_infection) {
 
-        let first_possible_date = get_latest_date([
+        let first_possible_date = date_operations.get_latest_date([
             Date.now(),
-            add_weeks_2_date(unregistered_vaccination_date, 4),
-            add_month_2_date(infection_date, 3),
-            add_weeks_2_date(symptoms_end_date, 4),
-            add_month_2_date(vaccination_last_date, 3)
+            date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
+            date_operations.add_month_2_date(infection_date, 3),
+            date_operations.add_weeks_2_date(symptoms_end_date, 4),
+            date_operations.add_month_2_date(vaccination_last_date, 3)
         ]);
 
         // age <= 30

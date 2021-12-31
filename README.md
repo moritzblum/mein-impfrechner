@@ -18,7 +18,7 @@ For contribution, follow the following steps:
 1. download and install [https://nodejs.org/en/](node.js)
 2. clone this repository and navigate into it: `cd mein-impfrechner`
 3. install all dependencies: `npm install` (this will set up the project according to package.json)
-
+4.  we use [Mocha](https://mochajs.org/) for Unit Tests, therefore install it: `sudo npm install -g mocha`
 Now you are ready for development. If you want to deploy the current version, run `npm run deploy` inside the project 
 directory (on the `master` branch).
 
@@ -26,5 +26,5 @@ directory (on the `master` branch).
 
 ## Files
 * [index.html](public/index.html) - HTML root: main page
-* [render_form.js](public/form_logic.js) - Frontend: displays questions and results 
-* [form_logic.js](public/form_logic.js) - Backend: chooses which question to ask next and computes the output
+* [render_form.js](src/form_logic.js) - Frontend: displays questions and results 
+* [form_logic.js](src/form_logic.js) - Backend: chooses which question to ask next and computes the output
