@@ -1,17 +1,28 @@
 # mein-impfrechner
 
-This GitHub Repository contains the source-code for the web application [mein-impfrechner.de](https://mein-impfrechner.de). 
+This GitHub Repository contains the source-code for the web 
+application [mein-impfrechner.de](https://mein-impfrechner.de). 
 Our calculator give you your vaccination possibilities, e.g. when you should get the next dose of which vaccine.
 The website is hosted by GitHub Pages and all the data is processes inside the browser, no information will be sent to 
 us. 
 
-The application is based on [ReactJS](https://reactjs.org/), a JavaScript library for building user interface. 
+The application is based on [ReactJS](https://reactjs.org/), a JavaScript library for building user interface, and build 
+by the React npm package for deployment.
 
-## Deploy
+## Development and Deployment
 
-[Github Pages Tutorian](https://github.com/gitname/react-gh-pagesReact)
+The mein-impfrechner GitHub repository has two  continuous branches: `main` and `gp-pages`: The `main` branch contains 
+the source-code of the project, whereas `gp-pages` contains the currently deployed website (already build). 
+For contribution, follow the following steps:
 
-`npm run deploy` 
+1. download and install [https://nodejs.org/en/](node.js)
+2. clone this repository and navigate into it: `cd mein-impfrechner`
+3. install all dependencies: `npm install` (this will set up the project according to package.json)
+
+Now you are ready for development. If you want to deploy the current version, run `npm run deploy` inside the project 
+directory (on the `master` branch).
+
+
 
 ## Files
 * [index.html](public/index.html) - HTML root: main page
