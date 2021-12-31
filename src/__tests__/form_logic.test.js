@@ -1,7 +1,12 @@
-import {get_next_card} from "./form_logic.js";
-import ger_str_2_date from "./date_operations.js";
-import add_month_2_date from "./date_operations.js";
-import add_weeks_2_date from "./date_operations.js";
+import {get_next_card} from "../form_logic.js";
+import {ger_str_2_date, add_month_2_date, add_weeks_2_date} from "../date_operations.js";
+
+
+it('sums numbers', () => {
+    expect(1 + 2).toEqual(3);
+    expect(2 + 2).toEqual(4);
+});
+
 
 console.log('--- Example date operations ---');
 let test_date = ger_str_2_date("24.7.96");
@@ -45,49 +50,44 @@ let test_cases = [
     [['start'], ['age', 31], ['risk_group', false], ['past_infection', true], ['infection_date', '11.05.2021'], ['symptoms_registered', 'never'], ['got_unregistered_vaccination', false], ['vaccinated', true], ['number_vaccinations', 2], ['vaccination_1', 'Astrazeneca'], ['vaccination_last', 'Astrazeneca', '12.05.2021'], ['result_24']],
 ]
 
-let errors = 0;
-for (let test_case_number in test_cases) {
-    let test_case = test_cases[test_case_number];
+it('test next card prediction', () => {
+    let errors = 0;
+    for (let test_case_number in test_cases) {
+        let test_case = test_cases[test_case_number];
 
-    let card_history_test = [];
-    let user_data_test = {};
+        let card_history_test = [];
+        let user_data_test = {};
 
-    for (let step in test_case) {
-        let expe_card = test_case[step];
-        let pred = get_next_card(card_history_test, user_data_test);
-        let pred_card = pred[0]
+        for (let step in test_case) {
+            let expe_card = test_case[step];
+            let pred = get_next_card(card_history_test, user_data_test);
+            let pred_card = pred[0]
 
-        if (pred_card === 'result'){
-            if (! (pred[1][expe_card[0]])){
-                console.log('ERROR: wrong result prediction in test case ' + test_case_number + ' , expected ' +  expe_card + ' got ' + JSON.stringify(pred));
-                errors ++;
+            if (pred_card === 'result') {
+                expect(pred[1][expe_card[0]]).toEqual(true);
+                //if (!(pred[1][expe_card[0]])) {
+                //    console.log('ERROR: wrong result prediction in test case ' + test_case_number + ' , expected ' + expe_card + ' got ' + JSON.stringify(pred));
+                //    errors++;
+                //}
+
+            } else { //if (pred_card !== expe_card[0]) {
+                // console.log('ERROR: wrong prediction in test case ' + test_case_number + ' , expected ' + JSON.stringify(expe_card) + ' got ' + JSON.stringify(pred));
+                //errors++;
+                // }
+                expect(pred_card).toEqual(expe_card[0]);
             }
 
-        }
-        else if(pred_card !== expe_card[0]){
-            console.log('ERROR: wrong prediction in test case ' + test_case_number + ' , expected ' + JSON.stringify(expe_card) + ' got ' + JSON.stringify(pred));
-            errors ++;
-        }
-
-        card_history_test.push(expe_card[0]);
-        if (['infection_date', 'symptoms_end_date', 'unregistered_vaccination_date'].includes(expe_card[0])){
-            user_data_test[expe_card[0]] = {'date': test_case[step][1]};
-        }
-        else {
-            user_data_test[expe_card[0]] = {'value': test_case[step][1]};
-            if (test_case[step].length > 2){
-                user_data_test[expe_card[0]]['date'] = test_case[step][2];
+            card_history_test.push(expe_card[0]);
+            if (['infection_date', 'symptoms_end_date', 'unregistered_vaccination_date'].includes(expe_card[0])) {
+                user_data_test[expe_card[0]] = {'date': test_case[step][1]};
+            } else {
+                user_data_test[expe_card[0]] = {'value': test_case[step][1]};
+                if (test_case[step].length > 2) {
+                    user_data_test[expe_card[0]]['date'] = test_case[step][2];
+                }
             }
         }
     }
-}
-
-if (errors === 0) {
-    console.log('--- Units test successful, no errors. ---');
-}
-else {
-    console.log('--- ERROR: Unit __tests__ not successful, see logged ERRORS above. --- ');
-}
-
+});
 
 

@@ -18,7 +18,8 @@ For contribution, follow the following steps:
 1. download and install [https://nodejs.org/en/](node.js)
 2. clone this repository and navigate into it: `cd mein-impfrechner`
 3. install all dependencies: `npm install` (this will set up the project according to package.json)
-4.  we use [Mocha](https://mochajs.org/) for Unit Tests, therefore install it: `sudo npm install -g mocha`
+4. we use Jest for Unit-Tests, simply call `npm test` to run them.
+
 Now you are ready for development. If you want to deploy the current version, run `npm run deploy` inside the project 
 directory (on the `master` branch).
 
