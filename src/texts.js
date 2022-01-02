@@ -41,7 +41,8 @@ export const texts_german = {
     },
     "risk_group": {
         "header": "Risikogruppe",
-        "instructions": "Sind Sie zum aktuellen Zeitpunkt schwanger?",
+        "instructions": "Sind Sie zum aktuellen Zeitpunkt schwanger, einer Risikogruppe angehörig oder haben Sie " +
+            "regelmäßig Kontakt zu Personen einer Risikogruppe?",
         "info_risk_group": "Wann genau und warum ist man Teil einer Risikogruppe",
         "risk_group_yes": "Ja",
         "risk_group_no": "Nein"
@@ -89,10 +90,11 @@ export const texts_german = {
         "age_placeholder": "Alter"
     },
     "vaccines": {
-        "biontec": "Biontech",
-        "moderna": "Moderna",
-        "astra": "Astrazeneca",
-        "johnson": "Janssen",
+        "biontec": "BioNTech (Comirnaty)",
+        "moderna": "Moderna (Spikevax®)",
+        "astra": "AstraZeneca (Vaxeriva®)",
+        "johnson": "anssen-Cilag (Janssen®)",
+        "novavax": "Novavax (Nuvaxovid®)"
     },
     "results": {
         "really_old": "Wenn du wirklich schon so lange gelebt hast, dann bringt dich Corona auch nicht mehr um.",
@@ -152,3 +154,141 @@ export const constants = {
         }
     }
 }
+
+export const modal_risk_group_title = "Risikogruppe Corona";
+export const modal_risk_group_text = <div >
+    <br/>
+    Zur Risikogruppe gehören insbesondere alte und ältere Menschen sowie Menschen mit verschiedenen Grunderkrankungen und Schwangere.
+    Folgende Personengruppen haben ein erhöhtes Risiko für einen schweren Erkrankungsverlauf:
+    <br/>
+    <br/>
+    <ul>
+        <li>Ab einem Alter von 50 bis 60 Jahren steigt das Risiko für einen schweren Erkrankungsverlauf stetig an.
+            Es gibt keine feste Altersgrenze, ab der man als besonders gefährdet eingestuft wird. Grundsätzlich gilt:
+            Je älter eine Person ist, desto höher ist auch ihr Risiko schwer an Corona (SARS-CoV-2) zu erkranken.
+        </li>
+        <li>Personen mit Grunderkrankungen wie z. B. Herzkreislauferkrankungen, Diabetes, Erkrankungen des Atmungssystems,
+            der Leber, der Niere, Krebserkrankungen oder mit vorliegenden Risikofaktoren wie z. B. starkem Übergewicht
+            oder Rauchen haben ein höheres Risiko für einen schweren Krankheitsverlauf. Besonders betroffen sind erkrankte Personen
+            mit unterdrücktem Immunsystem aufgrund ihrer Erkrankung oder der Einnahme von Medikamenten, die die Immunabwehr
+            unterdrücken (z. B. Cortison).
+        </li>
+        <li>Nach aktuellem Kenntnisstand haben Schwangere ebenfalls ein erhöhtes Risiko eines schweren Verlaufs
+            gegenüber Frauen der gleichen Altersgruppe, die nicht schwanger sind. Das gilt insbesondere für
+            Schwangere mit vorbestehenden Risikofaktoren wie Bluthochdruck und starkem Übergewicht sowie vorbestehenden Vorerkrankungen.
+        </li>
+    </ul>
+    <br/>
+    <b>* Die Risikofaktoren für einen schweren Verlauf sind sehr komplex. Eine generelle Festlegung bzw. Definition einer Risikogruppe ist nicht möglich. Vielmehr erfordert dies eine individuelle Risikofaktoren-Bewertung durch eine medizinische Begutachtung.</b>
+    <br/>
+    <br/>
+    Quelle: &nbsp;
+    <a href="http://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Risikogruppen.html">Robert Koch-Institut</a>
+    <br/>
+</div>;
+
+export const modal_vaccinated_title = "Impfstatus";
+export const modal_vaccinated_text = <div>
+    Aktuell sind die Impfstoffe der folgenden Pharmaunternehmen für Deutschland zulässig:
+    <ul>
+        <li>BioNTech (Comirnaty)</li>
+        <li>Moderna (Spikevax)</li>
+        <li>AstraZeneca (Vaxeriva)</li>
+        <li>Janssen-Cilag (Janssen)</li>
+        <li>Novavax (Nuvaxovid)</li>
+    </ul>
+    *Die o.g. Impfstoffe sind Präparate, die eine gültige Zulassung der Europäischen Kommission besitzen. <b>Sie gibt keine Auskunft darüber, ob die Präparate auf dem Markt verfügbar sind.</b>
+    <br/>
+    <br/>
+    Quelle: &nbsp;
+    <a href="https://www.pei.de/DE/arzneimittel/impfstoffe/covid-19/covid-19-node.html">Paul-Ehrlich-Institut</a>
+</div>;
+
+export const modal_got_unregistered_vaccination_title = "Nicht zugelassener Impfstoff";
+export const modal_got_unregistered_vaccination_text =   <div>
+    Personen, die im Ausland bereits mit nicht in der EU zugelassenen COVID-19-Impfstoffen geimpft wurden, benötigen gemäß aktueller Rechtslage und unter Berücksichtigung der altersentsprechenden Impfempfehlungen eine erneute Impfserie, um in der EU den Status als Geimpfte zu erlangen. Für diese Einstufung wird (derzeit) eine vollständige Impfserie mit einem von der europäischen Zulassungsbehörde (EMA) zugelassenen Impfstoff benötigt. Eine aktuelle Liste der EU-zugelassenen COVID-19-Impfstoffe wie auch Informationen zur notwendigen Anzahl an Impfdosen sind auf den Internetseiten des Paul-Ehrlich-Instituts (PEI) zu finden.
+    <br/>
+    <br/>
+    Diese Impfserie sollte in einem <b> Mindestabstand von ≥28 Tagen </b> begonnen werden.
+    <br/>
+    <br/>
+    Quellen: &nbsp;
+    <a href="https://www.rki.de/SharedDocs/FAQ/COVID-Impfen/FAQ_Liste_Durchfuehrung_Impfung.html#FAQId16696900">
+        Robert Koch-Institut
+    </a>
+    <br/>
+    <a href="https://www.pei.de/DE/arzneimittel/impfstoffe/covid-19/covid-19-node.html;jsessionid=372E495A216B0DD332AA96F4617E5FE1.intranet241">
+        Paul-Ehrlich-Institut
+    </a>
+</div>;
+
+export const modal_past_infection_title = "Genesen";
+export const modal_past_infection_text = <div>
+    Neben der Corona-Schutzimpfung wird auch durch eine durchgemachte Corona (SARS-CoV-2) -Erkrankung ein körpereigener Schutz vor Corona aufgebaut. Aus diesem Grund ist auch bei Genesenen von einer Grundimmunität auszugehen.
+    <br/>
+    <br/>
+    Folgende Personen gelten in Deutschland als „genesen“:
+    <ul>
+        <li>„Personen, die eine gesicherte SARS-CoV-2-Infektion durchgemacht haben,
+            die <b> weniger als 6 Monate zurückliegt </b>. Der Nachweis einer gesicherten,
+            durchgemachten Infektion muss durch einen direkten Erregernachweis (PCR)
+            zum Zeitpunkt der Infektion erfolgen.“ </li>
+        <li>„Personen, die einmal geimpft wurden und nach der ersten Impfstoffdosis
+            eine SARS-CoV-2-Infektion durchgemacht haben, die weniger als 6 Monate
+            zurückliegt. Die Infektion muss durch einen direkten Erregernachweis (PCR)
+            zum Zeitpunkt der Infektion nachgewiesen werden.“
+        </li>
+    </ul>
+    <br/>
+    *Wer den Status „genesen“ erhält, wird u.a. in der
+    COVID-19-Schutzmaßnahmen-Ausnahmenverordnung (§ 2 Nummer 3 und 5 SchAusnahmV)
+    festgelegt.Für die rechtlichen Verordnungen sind die Ministerien zuständig,
+    und werden ggf. vom Gesetzgeber verabschiedet. Sie sind getrennt von den
+    Empfehlungen der STIKO zu sehen, die als unabhängiges Gremium agieren
+    <br/>
+    <br/>
+    Quelle: &nbsp;
+    <a href="https://www.rki.de/SharedDocs/FAQ/COVID-Impfen/FAQ_Liste_Durchfuehrung_Impfung.html#FAQId16072404">Robert Koch-Institut</a>
+</div>;
+
+export const modal_infection_date_title = "Erkrankungsdatum";
+export const modal_infection_date_text = <div>
+    Bitte geben Sie hier das Datum Ihrer gesicherten Corona- Infektion an.
+    <br/>
+    <br/>
+    Das Datum bezieht sich auf das Ausstellungsdatums Ihres
+    <b>ersten positiven Erregernachweises</b> (PCR- Befund). Bitte beachten Sie,
+    dass Antigen- bzw. Schnelltests und Selbsttests unzulässig sind.
+    <br/>
+    <br/>
+    Bei der PCR- Untersuchung handelt es sich um den „Goldstandard“ in der
+    Corona-Diagnostik. Hierbei wird ein Nasen-/Rachenabstrich durch geschultes,
+    medizinisches Personal entnommen. Dieser wird anschließend in einem Labor
+    untersucht. Die Durchführung der PCR im Labor dauert etwa vier bis fünf Stunden.
+    Hinzu kommen die Transportzeit ins Labor, die Vorbereitungszeit im und
+    gegebenenfalls eine Wartezeit wegen hohen Probeaufkommens. Meist liegt das
+    Ergebnis innerhalb von 24 Stunden nach der Probenentnahme vor.
+</div>;
+
+
+export const modal_symptoms_registered_title = "Symptome";
+export const modal_symptoms_registered_text =    <div>
+    Symptome ist der Sammelbegriff für die Anzeichen einer Krankheit.
+    <br/>
+    Die folgende Auflistung gibt einen Überblick über die typischen Symptome einer Coviderkrankung.
+    <br/>
+    <br/>
+    Husten, Fieber, Schnupfen, Störung des Geruchs- und/oder Geschmackssinns, Halsschmerzen, Atemnot, Kopf- und Gliederschmerzen, Appetitlosigkeit, Gewichtsverlust, Übelkeit, Bauchschmerzen, Erbrechen, Durchfall, Lymphknotenschwellung, Bindehautentzündung, Hautausschlag, Teilnahmslosigkeit, Benommenheit.
+    <br/>
+    <br/>
+    <b>*Die Risikofaktoren für einen schweren Verlauf sind sehr komplex. Eine generelle Festlegung bzw. Definition einer Risikogruppe ist nicht möglich. Vielmehr erfordert dies eine individuelle Risikofaktoren-Bewertung durch eine medizinische Begutachtung.
+    </b>
+    <br/>
+    <br/>
+    Quelle: &nbsp;
+    <a href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Steckbrief.html">Robert Koch-Institut</a>
+</div>;
+
+
+export const modal_symptoms_end_date_title = "Ende der Symptome";
+export const modal_symptoms_end_date_text = <div>Das Ende der Symptome meint den Tag (Datum), ab dem Sie symptomfrei waren. Sollten Ihre Symptomatik länger andauern, wenden Sie sich bitte an Ihren Arzt.  </div>;

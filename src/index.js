@@ -1,25 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import {texts_german, constants} from "./texts.js";
+import {texts_german, constants, modal_risk_group_title, modal_risk_group_text, modal_vaccinated_title,
+    modal_vaccinated_text, modal_got_unregistered_vaccination_title, modal_got_unregistered_vaccination_text,
+    modal_past_infection_title, modal_past_infection_text, modal_infection_date_title, modal_infection_date_text,
+    modal_symptoms_registered_title, modal_symptoms_registered_text, modal_symptoms_end_date_title,
+    modal_symptoms_end_date_text} from "./texts.js";
 import * as form_logic from "./form_logic.js";
 import {is_valid_date_format} from"./date_operations.js"
 
-
-let modal_risk_group_title = "Risikogruppe";
-let modal_risk_group_text = <div style={{"color": "red"}}><p>modal_risk_group Hier könnte Ihre Werbung stehen!</p></div>;
-let modal_vaccinated_title = "Impfung";
-let modal_vaccinated_text = <div style={{"color": "red"}}><p>modal_vaccinated Hier könnte Ihre Werbung stehen!</p></div>;
-let modal_got_unregistered_vaccination_title = "Nicht zugelassene Impfung";
-let modal_got_unregistered_vaccination_text = <div style={{"color": "red"}}><p>modal_got_unregistered_vaccination Hier könnte Ihre Werbung stehen!</p></div>;
-let modal_past_infection_title = "Genesenenstatus";
-let modal_past_infection_text = <div style={{"color": "red"}}><p>modal_past_infection Hier könnte Ihre Werbung stehen!</p></div>;
-let modal_infection_date_title = "Infektionsdatum";
-let modal_infection_date_text = <div style={{"color": "red"}}><p>modal_infection_date Hier könnte Ihre Werbung stehen!</p></div>;
-let modal_symptoms_registered_title = "Symptome";
-let modal_symptoms_registered_text = <div style={{"color": "red"}}><p>modal_symptoms_registered Hier könnte Ihre Werbung stehen!</p></div>;
-let modal_symptoms_end_date_title = "Ende der Symptome";
-let modal_symptoms_end_date_text = <div style={{"color": "red"}}><p>modal_symptoms_end_date Hier könnte Ihre Werbung stehen!</p></div>;
 
 class Card extends React.Component {
     constructor(props) {
