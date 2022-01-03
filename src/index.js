@@ -547,7 +547,7 @@ class Card_result extends React.Component {
                             <br/>
                             <div key="k2">{texts_german["disclaimer"]}</div>
                             <br/>
-                            <h1>Ihre Daten</h1>
+                            <h1>Ihre Angaben</h1>
                             <div key="k3">{vis_user_data(this.props.user_data)}</div>
                         </div>
 

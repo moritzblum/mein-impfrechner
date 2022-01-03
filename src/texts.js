@@ -9,7 +9,7 @@ export const texts_german = {
         "invalid" : "Bitte machen Sie eine valide Eingabe, um fortzufahren"
     },
     "vaccination_last": {
-        "header": "Angaben zur letzten Corona-Schutzimpfung (SARS-CoV-2)",
+        "header": "Letzte Corona-Schutzimpfung",
         "instructions": "Bitte angeben",
         "vaccination_label": "Impfstoff",
         "vaccination_instruction": "bitte auswählen",
@@ -19,7 +19,7 @@ export const texts_german = {
         "info_date": "Welches Datum, warum, wie, was"// ggf. nicht benötigt
     },
     "vaccination_x": {
-        "header": "Angaben zur ersten Corona-Schutzimpfung", //muss angepasst werden, wenn 4 Impfungen zulässig werden.
+        "header": "Erste Corona-Schutzimpfung", //muss angepasst werden, wenn 4 Impfungen zulässig werden.
         "instructions": "Welcher Impfstoff wurde bei Ihrer ersten Corona-Schutzimpfung verimpft?",
         "vaccination_label": "Impfstoff",
         "vaccination_instruction": "bitte auswählen",
@@ -28,7 +28,7 @@ export const texts_german = {
     },
     "vaccinated": {
         "header": "Impfstatus",
-        "instructions": "Haben Sie bereits eine zulässige Impfung gegen das Coronavirus (SARS-CoV-2) erhalten?",
+        "instructions": "Haben Sie bereits eine Impfung gegen das Coronavirus (SARS-CoV-2) erhalten?",
         "vaccinated_yes": "Ja",
         "vaccinated_no": "Nein"
     },
@@ -55,7 +55,7 @@ export const texts_german = {
         "got_unregistered_vaccination_no": "Nein"
     },
     "unregistered_vaccination_date": {
-        "header": "Angaben zur unzulässigen Corona-Schutzimpfung",
+        "header": "Unzulässigen Corona-Schutzimpfung",
         "instructions": "Wann haben Sie die letzte nicht zulässige Corona-Schutzimpfung erhalten?",
         "label": "Datum"
     },
@@ -68,7 +68,7 @@ export const texts_german = {
         "past": "Ja, ich hatte Symptome"
     },
     "number_vaccinations": {
-        "header": "Anzahl der erhaltenen Corona-Schutzimpfungen",
+        "header": "Anzahl Corona-Schutzimpfungen",
         "instructions": "Wie viele zugelassene Corona-Schutzimpfungen haben Sie erhalten?",
         "one": "1",
         "two": "2",
@@ -90,10 +90,10 @@ export const texts_german = {
         "age_placeholder": "Alter"
     },
     "vaccines": {
-        "biontec": "BioNTech (Comirnaty)",
+        "biontec": "BioNTech (Comirnaty®)",
         "moderna": "Moderna (Spikevax®)",
         "astra": "AstraZeneca (Vaxeriva®)",
-        "johnson": "anssen-Cilag (Janssen®)",
+        "johnson": "Janssen-Cilag (Janssen®)",
         "novavax": "Novavax (Nuvaxovid®)"
     },
     "results": {
@@ -110,10 +110,25 @@ export const texts_german = {
         "second_vaccination_range": "Ihre zweite Impfung sollten Sie mit dem Impfstoff <vaccination_brand> zwischen dem <date_first> und dem <date_second> bekommen.",
         "third_vaccination": "Ihre dritte Impfung sollten Sie mit dem Impfstoff <vaccination_brand> nach dem  <date> bekommen.",
         "check_data": "Bitte überprüfen Sie Ihre Eingaben:",
-        "error": "Leider konnten wir Ihren persönlichen Fall nicht lösen. Wenden Sie sich für eine individuelle Beratung an ihren Hausarzt."
-    },
-    "disclaimer": "Haftungsausschluss: Die Inhalte dieser Seite dienen ausschließlich der allgemeinen Information der Öffentlichkeit. mein-impfrechner.de übernimmt keine Verantwortung für die Richtigkeit und Vollständigkeit der Daten und Informationen, ob auf dieser Seite angegeben oder verlinkt, für Abweichungen von Originaldaten, Übertragungsfehler oder Veränderung der Informationen durch Dritte."
+        "error": "Leider konnten wir Ihren persönlichen Fall nicht lösen. Wenden Sie sich für eine individuelle Beratung an ihren Hausarzt.",
+        // new
+        "alternative": "Es gibt folgende Alternativen:",
+        "next_possible_date_booster": "Sie können sich mit <vaccination_brand> ab dem <date> Boostern lassen, unter Einbezug ihrer vorherigen Corona-Infection.",
+        "next_possible_date_first_alternative": "Erstimpfung: Sie können sich mit <vaccination_brand> ab dem <date> Impfen lassen.",
+        "next_possible_date_second_dose_alternative": "Sie können sich mit <vaccination_brand> ab dem <date> zum zweiten mal Impfen lassen.",
+        "next_possible_date_booster_infection_alternative": "Sie können sich mit <vaccination_brand> ab dem <date> Boostern lassen, unter Einbezug ihrer vorherigen Corona-Infection.",
+        "second_vaccination_infection_alternative": "Ihre zweite Impfung sollten Sie mit dem Impfstoff <vaccination_brand> nach dem <date_first> bekommen, unter Einbezug ihrer vorangegangenen Corona-Infektion.",
+        "second_vaccination_range_alternative": "Ihre zweite Impfung sollten Sie mit dem Impfstoff <vaccination_brand> zwischen dem <date_first> und dem <date_second> bekommen.",
+        "third_vaccination_alternative": "Ihre dritte Impfung sollten Sie mit dem Impfstoff <vaccination_brand> nach dem  <date> bekommen.",
+        "next_possible_date_booster_alternative": "Sie können sich mit <vaccination_brand> ab dem <date> Boostern lassen, unter Einbezug ihrer vorherigen Corona-Infection.",
 
+
+
+    },
+    "disclaimer": "Haftungsausschluss: Die Inhalte dieser Seite dienen ausschließlich der allgemeinen Information der " +
+        "Öffentlichkeit. mein-impfrechner.de übernimmt keine Verantwortung für die Richtigkeit und Vollständigkeit der " +
+        "Daten und Informationen, die auf dieser Seite angegeben oder verlinkt werden, für Abweichungen von Originaldaten, " +
+        "Übertragungsfehler oder Veränderung der Informationen durch Dritte."
 };
 
 export const constants = {

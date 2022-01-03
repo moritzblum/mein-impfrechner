@@ -29,3 +29,9 @@ directory (on the `master` branch).
 * [index.html](public/index.html) - HTML root: main page
 * [render_form.js](src/form_logic.js) - Frontend: displays questions and results 
 * [form_logic.js](src/form_logic.js) - Backend: chooses which question to ask next and computes the output
+
+## Contributors 
+* Technical Development: [Moritz Blum](https://github.com/moritzblum)
+* Domain Expert: [Ole Wienke](https://github.com/OleWienke)
+
+Support: Marvin Bange(Figures)

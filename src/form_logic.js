@@ -1,5 +1,6 @@
 import * as date_operations from './date_operations.js';
 import {texts_german, constants} from "./texts.js";
+import {add_month_2_date} from "./date_operations.js";
 
 const BIONTECH = "biontech";
 const MODERNA = "moderna";
@@ -74,7 +75,6 @@ export function get_next_card(card_history, user_data) {
         if (user_data['symptoms_registered']['value'] === 'still') {
             return create_output('result_3', [texts_german["results"]["no_recommendation_symptoms"]]);
         }
-
     }
 
     if (!('got_unregistered_vaccination' in user_data)) {
@@ -99,7 +99,7 @@ export function get_next_card(card_history, user_data) {
 
         let vaccination_possibilities = undefined; // BIONTECH/BIONTECH_MODERNA/BIONTECH_MODERNA_ASTRA
 
-        if (past_infection) {
+        if (past_infection && date_operations.add_month_2_date(user_data['infection_date']['date'], 6) >= Date.now()) {
             if (user_age <= constants['age_groups']['age_group_2'][1]) {
                 if (risk_group) {
                     return create_output('result_4', [texts_german['results']['contact_dr']]);
@@ -266,7 +266,7 @@ export function get_next_card(card_history, user_data) {
     if (user_data['number_vaccinations']['value'] == 1 && past_infection) {
 
         // Infektion innerhalb von 4 Wochen nach 1. Impfung
-        if ((vaccination_last_date <= infection_date) && (date_operations.ger_str_2_date(infection_date) <= date_operations.add_weeks_2_date(vaccination_last_date, 4))){
+        if ((vaccination_last_date <= infection_date) && (infection_date <= date_operations.add_weeks_2_date(vaccination_last_date, 4))){
             // Grundimmunisierung durch Impfung nach 3 Monaten
             let first_possible_date = date_operations.get_latest_date([
                 Date.now(),
