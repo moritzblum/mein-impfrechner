@@ -128,7 +128,7 @@ export const texts_german = {
     "disclaimer": "Haftungsausschluss: Die Inhalte dieser Seite dienen ausschließlich der allgemeinen Information der " +
         "Öffentlichkeit. mein-impfrechner.de übernimmt keine Verantwortung für die Richtigkeit und Vollständigkeit der " +
         "Daten und Informationen, die auf dieser Seite angegeben oder verlinkt werden, für Abweichungen von Originaldaten, " +
-        "Übertragungsfehler oder Veränderung der Informationen durch Dritte."
+        "Übertragungsfehler oder Veränderung der Informationen durch Dritte."  // hardcoded in impressum.html, too
 };
 
 export const constants = {

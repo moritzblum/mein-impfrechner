@@ -96,6 +96,7 @@ class Form_body_vaccination_last extends React.Component {
                         <option>{texts_german["vaccines"]["moderna"]}</option>
                         <option>{texts_german["vaccines"]["astra"]}</option>
                         <option>{texts_german["vaccines"]["johnson"]}</option>
+                        <option>{texts_german["vaccines"]["novavax"]}</option>
                     </select>
                     <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
                     <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
@@ -131,6 +132,7 @@ class Form_body_vaccination_x extends React.Component {
                         <option>{texts_german["vaccines"]["moderna"]}</option>
                         <option>{texts_german["vaccines"]["astra"]}</option>
                         <option>{texts_german["vaccines"]["johnson"]}</option>
+                        <option>{texts_german["vaccines"]["novavax"]}</option>
                     </select>
                     <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
                     <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>

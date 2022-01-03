@@ -2,6 +2,11 @@ import * as date_operations from './date_operations.js';
 import {texts_german, constants} from "./texts.js";
 import {add_month_2_date} from "./date_operations.js";
 
+// Possible User Histories: 5 (registered vaccination brands) * 6 (age groups) * 2 (risk group) * 2 (past infection) * 3 (infection date) * 3 (symptoms) * 2 (got unregistered vaccination) * 4 (number vaccinations) * 2 (vaccinations) => 17.280 combinations
+// Possible Recommendations: 5 (brands) * 2 (got unregistered vaccination) * 2 (past infection) => 20 combinations
+
+
+
 const BIONTECH = "biontech";
 const MODERNA = "moderna";
 const BIONTECH_MODERNA = "biontech_moderna";
@@ -194,6 +199,15 @@ export function get_next_card(card_history, user_data) {
 
     vaccination_history.push(user_data['vaccination_last']['value']);
     vaccination_last_date = user_data['vaccination_last']['date'];
+
+    if (vaccination_history[0] === texts_german['vaccines']['novavax']){
+
+        console.log('ERROR: Unser entered Novavax (not supported yet)');
+        return create_output('result_25', [
+            texts_german['results']['error']
+        ]);
+
+    }
 
     // second shot
     if (user_data['number_vaccinations']['value'] == 1 && !past_infection) {
@@ -408,7 +422,7 @@ export function get_next_card(card_history, user_data) {
         }
     }
 
-    console.log('ERROR')
+    console.log('ERROR');
     return create_output('result_25', [
         texts_german['results']['error']
     ]);
