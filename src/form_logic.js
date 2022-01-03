@@ -382,14 +382,14 @@ export function get_next_card(card_history, user_data) {
             }
         }
 
-        if (first_dose === texts_german['vaccines']['astra'] && second_dose === texts_german['vaccines']['astra'] ||
-            first_dose === texts_german['vaccines']['biontec'] && second_dose === texts_german['vaccines']['astra'] ||
-            first_dose === texts_german['vaccines']['moderna'] && second_dose === texts_german['vaccines']['astra'] ||
-            first_dose === texts_german['vaccines']['johnson'] && second_dose === texts_german['vaccines']['astra'] ||
-            first_dose === texts_german['vaccines']['astra'] && second_dose === texts_german['vaccines']['johnson'] ||
-            first_dose === texts_german['vaccines']['astra'] && second_dose === texts_german['vaccines']['moderna'] ||
-            first_dose === texts_german['vaccines']['moderna'] && second_dose === texts_german['vaccines']['moderna'] ||
-            first_dose === texts_german['vaccines']['astra'] && second_dose === texts_german['vaccines']['biontec']
+        if ((first_dose === texts_german['vaccines']['astra'] && second_dose === texts_german['vaccines']['astra']) ||
+            (first_dose === texts_german['vaccines']['biontec'] && second_dose === texts_german['vaccines']['astra']) ||
+            (first_dose === texts_german['vaccines']['moderna'] && second_dose === texts_german['vaccines']['astra']) ||
+            (first_dose === texts_german['vaccines']['johnson'] && second_dose === texts_german['vaccines']['astra']) ||
+            (first_dose === texts_german['vaccines']['astra'] && second_dose === texts_german['vaccines']['johnson']) ||
+            (first_dose === texts_german['vaccines']['astra'] && second_dose === texts_german['vaccines']['moderna']) ||
+            (first_dose === texts_german['vaccines']['moderna'] && second_dose === texts_german['vaccines']['moderna']) ||
+            (first_dose === texts_german['vaccines']['astra'] && second_dose === texts_german['vaccines']['biontec'])
         ){
             return create_output('result_22', [
                 texts_german['results']['third_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['biontec']).replace('<date>', first_possible_date),
