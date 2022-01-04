@@ -124,10 +124,14 @@ footer {
     color: white;
 }
 
+.card-title{
+    color:gray;
+    font-size: 4vh;
+
+}
 
 
 h1 {
-    color: white;
     margin-left: 20px;
 }
 
@@ -198,6 +202,12 @@ h1 {
         height: 100%;
     }
 
+    .card-title{
+        margin-top: 1vh;
+        color:gray;
+        font-size: 5vw;
+
+    }
 
     body {
         height: 100%;
@@ -206,9 +216,8 @@ h1 {
     }
 
     .h1 {
-        color: navy;
         margin-left: 20px;
-        font-size: 4vw;
+        font-size: 0.5vh;
     }
 
     .main_page_text{
