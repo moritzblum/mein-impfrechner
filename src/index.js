@@ -553,14 +553,14 @@ class Card_result extends React.Component {
 
         // single output
         if (this.props.user_data["entered_data"]["value"].length === 1) {
-            result_text.push(this.props.user_data["entered_data"]["value"][0]);
+            result_text.push(this.props.user_data["entered_data"]["value"][0].split('\n').map(str => <p>{str}</p>));
         }
         // multiple outputs
         else {
             result_text.push(<div key={"result_list_multiple_options_intro"}>{texts_german["results"]["multiple_options"]}</div>);
             const options = this.props.user_data["entered_data"]["value"];
             for (var i = 0; i < options.length; i++) {
-                result_text.push(<li key={i}>{options[i]}</li>);
+                result_text.push(<li key={i}>{options[i].split('\n').map(str => <p>{str}</p>)}</li>);
             }
         }
 

@@ -104,33 +104,59 @@ export const texts_german = {
         "novavax": "Novavax (Nuvaxovid®)"
     },
     "results": {
-        "really_old": "Wenn du wirklich schon so lange gelebt hast, dann bringt dich Corona auch nicht mehr um.",
-        "no_general_recommendation": "Aktuell keine Impfempfehlung",
-        "contact_dr": "Keine generelle Impfempfehlung, bitte besprechen Sie Ihre individuellen Umstände mit Ihrem Hausarzt.",
-        "no_recommendation_symptoms": "Aktuell keine Impfempfehlung, wenn noch Symptome oder Spätfolgen bestehen.",
-        "no_further_recommendation": "Nach aktuellem Stand benötigen sie keine weitere Impfung.",
-        "multiple_options": "Wir haben für sie folgende Optionen berechnet:",
-        "next_possible_date_first": "Erstimpfung: Sie können sich mit <vaccination_brand> ab dem <date> Impfen lassen.",
-        "next_possible_date_second_dose": "Sie können sich mit <vaccination_brand> ab dem <date> zum zweiten mal Impfen lassen.",
-        "next_possible_date_booster_infection": "Sie können sich mit <vaccination_brand> ab dem <date> Boostern lassen, unter Einbezug ihrer vorherigen Corona-Infection.",
-        "second_vaccination_infection": "Ihre zweite Impfung sollten Sie mit dem Impfstoff <vaccination_brand> nach dem <date_first> bekommen, unter Einbezug ihrer vorangegangenen Corona-Infektion.",
-        "second_vaccination_range": "Ihre zweite Impfung sollten Sie mit dem Impfstoff <vaccination_brand> zwischen dem <date_first> und dem <date_second> bekommen.",
-        "third_vaccination": "Ihre dritte Impfung sollten Sie mit dem Impfstoff <vaccination_brand> nach dem  <date> bekommen.",
-        "check_data": "Bitte überprüfen Sie Ihre Eingaben:",
-        "error": "Leider konnten wir Ihren persönlichen Fall nicht lösen. Wenden Sie sich für eine individuelle Beratung an ihren Hausarzt.",
+        "really_old": "Bitte überprüfen Sie Ihre Angaben. Wenn Sie wirklich schon so lange gelebt haben, dann haut Sie auch Corona nicht mehr aus den Socken.",
+        "no_general_recommendation": "Basierend auf der derzeitigen STIKO-Empfehlung und Ihren Angaben, wird für Sie aktuell keine Impfempfehlung ausgesprochen.\n* Im Zweifelsfall holen Sie sich ärztlichen Rat.",
+        "contact_dr": "Basierend auf der derzeitigen STIKO- Empfehlung und Ihren Angaben, können wir leider keine generelle Impfempfehlung aussprechen. Bitte besprechen Sie Ihre persönliche Situation mit einer Ärztin/ einem Arzt.",
+        "no_recommendation_symptoms": "Basierend auf der derzeitigen STIKO- Empfehlung sollten Sie mit der Impfung warten, " +
+            "bis die Symptome abklingen. Aktuell wird ein Impftermin vier Wochen nach Ihrem individuellen Symptomende empfohlen." +
+            "\n* Sollten Ihre Symptome länger andauern, besprechen Sie Ihre persönliche Situation mit einer Ärztin/ einem Arzt.",
+        "no_further_recommendation": "Basierend auf der derzeitigen STIKO- Empfehlung und Ihren Angaben, sind Sie aktuell ausreichend geschützt.",
+        "multiple_options": "Basierend auf der derzeitigen STIKO-Empfehlung und Ihren Angaben, haben wir für sie folgende Optionen berechnet:",
+        "next_possible_date_first": "Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben " +
+            "empfehlen wir Ihnen eine „Erstimpfung“ durchzuführen. \n" +
+            "Sie können sich ab dem <date> impfen lassen. \n" +
+            "Für Sie wird folgender Impfstoff empfohlen <vaccination_brand>.",
+        "next_possible_date_second_dose": " Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben " +
+            "empfehlen wir Ihnen eine „Zweitimpfung“ durchzuführen. \n" +
+            "Sie können sich ab dem <date> impfen lassen. \n" +
+            "Für Sie wird folgender Impfstoff empfohlen <vaccination_brand>.",
+        "next_possible_date_booster_infection": "Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen " +
+            "Angaben empfehlen wir Ihnen eine „Booster-/Auffrischimpfung“ durchzuführen. \n" +
+            "Sie können sich ab dem <date> impfen lassen. \n" +
+            "Für Sie wird folgender Impfstoff empfohlen <vaccination_brand>.",
+        "second_vaccination_infection": "Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben " +
+            "empfehlen wir Ihnen eine „Zweitimpfung“ durchzuführen. \n" +
+            "Sie können sich ab dem <date> impfen lassen. \n" +
+            "Für Sie wird folgender Impfstoff empfohlen <vaccination_brand>.\n" +
+            "*Da Sie nach der Erstimpfung erkrankt sind, gilt diese Impfung nicht als „Booster-/Auffrischimpfung“.",
+        "second_vaccination_range": "Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben " +
+            "empfehlen wir Ihnen eine „Zweitimpfung“ durchzuführen. \n" +
+            "Sie können sich ab dem <date_first> impfen lassen. \n" +
+            "Idealer Weise wählen Sie einen Termin im Zeitraum vom <date_first> bis zum <date_second> . \n" +
+            "Für Sie wird folgender Impfstoff empfohlen <vaccination_brand>.",
+        "third_vaccination": "Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen " +
+            "wir Ihnen eine „Booster-/Auffrischimpfung“ durchzuführen. \n" +
+            "Sie können sich ab dem <date> impfen lassen. \n" +
+            "Für Sie wird folgender Impfstoff empfohlen <vaccination_brand>.",
+        "check_data": "Bitte überprüfen Sie Ihre Angaben.",
+        "error": "Basierend auf Ihren Angaben ist es uns derzeit nicht möglich, eine generelle Empfehlung auszusprechen. " +
+            "Ihre persönliche Situation erfordert eine ärztliche Einzelfallprüfung, um eine valide Aussage zu " +
+            "treffen können. Wir bitten um Ihr Verständnis. ",
         // new
-        "alternative": "Es gibt folgende Alternativen:",
-        "next_possible_date_booster": "Sie können sich mit <vaccination_brand> ab dem <date> Boostern lassen, unter Einbezug ihrer vorherigen Corona-Infection.",
-        "next_possible_date_first_alternative": "Erstimpfung: Sie können sich mit <vaccination_brand> ab dem <date> Impfen lassen.",
-        "next_possible_date_second_dose_alternative": "Sie können sich mit <vaccination_brand> ab dem <date> zum zweiten mal Impfen lassen.",
-        "next_possible_date_booster_infection_alternative": "Sie können sich mit <vaccination_brand> ab dem <date> Boostern lassen, unter Einbezug ihrer vorherigen Corona-Infection.",
-        "second_vaccination_infection_alternative": "Ihre zweite Impfung sollten Sie mit dem Impfstoff <vaccination_brand> nach dem <date_first> bekommen, unter Einbezug ihrer vorangegangenen Corona-Infektion.",
-        "second_vaccination_range_alternative": "Ihre zweite Impfung sollten Sie mit dem Impfstoff <vaccination_brand> zwischen dem <date_first> und dem <date_second> bekommen.",
-        "third_vaccination_alternative": "Ihre dritte Impfung sollten Sie mit dem Impfstoff <vaccination_brand> nach dem  <date> bekommen.",
-        "next_possible_date_booster_alternative": "Sie können sich mit <vaccination_brand> ab dem <date> Boostern lassen, unter Einbezug ihrer vorherigen Corona-Infection.",
-
-
-
+        "alternative": "Weiterhin kommen für Sie folgende Optionen in Frage:",
+        "alternative_info": "*Die endgültige Entscheidung, welcher Impfstoff für Sie am besten geeignet ist, treffen Sie gemeinsam mit der aufklärenden Person.",
+        "next_possible_date_booster": "Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben " +
+            "empfehlen wir Ihnen eine „Booster-/Auffrischimpfung“ durchzuführen. \n" +
+            "Sie können sich ab dem <date> impfen lassen. \n" +
+            "Für Sie wird folgender Impfstoff empfohlen <vaccination_brand>. \n",
+        "next_possible_date_first_alternative": "Sie können sich mit <vaccination_brand> ab dem <date> impfen lassen.",
+        "next_possible_date_second_dose_alternative": "Sie können sich mit <vaccination_brand> ab dem <date> impfen lassen.",
+        "next_possible_date_booster_infection_alternative": "Sie können sich mit <vaccination_brand> ab dem <date> impfen lassen.",
+        "second_vaccination_infection_alternative": "Sie können sich mit <vaccination_brand> ab dem <date> impfen lassen.",
+        "second_vaccination_range_alternative": "Sie können sich mit <vaccination_brand> ab dem <date_first> impfen lassen." +
+            "Idealerweise wählen Sie einen Termin im Zeitraum vom <date_first> bis zum <date_second>",
+        "third_vaccination_alternative": "Sie können sich mit <vaccination_brand> ab dem <date> impfen lassen.",
+        "next_possible_date_booster_alternative": "Sie können sich mit <vaccination_brand> ab dem <date> impfen lassen",
     },
     "disclaimer": "Haftungsausschluss: Die Inhalte dieser Seite dienen ausschließlich der allgemeinen Information der " +
         "Öffentlichkeit. mein-impfrechner.de übernimmt keine Verantwortung für die Richtigkeit und Vollständigkeit der " +
