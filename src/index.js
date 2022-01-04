@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import {texts_german, constants, modal_risk_group_title, modal_risk_group_text, modal_vaccinated_title,
+import {texts_german, constants, modal_risk_group_title, modal_risk_group_text, modal_pregnant_title, modal_pregnant_text, modal_vaccinated_title,
     modal_vaccinated_text, modal_got_unregistered_vaccination_title, modal_got_unregistered_vaccination_text,
     modal_past_infection_title, modal_past_infection_text, modal_infection_date_title, modal_infection_date_text,
     modal_symptoms_registered_title, modal_symptoms_registered_text, modal_symptoms_end_date_title,
@@ -20,7 +20,7 @@ class Card extends React.Component {
                 <div className="vc-card container">
                     <div className="vc-card-header">
                         <div className="col-sm" style={{textAlign: "center"}}>
-                            <h1 style={{color: "grey"}} className="card-title" >{this.props.title}</h1>
+                            <h1 className="card-title" >{this.props.title}</h1>
                         </div>
                     </div>
                     <div className="vc-card-body">
@@ -217,6 +217,36 @@ class Form_body_risk_group extends React.Component {
                 <div className="form-check">
                     <input className="form-check-input radio-validation" type="radio" id="risk_group_2_input" onChange={this.props.input_data_handler} name={this.props.input_name_risk_group} value={false}/>
                     <label className="form-check-label" htmlFor="risk_group_2_input"> {texts_german["risk_group"]["risk_group_no"]} </label>
+                    <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
+                    <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
+                </div>
+            </div>
+
+
+        );
+    }
+}
+
+
+class Form_body_pregnant extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render(){
+        return(
+            <div className="form-group">
+                <label>{texts_german["pregnant"]["instructions"]} <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_pregnant"/></label>
+                <Modal_popup button_id="modal_pregnant" title={modal_pregnant_title} text={modal_pregnant_text} />
+                <br/>
+                <br/>
+                <div className="form-check">
+                    <input className="form-check-input radio-validation" type="radio" id="pregnant_1_input" onChange={this.props.input_data_handler} name={this.props.input_name_pregnant} value={true}/>
+                    <label className="form-check-label" htmlFor="pregnant_1_input"> {texts_german["pregnant"]["pregnant_yes"]} </label>
+                </div>
+                <div className="form-check">
+                    <input className="form-check-input radio-validation" type="radio" id="pregnant_2_input" onChange={this.props.input_data_handler} name={this.props.input_name_pregnant} value={false}/>
+                    <label className="form-check-label" htmlFor="pregnant_2_input"> {texts_german["pregnant"]["pregnant_no"]} </label>
                     <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
                     <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
                 </div>
@@ -496,7 +526,7 @@ class Card_start extends React.Component {
                 <div className="row justify-content-md-center">
                         <div className="vc-card-header">
                             <div className="col-sm" style={{textAlign: "center"}}>
-                                <h1 style={{color: "grey"}} className="card-title" >{texts_german["start"]["header"]}</h1>
+                                <h1 className="card-title" >{texts_german["start"]["header"]}</h1>
                             </div>
                         </div>
 
@@ -538,7 +568,7 @@ class Card_result extends React.Component {
             <div className="vc-card container">
                     <div className="vc-card-header">
                         <div className="col-sm" style={{textAlign: "center"}}>
-                            <h1 style={{color: "grey"}} className="card-title"> <b>Ergebnis </b></h1>
+                            <h1 className="card-title"> <b>Ergebnis </b></h1>
                         </div>
                     </div>
 
@@ -578,6 +608,12 @@ function vis_user_data (user_data) {
     if ('risk_group' in user_data['user_data']){
         if (user_data['user_data']['risk_group']['value']){
             user_data_list.push(<li key='risk_group'>{texts_german['risk_group']["header"]}: {texts_german['risk_group']['risk_group_yes']}</li>);
+        }
+    }
+
+    if ('pregnant' in user_data['user_data']){
+        if (user_data['user_data']['pregnant']['value']){
+            user_data_list.push(<li key='pregnant'>{texts_german['pregnant']["header"]}: {texts_german['pregnant']['pregnant_yes']}</li>);
         }
     }
 
@@ -667,6 +703,9 @@ function button_id_2_card_id(button_id){
     if (button_id.includes('_risk_group_')){
         return 'risk_group';
     }
+    if (button_id.includes('_pregnant_')){
+        return 'pregnant';
+    }
     if (button_id.includes('_number_vaccinations_')){
         return 'number_vaccinations';
     }
@@ -730,7 +769,7 @@ class CardManager extends React.Component {
                     }
                 }
                 // radio-button selection
-                if (['vaccinated', 'past_infection', 'symptoms_registered', 'risk_group', 'number_vaccinations', 'got_unregistered_vaccination'].includes(current_card_id)) {
+                if (['vaccinated', 'past_infection', 'symptoms_registered', 'risk_group', 'pregnant', 'number_vaccinations', 'got_unregistered_vaccination'].includes(current_card_id)) {
                     let element = document.getElementsByClassName("radio-validation");
 
                     if (this.state.entered_data['value'] === undefined) {
@@ -945,6 +984,15 @@ class CardManager extends React.Component {
                           handler={this.control_click_handler}
                           form_body={<Form_body_risk_group input_data_handler={this.handleInputChange}
                                                            input_name_risk_group='value' />}/>
+                );
+            case 'pregnant':
+                return (
+                    <Card title={texts_german["pregnant"]["header"]}
+                          id_next={"card_pregnant_next"}
+                          id_back={"card_pregnant_back"}
+                          handler={this.control_click_handler}
+                          form_body={<Form_body_pregnant input_data_handler={this.handleInputChange}
+                                                           input_name_pregnant='value' />}/>
                 );
             case 'number_vaccinations':
                 return (

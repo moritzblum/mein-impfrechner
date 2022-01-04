@@ -41,11 +41,18 @@ export const texts_german = {
     },
     "risk_group": {
         "header": "Risikogruppe",
-        "instructions": "Sind Sie zum aktuellen Zeitpunkt schwanger, einer Risikogruppe angehörig oder haben Sie " +
+        "instructions": "Sind Sie zum aktuellen Zeitpunkt einer Risikogruppe angehörig oder haben Sie " +
             "regelmäßig Kontakt zu Personen einer Risikogruppe?",
         "info_risk_group": "Wann genau und warum ist man Teil einer Risikogruppe",
         "risk_group_yes": "Ja",
         "risk_group_no": "Nein"
+    },
+    "pregnant": {
+        "header": "Schwangerschaft",
+        "instructions": "Sind Sie zum aktuellen Zeitpunkt schwanger?",
+        "info_pregnant": "Warum ist eine Schwangerschaft relevant für die Impfreihe.",
+        "pregnant_yes": "Ja",
+        "pregnant_no": "Nein"
     },
     "got_unregistered_vaccination": {
         "header": "Impfstoff ohne STIKO- Zulassung",
@@ -201,6 +208,18 @@ export const modal_risk_group_text = <div >
     <a href="http://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Risikogruppen.html">Robert Koch-Institut</a>
     <br/>
 </div>;
+
+export const modal_pregnant_title = "Schwangerschaft";
+export const modal_pregnant_text = <div >
+    <br/>
+    <br/>
+    <br/>
+    Quelle: &nbsp;
+    <a href="http://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Risikogruppen.html">Robert Koch-Institut</a>
+    <br/>
+</div>;
+
+
 
 export const modal_vaccinated_title = "Impfstatus";
 export const modal_vaccinated_text = <div>

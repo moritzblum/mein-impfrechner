@@ -44,7 +44,12 @@ export function get_next_card(card_history, user_data) {
         return ['risk_group', {}];
     }
 
+    if (!('pregnant' in user_data)) {
+        return ['pregnant', {}];
+    }
+
     let risk_group = (user_data['risk_group']['value'] == true);
+    let pregnant = (user_data['pregnant']['value'] == true);
 
     if (user_age <= constants['age_groups']['age_group_2'][1]) {
         if (risk_group === false) {
@@ -115,18 +120,18 @@ export function get_next_card(card_history, user_data) {
             }
 
             // age <= 30
-            if ((user_age <= constants['age_groups']['age_group_4'][1]) || risk_group) {
+            if ((user_age <= constants['age_groups']['age_group_4'][1]) || pregnant) {
                 vaccination_possibilities = BIONTECH;
             } else {
                 vaccination_possibilities = BIONTECH_MODERNA;
             }
         } else {
             // age >= 60
-            if ((user_age >= constants['age_groups']['age_group_6'][0]) && !risk_group) {
+            if ((user_age >= constants['age_groups']['age_group_6'][0]) && !pregnant) {
                 vaccination_possibilities = BIONTECH_MODERNA_ASTRA;
             }
             // age >= 30
-            if ((user_age >= constants['age_groups']['age_group_5'][0]) && !risk_group) {
+            if ((user_age >= constants['age_groups']['age_group_5'][0]) && !pregnant) {
                 vaccination_possibilities = BIONTECH_MODERNA;
             }
             // age < 30, normal first vaccination
@@ -224,7 +229,7 @@ export function get_next_card(card_history, user_data) {
         let vaccination_possibilities_second_dose = undefined; // BIONTECH/BIONTECH_MODERNA/BIONTECH_MODERNA_ASTRA
 
         // age <= 29
-        if ((user_age <= constants['age_groups']['age_group_4'][1]) || user_data['risk_group']['value']) {
+        if ((user_age <= constants['age_groups']['age_group_4'][1]) ||pregnant) {
             if (vaccination_history[0] !== texts_german['vaccines']['johnson']){
                 // bei Johnson Erstimpfung sollte mehr als 4 Wochen gewartet werden
                 return create_output('result_9', [
@@ -290,7 +295,7 @@ export function get_next_card(card_history, user_data) {
             ]);
 
             // age <= 30
-            if ((user_age <= constants['age_groups']['age_group_4'][1]) || user_data['risk_group']['value']) {
+            if ((user_age <= constants['age_groups']['age_group_4'][1]) || pregnant) {
                 return create_output('result_13', [
                     texts_german['results']['second_vaccination_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
                 ]);
@@ -314,7 +319,7 @@ export function get_next_card(card_history, user_data) {
             ]);
 
             // age <= 30
-            if ((user_age <= constants['age_groups']['age_group_4'][1]) || risk_group) {
+            if ((user_age <= constants['age_groups']['age_group_4'][1]) || pregnant) {
                 return create_output('result_15', [
                     texts_german['results']['next_possible_date_booster_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
                 ]);
@@ -409,7 +414,7 @@ export function get_next_card(card_history, user_data) {
         ]);
 
         // age <= 30
-        if ((user_age <= constants['age_groups']['age_group_4'][1]) || user_data['risk_group']['value']) {
+        if ((user_age <= constants['age_groups']['age_group_4'][1]) || pregnant) {
             return create_output('result_23', [
                 texts_german['results']['next_possible_date_booster_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
             ]);
