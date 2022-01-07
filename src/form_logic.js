@@ -176,7 +176,7 @@ export function get_next_card(card_history, user_data) {
 
     if (((user_data['number_vaccinations']['value'] === 2) && (user_age <= constants['age_groups']['age_group_3'][1]))
         || (user_data['number_vaccinations']['value'] == 3)){
-        return create_output('result_8', texts_german['results']['no_further_recommendation']);
+        return create_output('result_8', [texts_german['results']['no_further_recommendation']]);
     }
 
     // collect vaccination information
