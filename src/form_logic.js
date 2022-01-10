@@ -10,7 +10,7 @@ import {add_month_2_date} from "./date_operations.js";
 const BIONTECH = "biontech";
 const MODERNA = "moderna";
 const BIONTECH_MODERNA = "biontech_moderna";
-const BIONTECH_MODERNA_ASTRA = "biontech_moderna_astra";
+const BIONTECH_MODERNA_JOHNSON = "biontech_moderna_astra";
 
 export function get_next_card(card_history, user_data) {
     //  possible_cards: 'vaccination', 'vaccinated', 'past_infection', 'infection_date', 'age', 'symptoms_registered',
@@ -128,7 +128,7 @@ export function get_next_card(card_history, user_data) {
         } else {
             // age >= 60
             if ((user_age >= constants['age_groups']['age_group_6'][0]) && !pregnant) {
-                vaccination_possibilities = BIONTECH_MODERNA_ASTRA;
+                vaccination_possibilities = BIONTECH_MODERNA_JOHNSON;
             }
             // age >= 30
             if ((user_age >= constants['age_groups']['age_group_5'][0]) && !pregnant) {
@@ -152,15 +152,15 @@ export function get_next_card(card_history, user_data) {
         }
         if (vaccination_possibilities === BIONTECH_MODERNA) {
             return create_output('result_6', [
-                    texts_german['results']['next_possible_date_first'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
-                    texts_german['results']['next_possible_date_first'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['moderna']),
+                texts_german['results']['next_possible_date_first'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['moderna']),
+                texts_german['results']['next_possible_date_first_alternative'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
             ]);
         }
-        if (vaccination_possibilities === BIONTECH_MODERNA_ASTRA) {
+        if (vaccination_possibilities === BIONTECH_MODERNA_JOHNSON) {
             return create_output('result_7', [
-                    texts_german['results']['next_possible_date_first'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
-                    texts_german['results']['next_possible_date_first'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['moderna']),
-                    texts_german['results']['next_possible_date_first'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['johnson']),
+                texts_german['results']['next_possible_date_first'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['moderna']),
+                texts_german['results']['next_possible_date_first_alternative'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
+                texts_german['results']['next_possible_date_first_alternative'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['johnson']),
                 ]
             );
         }
@@ -270,8 +270,8 @@ export function get_next_card(card_history, user_data) {
         }
         if (vaccination_possibilities_second_dose === BIONTECH_MODERNA) {
             return create_output('result_12', [
-                texts_german['results']['next_possible_date_second_dose'].replace('<vaccination_brand>', texts_german['vaccines']['biontec']).replace('<date_first>', four_weeks_first_possible_date),
-                texts_german['results']['next_possible_date_second_dose'].replace('<vaccination_brand>', texts_german['vaccines']['moderna']).replace('<date_first>', four_weeks_first_possible_date)
+                texts_german['results']['next_possible_date_second_dose'].replace('<vaccination_brand>', texts_german['vaccines']['moderna']).replace('<date_first>', four_weeks_first_possible_date),
+                texts_german['results']['second_vaccination_range_alternative'].replace('<vaccination_brand>', texts_german['vaccines']['biontec']).replace('<date_first>', four_weeks_first_possible_date),
             ]);
 
         }
@@ -302,8 +302,8 @@ export function get_next_card(card_history, user_data) {
             }
             else {
                 return create_output('result_14', [
-                    texts_german['results']['second_vaccination_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
                     texts_german['results']['second_vaccination_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['moderna']),
+                    texts_german['results']['second_vaccination_infection_alternative'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
                 ]);
 
             }
@@ -326,8 +326,8 @@ export function get_next_card(card_history, user_data) {
             }
             else {
                 return create_output('result_16', [
-                    texts_german['results']['next_possible_date_booster_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
                     texts_german['results']['next_possible_date_booster_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['moderna']),
+                    texts_german['results']['next_possible_date_booster_infection_alternative'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
                 ]);
             }
         }
@@ -397,8 +397,8 @@ export function get_next_card(card_history, user_data) {
             (first_dose === texts_german['vaccines']['astra'] && second_dose === texts_german['vaccines']['biontec'])
         ){
             return create_output('result_22', [
-                texts_german['results']['third_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['biontec']).replace('<date>', first_possible_date),
-                texts_german['results']['third_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['moderna']).replace('<date>', first_possible_date)
+                texts_german['results']['third_vaccination'].replace('<vaccination_brand>', texts_german['vaccines']['moderna']).replace('<date>', first_possible_date),
+                texts_german['results']['third_vaccination_alternative'].replace('<vaccination_brand>', texts_german['vaccines']['biontec']).replace('<date>', first_possible_date),
             ]);
         }
     }
@@ -421,8 +421,8 @@ export function get_next_card(card_history, user_data) {
         }
         else {
             return create_output('result_24', [
-                texts_german['results']['next_possible_date_booster_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
                 texts_german['results']['next_possible_date_booster_infection'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['moderna']),
+                texts_german['results']['next_possible_date_booster_infection_alternative'].replace('<date>', first_possible_date.toLocaleDateString('de-DE')).replace('<vaccination_brand>', texts_german['vaccines']['biontec']),
             ]);
         }
     }

@@ -115,29 +115,29 @@ export const texts_german = {
         "next_possible_date_first": "Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben " +
             "empfehlen wir Ihnen eine „Erstimpfung“ durchzuführen. \n" +
             "Sie können sich ab dem <date> impfen lassen. \n" +
-            "Für Sie wird folgender Impfstoff empfohlen <vaccination_brand>.",
+            "Für Sie wird folgender Impfstoff empfohlen: <vaccination_brand>.",
         "next_possible_date_second_dose": " Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben " +
             "empfehlen wir Ihnen eine „Zweitimpfung“ durchzuführen. \n" +
             "Sie können sich ab dem <date> impfen lassen. \n" +
-            "Für Sie wird folgender Impfstoff empfohlen <vaccination_brand>.",
+            "Für Sie wird folgender Impfstoff empfohlen: <vaccination_brand>.",
         "next_possible_date_booster_infection": "Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen " +
             "Angaben empfehlen wir Ihnen eine „Booster-/Auffrischimpfung“ durchzuführen. \n" +
             "Sie können sich ab dem <date> impfen lassen. \n" +
-            "Für Sie wird folgender Impfstoff empfohlen <vaccination_brand>.",
+            "Für Sie wird folgender Impfstoff empfohlen: <vaccination_brand>.",
         "second_vaccination_infection": "Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben " +
             "empfehlen wir Ihnen eine „Zweitimpfung“ durchzuführen. \n" +
             "Sie können sich ab dem <date> impfen lassen. \n" +
-            "Für Sie wird folgender Impfstoff empfohlen <vaccination_brand>.\n" +
+            "Für Sie wird folgender Impfstoff empfohlen: <vaccination_brand>.\n" +
             "*Da Sie nach der Erstimpfung erkrankt sind, gilt diese Impfung nicht als „Booster-/Auffrischimpfung“.",
         "second_vaccination_range": "Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben " +
             "empfehlen wir Ihnen eine „Zweitimpfung“ durchzuführen. \n" +
             "Sie können sich ab dem <date_first> impfen lassen. \n" +
             "Idealer Weise wählen Sie einen Termin im Zeitraum vom <date_first> bis zum <date_second> . \n" +
-            "Für Sie wird folgender Impfstoff empfohlen <vaccination_brand>.",
+            "Für Sie wird folgender Impfstoff empfohlen: <vaccination_brand>.",
         "third_vaccination": "Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen " +
             "wir Ihnen eine „Booster-/Auffrischimpfung“ durchzuführen. \n" +
             "Sie können sich ab dem <date> impfen lassen. \n" +
-            "Für Sie wird folgender Impfstoff empfohlen <vaccination_brand>.",
+            "Für Sie wird folgender Impfstoff empfohlen: <vaccination_brand>.",
         "check_data": "Bitte überprüfen Sie Ihre Angaben.",
         "error": "Basierend auf Ihren Angaben ist es uns derzeit nicht möglich, eine generelle Empfehlung auszusprechen. " +
             "Ihre persönliche Situation erfordert eine ärztliche Einzelfallprüfung, um eine valide Aussage zu " +
@@ -148,7 +148,7 @@ export const texts_german = {
         "next_possible_date_booster": "Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben " +
             "empfehlen wir Ihnen eine „Booster-/Auffrischimpfung“ durchzuführen. \n" +
             "Sie können sich ab dem <date> impfen lassen. \n" +
-            "Für Sie wird folgender Impfstoff empfohlen <vaccination_brand>. \n",
+            "Für Sie wird folgender Impfstoff empfohlen: <vaccination_brand>. \n",
         "next_possible_date_first_alternative": "Sie können sich mit <vaccination_brand> ab dem <date> impfen lassen.",
         "next_possible_date_second_dose_alternative": "Sie können sich mit <vaccination_brand> ab dem <date> impfen lassen.",
         "next_possible_date_booster_infection_alternative": "Sie können sich mit <vaccination_brand> ab dem <date> impfen lassen.",

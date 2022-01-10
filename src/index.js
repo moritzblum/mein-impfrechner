@@ -295,7 +295,7 @@ class Form_body_unregistered_vaccination_date extends React.Component {
     render() {
         return (
             <div>
-                <div>{texts_german["symptoms_end_date"]["instructions"]}</div>
+                <div>{texts_german["unregistered_vaccination_date"]["instructions"]}</div>
                 <br/>
                 <br/>
                 <label htmlFor="datepicker_infection" data-bs-toggle="modal"
@@ -522,22 +522,56 @@ class Card_start extends React.Component {
 
     render() {
         return (
-            <div className="vc-card container" id="card_start" >
-                <div className="row justify-content-md-center">
-                        <div className="vc-card-header">
-                            <div className="col-sm" style={{textAlign: "center"}}>
-                                <h1 className="card-title" >{texts_german["start"]["header"]}</h1>
-                            </div>
-                        </div>
-
-                        <div className="vc-card-body">
-                            <div className="col" style={{"position": "relative", "textAlign": "center", "padding": "20% 0%"}}>
-                                <button type="button" className="button-start button_next" id="card_start_button_next"
-                                        onClick={this.props.handler} style={{"fontSize":"40px"}}>  Starten
-                                </button>
-                            </div>
-                        </div>
+            <div>
+                <div className="main_page_text container" style={{"margin-top":"2%"}}>
+                    Der Impfrechner soll Ihnen helfen, Ihren Termin und die aktuelle Empfehlung für Sie zu ermitteln.
+                    Wir weisen ausdrücklich darauf hin, dass es sich bei Ihrem Ergebnis lediglich um eine Empfehlung
+                    handelt. <div style={{"color": "white", "text-decoration": "underline"}}> Die
+                    endgültige Entscheidung, welcher Termin und welcher Impfstoff am besten für Sie geeignet ist,
+                    treffen Sie gemeinsam mit der aufklärenden Person. </div>
                 </div>
+
+                <div className="vc-card vc-card-start container" id="card_start" >
+                    <div className="row justify-content-md-center">
+                            <div className="vc-card-header">
+                                <div className="col-sm" style={{textAlign: "center"}}>
+                                    <h1 className="card-title" >{texts_german["start"]["header"]}</h1>
+                                </div>
+                            </div>
+
+                            <div className="vc-card-body">
+                                <div className="col" style={{"position": "relative", "textAlign": "center", "padding": "20% 0%"}}>
+                                    <button type="button" className="button-start button_next" id="card_start_button_next"
+                                            onClick={this.props.handler} style={{"fontSize":"40px"}}>  Starten
+                                    </button>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+
+                <div className="main_page_text container" style={{"margin-bottom":"2%"}}>
+                    Die Berechnung basiert auf den Empfehlungen der Ständigen Impfkommission (STIKO) des
+                    Robert-Koch Instituts.
+                    Wir bemühen uns, die Änderungen möglichst zeitnah nach der Veröffentlichung zu
+                    berücksichtigen. Die aktuelle Version
+                    bildet den Stand vom <div style={{"color": "white", "text-decoration": "underline"}}>30.12.2021</div> ab.
+                </div>
+                <div className="main_page_text container" style={{"margin-bottom":"2%"}}>
+                    Die Sicherheit Ihrer Daten hat für uns große Priorität. Es werden keine Daten an uns
+                    oder Dritte übermittelt.
+                    Ihre Daten (Cookies) werden nur im Zeitraum Ihres Besuchs im Browser
+                    zwischengespeichert und anschließend gelöscht.
+                    Darüber hinaus ist der Impfrechner durch ein HTTPS/SSL Zertifikat verschlüsselt,
+                    damit niemand Ihre Daten abgreifen
+                    oder manipulieren kann.
+                    Unser Tool <div style={{"color": "white", "text-decoration": "underline"}}>mein-impfrechner.de</div> soll
+                    Ihnen helfen, die Masse an Informationen zu bündeln und eine einfache
+                    Lösung bieten, die für Sie passende Impfempfehlung zu ermitteln.
+                    Wir möchten uns nicht bereichern, daher ist der Rechner für alle kostenlos
+                    zugänglich (Open Source) und der
+                    Programmcode im GitHub einsehbar.
+                </div>
+
             </div>
         );
     }
@@ -553,15 +587,21 @@ class Card_result extends React.Component {
 
         // single output
         if (this.props.user_data["entered_data"]["value"].length === 1) {
-            result_text.push(this.props.user_data["entered_data"]["value"][0].split('\n').map(str => <p>{str}</p>));
+            result_text.push(this.props.user_data["entered_data"]["value"][0].split('\n').map(str => <div>{str}</div>));
         }
         // multiple outputs
         else {
-            result_text.push(<div key={"result_list_multiple_options_intro"}>{texts_german["results"]["multiple_options"]}</div>);
             const options = this.props.user_data["entered_data"]["value"];
-            for (var i = 0; i < options.length; i++) {
-                result_text.push(<li key={i}>{options[i].split('\n').map(str => <p>{str}</p>)}</li>);
+
+            result_text.push(options[0].split('\n').map(str => <div>{str}</div>));
+            result_text.push(<div><br/><br/></div>);
+            result_text.push(texts_german['results']["alternative"]);
+
+            let result_text_alternatives = [];
+            for (let i = 1; i < options.length; i++) {
+                result_text_alternatives.push(<li key={i}>{options[i].split('\n').map(str => <p>{str}</p>)}</li>);
             }
+            result_text.push(<ul>{result_text_alternatives}</ul>);
         }
 
         return(
@@ -579,15 +619,18 @@ class Card_result extends React.Component {
                             <br/>
                             <div key="k2">{texts_german["disclaimer"]}</div>
                             <br/>
-                            <h1>Ihre Angaben</h1>
+                            <h1>Ihre relevanten Angaben</h1>
                             <div key="k3">{vis_user_data(this.props.user_data)}</div>
+                            <br/>
+                            <br/>
+                            <br/>
                         </div>
 
                         <div className="" style={{"position": "absolute", "bottom": "2%", "top":"auto", "width":"100%"}}>
                             <div className="d-flex justify-content-between">
                                 <button className="button button_back" onClick={this.props.handler}
                                         id={this.props.id_back}>
-                                    Back
+                                    Zurück
                                 </button>
                             </div>
                         </div>
