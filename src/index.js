@@ -5,7 +5,7 @@ import {texts_german, constants, modal_risk_group_title, modal_risk_group_text, 
     modal_vaccinated_text, modal_got_unregistered_vaccination_title, modal_got_unregistered_vaccination_text,
     modal_past_infection_title, modal_past_infection_text, modal_infection_date_title, modal_infection_date_text,
     modal_symptoms_registered_title, modal_symptoms_registered_text, modal_symptoms_end_date_title,
-    modal_symptoms_end_date_text} from "./texts.js";
+    modal_symptoms_end_date_text, modal_pregnancy_week_title, modal_pregnancy_week_text} from "./texts.js";
 import * as form_logic from "./form_logic.js";
 import {is_valid_date_format} from"./date_operations.js"
 
@@ -58,11 +58,11 @@ function Modal_popup(props) {
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel" style={{"color": "gray"}}>{props.title}</h5>
+                        <h2 className="modal-title" id="exampleModalLabel" style={{"color": "gray", "fontWeight": "bold"}}>{props.title}</h2>
                         <button type="button" className="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"/>
                     </div>
-                    <div className="modal-body" style={{"color": "gray"}}>
+                    <div className="modal-body" style={{"color": "gray", fontSize: "0.7em"}}>
                         {props.text}
                     </div>
                     <div className="modal-footer">
@@ -161,6 +161,34 @@ class Form_body_vaccinated extends React.Component {
                     <div className="form-check">
                         <input className="form-check-input radio-validation" type="radio"  id="flexRadioDefault2" onChange={this.props.input_data_handler} name={this.props.input_name_vaccinated}  value={false}/>
                         <label className="form-check-label" htmlFor="flexRadioDefault2"> {texts_german["vaccinated"]["vaccinated_no"]} </label>
+                        <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
+                        <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
+                    </div>
+                </div>
+            </div>
+        )}
+}
+
+class Form_body_pregnancy_week extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div>
+                <div className="form-group">
+                    <label>{texts_german["pregnancy_week"]["instructions"]} <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_pregnancy_week"/></label>
+                    <Modal_popup button_id="modal_pregnancy_week" title={modal_pregnancy_week_title} text={modal_pregnancy_week_text} />
+                    <br/>
+                    <br/>
+                    <div className="form-check">
+                        <input className="form-check-input radio-validation" type="radio"  id="flexRadioDefault1" onChange={this.props.input_data_handler} name={this.props.input_name_pregnancy_week} value={true}/>
+                        <label className="form-check-label" htmlFor="flexRadioDefault1"> {texts_german["pregnancy_week"]["pregnancy_week_yes"]} </label>
+                    </div>
+                    <div className="form-check">
+                        <input className="form-check-input radio-validation" type="radio"  id="flexRadioDefault2" onChange={this.props.input_data_handler} name={this.props.input_name_pregnancy_week}  value={false}/>
+                        <label className="form-check-label" htmlFor="flexRadioDefault2"> {texts_german["pregnancy_week"]["pregnancy_week_no"]} </label>
                         <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
                         <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
                     </div>
@@ -524,11 +552,11 @@ class Card_start extends React.Component {
         return (
             <div>
                 <div className="main_page_text container" style={{"margin-top":"2%"}}>
-                    Die Berechnung basiert auf den Empfehlungen der <a href="https://www.rki.de/DE/Content/Infekt/EpidBull/epid_bull_node.html" style={{"color":"white", fontWeight: "bold"}}>Ständigen Impfkommission (STIKO) des
-                    Robert-Koch Instituts.</a>
+                    Die Berechnung basiert auf den Empfehlungen der <a href="https://www.rki.de/DE/Content/Infekt/EpidBull/epid_bull_node.html" style={{"color":"white"}}>Ständigen Impfkommission (STIKO) des
+                    Robert-Koch Instituts.</a> <br/>
                     Wir bemühen uns, die Änderungen möglichst zeitnah nach der Veröffentlichung zu
                     berücksichtigen. Die aktuelle Version
-                    bildet den Stand vom <a href="https://www.rki.de/DE/Content/Infekt/EpidBull/epid_bull_node.html" style={{"color": "white", fontWeight: "bold"}}>05.01.2022</a> ab.
+                    bildet den Stand vom <a href="https://www.rki.de/DE/Content/Infekt/EpidBull/epid_bull_node.html" style={{"color": "white"}}>05.01.2022</a> ab.
                 </div>
 
                 <div className="vc-card vc-card-start container" id="card_start" >
@@ -550,7 +578,7 @@ class Card_start extends React.Component {
                 </div>
 
                 <div className="main_page_text container" style={{"margin-bottom":"2%"}}>
-                    Die Sicherheit Ihrer Daten hat für uns große Priorität. Mehr dazu erfahren Sie <a href="information.html" style={{"color": "white", fontWeight: "bold"}}>hier</a>...
+                    Die Sicherheit Ihrer Daten hat für uns große Priorität. Mehr dazu erfahren Sie <a href="information.html" style={{"color": "white"}}>hier</a>...
                 </div>
 
             </div>
@@ -675,6 +703,12 @@ function vis_user_data (user_data) {
         }
     }
 
+    if ('pregnancy_week' in user_data['user_data']){
+        if (user_data['user_data']['pregnancy_week']['value']){
+            user_data_list.push(<li key='pregnancy_week'>{texts_german['pregnancy_week']["header"]}: {texts_german['pregnancy_week']['pregnancy_week_yes']}</li>);
+        }
+    }
+
     if ('vaccination_1' in user_data['user_data']){
         user_data_list.push(<li key='vaccination_1'>Impfung: {user_data['user_data']['vaccination_1']['value']}</li>);
     }
@@ -708,6 +742,9 @@ function button_id_2_card_id(button_id){
     }
     if (button_id.includes('_vaccinated_')){
         return 'vaccinated';
+    }
+    if (button_id.includes('_pregnancy_week_')){
+        return 'pregnancy_week';
     }
     if (button_id.includes('_past_infection_')){
         return 'past_infection';
@@ -793,7 +830,7 @@ class CardManager extends React.Component {
                     }
                 }
                 // radio-button selection
-                if (['vaccinated', 'past_infection', 'symptoms_registered', 'risk_group', 'pregnant', 'number_vaccinations', 'got_unregistered_vaccination'].includes(current_card_id)) {
+                if (['pregnancy_week', 'vaccinated', 'past_infection', 'symptoms_registered', 'risk_group', 'pregnant', 'number_vaccinations', 'got_unregistered_vaccination'].includes(current_card_id)) {
                     let element = document.getElementsByClassName("radio-validation");
 
                     if (this.state.entered_data['value'] === undefined) {
@@ -954,6 +991,15 @@ class CardManager extends React.Component {
                           handler={this.control_click_handler}
                           form_body={<Form_body_vaccinated input_data_handler={this.handleInputChange}
                                                            input_name_vaccinated='value'/>}/>
+                );
+            case 'pregnancy_week':
+                return (
+                    <Card title={texts_german["pregnancy_week"]["header"]}
+                          id_next={"card_pregnancy_week_next"}
+                          id_back={"card_pregnancy_week_back"}
+                          handler={this.control_click_handler}
+                          form_body={<Form_body_pregnancy_week input_data_handler={this.handleInputChange}
+                                                           input_name_pregnancy_week='value'/>}/>
                 );
             case 'past_infection':
                 return (

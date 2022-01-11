@@ -4,9 +4,11 @@ html {
 
 
 a {
-    color: gray;
-    text-decoration: none;
+    color: white;
+    text-decoration: underline;
 }
+
+
 
 .accordion-button {
     color: gray;
@@ -15,11 +17,7 @@ a {
     background-active: green;
 }
 
-a:hover {
-    color: black;
-    font-weight: bold;
-    text-decoration: none;
-}
+
 
 
 .virus {
