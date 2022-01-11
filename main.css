@@ -4,9 +4,11 @@ html {
 
 
 a {
-    color: gray;
-    text-decoration: none;
+    color: white;
+    text-decoration: underline;
 }
+
+
 
 .accordion-button {
     color: gray;
@@ -15,11 +17,7 @@ a {
     background-active: green;
 }
 
-a:hover {
-    color: black;
-    font-weight: bold;
-    text-decoration: none;
-}
+
 
 
 .virus {
@@ -84,6 +82,10 @@ body {
     line-height:1.26em;
 }
 
+
+
+
+
 .navbar, .navbar-brand{
     font-size: 1.2em;
 }
@@ -92,7 +94,14 @@ input[type="number"]
 {
     font-size:1.2em;
 }
+input[type="text"]
+{
+    font-size:1.2em;
+}
 
+.form-select{
+    font-size: 1em;
+}
 
 
 .button-start {
