@@ -9,15 +9,12 @@ a {
 }
 
 
-
 .accordion-button {
     color: gray;
     font-weight: bold;
     background: black;
     background-active: green;
 }
-
-
 
 
 .virus {
@@ -31,6 +28,7 @@ a {
     animation: orbit2 90s linear infinite;
 }
 
+
 .virus2 {
     position: absolute;
     fill: green;
@@ -43,15 +41,18 @@ a {
     transform: rotate(180deg);
 }
 
+
 @keyframes orbit2 {
     from { 	transform: rotate(0deg) translate(-150%) rotate(360deg); }
     to   {  transform: rotate(360deg) translate(-150%) rotate(-360deg); }
 }
 
+
 @keyframes orbit21 {
     from { 	transform: rotate(180deg) translate(-150%) rotate(360deg); }
     to   {  transform: rotate(540deg) translate(-150%) rotate(-360deg); }
 }
+
 
 .background{
     position: absolute;
@@ -59,6 +60,7 @@ a {
     width: 50%;
     height: 50%;
 }
+
 
 .background2{
     position: absolute;
@@ -83,12 +85,10 @@ body {
 }
 
 
-
-
-
 .navbar, .navbar-brand{
     font-size: 1.2em;
 }
+
 
 input[type="number"]
 {
@@ -103,7 +103,6 @@ input[type="date"]
 {
     font-size:1.2em;
 }
-
 .form-select{
     font-size: 1em;
 }
@@ -137,6 +136,7 @@ input[type="date"]
     color: gray;
     font-weight: bold;
 }
+
 .button:hover {
     background-color: gray;
     color: white;
@@ -211,13 +211,6 @@ h1 {
 }
 
 
-
-
-
-
-
-
-
 @media screen and (max-width: 700px) {
 
     html {
@@ -271,11 +264,6 @@ h1 {
         height: 80%;
         width: 95%;
     }
-
-
-
-
-
     footer{
         margin-top: 10%;
     }
