@@ -521,18 +521,19 @@ class DatePicker extends React.Component {
         datepicker_setting["onSelect"] = this.handle_date_selection_internal;
         datepicker_setting["name"] = this.props.date_picker_name;
 
-        window.$(this.refs.input_2).datepicker(datepicker_setting);
+        //window.$(this.refs.input_2).datepicker(datepicker_setting);
     }
 
     componentWillUnmount() {
-        window.$(this.refs.input_2).datepicker("destroy");
+        //window.$(this.refs.input_2).datepicker("destroy");
     }
 
     render() {
         return (
             <div>
-                <input id={this.props.date_picker_name} type="text" className="form-control date-validation" placeholder="bitte auswählen"
+                <input id={this.props.date_picker_name} type="date" className="form-control date-validation"
                        ref="input_2" onChange={this.handle_manual_change}/>
+
                 <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
                 <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
                 <div className="DatePicker" ref={this.datepickerContainer}/>
@@ -628,7 +629,7 @@ class Card_result extends React.Component {
                             <br/>
                             <div key="k2">{texts_german["disclaimer"]}</div>
                             <br/>
-                            <h1>Ihre relevanten Angaben</h1>
+                            <h1>Ihre Angaben</h1>
                             <div key="k3">{vis_user_data(this.props.user_data)}</div>
                             <br/>
                             <br/>

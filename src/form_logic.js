@@ -62,11 +62,7 @@ export function get_next_card(card_history, user_data) {
     let risk_group = (user_data['risk_group']['value'] == true);
     let pregnant = (user_data['pregnant']['value'] == true);
 
-    if (user_age <= constants['age_groups']['age_group_2'][1]) {
-        if (risk_group === false) {
-            return create_output('result_2', [texts_german["results"]["no_general_recommendation_too_young_no_risk"]]);
-        }
-    }
+
 
     if (!('past_infection' in user_data)) {
         return ['past_infection', {}];
@@ -118,33 +114,14 @@ export function get_next_card(card_history, user_data) {
     // komplett ungeimpft
     if (!(user_data['vaccinated']['value'])) {
 
-        let vaccination_possibilities = undefined; // BIONTECH/BIONTECH_MODERNA/BIONTECH_MODERNA_JOHNSSON
-
         let first_possible_date = date_operations.get_latest_date([Date.now(),
             date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
             date_operations.add_month_2_date(infection_date, 3),
             date_operations.add_weeks_2_date(symptoms_end_date, 4)]);
 
         if (past_infection) {
-            // young
-            if (user_age <= constants['age_groups']['age_group_2'][1] && risk_group) {
-                return create_output('result_5', [
-                    texts_german['results']['next_possible_date_booster_infection'].replaceAll
-                    ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
-                    ('<vaccination_brand>', texts_german['vaccines']['biontec']),
-                ]);
-            }
-            if (user_age <= constants['age_groups']['age_group_2'][1] && !risk_group) {
-                return create_output('result_4', [texts_german['results']['no_general_recommendation_too_young_no_risk']]);
-            }
-            // age <= 30
-            if ((user_age <= constants['age_groups']['age_group_4'][1]) || pregnant) {
-                return create_output('result_5', [
-                    texts_german['results']['next_possible_date_booster_infection'].replaceAll
-                    ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
-                    ('<vaccination_brand>', texts_german['vaccines']['biontec']),
-                ]);
-            } else {
+            // age >= 30
+            if ((user_age >= constants['age_groups']['age_group_5'][0]) && !pregnant) {
                 return create_output('result_6', [
                     texts_german['results']['next_possible_date_booster_infection'].replaceAll
                     ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
@@ -154,63 +131,93 @@ export function get_next_card(card_history, user_data) {
                     ('<vaccination_brand>', texts_german['vaccines']['moderna']),
                 ]);
             }
-
-        } else {
-            // young
-            if (user_age <= constants['age_groups']['age_group_2'][1] && !risk_group) {
-                return create_output('result_4', [texts_german['results']['no_general_recommendation_too_young_no_risk']]);
+            // age >= 12
+            if (user_age >= constants['age_groups']['age_group_3'][0] || pregnant) {
+                return create_output('result_5', [
+                    texts_german['results']['next_possible_date_booster_infection'].replaceAll
+                    ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
+                    ('<vaccination_brand>', texts_german['vaccines']['biontec']),
+                ]);
             }
+            // age < 12
+            if (user_age <= constants['age_groups']['age_group_2'][1]) {
+                if (risk_group === false) {
+                    return create_output('result_2', [
+                        texts_german['results']['no_recommendation_children_booster'].replaceAll
+                        ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
+                        ('<vaccination_brand>', texts_german['vaccines']['biontec'])
+                    ]);
+                }
+                else {
+                    return create_output('result_2', [
+                        texts_german['results']['recommendation_children_risk_booster'].replaceAll
+                        ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
+                        ('<vaccination_brand>', texts_german['vaccines']['biontec'])
+                    ]);
+                }
+            }
+            else {
+                console.log('ERROR')
+                create_output('result_25', texts_german['results']['error']);
+            }
+        } else {
             // age >= 60
             if ((user_age >= constants['age_groups']['age_group_6'][0]) && !pregnant) {
-                vaccination_possibilities = BIONTECH_MODERNA_JOHNSSON;
+                return create_output('result_7', [
+                        texts_german['results']['next_possible_date_first'].replaceAll
+                        ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
+                        ('<vaccination_brand>', texts_german['vaccines']['moderna']),
+                        texts_german['results']['next_possible_date_first_alternative'].replaceAll
+                        ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
+                        ('<vaccination_brand>', texts_german['vaccines']['biontec']),
+                        texts_german['results']['next_possible_date_first_alternative'].replaceAll
+                        ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
+                        ('<vaccination_brand>', texts_german['vaccines']['johnson']),
+                    ]
+                );
             }
             // age >= 30
             if ((user_age >= constants['age_groups']['age_group_5'][0]) && !pregnant) {
-                vaccination_possibilities = MODERNA_BIONTECH;
+                return create_output('result_6', [
+                    texts_german['results']['next_possible_date_first'].replaceAll
+                    ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
+                    ('<vaccination_brand>', texts_german['vaccines']['biontec']),
+                    texts_german['results']['next_possible_date_first_alternative'].replaceAll
+                    ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
+                    ('<vaccination_brand>', texts_german['vaccines']['moderna']),
+                ]);
             }
-            // age < 30, normal first vaccination
+            // age >= 12, normal first vaccination
+            if (user_age >= constants['age_groups']['age_group_3'][0] || pregnant) {
+                return create_output('result_5', [
+                    texts_german['results']['next_possible_date_first'].replaceAll
+                    ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
+                    ('<vaccination_brand>', texts_german['vaccines']['biontec']),
+                ]);
+            }
+            // age < 12
+            if (user_age <= constants['age_groups']['age_group_2'][1]) {
+                if (risk_group === false) {
+                    return create_output('result_2', [
+                        texts_german['results']['no_recommendation_children'].replaceAll
+                        ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
+                        ('<vaccination_brand>', texts_german['vaccines']['biontec'])
+                    ]);
+                }
+                else {
+                    return create_output('result_2', [
+                        texts_german['results']['recommendation_children_risk'].replaceAll
+                        ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
+                        ('<vaccination_brand>', texts_german['vaccines']['biontec'])
+                    ]);
+                }
+            }
             else {
-                vaccination_possibilities = BIONTECH;
+                console.log('ERROR')
+                create_output('result_25', texts_german['results']['error']);
             }
         }
 
-
-
-        if (vaccination_possibilities === BIONTECH) {
-            return create_output('result_5', [
-                texts_german['results']['next_possible_date_first'].replaceAll
-                ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
-                ('<vaccination_brand>', texts_german['vaccines']['biontec']),
-            ]);
-        }
-        if (vaccination_possibilities === MODERNA_BIONTECH) {
-            return create_output('result_6', [
-                texts_german['results']['next_possible_date_first'].replaceAll
-                ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
-                ('<vaccination_brand>', texts_german['vaccines']['biontec']),
-                texts_german['results']['next_possible_date_first_alternative'].replaceAll
-                ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
-                ('<vaccination_brand>', texts_german['vaccines']['moderna']),
-            ]);
-        }
-        if (vaccination_possibilities === BIONTECH_MODERNA_JOHNSSON) {
-            return create_output('result_7', [
-                texts_german['results']['next_possible_date_first'].replaceAll
-                ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
-                ('<vaccination_brand>', texts_german['vaccines']['moderna']),
-                texts_german['results']['next_possible_date_first_alternative'].replaceAll
-                ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
-                ('<vaccination_brand>', texts_german['vaccines']['biontec']),
-                texts_german['results']['next_possible_date_first_alternative'].replaceAll
-                ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
-                ('<vaccination_brand>', texts_german['vaccines']['johnson']),
-                ]
-            );
-        }
-        else {
-            console.log('ERROR')
-            create_output('result_25', texts_german['results']['error']);
-        }
     }
 
     if (!('number_vaccinations' in user_data)) {
@@ -258,147 +265,149 @@ export function get_next_card(card_history, user_data) {
     }
 
     // second shot
-    if (user_data['number_vaccinations']['value'] == 1 && !past_infection) {
-        let three_weeks_first_possible_date = date_operations.get_latest_date([Date.now(),
-            date_operations.add_weeks_2_date(vaccination_last_date, 3),
-            date_operations.add_weeks_2_date(unregistered_vaccination_date, 4)]).toLocaleDateString('de-DE');
-        let four_weeks_first_possible_date = date_operations.get_latest_date([Date.now(),
-            date_operations.add_weeks_2_date(vaccination_last_date, 4),
-            date_operations.add_weeks_2_date(unregistered_vaccination_date, 4)]).toLocaleDateString('de-DE');
-        let last_possible_date = date_operations.get_latest_date([Date.now(),
-            date_operations.add_weeks_2_date(vaccination_last_date, 6),
-            date_operations.add_weeks_2_date(unregistered_vaccination_date, 4)]).toLocaleDateString('de-DE');
+    if (user_data['number_vaccinations']['value'] == 1) {
 
-        // age <= 29
-        if ((user_age <= constants['age_groups']['age_group_4'][1]) ||pregnant) {
-            if (vaccination_history[0] !== texts_german['vaccines']['biontec']){
-                // bei Johnson Erstimpfung sollte mehr als 4 Wochen gewartet werden
-                return create_output('result_9', [
-                    texts_german['results']['second_vaccination_range'].replaceAll
-                    ('<vaccination_brand>', texts_german['vaccines']['biontec']).replaceAll
-                    ('<date_first>', four_weeks_first_possible_date).replaceAll
-                    ('<date_second>', last_possible_date)
-                ]);
-            } else {
-                // sonst reichen 3 Wochen (standard)
-                return create_output('result_10', [
-                    texts_german['results']['second_vaccination_range'].replaceAll
-                    ('<vaccination_brand>', texts_german['vaccines']['biontec']).replaceAll
-                    ('<date_first>', three_weeks_first_possible_date).replaceAll
-                    ('<date_second>', last_possible_date)
-                ]);
+        if (!past_infection){
+            let three_weeks_first_possible_date = date_operations.get_latest_date([Date.now(),
+                date_operations.add_weeks_2_date(vaccination_last_date, 3),
+                date_operations.add_weeks_2_date(unregistered_vaccination_date, 4)]).toLocaleDateString('de-DE');
+            let four_weeks_first_possible_date = date_operations.get_latest_date([Date.now(),
+                date_operations.add_weeks_2_date(vaccination_last_date, 4),
+                date_operations.add_weeks_2_date(unregistered_vaccination_date, 4)]).toLocaleDateString('de-DE');
+            let last_possible_date = date_operations.get_latest_date([Date.now(),
+                date_operations.add_weeks_2_date(vaccination_last_date, 6),
+                date_operations.add_weeks_2_date(unregistered_vaccination_date, 4)]).toLocaleDateString('de-DE');
+
+
+
+            // age >= 30
+            if ((user_age >= constants['age_groups']['age_group_5'][0]) && !pregnant) {
+                if ([texts_german['vaccines']['astra'],
+                    texts_german['vaccines']['johnson'],
+                    texts_german['vaccines']['moderna'] ].includes(vaccination_history[0])){
+                    // hier sollte 4 Wochen gewartet werden
+                    return create_output('result_9', [
+                        texts_german['results']['second_vaccination_range'].replaceAll
+                        ('<vaccination_brand>', texts_german['vaccines']['moderna']).replaceAll
+                        ('<date_first>', four_weeks_first_possible_date).replaceAll
+                        ('<date_second>', last_possible_date),
+                        texts_german['results']['second_vaccination_range_alternative'].replaceAll
+                        ('<vaccination_brand>', texts_german['vaccines']['biontec']).replaceAll
+                        ('<date_first>', four_weeks_first_possible_date).replaceAll
+                        ('<date_second>', last_possible_date)
+                    ]);
+
+                }
+                if (texts_german['vaccines']['biontec'] === vaccination_history[0] ){
+                    return create_output('result_9', [
+                        texts_german['results']['second_vaccination_range'].replaceAll
+                        ('<vaccination_brand>', texts_german['vaccines']['moderna']).replaceAll
+                        ('<date_first>', four_weeks_first_possible_date).replaceAll
+                        ('<date_second>', last_possible_date),
+                        texts_german['results']['second_vaccination_range_alternative'].replaceAll
+                        ('<vaccination_brand>', texts_german['vaccines']['biontec']).replaceAll
+                        ('<date_first>', three_weeks_first_possible_date).replaceAll
+                        ('<date_second>', last_possible_date)
+                    ]);
+                }
+                else {
+                    console.log('ERROR');
+                    return create_output('result_25', [texts_german['results']['error']]);
+                }
+            }
+            // age <= 29 or pregnant
+            else{
+                if (vaccination_history[0] !== texts_german['vaccines']['biontec']){
+                    // bei Johnson Erstimpfung sollte mehr als 4 Wochen gewartet werden
+                    return create_output('result_9', [
+                        texts_german['results']['second_vaccination_range'].replaceAll
+                        ('<vaccination_brand>', texts_german['vaccines']['biontec']).replaceAll
+                        ('<date_first>', four_weeks_first_possible_date).replaceAll
+                        ('<date_second>', last_possible_date)
+                    ]);
+                } else {
+                    // sonst reichen 3 Wochen (standard)
+                    return create_output('result_10', [
+                        texts_german['results']['second_vaccination_range'].replaceAll
+                        ('<vaccination_brand>', texts_german['vaccines']['biontec']).replaceAll
+                        ('<date_first>', three_weeks_first_possible_date).replaceAll
+                        ('<date_second>', last_possible_date)
+                    ]);
+                }
             }
         }
-        // age >= 30
+        // past infection
         else {
-            if ([texts_german['vaccines']['astra'],
-                texts_german['vaccines']['johnson']].includes(vaccination_history[0])){
-                // hier sollte 4 Wochen gewartet werden
-                return create_output('result_9', [
-                    texts_german['results']['second_vaccination_range'].replaceAll
-                    ('<vaccination_brand>', texts_german['vaccines']['moderna']).replaceAll
-                    ('<date_first>', four_weeks_first_possible_date).replaceAll
-                    ('<date_second>', last_possible_date),
-                    texts_german['results']['second_vaccination_range_alternative'].replaceAll
-                    ('<vaccination_brand>', texts_german['vaccines']['biontec']).replaceAll
-                    ('<date_first>', four_weeks_first_possible_date).replaceAll
-                    ('<date_second>', last_possible_date)
+            // Infektion innerhalb von 4 Wochen nach 1. Impfung
+            if ((vaccination_last_date <= infection_date) && (infection_date <= date_operations.add_weeks_2_date(vaccination_last_date, 4))){
+                // Grundimmunisierung durch Impfung nach 3 Monaten
+                let first_possible_date = date_operations.get_latest_date([
+                    Date.now(),
+                    date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
+                    date_operations.add_month_2_date(infection_date, 3),
+                    date_operations.add_weeks_2_date(symptoms_end_date, 4)
                 ]);
 
-            }
-            if (texts_german['vaccines']['biontec'] === vaccination_history[0] ){
-                return create_output('result_9', [
-                    texts_german['results']['second_vaccination_range'].replaceAll
-                    ('<vaccination_brand>', texts_german['vaccines']['moderna']).replaceAll
-                    ('<date_first>', four_weeks_first_possible_date).replaceAll
-                    ('<date_second>', last_possible_date),
-                    texts_german['results']['second_vaccination_range_alternative'].replaceAll
-                    ('<vaccination_brand>', texts_german['vaccines']['biontec']).replaceAll
-                    ('<date_first>', three_weeks_first_possible_date).replaceAll
-                    ('<date_second>', last_possible_date)
-                ]);
-            }
-            if (texts_german['vaccines']['moderna'] === vaccination_history[0]){
-                return create_output('result_9', [
-                    texts_german['results']['second_vaccination_range'].replaceAll
-                    ('<vaccination_brand>', texts_german['vaccines']['moderna']).replaceAll
-                    ('<date_first>', four_weeks_first_possible_date).replaceAll
-                    ('<date_second>', last_possible_date),
-                    texts_german['results']['second_vaccination_range_alternative'].replaceAll
-                    ('<vaccination_brand>', texts_german['vaccines']['biontec']).replaceAll
-                    ('<date_first>', four_weeks_first_possible_date).replaceAll
-                    ('<date_second>', last_possible_date)
-                ]);
+                // age >= 30
+                if ((user_age >= constants['age_groups']['age_group_5'][0]) && !pregnant) {
+                    return create_output('result_14', [
+                        texts_german['results']['second_vaccination_infection'].replaceAll
+                        ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
+                        ('<vaccination_brand>', texts_german['vaccines']['moderna']),
+                        texts_german['results']['second_vaccination_infection_alternative'].replaceAll
+                        ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
+                        ('<vaccination_brand>', texts_german['vaccines']['biontec']),
+                    ]);
+                }
+
+                // age >= 12 or pregnant
+                if (user_age >= constants['age_groups']['age_group_3'][0] || pregnant) {
+                    return create_output('result_13', [
+                        texts_german['results']['second_vaccination_infection'].replaceAll
+                        ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
+                        ('<vaccination_brand>', texts_german['vaccines']['biontec']),
+                    ]);
+                }
+                // <= 11
+                else {
+                    // TODO
+                    console.log('ERROR');
+                    return create_output('result_25', [texts_german['results']['error']]);
+                }
             }
             else {
-                console.log('ERROR');
-                return create_output('result_25', [texts_german['results']['error']]);
+                // nur noch Boostern nach 3 Monaten nötig
+                let first_possible_date = date_operations.get_latest_date([
+                    Date.now(),
+                    date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
+                    date_operations.add_month_2_date(infection_date, 3),
+                    date_operations.add_weeks_2_date(symptoms_end_date, 4),
+                    date_operations.add_month_2_date(vaccination_last_date, 3)
+                ]);
+
+                // age <= 30
+                if ((user_age <= constants['age_groups']['age_group_4'][1]) || pregnant) {
+                    return create_output('result_15', [
+                        texts_german['results']['next_possible_date_booster_infection'].replaceAll
+                        ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
+                        ('<vaccination_brand>', texts_german['vaccines']['biontec']),
+                    ]);
+                }
+                else {
+                    return create_output('result_16', [
+                        texts_german['results']['next_possible_date_booster_infection'].replaceAll
+                        ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
+                        ('<vaccination_brand>', texts_german['vaccines']['moderna']),
+                        texts_german['results']['next_possible_date_booster_infection_alternative'].replaceAll
+                        ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
+                        ('<vaccination_brand>', texts_german['vaccines']['biontec']),
+                    ]);
+                }
             }
         }
     }
 
-    if (user_data['number_vaccinations']['value'] == 1 && past_infection) {
 
-        // Infektion innerhalb von 4 Wochen nach 1. Impfung
-        if ((vaccination_last_date <= infection_date) && (infection_date <= date_operations.add_weeks_2_date(vaccination_last_date, 4))){
-            // Grundimmunisierung durch Impfung nach 3 Monaten
-            let first_possible_date = date_operations.get_latest_date([
-                Date.now(),
-                date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
-                date_operations.add_month_2_date(infection_date, 3),
-                date_operations.add_weeks_2_date(symptoms_end_date, 4)
-            ]);
-
-            // age <= 30
-            if ((user_age <= constants['age_groups']['age_group_4'][1]) || pregnant) {
-                return create_output('result_13', [
-                    texts_german['results']['second_vaccination_infection'].replaceAll
-                    ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
-                    ('<vaccination_brand>', texts_german['vaccines']['biontec']),
-                ]);
-            }
-            else {
-                return create_output('result_14', [
-                    texts_german['results']['second_vaccination_infection'].replaceAll
-                    ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
-                    ('<vaccination_brand>', texts_german['vaccines']['moderna']),
-                    texts_german['results']['second_vaccination_infection_alternative'].replaceAll
-                    ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
-                    ('<vaccination_brand>', texts_german['vaccines']['biontec']),
-                ]);
-
-            }
-        }
-        else {
-            // nur noch Boostern nach 3 Monaten nötig
-            let first_possible_date = date_operations.get_latest_date([
-                Date.now(),
-                date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
-                date_operations.add_month_2_date(infection_date, 3),
-                date_operations.add_weeks_2_date(symptoms_end_date, 4),
-                date_operations.add_month_2_date(vaccination_last_date, 3)
-            ]);
-
-            // age <= 30
-            if ((user_age <= constants['age_groups']['age_group_4'][1]) || pregnant) {
-                return create_output('result_15', [
-                    texts_german['results']['next_possible_date_booster_infection'].replaceAll
-                    ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
-                    ('<vaccination_brand>', texts_german['vaccines']['biontec']),
-                ]);
-            }
-            else {
-                return create_output('result_16', [
-                    texts_german['results']['next_possible_date_booster_infection'].replaceAll
-                    ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
-                    ('<vaccination_brand>', texts_german['vaccines']['moderna']),
-                    texts_german['results']['next_possible_date_booster_infection_alternative'].replaceAll
-                    ('<date>', first_possible_date.toLocaleDateString('de-DE')).replaceAll
-                    ('<vaccination_brand>', texts_german['vaccines']['biontec']),
-                ]);
-            }
-        }
-    }
 
 
     // third shot
