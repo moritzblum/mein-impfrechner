@@ -112,8 +112,22 @@ export const texts_german = {
     "results": {
         "really_old": "Bitte überprüfen Sie Ihre Angaben. Wenn Sie wirklich schon so lange gelebt haben, dann haut Sie auch Corona nicht mehr aus den Socken.",
         "no_general_recommendation": "Basierend auf der derzeitigen STIKO-Empfehlung und Ihren Angaben, wird für Sie aktuell keine Impfempfehlung ausgesprochen.\n* Im Zweifelsfall holen Sie sich ärztlichen Rat.",
-        "no_general_recommendation_too_young": "Basierend auf der derzeitigen STIKO-Empfehlung, wird für Sie aktuell keine Impfempfehlung ausgesprochen, da Sie unter 5 Jahre alt sind.\n* Im Zweifelsfall holen Sie sich ärztlichen Rat.",
-        "no_general_recommendation_too_young_no_risk": "Eingeschränkte Impfempfehlung. Der Impfstoff BioNTech (Comirnaty®) ist für die angegebene Altersgruppe zulässig, jedoch besteht aktuell noch keine generelle Impfempfehlung seitens der STIKO. Eine Impfung kann dennoch sinnvoll sein. Bitte besprechen Sie das weitere Vorgehen mit einer Kinderärztin oder einem Kinderarzt.",
+        "no_general_recommendation_too_young": "Basierend auf der derzeitigen STIKO-Empfehlung, wird für Sie aktuell keine Impfempfehlung ausgesprochen, " +
+            "da Sie unter 5 Jahre alt sind.\n* Im Zweifelsfall holen Sie sich ärztlichen Rat.",
+        "recommendation_children_risk": "Eingeschränkte Impfempfehlung: Es besteht aktuell noch keine generelle " +
+            "Impfempfehlung seitens der STIKO. Eine Impfung kann dennoch sinnvoll sein. Bitte besprechen Sie das weitere Vorgehen " +
+            "mit einer Kinderärztin oder einem Kinderarzt. Es kommt eine Impfung mit <vaccination_brand> ab dem <date> in Frage.",
+        "no_recommendation_children": "Keine Impfempfehlung: Es besteht aktuell noch keine " +
+            "generelle Impfempfehlung seitens der STIKO. Eine Impfung kann dennoch sinnvoll sein. Bitte besprechen " +
+            "Sie das weitere Vorgehen mit einer Kinderärztin oder einem Kinderarzt. Es kommt eine Impfung " +
+            "mit <vaccination_brand> ab dem <date> in Frage.",
+        "recommendation_children_risk_booster": "Eingeschränkte Impfempfehlung: Es besteht aktuell noch keine generelle " +
+            "Impfempfehlung seitens der STIKO. Eine „Booster-/Auffrischimpfung“ kann dennoch sinnvoll sein. Bitte besprechen Sie das weitere Vorgehen " +
+            "mit einer Kinderärztin oder einem Kinderarzt. Es kommt eine Impfung mit <vaccination_brand> ab dem <date> in Frage.",
+        "no_recommendation_children_booster": "Keine Impfempfehlung: Es besteht aktuell noch keine " +
+            "generelle Impfempfehlung seitens der STIKO. Eine „Booster-/Auffrischimpfung“ kann dennoch sinnvoll sein. Bitte besprechen " +
+            "Sie das weitere Vorgehen mit einer Kinderärztin oder einem Kinderarzt. Es kommt eine Impfung " +
+            "mit <vaccination_brand> ab dem <date> in Frage.",
         "no_general_recommendation_pregnant": "Basierend auf der derzeitigen STIKO-Empfehlung, wird für Sie aktuell keine Impfempfehlung ausgesprochen, da Sie sich im ersten Trimenon befinden.\n* Im Zweifelsfall holen Sie sich ärztlichen Rat.",
         "contact_dr": "Basierend auf der derzeitigen STIKO- Empfehlung und Ihren Angaben, können wir leider keine generelle Impfempfehlung aussprechen. Bitte besprechen Sie Ihre persönliche Situation mit einer Ärztin/ einem Arzt.",
         "no_recommendation_symptoms": "Basierend auf der derzeitigen STIKO- Empfehlung sollten Sie mit der Impfung warten, " +
