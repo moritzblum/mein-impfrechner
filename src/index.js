@@ -76,7 +76,7 @@ function Modal_popup(props) {
 }
 
 
-class Form_body_vaccination_last extends React.Component {
+class Form_body_vaccination_brand_date_1 extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -85,13 +85,13 @@ class Form_body_vaccination_last extends React.Component {
         return (
             <div>
                 <div className="form-group">
-                    <div>{texts_german["vaccination_last"]["instructions"]}</div>
+                    <div>{texts_german["vaccination_brand_date"]["instructions"]}</div>
                     <br/>
 
-                    <label>{texts_german["vaccination_last"]["vaccination_label"]}</label>
-                    <select className="form-select select-validation" id="exampleFormControlSelect1"
+                    <label>{texts_german["vaccination_brand_date"]["vaccination_label"]}</label>
+                    <select className="form-select select-validation" id={this.props.select_id}
                             onChange={this.props.input_data_handler} name={this.props.input_name_vaccine}>
-                        <option value>{texts_german["vaccination_last"]["vaccination_instruction"]}</option>
+                        <option value>{texts_german["vaccination_brand_date"]["vaccination_instruction"]}</option>
                         <option>{texts_german["vaccines"]["biontec"]}</option>
                         <option>{texts_german["vaccines"]["moderna"]}</option>
                         <option>{texts_german["vaccines"]["astra"]}</option>
@@ -102,7 +102,43 @@ class Form_body_vaccination_last extends React.Component {
                     <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
 
                     <div className="form-group">
-                        <label>{texts_german["vaccination_last"]["date_labe"]}</label>
+                        <label>{texts_german["vaccination_brand_date"]["date_labe"]}</label>
+                        <DatePicker onChange={this.props.input_data_handler}
+                                    date_picker_name={this.props.input_name_vaccination_date}/>
+                    </div>
+                </div>
+
+            </div>);
+    }
+}
+
+class Form_body_vaccination_brand_date_2 extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div>
+                <div className="form-group">
+                    <div>{texts_german["vaccination_brand_date"]["instructions"]}</div>
+                    <br/>
+
+                    <label>{texts_german["vaccination_brand_date"]["vaccination_label"]}</label>
+                    <select className="form-select select-validation" id={this.props.select_id}
+                            onChange={this.props.input_data_handler} name={this.props.input_name_vaccine}>
+                        <option value>{texts_german["vaccination_brand_date"]["vaccination_instruction"]}</option>
+                        <option>{texts_german["vaccines"]["biontec"]}</option>
+                        <option>{texts_german["vaccines"]["moderna"]}</option>
+                        <option>{texts_german["vaccines"]["astra"]}</option>
+                        <option>{texts_german["vaccines"]["johnson"]}</option>
+                        <option>{texts_german["vaccines"]["novavax"]}</option>
+                    </select>
+                    <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
+                    <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
+
+                    <div className="form-group">
+                        <label>{texts_german["vaccination_brand_date"]["date_labe"]}</label>
                         <DatePicker onChange={this.props.input_data_handler}
                                     date_picker_name={this.props.input_name_vaccination_date}/>
                     </div>
@@ -520,19 +556,14 @@ class DatePicker extends React.Component {
         let datepicker_setting = datepicker_german;
         datepicker_setting["onSelect"] = this.handle_date_selection_internal;
         datepicker_setting["name"] = this.props.date_picker_name;
-
-        window.$(this.refs.input_2).datepicker(datepicker_setting);
-    }
-
-    componentWillUnmount() {
-        window.$(this.refs.input_2).datepicker("destroy");
     }
 
     render() {
         return (
             <div>
-                <input id={this.props.date_picker_name} type="text" className="form-control date-validation" placeholder="bitte auswählen"
+                <input id={this.props.date_picker_name} type="date" className="form-control date-validation" placeholder="bitte auswählen"
                        ref="input_2" onChange={this.handle_manual_change}/>
+
                 <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
                 <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
                 <div className="DatePicker" ref={this.datepickerContainer}/>
@@ -710,15 +741,11 @@ function vis_user_data (user_data) {
     }
 
     if ('vaccination_1' in user_data['user_data']){
-        user_data_list.push(<li key='vaccination_1'>Impfung: {user_data['user_data']['vaccination_1']['value']}</li>);
+        user_data_list.push(<li key='vaccination_1'>Impfung 1: {user_data['user_data']['vaccination_1']['value']} am {user_data['user_data']['vaccination_1']['date']}</li>);
     }
 
     if ('vaccination_2' in user_data['user_data']){
-        user_data_list.push(<li key='vaccination_2'>Impfung: {user_data['user_data']['vaccination_2']['value']}</li>);
-    }
-
-    if ('vaccination_last' in user_data['user_data']) {
-        user_data_list.push(<li key='vaccination_last'>Letzte Impfung: {user_data['user_data']['vaccination_last']['value']} am {user_data['user_data']['vaccination_last']['date']}</li>);
+        user_data_list.push(<li key='vaccination_2'>Impfung 2: {user_data['user_data']['vaccination_1']['value']} am {user_data['user_data']['vaccination_1']['date']}</li>);
     }
 
     return <div>{user_data_list}</div>;
@@ -734,11 +761,11 @@ function button_id_2_card_id(button_id){
     if (button_id.includes('_unregistered_vaccination_date_')){
         return 'unregistered_vaccination_date';
     }
-    if (button_id.includes('_vaccination_last_')){
-        return 'vaccination_last';
-    }
     if (button_id.includes('_vaccination_1_')){
         return 'vaccination_1';
+    }
+    if (button_id.includes('_vaccination_2_')){
+        return 'vaccination_2';
     }
     if (button_id.includes('_vaccinated_')){
         return 'vaccinated';
@@ -849,7 +876,7 @@ class CardManager extends React.Component {
                     }
                 }
                 // date
-                if (['vaccination_last', 'infection_date', 'symptoms_end_date', 'unregistered_vaccination_date'].includes(current_card_id)) {
+                if (['vaccination_brand_date', 'infection_date', 'symptoms_end_date', 'unregistered_vaccination_date'].includes(current_card_id)) {
                     let element = document.getElementsByClassName("date-validation");
 
                     if (this.state.entered_data['date'] === undefined || !(is_valid_date_format(this.state.entered_data['date']))) {
@@ -868,7 +895,7 @@ class CardManager extends React.Component {
                     }
                 }
                 // select
-                if (['vaccination_last', 'vaccination_1'].includes(current_card_id)) {
+                if (['vaccination_1', 'vaccination_2'].includes(current_card_id)) {
                     let element = document.getElementsByClassName("select-validation");
 
                     if (this.state.entered_data['value'] === undefined || this.state.entered_data['value'] === '' || this.state.entered_data['value'] === true) {
@@ -884,7 +911,6 @@ class CardManager extends React.Component {
                             element[i].classList.add("is-valid");
                         }
                     }
-
                 }
 
                 if (invalid) {
@@ -945,43 +971,27 @@ class CardManager extends React.Component {
                 return (
                     <Card_start handler={this.control_click_handler}/>
                 );
-
-            case 'vaccination_last':
-                return (
-                    <Card title={texts_german["vaccination_last"]["header"]}
-                          id_next={"card_vaccination_last_next"}
-                          id_back={"card_vaccination_last_back"}
-                          handler={this.control_click_handler}
-                          form_body={<Form_body_vaccination_last input_data_handler={this.handleInputChange}
-                                                            input_name_vaccine='value'
-                                                            input_name_vaccination_date='date'/>}/>
-                );
             case 'vaccination_1':
                 return (
-                    <Card title={texts_german["vaccination_x"]["header"]}
+                    <Card title={texts_german["vaccination_brand_date"]["header"]}
                           id_next={"card_vaccination_1_next"}
-                          id_back={"card_vaccination_1_back"}
+                          id_back={"card_vaccination_1_next"}
                           handler={this.control_click_handler}
-                          form_body={<Form_body_vaccination_x input_data_handler={this.handleInputChange}
-                                                            input_name_vaccine='value' />}/>
+                          form_body={<Form_body_vaccination_brand_date_1 input_data_handler={this.handleInputChange}
+                                                                       input_name_vaccine='value'
+                                                                       input_name_vaccination_date='date'
+                                                                       select_id='exampleFormControlSelect1'/>}/>
                 );
             case 'vaccination_2':
                 return (
-                    <Card title={texts_german["vaccination_x"]["header"]}
+                    <Card title={texts_german["vaccination_brand_date"]["header"]}
                           id_next={"card_vaccination_2_next"}
-                          id_back={"card_vaccination_2_back"}
+                          id_back={"card_vaccination_2_next"}
                           handler={this.control_click_handler}
-                          form_body={<Form_body_vaccination_x input_data_handler={this.handleInputChange}
-                                                              input_name_vaccine='value' />}/>
-                );
-            case 'vaccination_3':
-                return (
-                    <Card title={texts_german["vaccination_x"]["header"]}
-                          id_next={"card_vaccination_3_next"}
-                          id_back={"card_vaccination_3_back"}
-                          handler={this.control_click_handler}
-                          form_body={<Form_body_vaccination_x input_data_handler={this.handleInputChange}
-                                                              input_name_vaccine='value' />}/>
+                          form_body={<Form_body_vaccination_brand_date_2 input_data_handler={this.handleInputChange}
+                                                                       input_name_vaccine='value'
+                                                                       input_name_vaccination_date='date'
+                                                                       select_id='exampleFormControlSelect2'/>}/>
                 );
             case 'vaccinated':
                 return (
