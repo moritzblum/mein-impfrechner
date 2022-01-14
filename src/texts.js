@@ -110,12 +110,12 @@ export const texts_german = {
         "novavax": "Novavax (Nuvaxovid®)"
     },
     "results": {
+        "infection_2_vaccinations_enough": "durch Ihre infektion und 2 Impfungen haben sie genug impfschutz",
         "really_old": "Bitte überprüfen Sie Ihre Angaben. Wenn Sie wirklich schon so lange gelebt haben, dann haut Sie auch Corona nicht mehr aus den Socken.",
         "no_general_recommendation": "Basierend auf der derzeitigen STIKO-Empfehlung und Ihren Angaben, wird für Sie aktuell keine Impfempfehlung ausgesprochen.\n* Im Zweifelsfall holen Sie sich ärztlichen Rat.",
         "no_general_recommendation_too_young": "Basierend auf der derzeitigen STIKO-Empfehlung, wird für Sie aktuell keine Impfempfehlung ausgesprochen, da Sie unter 5 Jahre alt sind.\n* Im Zweifelsfall holen Sie sich ärztlichen Rat.",
         "no_general_recommendation_too_young_no_risk": "Eingeschränkte Impfempfehlung. Der Impfstoff BioNTech (Comirnaty®) ist für die angegebene Altersgruppe zulässig, jedoch besteht aktuell noch keine generelle Impfempfehlung seitens der STIKO. Eine Impfung kann dennoch sinnvoll sein. Bitte besprechen Sie das weitere Vorgehen mit einer Kinderärztin oder einem Kinderarzt.",
         "no_general_recommendation_too_young_booster": "Basierend auf der derzeitigen STIKO-Empfehlung, wird für Sie aktuell keine „Booster-/Auffrischimpfung“ ausgesprochen, da Sie unter 11 Jahre alt sind.\n* Im Zweifelsfall holen Sie sich ärztlichen Rat.",
-
         "no_general_recommendation_pregnant": "Basierend auf der derzeitigen STIKO-Empfehlung, wird für Sie aktuell keine Impfempfehlung ausgesprochen, da Sie sich im ersten Trimenon befinden.\n* Im Zweifelsfall holen Sie sich ärztlichen Rat.",
         "contact_dr": "Basierend auf der derzeitigen STIKO- Empfehlung und Ihren Angaben, können wir leider keine generelle Impfempfehlung aussprechen. Bitte besprechen Sie Ihre persönliche Situation mit einer Ärztin/ einem Arzt.",
         "no_recommendation_symptoms": "Basierend auf der derzeitigen STIKO- Empfehlung sollten Sie mit der Impfung warten, " +
