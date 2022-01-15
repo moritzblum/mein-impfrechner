@@ -363,8 +363,8 @@ class Form_body_symptoms_registered extends React.Component {
                     </label>
                 </div>
                 <div className="form-check">
-                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault4" onChange={this.props.input_data_handler} name={this.props.input_name_symptoms} value={'past'}/>
-                    <label className="form-check-label" htmlFor="flexRadioDefault4">
+                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault5" onChange={this.props.input_data_handler} name={this.props.input_name_symptoms} value={'past'}/>
+                    <label className="form-check-label" htmlFor="flexRadioDefault5">
                         {texts_german["symptoms_registered"]["past"]}
                     </label>
                     <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
@@ -399,8 +399,8 @@ class Form_body_number_vaccinations extends React.Component {
                     </label>
                 </div>
                 <div className="form-check">
-                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault4" onChange={this.props.input_data_handler} name={this.props.input_name_number_vaccinations} value={3}/>
-                    <label className="form-check-label" htmlFor="flexRadioDefault4">
+                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault5" onChange={this.props.input_data_handler} name={this.props.input_name_number_vaccinations} value={3}/>
+                    <label className="form-check-label" htmlFor="flexRadioDefault5">
                         {texts_german["number_vaccinations"]["three"]}
                     </label>
                     <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
