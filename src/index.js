@@ -522,6 +522,12 @@ class DatePicker extends React.Component {
         let datepicker_setting = datepicker_german;
         datepicker_setting["onSelect"] = this.handle_date_selection_internal;
         datepicker_setting["name"] = this.props.date_picker_name;
+
+        window.$(this.refs.input_2).datepicker(datepicker_setting);
+    }
+
+    componentWillUnmount() {
+        window.$(this.refs.input_2).datepicker("destroy");
     }
 
     render() {
@@ -625,7 +631,7 @@ class Card_result extends React.Component {
                             <br/>
                             <div key="k2">{texts_german["disclaimer"]}</div>
                             <br/>
-                            <h1>Ihre relevanten Angaben</h1>
+                            <h1>Ihre Angaben</h1>
                             <div key="k3">{vis_user_data(this.props.user_data)}</div>
                             <br/>
                             <br/>
@@ -726,6 +732,9 @@ function button_id_2_card_id(button_id){
     }
     if (button_id.includes('_unregistered_vaccination_date_')){
         return 'unregistered_vaccination_date';
+    }
+    if (button_id.includes('_vaccination_last_')){
+        return 'vaccination_last';
     }
     if (button_id.includes('_vaccination_1_')){
         return 'vaccination_1';
@@ -946,6 +955,15 @@ class CardManager extends React.Component {
                                                                          input_data_handler={this.handleInputChange}
                                                                          input_name_vaccine='value'
                                                                          input_name_vaccination_date='date'/>}/>
+                );
+            case 'vaccination_1':
+                return (
+                    <Card title={texts_german["vaccination_x"]["header"]}
+                          id_next={"card_vaccination_1_next"}
+                          id_back={"card_vaccination_1_back"}
+                          handler={this.control_click_handler}
+                          form_body={<Form_body_vaccination_x input_data_handler={this.handleInputChange}
+                                                            input_name_vaccine='value' />}/>
                 );
             case 'vaccination_2':
                 console.log('render2');
