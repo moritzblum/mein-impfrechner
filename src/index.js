@@ -62,7 +62,7 @@ function Modal_popup(props) {
                         <button type="button" className="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"/>
                     </div>
-                    <div className="modal-body" style={{"color": "gray", fontSize: "0.7em"}}>
+                    <div className="modal-body">
                         {props.text}
                     </div>
                     <div className="modal-footer">
@@ -89,24 +89,44 @@ class Form_body_vaccination_brand_date_1 extends React.Component {
                     <div>{texts_german["vaccination_brand_date"]["instructions"]}</div>
                     <br/>
 
-                    <label>{texts_german["vaccination_brand_date"]["vaccination_label"]}</label>
-                    <select className="form-select select-validation"
-                            onChange={this.props.input_data_handler} name={this.props.input_name_vaccine} defaultValue="none">
-                        <option value='none' disabled>{texts_german["vaccination_brand_date"]["vaccination_instruction"]}</option>
-                        <option value={texts_german["vaccines"]["biontec"]}>{texts_german["vaccines"]["biontec"]}</option>
-                        <option value={texts_german["vaccines"]["moderna"]}>{texts_german["vaccines"]["moderna"]}</option>
-                        <option value={texts_german["vaccines"]["astra"]}>{texts_german["vaccines"]["astra"]}</option>
-                        <option value={texts_german["vaccines"]["johnson"]}>{texts_german["vaccines"]["johnson"]}</option>
-                        <option value={texts_german["vaccines"]["novavax"]}>{texts_german["vaccines"]["novavax"]}</option>
-                    </select>
-                    <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
-                    <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
 
-                    <div className="form-group">
-                        <label>{texts_german["vaccination_brand_date"]["date_labe"]}</label>
-                        <DatePicker onChange={this.props.input_data_handler}
-                                    date_picker_name={this.props.input_name_vaccination_date}/>
+                    <div className="container" style={{"width":"90%"}}>
+                        <div className="row">
+                            <div className="col">
+                                <label>{texts_german["vaccination_brand_date"]["vaccination_label"]}:</label>
+                            </div>
+                            <div className="col-md-auto">
+                                <select className="form-select select-validation"
+                                        onChange={this.props.input_data_handler} name={this.props.input_name_vaccine} defaultValue="none">
+                                    <option value='none' disabled>{texts_german["vaccination_brand_date"]["vaccination_instruction"]}</option>
+                                    <option value={texts_german["vaccines"]["biontec"]}>{texts_german["vaccines"]["biontec"]}</option>
+                                    <option value={texts_german["vaccines"]["moderna"]}>{texts_german["vaccines"]["moderna"]}</option>
+                                    <option value={texts_german["vaccines"]["astra"]}>{texts_german["vaccines"]["astra"]}</option>
+                                    <option value={texts_german["vaccines"]["johnson"]}>{texts_german["vaccines"]["johnson"]}</option>
+                                    <option value={texts_german["vaccines"]["novavax"]}>{texts_german["vaccines"]["novavax"]}</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <br/>
+                        <div className="row">
+                            <div className="col">
+                                <label>{texts_german["vaccination_brand_date"]["date_labe"]}:</label>
+                            </div>
+                            <div className="col-md-auto">
+                                <DatePicker onChange={this.props.input_data_handler}
+                                            date_picker_name={this.props.input_name_vaccination_date}/>
+                            </div>
+
+                        </div>
                     </div>
+
+
+
+
+
+
+
                 </div>
 
             </div>);
@@ -471,7 +491,7 @@ class Form_body_age extends React.Component {
 
     render(){
         return(
-            <div >
+            <div className="vc-card-in">
                 <label>{texts_german["age"]["instructions"]}</label>
                 <br/>
                 <br/>
@@ -523,11 +543,11 @@ class DatePicker extends React.Component {
         datepicker_setting["onSelect"] = this.handle_date_selection_internal;
         datepicker_setting["name"] = this.props.date_picker_name;
 
-        window.$(this.refs.input_2).datepicker(datepicker_setting);
+        //window.$(this.refs.input_2).datepicker(datepicker_setting);
     }
 
     componentWillUnmount() {
-        window.$(this.refs.input_2).datepicker("destroy");
+        //window.$(this.refs.input_2).datepicker("destroy");
     }
 
     render() {
@@ -536,9 +556,7 @@ class DatePicker extends React.Component {
                 <input id={this.props.date_picker_name} type="date" className="form-control date-validation" placeholder="bitte auswählen"
                        ref="input_2" onChange={this.handle_manual_change}/>
 
-                <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
-                <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
-                <div className="DatePicker" ref={this.datepickerContainer}/>
+               <div className="DatePicker" ref={this.datepickerContainer}/>
             </div>
         );
     }
@@ -550,6 +568,7 @@ class Card_start extends React.Component {
     constructor(props) {
         super(props);
     }
+
 
     render() {
         return (
@@ -851,7 +870,7 @@ class CardManager extends React.Component {
                     }
                 }
                 // date
-                if (['vaccination_brand_date', 'infection_date', 'symptoms_end_date', 'unregistered_vaccination_date'].includes(current_card_id)) {
+                if (['vaccination_1', 'vaccination_1', 'vaccination_brand_date', 'infection_date', 'symptoms_end_date', 'unregistered_vaccination_date'].includes(current_card_id)) {
                     let element = document.getElementsByClassName("date-validation");
 
                     if (this.state.entered_data['date'] === undefined || !(is_valid_date_format(this.state.entered_data['date']))) {

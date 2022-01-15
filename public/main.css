@@ -2,21 +2,298 @@ html {
     height: 100%;
 }
 
+body {
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+    background-color: #69a5a4;
+    color: white;
+    font-family:Helvetica, sans-serif;
+    font-style:normal;
+    letter-spacing:0;
+    text-rendering:geometricPrecision;
+    text-decoration:none;
+    font-size: 1.2em;
+    line-height:1.26em;
+}
+
+.navbar, .navbar-brand{
+    font-size: 1.2em;
+}
+
+h1 {
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+h2 {
+    font-weight: bold;
+    color: white;
+}
 
 a {
     color: white;
     text-decoration: underline;
 }
 
-
-
-.accordion-button {
-    color: gray;
-    font-weight: bold;
-    background: black;
-    background-active: green;
+textarea{
+    font-size:1.2em;
 }
 
+input[type="text"]
+{
+    font-size:1em;
+}
+
+.vc-card input[type="number"] {
+    font-size:1em;
+}
+.vc-card input[type="text"] {
+    font-size:1.2em;
+    width: 5em;
+}
+
+.vc-card input[type="date"] {
+    font-size:1.2em;
+    width: 10em;
+}
+
+.vc-card select{
+    font-size:1.2em;
+    width: 10em;
+}
+
+.vc-card{
+    font-size: 1.5em;
+    line-height:1.26em;
+    position:relative;
+    width: 700px;
+    height: 550px;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom:10%;
+    margin-top:10%;
+}
+
+.vc-card-start{
+    margin-bottom:5%;
+    margin-top:5%;
+}
+
+.vc-card-header{
+    padding-top: 2.5%;
+    color:gray;
+    font-size: 4vh;
+}
+
+.vc-card-body{
+    background-color: #69a5a4;
+    position: absolute;
+    top: 15%;
+    right: 2%;
+    height: 83%;
+    width: 96%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 4%;
+    border-radius: 5px;
+}
+
+.vc-result::-webkit-scrollbar {
+    display: none;
+    padding: 2%;
+}
+.vc-result{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    padding: 2%;
+}
+
+.modal{
+    color: gray;
+    font-size: 1em;
+}
+
+.modal a{
+    color:gray;
+    text-decoration: underline;
+}
+
+.modal a:hover{
+    color:black;
+    text-decoration: underline;
+}
+
+.container {
+    display: table;
+}
+
+footer a {
+    color: gray;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.button-start {
+    background-color: white;
+    transition-duration: 0.4s;
+    padding: 32px 32px;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid gray;
+    border-radius: 5px;
+    color: gray;
+    font-weight: bold;
+}
+
+.button-start:hover {
+    background-color: gray;
+    color: white;
+}
+
+.button {
+    background-color: white;
+    transition-duration: 0.4s;
+    padding: 2% 4%;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid gray;
+    border-radius: 5px;
+    color: gray;
+    font-weight: bold;
+}
+
+.button:hover {
+    background-color: gray;
+    color: white;
+}
+
+.main_page_text{
+    position:relative;
+    width: 700px;
+}
+
+.footer {
+    position:relative;
+    width: 100%;
+    text-align: center;
+}
+
+.accordion {
+    background-color: #eee;
+    color: gray;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    transition: 0.4s;
+    font-weight: bold;
+}
+
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2212";
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    color: gray;
+    font-weight: normal;
+}
+
+
+@media screen and (max-width: 700px) {
+
+    html {
+        font-size: 1em;
+        height: 100%;
+    }
+
+    body {
+        height: 100%;
+        min-height: 100%;
+        position:relative;
+        font-size: 1.2em;
+    }
+
+    h1 {
+        margin-left: 20px;
+        font-weight: bold
+    }
+
+    h2 {
+        font-weight: bold
+    }
+
+    .vc-card{
+        position:relative;
+        height: 80%;
+        width: 95%;
+    }
+
+    .card-title{
+        margin-top: 2vh;
+        font-size: 3vh;
+        color: gray;
+    }
+
+    .vc-card-body{
+        top: 15%;
+        right: 2%;
+        height: 83%;
+        width: 96%;
+        padding-left: 2%;
+        padding-right: 2%;
+        padding-top: 4%;
+        border-radius: 5px;
+    }
+
+    .vc-card input[type="text"]
+    {
+        font-size:1.2em;
+        width: 80%;
+    }
+
+    .vc-card input[type="date"]
+    {
+        font-size:1.2em;
+        width: 80%;
+    }
+
+    .vc-card select{
+        font-size:1.2em;
+        width: 80%;
+    }
+
+    .main_page_text{
+        position:relative;
+        width: 100%;
+    }
+
+    footer{
+        margin-top: 10%;
+    }
+}
 
 
 
@@ -43,15 +320,6 @@ a {
     transform: rotate(180deg);
 }
 
-@keyframes orbit2 {
-    from { 	transform: rotate(0deg) translate(-150%) rotate(360deg); }
-    to   {  transform: rotate(360deg) translate(-150%) rotate(-360deg); }
-}
-
-@keyframes orbit21 {
-    from { 	transform: rotate(180deg) translate(-150%) rotate(360deg); }
-    to   {  transform: rotate(540deg) translate(-150%) rotate(-360deg); }
-}
 
 .background{
     position: absolute;
@@ -66,218 +334,13 @@ a {
     height: 50%;
 }
 
-
-body {
-    height: 100%;
-    min-height: 100%;
-    width: 100%;
-    background-color: #69a5a4;
-    color: white;
-    font-family:Helvetica, sans-serif;
-    font-style:normal;
-    letter-spacing:0;
-    text-rendering:geometricPrecision;
-    text-decoration:none;
-    font-size: 2em;
-    line-height:1.26em;
+@keyframes orbit2 {
+    from { 	transform: rotate(0deg) translate(-150%) rotate(360deg); }
+    to   {  transform: rotate(360deg) translate(-150%) rotate(-360deg); }
 }
 
-
-
-
-
-.navbar, .navbar-brand{
-    font-size: 1.2em;
-}
-
-input[type="number"]
-{
-    font-size:1.2em;
-}
-input[type="text"]
-{
-    font-size:1.2em;
-}
-
-input[type="date"]
-{
-    font-size:1.2em;
-}
-
-.form-select{
-    font-size: 1em;
-}
-
-
-.button-start {
-    background-color: white;
-    transition-duration: 0.4s;
-    padding: 32px 32px;
-    text-align: center;
-    text-decoration: none;
-    border: 2px solid gray;
-    border-radius: 5px;
-    color: gray;
-    font-weight: bold;
-}
-.button-start:hover {
-    background-color: gray;
-    color: white;
-}
-
-
-.button {
-    background-color: white;
-    transition-duration: 0.4s;
-    padding: 2% 4%;
-    text-align: center;
-    text-decoration: none;
-    border: 1px solid gray;
-    border-radius: 5px;
-    color: gray;
-    font-weight: bold;
-}
-.button:hover {
-    background-color: gray;
-    color: white;
-}
-
-.card-title{
-    color:gray;
-    font-size: 4vh;
-}
-
-
-h1 {
-    margin-left: 20px;
-}
-
-.main_page_text{
-    position:relative;
-    width: 700px;
-}
-
-
-
-.footer {
-    position:relative;
-    width: 100%;
-    text-align: center;
-}
-
-
-
-.vc-card{
-    position:relative;
-    width: 700px;
-    height: 550px;
-    background-color: white;
-    border-radius: 5px;
-    margin-bottom:10%;
-    margin-top:10%;
-}
-
-.vc-card-start{
-    margin-bottom:5%;
-    margin-top:5%;
-}
-
-.vc-card-header{
-    padding-top: 2.5%;
-}
-
-
-.vc-card-body{
-    background-color: #69a5a4;
-    position: absolute;
-    top: 15%;
-    right: 2%;
-    height: 83%;
-    width: 96%;
-    padding-left: 2%;
-    padding-right: 2%;
-    padding-top: 4%;
-    border-radius: 5px;
-}
-
-.vc-result::-webkit-scrollbar {
-    display: none;
-    padding: 2%;
-}
-.vc-result{
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-    padding: 2%;
-}
-
-
-
-
-
-
-
-
-
-@media screen and (max-width: 700px) {
-
-    html {
-        font-size: 1em;
-        height: 100%;
-    }
-
-    .card-title{
-        margin-top: 2vh;
-        font-size: 3vh;
-    }
-
-    .vc-card-body{
-        top: 15%;
-        right: 2%;
-        height: 83%;
-        width: 96%;
-        padding-left: 2%;
-        padding-right: 2%;
-        padding-top: 4%;
-        border-radius: 5px;
-    }
-
-
-    body {
-        height: 100%;
-        min-height: 100%;
-        position:relative;
-        font-size: 1.2em;
-    }
-
-
-
-    .h1 {
-        margin-left: 20px;
-    }
-
-    .main_page_text{
-        position:relative;
-        width: 100%;
-    }
-
-    .card {
-        position:relative;
-        width: 95%;
-        height: 95%;
-    }
-
-    .vc-card{
-        position:relative;
-        height: 80%;
-        width: 95%;
-    }
-
-
-
-
-
-    footer{
-        margin-top: 10%;
-    }
+@keyframes orbit21 {
+    from { 	transform: rotate(180deg) translate(-150%) rotate(360deg); }
+    to   {  transform: rotate(540deg) translate(-150%) rotate(-360deg); }
 }
 
