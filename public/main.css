@@ -1,3 +1,6 @@
+
+
+
 html {
     height: 100%;
 }
@@ -69,7 +72,7 @@ input[type="text"]
     position:relative;
     width: 700px;
     height: 550px;
-    background-color: white;
+    background-color: #f8f9fa;
     border-radius: 5px;
     margin-bottom:10%;
     margin-top:10%;
@@ -139,7 +142,7 @@ footer a:hover {
 }
 
 .button-start {
-    background-color: white;
+    background-color: #f8f9fa;
     transition-duration: 0.4s;
     padding: 32px 32px;
     text-align: center;
@@ -152,11 +155,11 @@ footer a:hover {
 
 .button-start:hover {
     background-color: gray;
-    color: white;
+    color: #f8f9fa;
 }
 
 .button {
-    background-color: white;
+    background-color: #f8f9fa;
     transition-duration: 0.4s;
     padding: 2% 4%;
     text-align: center;
@@ -169,7 +172,7 @@ footer a:hover {
 
 .button:hover {
     background-color: gray;
-    color: white;
+    color: #f8f9fa;
 }
 
 .main_page_text{
@@ -184,7 +187,7 @@ footer a:hover {
 }
 
 .accordion {
-    background-color: #eee;
+    background-color: #f8f9fa;
     color: gray;
     cursor: pointer;
     padding: 18px;
@@ -196,7 +199,7 @@ footer a:hover {
 }
 
 .active, .accordion:hover {
-    background-color: #ccc;
+    background-color: #f8f9fa;
 }
 
 .accordion:after {
@@ -227,7 +230,7 @@ footer a:hover {
 
 .panel {
     padding: 0 18px;
-    background-color: white;
+    background-color: #f8f9fa;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
@@ -235,8 +238,68 @@ footer a:hover {
     font-weight: normal;
 }
 
+#navbar-lg {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    background-color: #f8f9fa;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    font-size: 1.5em;
+
+}
+#navbar-sm {
+    display: none;
+    width: 100%;
+    background-color: white;
+    color: gray
+}
+
+#navbar-lg a{
+    text-decoration: none;
+    color: gray;
+}
+
+#navbar-lg a:hover{
+    text-decoration: none;
+    color: black;
+}
 
 @media screen and (max-width: 700px) {
+    #navbar-lg {
+        display: none;
+    }
+
+    #navbar-sm {
+        display: inline-block;
+    }
+
+    /* Hide the links inside the navigation menu (except for logo/home) */
+    .topnav #myLinks {
+        display: none;
+    }
+
+    /* Style the hamburger menu */
+    .topnav a.icon {
+        background: #f8f9fa;
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    /* Style navigation menu links */
+    .topnav a {
+        color: gray;
+        padding: 0.5em 0.5em;
+        padding-left: 2em;
+        text-decoration: none;
+        font-size: 1em;
+        display: block;
+    }
+    .topnav a:hover {
+        color: black;
+    }
 
     html {
         font-size: 1em;
@@ -261,7 +324,7 @@ footer a:hover {
 
     .vc-card{
         position:relative;
-        height: 80%;
+        height: 70%;
         width: 95%;
     }
 
@@ -304,9 +367,6 @@ footer a:hover {
         width: 100%;
     }
 
-    footer{
-        margin-top: 10%;
-    }
 }
 
 

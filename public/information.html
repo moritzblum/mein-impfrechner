@@ -31,32 +31,50 @@
 
 <body style="min-height: 100%">
 <!-- navbar -->
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-    <div class="container-fluid">
+<nav>
+    <div id="navbar-lg">
+        <a href="index.html">
+            <i class="fas fa-syringe"></i>
+            Mein Impfrechner
+        </a>
+        <a href="faq.html">
+            &nbsp;<i class="fas fa-question"></i>
+            FAQs
+        </a>
+        <a href="information.html" style="color: black">
+            &nbsp; <i class="fas fa-info"></i>
+            Informationen
+        </a>
+    </div>
 
-        <a class="navbar-brand" href="index.html" style="color: gray;"> <span><i class="fas fa-syringe"></i></span> Mein Impfrechner</a>
+    <div id="navbar-sm">
+        <div class="topnav">
+            <a href="index.html" style="font-weight: bold;"><i class="fas fa-syringe"></i> Mein Impfrechner</a>
+            <!-- Navigation links (hidden by default) -->
+            <div id="myLinks">
+                <a href="faq.html">FAQs</a>
+                <a href="information.html" style="color: black">Informationen</a>
+                <a href="impressum.html">Impressum</a>
+                <a href="datenschutz.html">Datenschutz</a>
+            </div>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a href="faq.html" class="nav-link">
-                        <i class="fas fa-question"></i>
-                        FAQs
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="information.html"  style="color: black;" class="nav-link">
-                        <i class="fas fa-info"></i>
-                        Informationen
-                    </a>
-                </li>
-            </ul>
+            <a href="javascript:void(0);" class="icon" onclick="menubar()">
+                <i class="fa fa-bars"></i>
+            </a>
         </div>
     </div>
+
+    <script>
+        function menubar() {
+            var x = document.getElementById("myLinks");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+    </script>
 </nav>
 
 <div class="background">
@@ -143,9 +161,7 @@
 
 
 
-
 </div>
-
 
 <br>
 <br>
@@ -159,7 +175,6 @@
 
 
 </body>
-
 
 <footer class="bg-light py-4">
     <div class="container text-center">
