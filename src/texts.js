@@ -8,7 +8,7 @@ export const texts_german = {
         "valid": "Eingabe ist valide",
         "invalid" : "Bitte machen Sie eine valide Eingabe, um fortzufahren"
     },
-    "vaccination_last": {
+    "vaccination_brand_date": {
         "header": "Letzte Corona-Schutzimpfung",
         "instructions": "Welcher Impfstoff wurde bei Ihrer letzten Corona-Schutzimpfung verimpft?",
         "vaccination_label": "Impfstoff",
@@ -112,22 +112,8 @@ export const texts_german = {
     "results": {
         "really_old": "Bitte überprüfen Sie Ihre Angaben. Wenn Sie wirklich schon so lange gelebt haben, dann haut Sie auch Corona nicht mehr aus den Socken.",
         "no_general_recommendation": "Basierend auf der derzeitigen STIKO-Empfehlung und Ihren Angaben, wird für Sie aktuell keine Impfempfehlung ausgesprochen.\n* Im Zweifelsfall holen Sie sich ärztlichen Rat.",
-        "no_general_recommendation_too_young": "Basierend auf der derzeitigen STIKO-Empfehlung, wird für Sie aktuell keine Impfempfehlung ausgesprochen, " +
-            "da Sie unter 5 Jahre alt sind.\n* Im Zweifelsfall holen Sie sich ärztlichen Rat.",
-        "recommendation_children_risk": "Eingeschränkte Impfempfehlung: Es besteht aktuell noch keine generelle " +
-            "Impfempfehlung seitens der STIKO. Eine Impfung kann dennoch sinnvoll sein. Bitte besprechen Sie das weitere Vorgehen " +
-            "mit einer Kinderärztin oder einem Kinderarzt. Es kommt eine Impfung mit <vaccination_brand> ab dem <date> in Frage.",
-        "no_recommendation_children": "Keine Impfempfehlung: Es besteht aktuell noch keine " +
-            "generelle Impfempfehlung seitens der STIKO. Eine Impfung kann dennoch sinnvoll sein. Bitte besprechen " +
-            "Sie das weitere Vorgehen mit einer Kinderärztin oder einem Kinderarzt. Es kommt eine Impfung " +
-            "mit <vaccination_brand> ab dem <date> in Frage.",
-        "recommendation_children_risk_booster": "Eingeschränkte Impfempfehlung: Es besteht aktuell noch keine generelle " +
-            "Impfempfehlung seitens der STIKO. Eine „Booster-/Auffrischimpfung“ kann dennoch sinnvoll sein. Bitte besprechen Sie das weitere Vorgehen " +
-            "mit einer Kinderärztin oder einem Kinderarzt. Es kommt eine Impfung mit <vaccination_brand> ab dem <date> in Frage.",
-        "no_recommendation_children_booster": "Keine Impfempfehlung: Es besteht aktuell noch keine " +
-            "generelle Impfempfehlung seitens der STIKO. Eine „Booster-/Auffrischimpfung“ kann dennoch sinnvoll sein. Bitte besprechen " +
-            "Sie das weitere Vorgehen mit einer Kinderärztin oder einem Kinderarzt. Es kommt eine Impfung " +
-            "mit <vaccination_brand> ab dem <date> in Frage.",
+        "no_general_recommendation_too_young": "Basierend auf der derzeitigen STIKO-Empfehlung, wird für Sie aktuell keine Impfempfehlung ausgesprochen, da Sie unter 5 Jahre alt sind.\n* Im Zweifelsfall holen Sie sich ärztlichen Rat.",
+        "no_general_recommendation_too_young_no_risk": "Eingeschränkte Impfempfehlung. Der Impfstoff BioNTech (Comirnaty®) ist für die angegebene Altersgruppe zulässig, jedoch besteht aktuell noch keine generelle Impfempfehlung seitens der STIKO. Eine Impfung kann dennoch sinnvoll sein. Bitte besprechen Sie das weitere Vorgehen mit einer Kinderärztin oder einem Kinderarzt.",
         "no_general_recommendation_pregnant": "Basierend auf der derzeitigen STIKO-Empfehlung, wird für Sie aktuell keine Impfempfehlung ausgesprochen, da Sie sich im ersten Trimenon befinden.\n* Im Zweifelsfall holen Sie sich ärztlichen Rat.",
         "contact_dr": "Basierend auf der derzeitigen STIKO- Empfehlung und Ihren Angaben, können wir leider keine generelle Impfempfehlung aussprechen. Bitte besprechen Sie Ihre persönliche Situation mit einer Ärztin/ einem Arzt.",
         "no_recommendation_symptoms": "Basierend auf der derzeitigen STIKO- Empfehlung sollten Sie mit der Impfung warten, " +
@@ -254,7 +240,7 @@ export const modal_risk_group_text = <div >
     <br/>
     <br/>
     Quelle: &nbsp;
-    <a href="http://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Risikogruppen.html" style={{"color": "gray"}}>Robert Koch-Institut</a>
+    <a href="http://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Risikogruppen.html">Robert Koch-Institut</a>
     <br/>
 </div>;
 
@@ -268,7 +254,7 @@ export const modal_pregnant_text = <div>
     <br/>
     <br/>
     Quelle: &nbsp;
-    <a href="https://www.rki.de/SharedDocs/FAQ/COVID-Impfen/FAQ_Liste_Impfung_Schwangere_Stillende.html" style={{"color": "gray"}}>Robert Koch-Institut</a>
+    <a href="https://www.rki.de/SharedDocs/FAQ/COVID-Impfen/FAQ_Liste_Impfung_Schwangere_Stillende.html">Robert Koch-Institut</a>
 </div>;
 
 
@@ -287,7 +273,7 @@ export const modal_vaccinated_text = <div>
     <br/>
     <br/>
     Quelle: &nbsp;
-    <a href="https://www.pei.de/DE/arzneimittel/impfstoffe/covid-19/covid-19-node.html" style={{"color": "gray"}}>Paul-Ehrlich-Institut</a>
+    <a href="https://www.pei.de/DE/arzneimittel/impfstoffe/covid-19/covid-19-node.html" >Paul-Ehrlich-Institut</a>
 </div>;
 
 
@@ -302,7 +288,7 @@ export const modal_pregnancy_week_text = <div>
     <br/>
     <br/>
     Quelle: &nbsp;
-    <a href="https://www.rki.de/SharedDocs/FAQ/COVID-Impfen/FAQ_Liste_Impfung_Schwangere_Stillende.html" style={{"color": "gray"}}>Robert Koch-Institut</a>
+    <a href="https://www.rki.de/SharedDocs/FAQ/COVID-Impfen/FAQ_Liste_Impfung_Schwangere_Stillende.html" >Robert Koch-Institut</a>
 </div>;
 
 
@@ -317,11 +303,11 @@ export const modal_got_unregistered_vaccination_text =   <div>
     <br/>
     <br/>
     Quellen: &nbsp;
-    <a href="https://www.rki.de/SharedDocs/FAQ/COVID-Impfen/FAQ_Liste_Durchfuehrung_Impfung.html#FAQId16696900" style={{"color": "gray"}}>
+    <a href="https://www.rki.de/SharedDocs/FAQ/COVID-Impfen/FAQ_Liste_Durchfuehrung_Impfung.html#FAQId16696900" >
         Robert Koch-Institut
     </a>
     <br/>
-    <a href="https://www.pei.de/DE/arzneimittel/impfstoffe/covid-19/covid-19-node.html;jsessionid=372E495A216B0DD332AA96F4617E5FE1.intranet241" style={{"color": "gray"}}>
+    <a href="https://www.pei.de/DE/arzneimittel/impfstoffe/covid-19/covid-19-node.html;jsessionid=372E495A216B0DD332AA96F4617E5FE1.intranet241" >
         Paul-Ehrlich-Institut
     </a>
 </div>;
@@ -352,7 +338,7 @@ export const modal_past_infection_text = <div>
     <br/>
     <br/>
     Quelle: &nbsp;
-    <a href="https://www.rki.de/SharedDocs/FAQ/COVID-Impfen/FAQ_Liste_Durchfuehrung_Impfung.html#FAQId16072404" style={{"color": "gray"}}>Robert Koch-Institut</a>
+    <a href="https://www.rki.de/SharedDocs/FAQ/COVID-Impfen/FAQ_Liste_Durchfuehrung_Impfung.html#FAQId16072404" >Robert Koch-Institut</a>
 </div>;
 
 export const modal_infection_date_title = "Erkrankungsdatum";
@@ -390,7 +376,7 @@ export const modal_symptoms_registered_text =    <div>
     <br/>
     <br/>
     Quelle: &nbsp;
-    <a href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Steckbrief.html" style={{"color": "gray"}}>Robert Koch-Institut</a>
+    <a href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Steckbrief.html" >Robert Koch-Institut</a>
 </div>;
 
 

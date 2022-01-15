@@ -1,73 +1,9 @@
+
+
+
 html {
     height: 100%;
 }
-
-
-a {
-    color: white;
-    text-decoration: underline;
-}
-
-
-.accordion-button {
-    color: gray;
-    font-weight: bold;
-    background: black;
-    background-active: green;
-}
-
-
-.virus {
-    position: absolute;
-    fill: green;
-    width: 20%;
-    top: 40%;
-    left: 40%;
-    color: lightgreen;
-    overflow: hidden;
-    animation: orbit2 90s linear infinite;
-}
-
-
-.virus2 {
-    position: absolute;
-    fill: green;
-    width: 20%;
-    top: 40%;
-    left: 40%;
-    color: lightgreen;
-    overflow: hidden;
-    animation: orbit21 60s linear infinite;
-    transform: rotate(180deg);
-}
-
-
-@keyframes orbit2 {
-    from { 	transform: rotate(0deg) translate(-150%) rotate(360deg); }
-    to   {  transform: rotate(360deg) translate(-150%) rotate(-360deg); }
-}
-
-
-@keyframes orbit21 {
-    from { 	transform: rotate(180deg) translate(-150%) rotate(360deg); }
-    to   {  transform: rotate(540deg) translate(-150%) rotate(-360deg); }
-}
-
-
-.background{
-    position: absolute;
-    left:50%;
-    width: 50%;
-    height: 50%;
-}
-
-
-.background2{
-    position: absolute;
-    width: 50%;
-    height: 50%;
-}
-
 
 body {
     height: 100%;
@@ -80,98 +16,63 @@ body {
     letter-spacing:0;
     text-rendering:geometricPrecision;
     text-decoration:none;
-    font-size: 2em;
+    font-size: 1.2em;
     line-height:1.26em;
 }
-
 
 .navbar, .navbar-brand{
     font-size: 1.2em;
 }
 
-
-input[type="number"]
-{
-    font-size:1.2em;
-}
-input[type="text"]
-{
-    font-size:1.2em;
-}
-
-input[type="date"]
-{
-    font-size:1.2em;
-}
-.form-select{
-    font-size: 1em;
-}
-
-
-.button-start {
-    background-color: white;
-    transition-duration: 0.4s;
-    padding: 32px 32px;
-    text-align: center;
-    text-decoration: none;
-    border: 2px solid gray;
-    border-radius: 5px;
-    color: gray;
-    font-weight: bold;
-}
-.button-start:hover {
-    background-color: gray;
-    color: white;
-}
-
-
-.button {
-    background-color: white;
-    transition-duration: 0.4s;
-    padding: 2% 4%;
-    text-align: center;
-    text-decoration: none;
-    border: 1px solid gray;
-    border-radius: 5px;
-    color: gray;
-    font-weight: bold;
-}
-
-.button:hover {
-    background-color: gray;
-    color: white;
-}
-
-.card-title{
-    color:gray;
-    font-size: 4vh;
-}
-
-
 h1 {
+    font-weight: bold;
     margin-left: 20px;
 }
 
-.main_page_text{
-    position:relative;
-    width: 700px;
+h2 {
+    font-weight: bold;
+    color: white;
 }
 
-
-
-.footer {
-    position:relative;
-    width: 100%;
-    text-align: center;
+a {
+    color: white;
+    text-decoration: underline;
 }
 
+textarea{
+    font-size:1.2em;
+}
 
+input[type="text"]
+{
+    font-size:1em;
+}
+
+.vc-card input[type="number"] {
+    font-size:1em;
+}
+.vc-card input[type="text"] {
+    font-size:1.2em;
+    width: 5em;
+}
+
+.vc-card input[type="date"] {
+    font-size:1.2em;
+    width: 10em;
+}
+
+.vc-card select{
+    font-size:1.2em;
+    width: 10em;
+}
 
 .vc-card{
+    font-size: 1.5em;
+    line-height:1.26em;
     position:relative;
     width: 700px;
     height: 550px;
-    background-color: white;
+    background-color: #f8f9fa;
     border-radius: 5px;
     margin-bottom:10%;
     margin-top:10%;
@@ -184,8 +85,9 @@ h1 {
 
 .vc-card-header{
     padding-top: 2.5%;
+    color:gray;
+    font-size: 4vh;
 }
-
 
 .vc-card-body{
     background-color: #69a5a4;
@@ -210,17 +112,226 @@ h1 {
     padding: 2%;
 }
 
+.modal{
+    color: gray;
+    font-size: 1em;
+}
+
+.modal a{
+    color:gray;
+    text-decoration: underline;
+}
+
+.modal a:hover{
+    color:black;
+    text-decoration: underline;
+}
+
+.container {
+    display: table;
+}
+
+footer a {
+    color: gray;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.button-start {
+    background-color: #f8f9fa;
+    transition-duration: 0.4s;
+    padding: 32px 32px;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid gray;
+    border-radius: 5px;
+    color: gray;
+    font-weight: bold;
+}
+
+.button-start:hover {
+    background-color: gray;
+    color: #f8f9fa;
+}
+
+.button {
+    background-color: #f8f9fa;
+    transition-duration: 0.4s;
+    padding: 2% 4%;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid gray;
+    border-radius: 5px;
+    color: gray;
+    font-weight: bold;
+}
+
+.button:hover {
+    background-color: gray;
+    color: #f8f9fa;
+}
+
+.main_page_text{
+    position:relative;
+    width: 700px;
+}
+
+.footer {
+    position:relative;
+    width: 100%;
+    text-align: center;
+}
+
+.accordion {
+    background-color: #f8f9fa;
+    color: gray;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    transition: 0.4s;
+    font-weight: bold;
+}
+
+.active, .accordion:hover {
+    background-color: #f8f9fa;
+}
+
+.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2212";
+}
+
+.panel h1, .panel h2{
+    color: gray;
+}
+
+.panel a{
+    color: gray;
+    text-decoration: underline;
+}
+
+.panel a:hover{
+    color: black;
+    text-decoration: underline;
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: #f8f9fa;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    color: gray;
+    font-weight: normal;
+}
+
+#navbar-lg {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    background-color: #f8f9fa;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    font-size: 1.5em;
+
+}
+#navbar-sm {
+    display: none;
+    width: 100%;
+    background-color: white;
+    color: gray
+}
+
+#navbar-lg a{
+    text-decoration: none;
+    color: gray;
+}
+
+#navbar-lg a:hover{
+    text-decoration: none;
+    color: black;
+}
 
 @media screen and (max-width: 700px) {
+    #navbar-lg {
+        display: none;
+    }
+
+    #navbar-sm {
+        display: inline-block;
+    }
+
+    /* Hide the links inside the navigation menu (except for logo/home) */
+    .topnav #myLinks {
+        display: none;
+    }
+
+    /* Style the hamburger menu */
+    .topnav a.icon {
+        background: #f8f9fa;
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    /* Style navigation menu links */
+    .topnav a {
+        color: gray;
+        padding: 0.5em 0.5em;
+        padding-left: 2em;
+        text-decoration: none;
+        font-size: 1em;
+        display: block;
+    }
+    .topnav a:hover {
+        color: black;
+    }
 
     html {
         font-size: 1em;
         height: 100%;
     }
 
+    body {
+        height: 100%;
+        min-height: 100%;
+        position:relative;
+        font-size: 1.2em;
+    }
+
+    h1 {
+        margin-left: 20px;
+        font-weight: bold
+    }
+
+    h2 {
+        font-weight: bold
+    }
+
+    .vc-card{
+        position:relative;
+        height: 70%;
+        width: 95%;
+    }
+
     .card-title{
         margin-top: 2vh;
         font-size: 3vh;
+        color: gray;
     }
 
     .vc-card-body{
@@ -234,18 +345,21 @@ h1 {
         border-radius: 5px;
     }
 
-
-    body {
-        height: 100%;
-        min-height: 100%;
-        position:relative;
-        font-size: 1.2em;
+    .vc-card input[type="text"]
+    {
+        font-size:1.2em;
+        width: 80%;
     }
 
+    .vc-card input[type="date"]
+    {
+        font-size:1.2em;
+        width: 80%;
+    }
 
-
-    .h1 {
-        margin-left: 20px;
+    .vc-card select{
+        font-size:1.2em;
+        width: 80%;
     }
 
     .main_page_text{
@@ -253,19 +367,54 @@ h1 {
         width: 100%;
     }
 
-    .card {
-        position:relative;
-        width: 95%;
-        height: 95%;
-    }
+}
 
-    .vc-card{
-        position:relative;
-        height: 80%;
-        width: 95%;
-    }
-    footer{
-        margin-top: 10%;
-    }
+
+
+.virus {
+    position: absolute;
+    fill: green;
+    width: 20%;
+    top: 40%;
+    left: 40%;
+    color: lightgreen;
+    overflow: hidden;
+    animation: orbit2 90s linear infinite;
+}
+
+.virus2 {
+    position: absolute;
+    fill: green;
+    width: 20%;
+    top: 40%;
+    left: 40%;
+    color: lightgreen;
+    overflow: hidden;
+    animation: orbit21 60s linear infinite;
+    transform: rotate(180deg);
+}
+
+
+.background{
+    position: absolute;
+    left:50%;
+    width: 50%;
+    height: 50%;
+}
+
+.background2{
+    position: absolute;
+    width: 50%;
+    height: 50%;
+}
+
+@keyframes orbit2 {
+    from { 	transform: rotate(0deg) translate(-150%) rotate(360deg); }
+    to   {  transform: rotate(360deg) translate(-150%) rotate(-360deg); }
+}
+
+@keyframes orbit21 {
+    from { 	transform: rotate(180deg) translate(-150%) rotate(360deg); }
+    to   {  transform: rotate(540deg) translate(-150%) rotate(-360deg); }
 }
 

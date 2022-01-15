@@ -24,32 +24,51 @@
 </head>
 <body style="min-height: 100%">
 <!-- navbar -->
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-    <div class="container-fluid">
+<nav>
+    <div id="navbar-lg">
+        <a href="index.html">
+            <i class="fas fa-syringe"></i>
+            Mein Impfrechner
+        </a>
+        <a href="faq.html">
+            &nbsp;<i class="fas fa-question"></i>
+            FAQs
+        </a>
+        <a href="information.html">
+            &nbsp; <i class="fas fa-info"></i>
+            Informationen
+        </a>
+    </div>
 
-        <a class="navbar-brand" href="index.html" style="color: gray;"> <span><i class="fas fa-syringe"></i></span> Mein Impfrechner</a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <div id="navbar-sm">
+        <div class="topnav">
+            <a href="index.html" style="font-weight: bold;"><i class="fas fa-syringe"></i> Mein Impfrechner</a>
+            <!-- Navigation links (hidden by default) -->
+            <div id="myLinks">
+                <a href="faq.html">FAQs</a>
+                <a href="information.html">Informationen</a>
+                <a href="impressum.html">Impressum</a>
+                <a href="datenschutz.html" style="color: black">Datenschutz</a>
+            </div>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a href="faq.html" class="nav-link">
-                        <i class="fas fa-question"></i>
-                        FAQs
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="information.html" class="nav-link">
-                        <i class="fas fa-info"></i>
-                        Informationen
-                    </a>
-                </li>
-            </ul>
+
+            <a href="javascript:void(0);" class="icon" onclick="menubar()">
+                <i class="fa fa-bars"></i>
+            </a>
         </div>
     </div>
+
+    <script>
+        function menubar() {
+            var x = document.getElementById("myLinks");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+    </script>
 </nav>
 
 <br/>
@@ -59,7 +78,7 @@
 <br/>
 
 
-<div class="container main_page_text" style="font-size: 0.6em">
+<div class="container main_page_text">
 
 
 <p>Wir freuen uns sehr über Ihr Interesse an mein-impfrechner.de. Eine Nutzung der Internetseiten der mein-impfrechner.de ist grundsätzlich ohne jede Angabe personenbezogener Daten möglich. Sofern eine betroffene Person besondere Services unseres Unternehmens über unsere Internetseite in Anspruch nehmen möchte, könnte jedoch eine Verarbeitung personenbezogener Daten erforderlich werden. Ist die Verarbeitung personenbezogener Daten erforderlich und besteht für eine solche Verarbeitung keine gesetzliche Grundlage, holen wir generell eine Einwilligung der betroffenen Person ein.</p>
@@ -265,8 +284,10 @@
 
 <p>Entwickelt von den <a href="https://willing-able.com/">Legal Tech</a> Spezialisten von Willing & Able, die auch das System zur Abbildung der <a href="https://abletotrain.com/">UWG-Schulung</a> entwickelt haben. Die Texte des Datenschutzerklärungs-Generators wurden von <a href="https://dg-datenschutz.de/">Prof. Dr. h.c. Heiko Jonny Maniero</a> und Rechtsanwalt <a href="https://www.wbs-law.de/" rel="nofollow">Christian Solmecke</a> erstellt und publiziert.</p>
 
-    <img alt="self-Logo" src="mir_banner_ogfarben.svg" width="70%" height="80%" style="padding-top: 0; padding-bottom: 0">
 </div>
+
+<br>
+<br>
 
 </body>
 
