@@ -211,6 +211,20 @@ footer a:hover {
     content: "\2212";
 }
 
+.panel h1, .panel h2{
+    color: gray;
+}
+
+.panel a{
+    color: gray;
+    text-decoration: underline;
+}
+
+.panel a:hover{
+    color: black;
+    text-decoration: underline;
+}
+
 .panel {
     padding: 0 18px;
     background-color: white;
