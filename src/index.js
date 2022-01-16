@@ -1,11 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
-import {texts_german, constants, modal_risk_group_title, modal_risk_group_text, modal_pregnant_title, modal_pregnant_text, modal_vaccinated_title,
-    modal_vaccinated_text, modal_got_unregistered_vaccination_title, modal_got_unregistered_vaccination_text,
-    modal_past_infection_title, modal_past_infection_text, modal_infection_date_title, modal_infection_date_text,
-    modal_symptoms_registered_title, modal_symptoms_registered_text, modal_symptoms_end_date_title,
-    modal_symptoms_end_date_text, modal_pregnancy_week_title, modal_pregnancy_week_text} from "./texts.js";
+import {
+    texts_german,
+    modal_risk_group_title,
+    modal_risk_group_text,
+    modal_pregnant_title,
+    modal_pregnant_text,
+    modal_vaccinated_title,
+    modal_vaccinated_text,
+    modal_got_unregistered_vaccination_title,
+    modal_got_unregistered_vaccination_text,
+    modal_past_infection_title,
+    modal_past_infection_text,
+    modal_infection_date_title,
+    modal_infection_date_text,
+    modal_symptoms_registered_title,
+    modal_symptoms_registered_text,
+    modal_symptoms_end_date_title,
+    modal_symptoms_end_date_text,
+    modal_pregnancy_week_title,
+    modal_pregnancy_week_text,
+    Alternative
+} from "./texts.js";
 import * as form_logic from "./form_logic.js";
 import {is_valid_date_format} from"./date_operations.js"
 
@@ -542,12 +558,6 @@ class DatePicker extends React.Component {
         let datepicker_setting = datepicker_german;
         datepicker_setting["onSelect"] = this.handle_date_selection_internal;
         datepicker_setting["name"] = this.props.date_picker_name;
-
-        //window.$(this.refs.input_2).datepicker(datepicker_setting);
-    }
-
-    componentWillUnmount() {
-        //window.$(this.refs.input_2).datepicker("destroy");
     }
 
     render() {
@@ -618,19 +628,19 @@ class Card_result extends React.Component {
 
         // single output
         if (this.props.user_data["entered_data"]["value"].length === 1) {
-            result_text.push(this.props.user_data["entered_data"]["value"][0].split('\n').map(str => <div>{str}</div>));
+            result_text.push(this.props.user_data["entered_data"]["value"][0]);
         }
         // multiple outputs
         else {
             const options = this.props.user_data["entered_data"]["value"];
 
-            result_text.push(options[0].split('\n').map(str => <div>{str}</div>));
-            result_text.push(<div><br/><br/></div>);
-            result_text.push(texts_german['results']["alternative"]);
+            result_text.push(options[0]);
+            result_text.push(<div><br/></div>);
+            result_text.push(<Alternative/>);
 
             let result_text_alternatives = [];
             for (let i = 1; i < options.length; i++) {
-                result_text_alternatives.push(<li key={i}>{options[i].split('\n').map(str => <p>{str}</p>)}</li>);
+                result_text_alternatives.push(<li key={i}>{options[i]}</li>);
             }
             result_text.push(<ul>{result_text_alternatives}</ul>);
         }
@@ -646,12 +656,12 @@ class Card_result extends React.Component {
                     <div className="vc-card-body">
                         <div className="vc-result" style={{"position": "relative", "height":"90%", "width":"100%", "overflowY": 'scroll'}}>
                             <h1>Empfehlung</h1>
-                            <div key="k1">{result_text}</div>
-                            <br/>
-                            <div key="k2">{texts_german["disclaimer"]}</div>
+                            <div key="k1" style={{marginLeft: "20px"}}>{result_text}</div>
                             <br/>
                             <h1>Ihre Angaben</h1>
-                            <div key="k3">{vis_user_data(this.props.user_data)}</div>
+                            <div key="k3" style={{marginLeft: "20px"}}>{vis_user_data(this.props.user_data)}</div>
+                            <br/>
+                            <div key="k2" style={{marginLeft: "20px"}}>{texts_german["disclaimer"]}</div>
                             <br/>
                             <br/>
                             <br/>
@@ -966,7 +976,7 @@ class CardManager extends React.Component {
                 );
             case 'vaccination_1':
                 return (
-                    <Card title={texts_german["vaccination_brand_date"]["header"]}
+                    <Card title={texts_german["vaccination_1"]["header"]}
                           id_next={"card_vaccination_1_next"}
                           id_back={"card_vaccination_1_next"}
                           handler={this.control_click_handler}
@@ -975,20 +985,10 @@ class CardManager extends React.Component {
                                                                          input_name_vaccine='value'
                                                                          input_name_vaccination_date='date'/>}/>
                 );
-            case 'vaccination_1':
-                return (
-                    <Card title={texts_german["vaccination_x"]["header"]}
-                          id_next={"card_vaccination_1_next"}
-                          id_back={"card_vaccination_1_back"}
-                          handler={this.control_click_handler}
-                          form_body={<Form_body_vaccination_x input_data_handler={this.handleInputChange}
-                                                            input_name_vaccine='value' />}/>
-                );
             case 'vaccination_2':
-                console.log('render2');
                 return (
 
-                        <Card title={texts_german["vaccination_brand_date"]["header"]}
+                        <Card title={texts_german["vaccination_2"]["header"]}
                               id_next={"card_vaccination_2_next"}
                               id_back={"card_vaccination_2_next"}
                               handler={this.control_click_handler}
