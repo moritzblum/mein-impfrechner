@@ -23,8 +23,6 @@ import {
     Alternative
 } from "./texts.js";
 import * as form_logic from "./form_logic.js";
-import {is_valid_date_format} from"./date_operations.js"
-
 
 class Card extends React.Component {
     constructor(props) {
@@ -45,7 +43,6 @@ class Card extends React.Component {
                             {this.props.form_body}
                         </form>
 
-
                         <div className="" style={{"position": "absolute", "bottom": "2%", "width":"96%"}}>
                             <div className="d-flex justify-content-between">
                                 <button className="button button_back" onClick={this.props.handler}
@@ -58,9 +55,7 @@ class Card extends React.Component {
                                 </button>
                             </div>
                         </div>
-
                 </div>
-
             </div>
         );
     }
@@ -520,22 +515,6 @@ class Form_body_age extends React.Component {
 }
 
 
-let datepicker_german = {
-    currentText: 'heute', currentStatus: '',
-    todayText: 'heute', todayStatus: '',
-    clearText: '-', clearStatus: '',
-    closeText: 'schließen', closeStatus: '',
-    monthNames: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni',
-        'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
-    monthNamesShort: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun',
-        'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
-    dayNames: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
-    dayNamesShort: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
-    dayNamesMin: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
-    showMonthAfterYear: false,
-    dateFormat: 'dd.mm.yy'
-};
-
 class DatePicker extends React.Component {
     constructor(props) {
         super(props);
@@ -550,14 +529,6 @@ class DatePicker extends React.Component {
 
     handle_manual_change(event) {
         this.handle_date_selection_internal(event.target.value);
-    }
-
-
-    componentDidMount() {
-
-        let datepicker_setting = datepicker_german;
-        datepicker_setting["onSelect"] = this.handle_date_selection_internal;
-        datepicker_setting["name"] = this.props.date_picker_name;
     }
 
     render() {
@@ -588,7 +559,7 @@ class Card_start extends React.Component {
                     Robert-Koch Instituts.</a> <br/>
                     Wir bemühen uns, die Änderungen möglichst zeitnah nach der Veröffentlichung zu
                     berücksichtigen. Die aktuelle Version
-                    bildet den Stand vom <a href="https://www.rki.de/DE/Content/Infekt/EpidBull/epid_bull_node.html" style={{"color": "white"}}>05.01.2022</a> ab.
+                    bildet den Stand vom <a href="https://www.rki.de/DE/Content/Infekt/EpidBull/epid_bull_node.html" style={{"color": "white"}}>17.01.2022</a> ab.
                 </div>
 
                 <div className="vc-card vc-card-start container" id="card_start" >
@@ -610,7 +581,8 @@ class Card_start extends React.Component {
                 </div>
 
                 <div className="main_page_text container" style={{"margin-bottom":"2%"}}>
-                    Die Sicherheit Ihrer Daten hat für uns große Priorität. Mehr dazu erfahren Sie <a href="information.html" style={{"color": "white"}}>hier</a>...
+                    Die Sicherheit Ihrer Daten hat für uns große Priorität. <br/>
+                    Mehr dazu erfahren Sie <a href="information.html" style={{"color": "white"}}>hier</a>...
                 </div>
 
             </div>
@@ -661,7 +633,10 @@ class Card_result extends React.Component {
                             <h1>Ihre Angaben</h1>
                             <div key="k3" style={{marginLeft: "20px"}}>{vis_user_data(this.props.user_data)}</div>
                             <br/>
-                            <div key="k2" style={{marginLeft: "20px"}}>{texts_german["disclaimer"]}</div>
+                            <div key="k2" style={{marginLeft: "20px"}}><b>Haftungsausschluss:</b> Die Inhalte dieser Seite dienen ausschließlich der allgemeinen Information der
+                                Öffentlichkeit. mein-impfrechner.de übernimmt keine Verantwortung für die Richtigkeit und Vollständigkeit der
+                                Daten und Informationen, die auf dieser Seite angegeben oder verlinkt werden, für Abweichungen von Originaldaten,
+                                Übertragungsfehler oder Veränderung der Informationen durch Dritte.</div>
                             <br/>
                             <br/>
                             <br/>
@@ -708,7 +683,7 @@ function vis_user_data (user_data) {
     }
 
     if ('infection_date' in user_data['user_data']){
-        user_data_list.push(<li key='infection_date'>{texts_german['infection_date']["header"]}: {user_data['user_data']['infection_date']['date']}</li>);
+        user_data_list.push(<li key='infection_date'>{texts_german['infection_date']["header"]}: {new Date(user_data['user_data']['infection_date']['date']).toLocaleDateString('de-DE')}</li>);
     }
 
     if ('symptoms_registered' in user_data['user_data']){
@@ -716,7 +691,7 @@ function vis_user_data (user_data) {
     }
 
     if ('symptoms_end_date' in user_data['user_data']){
-        user_data_list.push(<li key='symptoms_end_date'>{texts_german['symptoms_end_date']["header"]}: {user_data['user_data']['symptoms_end_date']['date']}</li>);
+        user_data_list.push(<li key='symptoms_end_date'>{texts_german['symptoms_end_date']["header"]}: {new Date(user_data['user_data']['symptoms_end_date']['date']).toLocaleDateString('de-DE')}</li>);
     }
 
     if ('got_unregistered_vaccination' in user_data['user_data']){
@@ -726,7 +701,7 @@ function vis_user_data (user_data) {
     }
 
     if ('unregistered_vaccination_date' in user_data['user_data']){
-        user_data_list.push(<li key='unregistered_vaccination_date'>{texts_german['unregistered_vaccination_date']["header"]}: {user_data['user_data']['unregistered_vaccination_date']['date']}</li>);
+        user_data_list.push(<li key='unregistered_vaccination_date'>{texts_german['unregistered_vaccination_date']["header"]}: {new Date(user_data['user_data']['unregistered_vaccination_date']['date']).toLocaleDateString('de-DE')}</li>);
     }
 
     if ('vaccinated' in user_data['user_data']){
@@ -737,16 +712,16 @@ function vis_user_data (user_data) {
 
     if ('pregnancy_week' in user_data['user_data']){
         if (user_data['user_data']['pregnancy_week']['value']){
-            user_data_list.push(<li key='pregnancy_week'>{texts_german['pregnancy_week']["header"]}: {texts_german['pregnancy_week']['pregnancy_week_yes']}</li>);
+            user_data_list.push(<li key='pregnancy_week'>{texts_german['pregnancy_week']["short"]}: {texts_german['pregnancy_week']['pregnancy_week_yes']}</li>);
         }
     }
 
     if ('vaccination_1' in user_data['user_data']){
-        user_data_list.push(<li key='vaccination_1'>Impfung 1: {user_data['user_data']['vaccination_1']['value']} am {user_data['user_data']['vaccination_1']['date']}</li>);
+        user_data_list.push(<li key='vaccination_1'>Impfung 1: {user_data['user_data']['vaccination_1']['value']} am {new Date(user_data['user_data']['vaccination_1']['date']).toLocaleDateString('de-DE')}</li>);
     }
 
     if ('vaccination_2' in user_data['user_data']){
-        user_data_list.push(<li key='vaccination_2'>Impfung 2: {user_data['user_data']['vaccination_1']['value']} am {user_data['user_data']['vaccination_1']['date']}</li>);
+        user_data_list.push(<li key='vaccination_2'>Impfung 2: {user_data['user_data']['vaccination_1']['value']} am {new Date(user_data['user_data']['vaccination_1']['date']).toLocaleDateString('de-DE')}</li>);
     }
 
     return <div>{user_data_list}</div>;
@@ -883,7 +858,7 @@ class CardManager extends React.Component {
                 if (['vaccination_1', 'vaccination_1', 'vaccination_brand_date', 'infection_date', 'symptoms_end_date', 'unregistered_vaccination_date'].includes(current_card_id)) {
                     let element = document.getElementsByClassName("date-validation");
 
-                    if (this.state.entered_data['date'] === undefined || !(is_valid_date_format(this.state.entered_data['date']))) {
+                    if (this.state.entered_data['date'] === undefined) {
 
                         for(let i = 0; i < element.length; i++){
                             element[i].classList.remove("is-valid");

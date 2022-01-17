@@ -1,164 +1,161 @@
 export function Error(){
-    return(<div>Basierend auf Ihren Angaben ist es uns derzeit nicht möglich, eine generelle Empfehlung auszusprechen.
-        Ihre persönliche Situation erfordert eine ärztliche Einzelfallprüfung, um eine valide Aussage zu
-        treffen können. Wir bitten um Ihr Verständnis.</div>)
+    return(<div>
+        Basierend auf Ihren Angaben ist es uns derzeit nicht möglich, eine generelle Empfehlung auszusprechen. Ihre persönliche Situation erfordert eine ärztliche Einzelfallprüfung, um eine valide Aussage treffen zu können. Wir bitten um Ihr Verständnis.</div>)
 }
 
 export function Really_old(){
-    return(<div>Bitte überprüfen Sie Ihre Angaben. Wenn Sie wirklich schon so lange gelebt haben,
-        dann haut Sie auch Corona nicht mehr aus den Socken.</div>)
+    return(<div>
+        <b>Bitte überprüfen Sie Ihre Angaben</b>. Wenn Sie schon so lange gelebt haben, dann haut Sie auch Corona nicht mehr aus den Socken.
+    </div>)
 
 }
 
 export function No_further_recommendation(){
-    return(<div>Basierend auf der derzeitigen STIKO- Empfehlung und Ihren Angaben, sind Sie aktuell ausreichend geschützt.</div>)
+    return(<div>
+        Basierend auf der derzeitigen STIKO-Empfehlung und Ihren Angaben wird für Sie <b>keine Impfempfehlung</b> ausgesprochen, da Sie aktuell <b>ausreichend geschützt</b> sind.
+    </div>)
 }
 
 export function No_recommendation_too_young(){
-    return(<div>no_recommendation_too_young</div>)
+    return(<div>
+        Basierend auf der derzeitigen STIKO-Empfehlung wird für Sie aktuell <b>keine Impfempfehlung</b> ausgesprochen, <b>da Sie unter 5 Jahre alt sind</b>. <br/>
+        * Im Zweifelsfall holen Sie sich ärztlichen Rat.
+    </div>)
 }
 
 export function No_recommendation_pregnant(){
-    return(<div>Basierend auf der derzeitigen STIKO-Empfehlung,
-        wird für Sie aktuell keine Impfempfehlung ausgesprochen,
-        da Sie sich im ersten Trimenon befinden.
-
-        * Im Zweifelsfall holen Sie sich ärztlichen Rat.</div>)
+    return(<div>
+        Basierend auf der derzeitigen STIKO-Empfehlung wird für Sie aktuell <b>keine Impfempfehlung</b> ausgesprochen, da Sie sich im ersten Schwangerschaftsdrittel befinden. Die STIKO empfiehlt eine Impfung erst <b>ab der 13. Schwangerschaftswoche</b>. <br/>
+        * Im Zweifelsfall holen Sie sich ärztlichen Rat.
+    </div>)
 }
 
 export function No_recommendation_symptoms() {
-    return(<div>Basierend auf der derzeitigen STIKO- Empfehlung sollten Sie mit der Impfung warten
-        bis die Symptome abklingen. Aktuell wird ein Impftermin vier Wochen nach Ihrem individuellen Symptomende empfohlen.
-
-        * Sollten Ihre Symptome länger andauern, besprechen Sie Ihre persönliche Situation mit einer Ärztin/ einem Arzt. </div>)
+    return(<div>
+        Basierend auf der derzeitigen STIKO-Empfehlung sollten Sie mit der Impfung warten, bis die Symptome abklingen. Aktuell wird ein Impftermin <b>vier Wochen nach Ihrem individuellen Symptomende empfohlen</b>. <br/>
+        *Sollten Ihre Symptome länger andauern, besprechen Sie Ihre persönliche Situation mit einer Ärztin / einem Arzt.
+    </div>)
 }
 
 export function Contact_dr(){
-    return(<div>Basierend auf der derzeitigen STIKO- Empfehlung und Ihren Angaben, können wir
-        leider keine generelle Impfempfehlung aussprechen. Bitte besprechen Sie Ihre persönliche Situation mit
-        einer Ärztin/ einem Arzt.</div>)
+    return(<div>
+        Basierend auf der derzeitigen STIKO- Empfehlung und Ihren Angaben, können wir leider keine generelle Impfempfehlung aussprechen. Bitte besprechen Sie Ihre persönliche Situation mit einer Ärztin / einem Arzt.
+    </div>)
 }
 
 export function Contact_dr_young(){
-    return(<div>contact_dr_young - ausreichend geschützt, mit immun defizit kontaktiere arzt</div>)
+    return(<div>
+        Basierend auf der derzeitigen STIKO-Empfehlung und Ihren Angaben können wir leider keine generelle Impfempfehlung aussprechen. Bitte besprechen Sie Ihre persönliche Situation mit einer Kinderärztin / einem Kinderarzt.
+    </div>)
 }
 
 export function Recommendation_young(props){
-    return(<div>{props.date} {props.vaccination_brand} Basierend auf der derzeitigen
-        STIKO-Empfehlung, wird für Sie aktuell keine Impfempfehlung ausgesprochen, da Sie unter 5 Jahre alt sind.
-
-        * Im Zweifelsfall holen Sie sich ärztlichen Rat.</div>)
+    return(<div>
+        Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine Impfung ("Grundimmunisierung") durchzuführen. <br/><br/>
+        Sie können sich ab dem <b>{props.date}</b> impfen lassen. <br/>
+        Für Sie wird folgender Impfstoff empfohlen: <b>{props.vaccination_brand}</b>.</div>)
 }
 
 export function Recommendation_young_no_risk_group(props){
-    return(<div>{props.date} {props.vaccination_brand} Eingeschränkte Impfempfehlung. Der Impfstoff BioNTech
-        (Comirnaty®) ist für die angegebene Altersgruppe zulässig, jedoch besteht aktuell noch keine generelle
-        Impfempfehlung seitens der STIKO. Eine Impfung kann dennoch sinnvoll sein. Bitte besprechen Sie das
-        weitere Vorgehen mit einer Kinderärztin oder einem Kinderarzt.</div>)
+    return(<div>
+        Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben, liegt für Ihre Altersgruppe keine generelle Impfempfehlung vor. <br/>
+        Auf individuellen Wunsch der Kinder und Sorgeberechtigten ist eine Impfung nach ärztlicher Aufklärung ab dem <b>{props.date}</b> möglich. <br/>
+        Für Sie wird folgender Impfstoff empfohlen: <b>{props.vaccination_brand}</b>.
+    </div>)
 }
-
 
 export function Next_possible_date_first(props){
     return(<div>
-        Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben
-        empfehlen wir Ihnen eine <b>„Erstimpfung“</b> durchzuführen. <br/><br/>
-
-        Sie können sich ab dem <b>{props.date}</b> impfen lassen.
-        Für Sie wird folgender Impfstoff empfohlen: <b>{props.vaccination_brand}</b>.</div>)
+        Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine Impfung (Grundimmunisierung) durchzuführen. <br/><br/>
+        Sie können sich ab dem <b>{props.date}</b> impfen lassen. <br/>
+        Für Sie wird folgender Impfstoff empfohlen: <b>{props.vaccination_brand}</b>.
+    </div>)
 }
 
 export function Next_possible_date_first_alternative(props){
-    return(<div>Sie können sich
-        mit <b>{props.vaccination_brand}</b> ab dem <b>{props.date}</b> impfen lassen.</div>)
+    return(<div>
+        Sie können sich mit <b>{props.vaccination_brand}</b> ab dem <b>{props.date}</b> impfen lassen.
+    </div>)
 }
 
 export function Next_possible_date_first_infection(props){
-    return(<div>Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben
-        empfehlen wir Ihnen eine „Erstimpfung“ durchzuführen.
-        Sie können sich ab dem <b>{props.date}</b> impfen lassen.
-        Für Sie wird folgender Impfstoff empfohlen: <b>{props.vaccination_brand}</b>.</div>)
+    return(<div>
+        Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine Impfung (Grundimmunisierung) durchzuführen. <br/><br/>
+        Sie können sich ab dem <b>{props.date}</b> impfen lassen. <br/>
+        Für Sie wird folgender Impfstoff empfohlen: <b>{props.vaccination_brand}</b>.
+    </div>)
 }
 
 export function Next_possible_date_first_infection_alternative(props){
-    return(<div>Sie können sich mit {props.vaccination_brand} ab dem {props.date} impfen lassen.</div>)
+    return(<div>
+        Sie können sich mit <b>{props.vaccination_brand}</b> ab dem <b>{props.date}</b> impfen lassen.
+    </div>)
 }
 
 export function Second_vaccination_range(props){
-    return(<div>Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben
-        empfehlen wir Ihnen eine „Zweitimpfung“ durchzuführen.
-
-        Sie können sich ab dem {props.date_first} impfen lassen.
-        Idealer Weise wählen Sie einen Termin im Zeitraum vom {props.date_first} bis
-        zum {props.date_second}.
-        Für Sie wird folgender Impfstoff empfohlen: {props.vaccination_brand}.</div>)
+    return(<div>
+        Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine Impfung (Vervollständigung der Grundimmunisierung) durchzuführen. <br/><br/>
+        Sie können sich ab dem <b>{props.date_first}</b> impfen lassen.<br/>
+        Idealerweise wählen Sie einen Termin im Zeitraum vom <b>{props.date_first}</b> bis zum <b>{props.date_second}.</b> <br/>
+        Für Sie wird folgender Impfstoff empfohlen: <b>{props.vaccination_brand}.</b>
+    </div>)
 }
 
 export function Second_vaccination_range_alternative(props){
-    return(<div>Sie können sich mit {props.vaccination_brand}> ab dem {props.date_first} impfen lassen.
-        Idealerweise wählen Sie einen Termin im Zeitraum vom {props.date_first} bis zum {props.date_second}</div>)
+    return(<div>
+        Sie können sich mit <b>{props.vaccination_brand}</b>  ab dem <b>{props.date_first}</b> impfen lassen. <br/>
+        Idealerweise wählen Sie einen Termin im Zeitraum vom <b>{props.date_first}</b> bis zum <b>{props.date_second}</b>.
+    </div>)
 }
 
 export function Next_possible_date_second_dose_infection(props){
-    return(<div>Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen
-        Angaben empfehlen wir Ihnen eine zweite Impfung durchzuführen.
-        Sie können sich ab dem {props.date} impfen lassen.
-        Für Sie wird folgender Impfstoff empfohlen: {props.vaccination_brand}.</div>)
+    return(<div>
+        Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine Impfung (Vervollständigung der Grundimmunisierung) durchzuführen. <br/><br/>
+        Sie können sich ab dem <b>{props.date}</b> impfen lassen. <br/>
+        Für Sie wird folgender Impfstoff empfohlen: <b>{props.vaccination_brand}.</b>
+    </div>)
 }
 
 export function Next_possible_date_second_dose_infection_alternative(props){
-    return(<div>Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen
-        Angaben empfehlen wir Ihnen eine zweite Impfung durchzuführen.
-        Sie können sich ab dem {props.date} impfen lassen.
-        Für Sie wird folgender Impfstoff empfohlen: {props.vaccination_brand}.</div>)
+    return(<div>
+        Sie können sich mit <b>{props.vaccination_brand}</b>  ab dem <b>{props.date_first}</b> impfen lassen.
+    </div>)
 }
 
 export function Next_possible_date_booster(props){
-    return(<div>Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben
-        empfehlen wir Ihnen eine „Booster-/Auffrischimpfung“ durchzuführen.
-        Sie können sich ab dem {props.date} impfen lassen.
-        Für Sie wird folgender Impfstoff empfohlen: {props.vaccination_brand}.</div>)
+    return(<div>
+        Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine Impfung (Boosterimpfung/ Auffrischimpfung) durchzuführen. <br/><br/>
+        Sie können sich ab dem <b>{props.date} </b>impfen lassen. <br/>
+        Für Sie wird folgender Impfstoff empfohlen: <b>{props.vaccination_brand}.</b>
+    </div>)
 }
 
 export function Next_possible_date_booster_alternative(props){
-    return(<div>Sie können sich mit {props.vaccination_brand} ab dem {props.date} impfen lassen</div>)
+    return(<div>
+        Sie können sich mit <b>{props.vaccination_brand}</b> ab dem <b>{props.date}</b> impfen lassen.
+    </div>)
 }
 
 export function Next_possible_date_booster_infection(props){
-    return(<div>Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen
-        Angaben empfehlen wir Ihnen eine „Booster-/Auffrischimpfung“ durchzuführen.
-        Sie können sich ab dem {props.date} impfen lassen.
-        Für Sie wird folgender Impfstoff empfohlen: {props.vaccination_brand}.</div>)
+    return(<div>
+        Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine „Booster-/Auffrischimpfung“ durchzuführen. <br/><br/>
+        Sie können sich ab dem <b>{props.date}</b> impfen lassen. <br/>
+        Für Sie wird folgender Impfstoff empfohlen: <b>{props.vaccination_brand}.</b>
+    </div>)
 }
 
 export function Next_possible_date_booster_infection_alternative(props){
-    return(<div>Sie können sich mit {props.vaccination_brand} ab dem {props.date} impfen lassen.</div>)
+    return(<div>
+        Sie können sich mit <b>{props.vaccination_brand}</b> ab dem <b>{props.date}</b> impfen lassen.
+    </div>)
 
 }
 
 export function Alternative(){
-    return(<div>Weiterhin kommt für Sie folgende Option in Frage:</div>)
+    return(<div>
+        Weiterhin kommt für Sie folgende Option in Betracht:
+    </div>)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 export const texts_german = {
@@ -186,8 +183,6 @@ export const texts_german = {
     "vaccination_2": {
         "header": "2. Corona-Schutzimpfung",
     },
-
-
     "vaccination_x": {
         "header": "Erste Corona-Schutzimpfung", //muss angepasst werden, wenn 4 Impfungen zulässig werden.
         "instructions": "Welcher Impfstoff wurde bei Ihrer ersten Corona-Schutzimpfung verimpft?",
@@ -204,6 +199,7 @@ export const texts_german = {
     },
     "pregnancy_week": {
         "header": "Schwangerschaftswoche",
+        "short": "Erstes Schwangerschaftsdrittel",
         "instructions": "Befinden Sie sich derzeit noch im ersten Schwangerschaftsdrittel (1.-13. Schwangerschaftswoche)?",
         "pregnancy_week_yes": "Ja",
         "pregnancy_week_no": "Nein"
@@ -231,14 +227,14 @@ export const texts_german = {
         "pregnant_no": "Nein"
     },
     "got_unregistered_vaccination": {
-        "header": "Impfstoff ohne STIKO- Zulassung",
+        "header": "Impfstoff ohne STIKO-Zulassung",
         "instructions": "Wurden Sie bereits mit einem in Deutschland nicht zulässigen Corona-Impfstoff geimpft?",
         "info_got_unregistered_vaccination": "Was, wann, warum problematisch?",
         "got_unregistered_vaccination_yes": "Ja",
         "got_unregistered_vaccination_no": "Nein"
     },
     "unregistered_vaccination_date": {
-        "header": "Unzulässigen Corona-Schutzimpfung",
+        "header": "Impfstoff ohne STIKO-Zulassung",
         "instructions": "Wann haben Sie die letzte nicht zulässige Corona-Schutzimpfung erhalten?",
         "label": "Datum"
     },
@@ -348,6 +344,7 @@ export const modal_risk_group_text = <div >
         </li>
     </ul>
     <br/>
+    <br/>
     <b>* Die Risikofaktoren für einen schweren Verlauf sind sehr komplex. Eine generelle Festlegung bzw. Definition einer Risikogruppe ist nicht möglich. Vielmehr erfordert dies eine individuelle Risikofaktoren-Bewertung durch eine medizinische Begutachtung.</b>
     <br/>
     <br/>
@@ -444,9 +441,9 @@ export const modal_past_infection_text = <div>
     <br/>
     *Wer den Status „genesen“ erhält, wird u.a. in der
     COVID-19-Schutzmaßnahmen-Ausnahmenverordnung (§ 2 Nummer 3 und 5 SchAusnahmV)
-    festgelegt.Für die rechtlichen Verordnungen sind die Ministerien zuständig,
+    festgelegt. Für die rechtlichen Verordnungen sind die Ministerien zuständig,
     und werden ggf. vom Gesetzgeber verabschiedet. Sie sind getrennt von den
-    Empfehlungen der STIKO zu sehen, die als unabhängiges Gremium agieren
+    Empfehlungen der STIKO zu sehen, die als unabhängiges Gremium agieren.
     <br/>
     <br/>
     Quelle: &nbsp;

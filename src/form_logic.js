@@ -126,7 +126,7 @@ export function get_next_card(card_history, user_data) {
 
         let first_possible_date = date_operations.get_latest_date([Date.now(),
             date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
-            date_operations.add_month_2_date(infection_date, 3),
+            date_operations.add_weeks_2_date(infection_date, 4),
             date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE');
 
         if (!past_infection) {
@@ -197,7 +197,7 @@ export function get_next_card(card_history, user_data) {
             }
 
             // age <= 29 or pregnant
-            if ((user_age <= constants['age_groups']['age_group_4'][1])) {
+            if ((user_age <= constants['age_groups']['age_group_4'][1]) || pregnant) {
                 return create_output('result_5', [
                     <Next_possible_date_first_infection
                         date={first_possible_date}
@@ -233,20 +233,22 @@ export function get_next_card(card_history, user_data) {
     }
 
     // collect vaccination information
-    if (!('vaccination_brand_date' in user_data)) {
-        if (user_data['number_vaccinations']['value'] == 1) {
+
+    if (user_data['number_vaccinations']['value'] == 1) {
+        if (!('vaccination_1' in user_data)) {
             return ['vaccination_1', {}];
         }
+    }
 
-        if (user_data['number_vaccinations']['value'] == 2) {
-            if (!('vaccination_1' in user_data)) {
-                return ['vaccination_1', {}];
-            }
-            if (!('vaccination_2' in user_data)) {
-                return ['vaccination_2', {}];
-            }
+    if (user_data['number_vaccinations']['value'] == 2) {
+        if (!('vaccination_1' in user_data)) {
+            return ['vaccination_1', {}];
+        }
+        if (!('vaccination_2' in user_data)) {
+            return ['vaccination_2', {}];
         }
     }
+
 
     if (!('got_unregistered_vaccination' in user_data)) {
         return ['got_unregistered_vaccination', {}];
@@ -287,19 +289,19 @@ export function get_next_card(card_history, user_data) {
         let three_weeks_first_possible_date = date_operations.get_latest_date([Date.now(),
             date_operations.add_weeks_2_date(vaccination_history_date[1], 3),
             date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
-            date_operations.add_month_2_date(infection_date, 3),
+            date_operations.add_weeks_2_date(infection_date, 4),
             date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE');
 ;
         let four_weeks_first_possible_date = date_operations.get_latest_date([Date.now(),
             date_operations.add_weeks_2_date(vaccination_history_date[1], 4),
             date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
-            date_operations.add_month_2_date(infection_date, 3),
+            date_operations.add_weeks_2_date(infection_date, 4),
             date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE');
 
         let last_possible_date = date_operations.get_latest_date([Date.now(),
             date_operations.add_weeks_2_date(vaccination_history_date[1], 6),
             date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
-            date_operations.add_month_2_date(infection_date, 3),
+            date_operations.add_weeks_2_date(infection_date, 4),
             date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE');
 
         if (!past_infection){
@@ -434,7 +436,7 @@ export function get_next_card(card_history, user_data) {
         let first_possible_date = date_operations.get_latest_date([
             Date.now(),
             date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
-            date_operations.add_month_2_date(infection_date, 3),
+            date_operations.add_weeks_2_date(infection_date, 4),
             date_operations.add_weeks_2_date(symptoms_end_date, 4),
             date_operations.add_month_2_date(vaccination_history_date[1], 3)
         ]).toLocaleDateString('de-DE');
@@ -509,8 +511,6 @@ export function get_next_card(card_history, user_data) {
             }
         }
     }
-
-
 
     console.log('ERROR');
     return create_output('result_25', [
