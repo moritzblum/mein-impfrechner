@@ -349,7 +349,7 @@ export const modal_risk_group_text = <div >
     <br/>
     <br/>
     Quelle: &nbsp;
-    <a href="http://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Risikogruppen.html">Robert Koch-Institut</a>
+    <a target="_blank" href="http://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Risikogruppen.html">Robert Koch-Institut</a>
     <br/>
 </div>;
 
@@ -363,7 +363,7 @@ export const modal_pregnant_text = <div>
     <br/>
     <br/>
     Quelle: &nbsp;
-    <a href="https://www.rki.de/SharedDocs/FAQ/COVID-Impfen/FAQ_Liste_Impfung_Schwangere_Stillende.html">Robert Koch-Institut</a>
+    <a target="_blank" href="https://www.rki.de/SharedDocs/FAQ/COVID-Impfen/FAQ_Liste_Impfung_Schwangere_Stillende.html">Robert Koch-Institut</a>
 </div>;
 
 
@@ -382,7 +382,7 @@ export const modal_vaccinated_text = <div>
     <br/>
     <br/>
     Quelle: &nbsp;
-    <a href="https://www.pei.de/DE/arzneimittel/impfstoffe/covid-19/covid-19-node.html" >Paul-Ehrlich-Institut</a>
+    <a target="_blank" href="https://www.pei.de/DE/arzneimittel/impfstoffe/covid-19/covid-19-node.html" >Paul-Ehrlich-Institut</a>
 </div>;
 
 
@@ -397,7 +397,7 @@ export const modal_pregnancy_week_text = <div>
     <br/>
     <br/>
     Quelle: &nbsp;
-    <a href="https://www.rki.de/SharedDocs/FAQ/COVID-Impfen/FAQ_Liste_Impfung_Schwangere_Stillende.html" >Robert Koch-Institut</a>
+    <a target="_blank" href="https://www.rki.de/SharedDocs/FAQ/COVID-Impfen/FAQ_Liste_Impfung_Schwangere_Stillende.html" >Robert Koch-Institut</a>
 </div>;
 
 
@@ -412,11 +412,11 @@ export const modal_got_unregistered_vaccination_text =   <div>
     <br/>
     <br/>
     Quellen: &nbsp;
-    <a href="https://www.rki.de/SharedDocs/FAQ/COVID-Impfen/FAQ_Liste_Durchfuehrung_Impfung.html#FAQId16696900" >
+    <a target="_blank" href="https://www.rki.de/SharedDocs/FAQ/COVID-Impfen/FAQ_Liste_Durchfuehrung_Impfung.html#FAQId16696900" >
         Robert Koch-Institut
     </a>
     <br/>
-    <a href="https://www.pei.de/DE/arzneimittel/impfstoffe/covid-19/covid-19-node.html;jsessionid=372E495A216B0DD332AA96F4617E5FE1.intranet241" >
+    <a target="_blank" href="https://www.pei.de/DE/arzneimittel/impfstoffe/covid-19/covid-19-node.html;jsessionid=372E495A216B0DD332AA96F4617E5FE1.intranet241" >
         Paul-Ehrlich-Institut
     </a>
 </div>;
@@ -447,7 +447,7 @@ export const modal_past_infection_text = <div>
     <br/>
     <br/>
     Quelle: &nbsp;
-    <a href="https://www.rki.de/SharedDocs/FAQ/COVID-Impfen/FAQ_Liste_Durchfuehrung_Impfung.html#FAQId16072404" >Robert Koch-Institut</a>
+    <a target="_blank" href="https://www.rki.de/SharedDocs/FAQ/COVID-Impfen/FAQ_Liste_Durchfuehrung_Impfung.html#FAQId16072404" >Robert Koch-Institut</a>
 </div>;
 
 export const modal_infection_date_title = "Erkrankungsdatum";
@@ -485,7 +485,7 @@ export const modal_symptoms_registered_text =    <div>
     <br/>
     <br/>
     Quelle: &nbsp;
-    <a href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Steckbrief.html" >Robert Koch-Institut</a>
+    <a target="_blank" href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Steckbrief.html" >Robert Koch-Institut</a>
 </div>;
 
 

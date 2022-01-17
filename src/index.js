@@ -555,11 +555,11 @@ class Card_start extends React.Component {
         return (
             <div>
                 <div className="main_page_text container" style={{"margin-top":"2%"}}>
-                    Die Berechnung basiert auf den Empfehlungen der <a href="https://www.rki.de/DE/Content/Infekt/EpidBull/epid_bull_node.html" style={{"color":"white"}}>Ständigen Impfkommission (STIKO) des
+                    Die Berechnung basiert auf den Empfehlungen der <a target="_blank" href="https://www.rki.de/DE/Content/Infekt/EpidBull/epid_bull_node.html" style={{"color":"white"}}>Ständigen Impfkommission (STIKO) des
                     Robert-Koch Instituts.</a> <br/>
                     Wir bemühen uns, die Änderungen möglichst zeitnah nach der Veröffentlichung zu
                     berücksichtigen. Die aktuelle Version
-                    bildet den Stand vom <a href="https://www.rki.de/DE/Content/Infekt/EpidBull/epid_bull_node.html" style={{"color": "white"}}>17.01.2022</a> ab.
+                    bildet den Stand vom <a target="_blank" href="https://www.rki.de/DE/Content/Infekt/EpidBull/epid_bull_node.html" style={{"color": "white"}}>17.01.2022</a> ab.
                 </div>
 
                 <div className="vc-card vc-card-start container" id="card_start" >
