@@ -38,4 +38,4 @@ Support: Marvin Bange(Figures)
 
 In Kooperation mit:
 
-<img src="https://github.com/moritzblum/mein-impfrechner/blob/main/public/img/ASB-OWL-Logo.png" width="100" height="100">
+<img src="https://github.com/moritzblum/mein-impfrechner/blob/main/public/img/ASB-OWL-Logo.png" width="150" height="100">
