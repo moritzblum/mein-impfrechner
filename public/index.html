@@ -11,15 +11,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Global site tag (gtag.js) - Google Analytics
+  <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGW334QLJG"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-FGW334QLJG');
+    gtag('config', 'G-FGW334QLJG', {'anonymizeIp': true});
   </script>
-  -->
+
 
   <meta name="google-site-verification" content="7pQTV0GfuduC2kVGCfm9j4Mz63nBLIXlY7HAi4-MmPo" />
 </head>
@@ -29,7 +29,7 @@
 <nav>
   <div id="navbar-lg">
     <a href="index.html" style="color: black">
-      <i class="fas fa-syringe"></i>
+      <img src="img/Spritze_1.svg" style="height: 1.5em; width: 1.5em">
       Mein Impfrechner
     </a>
     <a href="faq.html">
@@ -42,10 +42,9 @@
     </a>
   </div>
 
-
   <div id="navbar-sm">
     <div class="topnav">
-      <a href="index.html" style="font-weight: bold; color: black"><i class="fas fa-syringe"></i> Mein Impfrechner</a>
+      <a href="index.html" style="font-weight: bold; color: black"><img src="img/Spritze_1.svg" style="height: 1.5em; width: 1.5em"> Mein Impfrechner</a>
       <!-- Navigation links (hidden by default) -->
       <div id="myLinks">
         <a href="faq.html">FAQs</a>
@@ -78,18 +77,17 @@
 
   <div class="background">
     <div class="virus">
-      <img  src = "virus-solid.svg"/>
+      <img  src = "img/Corona_1.svg"/>
     </div>
   </div>
 
   <div class="background2">
     <div class="virus2">
-      <img  src = "virus-solid.svg"/>
+      <img  src = "img/Corona_2.svg"/>
     </div>
   </div>
 
   <br>
-
 
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -110,10 +108,24 @@
     }
     myFunction();
   </script>
-  <br>
-  <br>
 
-  <div id="root" class="app"></div>
+
+        <div id="root" class="app"></div>
+
+        <div class="container main_page_text">
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>News:</strong> Auffrischimpfungen jetzt ab 12 Jahren empfohlen. (<a target="_blank" style="color: gray" href="https://www.rki.de/DE/Content/Kommissionen/STIKO/Empfehlungen/PM_2022-01-13.html">STIKO</a>)
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
 
   <!-- Load React. -->
   <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
@@ -124,9 +136,37 @@
 
   <br>
   <br>
-  <div class="text-center">
-    <img alt="self-Logo" src="mir_banner_ogfarben.svg" width="300em" height="200em" style="padding-top: 0; padding-bottom: 0">
+
+
+
+<div class="" id="partner-lg" style="width: 99%; text-align: center" >
+  <div class="row">
+    <div class="col-3">
+    </div>
+    <div class="col-6" style="text-align: center; ">
+      <img alt="self-Logo" src="img/mir_banner_ogfarben.svg" width="300em" height="200em" style="padding-top: 0; padding-bottom: 0">
+    </div>
+    <div class="col-3">
+        <h5 style="margin-bottom: 10px"><b>In Kooperation mit:</b></h5>
+        <a href="https://www.asb-owl.de/" target="_blank">
+          <img alt="self-Logo" src="img/ASB-OWL-Logo.png" width="200em" height="100em" style="padding-top: 0; padding-bottom: 0; text-align: right; margin-bottom: 0; ">
+        </a>
+      <br>
+    </div>
   </div>
+</div>
+
+
+<div id="partner-sm" style="width:100%; text-align: center">
+  <div style="text-align: center">
+    <h5 style="text-align: left"><b>In Kooperation mit:</b></h5>
+    <a href="https://www.asb-owl.de/" target="_blank">
+      <img alt="self-Logo" src="img/ASB-OWL-Logo.png" width="150em" height="75em" style="padding-top: 0; padding-bottom: 0; text-align: center">
+    </a>
+    <br>
+    <img alt="self-Logo" src="img/mir_banner_ogfarben.svg" width="300em" height="200em" style="padding-top: 0; padding-bottom: 0; text-align: center">
+  </div>
+</div>
 
 </body>
 
