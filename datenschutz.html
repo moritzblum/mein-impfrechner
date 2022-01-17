@@ -24,32 +24,51 @@
 </head>
 <body style="min-height: 100%">
 <!-- navbar -->
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-    <div class="container-fluid">
+<nav>
+    <div id="navbar-lg">
+        <a href="index.html">
+            <img src="img/Spritze_1_gray.svg" style="height: 1.5em; width: 1.5em; color: gray">
+            Mein Impfrechner
+        </a>
+        <a href="faq.html">
+            &nbsp;<i class="fas fa-question"></i>
+            FAQs
+        </a>
+        <a href="information.html">
+            &nbsp; <i class="fas fa-info"></i>
+            Informationen
+        </a>
+    </div>
 
-        <a class="navbar-brand" href="index.html" style="color: gray;"> <span><i class="fas fa-syringe"></i></span> Mein Impfrechner</a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <div id="navbar-sm">
+        <div class="topnav">
+            <a href="index.html" style="font-weight: bold;"><img src="img/Spritze_1_gray.svg" style="height: 1.5em; width: 1.5em; color: gray"></i> Mein Impfrechner</a>
+            <!-- Navigation links (hidden by default) -->
+            <div id="myLinks">
+                <a href="faq.html">FAQs</a>
+                <a href="information.html">Informationen</a>
+                <a href="impressum.html">Impressum</a>
+                <a href="datenschutz.html" style="color: black">Datenschutz</a>
+            </div>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a href="faq.html" class="nav-link">
-                        <i class="fas fa-question"></i>
-                        FAQs
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="information.html" class="nav-link">
-                        <i class="fas fa-info"></i>
-                        Informationen
-                    </a>
-                </li>
-            </ul>
+
+            <a href="javascript:void(0);" class="icon" onclick="menubar()">
+                <i class="fa fa-bars"></i>
+            </a>
         </div>
     </div>
+
+    <script>
+        function menubar() {
+            var x = document.getElementById("myLinks");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+    </script>
 </nav>
 
 <br/>
@@ -59,7 +78,7 @@
 <br/>
 
 
-<div class="container main_page_text" style="font-size: 0.6em">
+<div class="container main_page_text">
 
 
 <p>Wir freuen uns sehr über Ihr Interesse an mein-impfrechner.de. Eine Nutzung der Internetseiten der mein-impfrechner.de ist grundsätzlich ohne jede Angabe personenbezogener Daten möglich. Sofern eine betroffene Person besondere Services unseres Unternehmens über unsere Internetseite in Anspruch nehmen möchte, könnte jedoch eine Verarbeitung personenbezogener Daten erforderlich werden. Ist die Verarbeitung personenbezogener Daten erforderlich und besteht für eine solche Verarbeitung keine gesetzliche Grundlage, holen wir generell eine Einwilligung der betroffenen Person ein.</p>
@@ -243,6 +262,19 @@
 
 <p>Weitere Informationen und die geltenden Datenschutzbestimmungen von Google können unter https://www.google.de/intl/de/policies/privacy/ und unter http://www.google.com/analytics/terms/de.html abgerufen werden. Google Analytics wird unter diesem Link https://www.google.com/intl/de_de/analytics/ genauer erläutert.</p>
 
+ <p>  Alternativ verhindern Sie mit einem Klick auf  <a onclick="alert('Google Analytics wurde deaktiviert');" href="javascript:gaOptout()"> diesen Link</a>, dass Google Analytics innerhalb dieser Website Daten über Sie erfasst. Mit dem Klick auf obigen Link laden Sie ein „Opt-Out-Cookie“ herunter. Ihr Browser muss die Speicherung von Cookies also hierzu grundsätzlich erlauben. Löschen Sie Ihre Cookies regelmäßig, ist ein erneuter Klick auf den Link bei jedem Besuch dieser Website vonnöten.
+ </p>
+    <script>var gaProperty = 'G-FGW334QLJG';
+    var disableStr = 'ga-disable-' + gaProperty;
+    if (document.cookie.indexOf(disableStr + '=true') > -1) {
+        window[disableStr] = true;
+    }
+    function gaOptout() {
+        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+        window[disableStr] = true;
+    }</script>
+
+
 <h4>7. Rechtsgrundlage der Verarbeitung</h4>
 <p>Art. 6 I lit. a DS-GVO dient unserem Unternehmen als Rechtsgrundlage für Verarbeitungsvorgänge, bei denen wir eine Einwilligung für einen bestimmten Verarbeitungszweck einholen. Ist die Verarbeitung personenbezogener Daten zur Erfüllung eines Vertrags, dessen Vertragspartei die betroffene Person ist, erforderlich, wie dies beispielsweise bei Verarbeitungsvorgängen der Fall ist, die für eine Lieferung von Waren oder die Erbringung einer sonstigen Leistung oder Gegenleistung notwendig sind, so beruht die Verarbeitung auf Art. 6 I lit. b DS-GVO. Gleiches gilt für solche Verarbeitungsvorgänge die zur Durchführung vorvertraglicher Maßnahmen erforderlich sind, etwa in Fällen von Anfragen zur unseren Produkten oder Leistungen. Unterliegt unser Unternehmen einer rechtlichen Verpflichtung durch welche eine Verarbeitung von personenbezogenen Daten erforderlich wird, wie beispielsweise zur Erfüllung steuerlicher Pflichten, so basiert die Verarbeitung auf Art. 6 I lit. c DS-GVO. In seltenen Fällen könnte die Verarbeitung von personenbezogenen Daten erforderlich werden, um lebenswichtige Interessen der betroffenen Person oder einer anderen natürlichen Person zu schützen. Dies wäre beispielsweise der Fall, wenn ein Besucher in unserem Betrieb verletzt werden würde und daraufhin sein Name, sein Alter, seine Krankenkassendaten oder sonstige lebenswichtige Informationen an einen Arzt, ein Krankenhaus oder sonstige Dritte weitergegeben werden müssten. Dann würde die Verarbeitung auf Art. 6 I lit. d DS-GVO beruhen.
     Letztlich könnten Verarbeitungsvorgänge auf Art. 6 I lit. f DS-GVO beruhen. Auf dieser Rechtsgrundlage basieren Verarbeitungsvorgänge, die von keiner der vorgenannten Rechtsgrundlagen erfasst werden, wenn die Verarbeitung zur Wahrung eines berechtigten Interesses unseres Unternehmens oder eines Dritten erforderlich ist, sofern die Interessen, Grundrechte und Grundfreiheiten des Betroffenen nicht überwiegen. Solche Verarbeitungsvorgänge sind uns insbesondere deshalb gestattet, weil sie durch den Europäischen Gesetzgeber besonders erwähnt wurden. Er vertrat insoweit die Auffassung, dass ein berechtigtes Interesse anzunehmen sein könnte, wenn die betroffene Person ein Kunde des Verantwortlichen ist (Erwägungsgrund 47 Satz 2 DS-GVO).
@@ -265,8 +297,10 @@
 
 <p>Entwickelt von den <a href="https://willing-able.com/">Legal Tech</a> Spezialisten von Willing & Able, die auch das System zur Abbildung der <a href="https://abletotrain.com/">UWG-Schulung</a> entwickelt haben. Die Texte des Datenschutzerklärungs-Generators wurden von <a href="https://dg-datenschutz.de/">Prof. Dr. h.c. Heiko Jonny Maniero</a> und Rechtsanwalt <a href="https://www.wbs-law.de/" rel="nofollow">Christian Solmecke</a> erstellt und publiziert.</p>
 
-    <img alt="self-Logo" src="mir_banner_ogfarben.svg" width="70%" height="80%" style="padding-top: 0; padding-bottom: 0">
 </div>
+
+<br>
+<br>
 
 </body>
 

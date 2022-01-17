@@ -10,54 +10,74 @@
     <link rel="stylesheet" href="main.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGW334QLJG"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-FGW334QLJG');
-    </script>
-
     <meta name="google-site-verification" content="7pQTV0GfuduC2kVGCfm9j4Mz63nBLIXlY7HAi4-MmPo" />
 </head>
 
-
 <style>
-    .body {background-image: url(mir_banner_ogfarben.svg);
+    .body {background-image: url(img/mir_banner_ogfarben.svg);
     background-repeat: no-repeat;
     background-position: left top;}
 </style>
 
 <body style="min-height: 100%">
 <!-- navbar -->
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-    <div class="container-fluid">
+<nav>
+    <div id="navbar-lg">
+        <a href="index.html">
+            <img src="img/Spritze_1_gray.svg" style="height: 1.5em; width: 1.5em; color: gray">
+            Mein Impfrechner
+        </a>
+        <a href="faq.html">
+            &nbsp;<i class="fas fa-question"></i>
+            FAQs
+        </a>
+        <a href="information.html" style="color: black">
+            &nbsp; <i class="fas fa-info"></i>
+            Informationen
+        </a>
+    </div>
 
-        <a class="navbar-brand" href="index.html" style="color: gray;"> <span><i class="fas fa-syringe"></i></span> Mein Impfrechner</a>
+    <div id="navbar-sm">
+        <div class="topnav">
+            <a href="index.html" style="font-weight: bold;"><img src="img/Spritze_1_gray.svg" style="height: 1.5em; width: 1.5em; color: gray"></i> Mein Impfrechner</a>
+            <!-- Navigation links (hidden by default) -->
+            <div id="myLinks">
+                <a href="faq.html">FAQs</a>
+                <a href="information.html" style="color: black">Informationen</a>
+                <a href="impressum.html">Impressum</a>
+                <a href="datenschutz.html">Datenschutz</a>
+            </div>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a href="faq.html" class="nav-link">
-                        <i class="fas fa-question"></i>
-                        FAQs
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="information.html"  style="color: black;" class="nav-link">
-                        <i class="fas fa-info"></i>
-                        Informationen
-                    </a>
-                </li>
-            </ul>
+            <a href="javascript:void(0);" class="icon" onclick="menubar()">
+                <i class="fa fa-bars"></i>
+            </a>
         </div>
     </div>
+
+    <script>
+        function menubar() {
+            var x = document.getElementById("myLinks");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+    </script>
 </nav>
+
+<div class="background">
+    <div class="virus">
+        <img  src = "img/Corona_1.svg"/>
+    </div>
+</div>
+
+<div class="background2">
+    <div class="virus2">
+        <img  src = "img/Corona_2.svg"/>
+    </div>
+</div>
 
 <br/>
 <br/>
@@ -67,7 +87,7 @@
     <br>
 
 
-    <h2 style="font-weight: bold">Datenschutz und Sicherheit</h2>
+    <h2>Datenschutz und Sicherheit</h2>
         </br>
 
         Es werden keine Daten an uns
@@ -91,12 +111,12 @@
     <h2 style="font-weight: bold">Informationsquellen</h2>
     <br>
 
-    <a href="https://www.infektionsschutz.de/coronavirus/schutzimpfung/">www.infektionsschutz.de</a> <br>
+    <a target="_blank" href="https://www.infektionsschutz.de/coronavirus/schutzimpfung/">www.infektionsschutz.de</a> <br>
     <b>Infektionsschutz</b> ist ein Informationsangebot der Bundeszentrale für gesundheitliche Aufklärung (BZgA) mit verlässlichen, fachlich fundierten und aktuellen Informationen.
 
     <br>
     <br>
-    <a href="https://www.bundesgesundheitsministerium.de/coronavirus.html">www.bundesgesundheitsministerium.de</a> <br>
+    <a target="_blank" href="https://www.bundesgesundheitsministerium.de/coronavirus.html">www.bundesgesundheitsministerium.de</a> <br>
     Webseite des <b>Bundesministeriums für Gesundheit (BMG)</b>. Das BMG ist die oberste Bundesbehörde der Bundesrepublik Deutschland.
     Das BMG hat die Dienst- und Fachaufsicht über folgende Behörden: Bundesinstitut für Arzneimittel und Medizinprodukte (BfArM),
     Bundeszentrale für gesundheitliche Aufklärung (BZgA) in Köln, Paul-Ehrlich-Institut (PEI), Robert Koch-Institut (RKI)
@@ -104,43 +124,47 @@
 
     <br>
     <br>
-    <a href="https://www.rki.de/DE/Content/Infekt/Impfen/ImpfungenAZ/COVID-19/Impfempfehlung-Zusfassung.html">www.rki.de</a> <br>
+    <a target="_blank" href="https://www.rki.de/DE/Content/Infekt/Impfen/ImpfungenAZ/COVID-19/Impfempfehlung-Zusfassung.html">www.rki.de</a> <br>
     Die <b> Ständige Impfkommission (STIKO)</b> ist Expertengruppe in der Bundesrepublik Deutschland, die beim Robert
     Koch-Institut in Berlin angesiedelt ist. Die Kommission beschäftigt sich mit den gesundheitspolitisch wichtigen Fragen
     zu Schutzimpfungen und Infektionskrankheiten in Forschung und Praxis und erarbeiten entsprechende Empfehlungen.
 
     <br>
     <br>
-    <a href="https://www.pei.de/DE/home/home-node.html">www.pei.de</a> <br>
+    <a target="_blank" href="https://www.pei.de/DE/home/home-node.html">www.pei.de</a> <br>
     Webseite des <b>Paul-Ehrlich-Instituts (PEI)</b>. Das PEI ist das deutsche Bundesinstitut für Impfstoffe und
     biomedizinische Arzneimittel.
 
     <br>
     <br>
-    <a href="https://www.rki.de/DE/Home/homepage_node.html">www.rki.de</a> <br>
+    <a target="_blank" href="https://www.rki.de/DE/Home/homepage_node.html">www.rki.de</a> <br>
     Das <b>Robert Koch-Institut (RKI)</b> erfasst kontinuierlich die aktuelle COVID-19-Lage, bewertet alle Informationen
     und schätzt das Risiko für die Bevölkerung in Deutschland ein. Darüber hinaus stellt das RKI umfassende Empfehlungen
     für die Fachöffentlichkeit zur Verfügung und gibt einen Überblick über eigene Forschungsvorhaben.
 
     <br>
     <br>
-    <a href="https://www.zusammengegencorona.de/">www.zusammengegencorona.de</a> <br>
+    <a target="_blank" href="https://www.zusammengegencorona.de/">www.zusammengegencorona.de</a> <br>
     <b>Zusammengegencorona</b> liefert und verlässliche Informationen rund um das Thema Corona. Zusammengegencorona
     ist eine Initiative der BZgA.
 
-
-    <img alt="self-Logo" src="mir_banner_ogfarben.svg" width="70%" height="80%" style="padding-top: 0; padding-bottom: 0">
 
 
 
 </div>
 
+<br>
+<br>
+<div class="text-center">
+    <img alt="self-Logo" src="img/mir_banner_ogfarben.svg" width="300em" height="200em" style="padding-top: 0; padding-bottom: 0">
+</div>
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</body>
 
+
+</body>
 
 <footer class="bg-light py-4">
     <div class="container text-center">
