@@ -346,7 +346,9 @@ footer a:hover {
         position:relative;
         height: 70%;
         width: 95%;
+        font-size: 1em;
     }
+
 
     .card-title{
         margin-top: 2vh;
@@ -434,8 +436,8 @@ footer a:hover {
 }
 
 @keyframes orbit2 {
-    from { 	transform: rotate(0deg) translate(-100%) rotate(360deg); }
-    to   {  transform: rotate(360deg) translate(-100%) rotate(-360deg); }
+    from { 	transform: rotate(0deg) translate(-50%) rotate(360deg); }
+    to   {  transform: rotate(360deg) translate(-50%) rotate(-360deg); }
 }
 
 @keyframes orbit21 {
