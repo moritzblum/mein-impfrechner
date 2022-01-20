@@ -297,7 +297,7 @@ export function Unregistered_vaccination_date_header (){
 }
 
 export function Symptoms_registered_header (){
-    return(<div>Symptome</div>)
+    return(<span>Symptome</span>)
 }
 
 export function Number_vaccinations_header (){
