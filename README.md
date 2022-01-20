@@ -2,8 +2,8 @@
 
 This GitHub Repository contains the source-code for the web 
 application [mein-impfrechner.de](https://mein-impfrechner.de). 
-Our calculator give you your vaccination possibilities, e.g. when you should get the next dose of which vaccine.
-The website is hosted by GitHub Pages and all the data is processes inside the browser, no information will be sent to 
+Our calculator calculates you your vaccination possibilities, e.g. when you should get the next dose of which vaccine, based on your user input.
+The website is hosted by GitHub Pages and all the data is processes inside your browser, no sensitive information will be sent to 
 us. 
 
 The application is based on [ReactJS](https://reactjs.org/), a JavaScript library for building user interface, and build 
@@ -23,19 +23,10 @@ For contribution, follow the following steps:
 Now you are ready for development. If you want to deploy the current version, run `npm run deploy` inside the project 
 directory (on the `master` branch).
 
-
-
-## Files
-* [index.html](public/index.html) - HTML root: main page
-* [render_form.js](src/form_logic.js) - Frontend: displays questions and results 
-* [form_logic.js](src/form_logic.js) - Backend: chooses which question to ask next and computes the output
-
 ## Contributors 
 * Technical Development: [Moritz Blum](https://github.com/moritzblum)
 * Domain Expert: [Ole Wienke](https://github.com/OleWienke)
+* Support: Marvin Bange(Figures)
 
-Support: Marvin Bange(Figures)
-
-In Kooperation mit:
-
-<img src=".https://github.com/moritzblum/mein-impfrechner/tree/main/public/img/ASB-OWL-Logo.png" width="100" height="100">
+In cooperation with:
+<img src=".https://github.com/moritzblum/mein-impfrechner/tree/main/public/img/ASB-OWL-logo.png" width="100" height="100">

@@ -49,7 +49,8 @@ import {
     Risk_group_header,
     Pregnant_header,
     Number_vaccinations_header,
-    Got_unregistered_vaccination_header, Unregistered_vaccination_date_header
+    Got_unregistered_vaccination_header,
+    Unregistered_vaccination_date_header
 } from "./texts.js";
 import * as form_logic from "./form_logic.js";
 
@@ -67,11 +68,9 @@ class Card extends React.Component {
                         </div>
                     </div>
                     <div className="vc-card-body">
-
                         <form onSubmit={this.props.handler} className="needs-validation">
                             {this.props.form_body}
                         </form>
-
                         <div className="" style={{"position": "absolute", "bottom": "2%", "width":"96%"}}>
                             <div className="d-flex justify-content-between">
                                 <button className="button button_back" onClick={this.props.handler}
@@ -99,8 +98,7 @@ function Modal_popup(props) {
                 <div className="modal-content">
                     <div className="modal-header">
                         <h2 className="modal-title" id="exampleModalLabel" style={{"color": "gray", "fontWeight": "bold"}}>{props.title}</h2>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"/>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"/>
                     </div>
                     <div className="modal-body">
                         {props.text}
@@ -128,8 +126,6 @@ class Form_body_vaccination_brand_date extends React.Component {
                 <div className="form-group">
                     <div>{this.props.instruction}</div>
                     <br/>
-
-
                     <div className="container" style={{"width":"90%"}}>
                         <div className="row">
                             <div className="col">
@@ -145,7 +141,6 @@ class Form_body_vaccination_brand_date extends React.Component {
                                     <option value={texts_german["vaccines"]["johnson"]}>{texts_german["vaccines"]["johnson"]}</option>
                                     <option value={texts_german["vaccines"]["novavax"]}>{texts_german["vaccines"]["novavax"]}</option>
                                 </select>
-
                             </div>
                         </div>
                         <br/>
@@ -157,7 +152,6 @@ class Form_body_vaccination_brand_date extends React.Component {
                                 <DatePicker onChange={this.props.input_data_handler}
                                             date_picker_name={this.props.input_name_vaccination_date}/>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -273,8 +267,6 @@ class Form_body_risk_group extends React.Component {
                     <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
                 </div>
             </div>
-
-
         );
     }
 }
@@ -303,8 +295,6 @@ class Form_body_pregnant extends React.Component {
                     <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
                 </div>
             </div>
-
-
         );
     }
 }
@@ -535,12 +525,10 @@ class DatePicker extends React.Component {
 }
 
 
-
 class Card_start extends React.Component {
     constructor(props) {
         super(props);
     }
-
 
     render() {
         return (
@@ -553,7 +541,6 @@ class Card_start extends React.Component {
                     berücksichtigen. Die aktuelle Version
                     bildet den Stand vom <a target="_blank" href="https://www.rki.de/DE/Content/Infekt/EpidBull/epid_bull_node.html" style={{"color": "white"}}>17.01.2022</a> ab.
                 </div>
-
                 <div className="vc-card vc-card-start container" id="card_start" >
                     <div className="row justify-content-md-center">
                             <div className="vc-card-header">
@@ -561,7 +548,6 @@ class Card_start extends React.Component {
                                     <h1 className="card-title"><Start_header/></h1>
                                 </div>
                             </div>
-
                             <div className="vc-card-body">
                                 <div className="col" style={{"position": "relative", "textAlign": "center", "padding": "20% 0%"}}>
                                     <button type="button" className="button-start button_next" id="card_start_button_next"
@@ -571,7 +557,6 @@ class Card_start extends React.Component {
                             </div>
                     </div>
                 </div>
-
                 <div className="main_page_text container" style={{"margin-bottom":"2%"}}>
                     Die Sicherheit Ihrer Daten hat für uns große Priorität. <br/>
                     Mehr dazu erfahren Sie <a href="information.html" style={{"color": "white"}}>hier</a>...
@@ -581,6 +566,7 @@ class Card_start extends React.Component {
         );
     }
 }
+
 
 class Card_result extends React.Component {
     constructor(props) {
@@ -630,7 +616,6 @@ class Card_result extends React.Component {
                             <br/>
                             <br/>
                         </div>
-
                         <div className="" style={{"position": "absolute", "bottom": "2%", "top":"auto", "width":"100%"}}>
                             <div className="d-flex justify-content-between">
                                 <button className="button button_back" onClick={this.props.handler}
@@ -716,6 +701,7 @@ function vis_user_data (user_data) {
     return <div>{user_data_list}</div>;
 }
 
+
 function button_id_2_card_id(button_id){
     if (button_id.includes('_start_')){
         return 'start';
@@ -770,7 +756,6 @@ function button_id_2_card_id(button_id){
     }
 }
 
-
 class CardManager extends React.Component {
     constructor(props) {
         super(props);
@@ -783,7 +768,6 @@ class CardManager extends React.Component {
             user_data: {}
         };
     }
-
 
     control_click_handler(e) {
         let current_card_history = this.state.card_history;
@@ -803,13 +787,10 @@ class CardManager extends React.Component {
                             if (!isNaN(this.state.entered_data['value'])) {
                                 event.preventDefault();
                                 event.stopPropagation();
-
                             }
-
                             form.classList.add('was-validated')
                         }, false)
                     })
-
 
                 // form validation
                 // number text-field
@@ -904,7 +885,6 @@ class CardManager extends React.Component {
                 this.setState({step: last_step});
             }
         }
-
         e.preventDefault();
     }
 
@@ -961,7 +941,6 @@ class CardManager extends React.Component {
                                                                              input_data_handler={this.handleInputChange}
                                                                              input_name_vaccine='value'
                                                                              input_name_vaccination_date='date'/>}/>
-
                 );
             case 'vaccinated':
                 return (

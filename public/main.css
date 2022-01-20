@@ -39,6 +39,16 @@ a {
     text-decoration: underline;
 }
 
+a:hover {
+    color: blue !important;
+    text-decoration: underline;
+}
+
+#navbar-lg a:hover {
+    color: black !important;
+    text-decoration: underline;
+}
+
 textarea{
     font-size:1.2em;
 }
@@ -137,7 +147,7 @@ footer a {
 }
 
 footer a:hover {
-    color: black;
+    color: black !important;
     text-decoration: none;
 }
 
@@ -318,7 +328,7 @@ footer a:hover {
         display: block;
     }
     .topnav a:hover {
-        color: black;
+        color: black !important;
     }
 
     html {
