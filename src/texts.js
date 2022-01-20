@@ -158,113 +158,220 @@ export function Alternative(){
 }
 
 
+
+
+
+
+
+export function Vaccination_1_instruction(){
+    return(<div>
+        Welcher Impfstoff wurde bei Ihrer <b>ersten</b> Corona-Schutzimpfung verimpft?
+    </div>)
+}
+
+export function Vaccination_2_instruction(){
+    return(<div>
+        Welcher Impfstoff wurde bei Ihrer <b>zweiten</b> Corona-Schutzimpfung verimpft?
+    </div>)
+}
+
+export function Vaccinated_instruction(){
+    return(<div>
+        Haben Sie bereits eine Impfung gegen das Coronavirus (SARS-CoV-2) erhalten?
+    </div>)
+}
+
+export function Pregnancy_week_instruction(){
+    return(<div>
+        Befinden Sie sich derzeit noch im ersten Schwangerschaftsdrittel (1.-13. Schwangerschaftswoche)?
+    </div>)
+}
+
+export function Past_infection_instruction(){
+    return(<div>
+        Wurden Sie bereits positiv auf das Coronavirus (SARS-CoV-2) getestet (Kein Selbsttest)?
+    </div>)
+}
+
+export function Risk_group_instruction(){
+    return(<div>
+        Sind Sie zum aktuellen Zeitpunkt einer Risikogruppe angehörig oder haben Sie regelmäßig Kontakt zu Personen einer Risikogruppe?
+    </div>)
+}
+
+export function Pregnant_instruction(){
+    return(<div>
+        Sind Sie zum aktuellen Zeitpunkt schwanger?
+    </div>)
+}
+
+export function Got_unregistered_vaccination_instruction(){
+    return(<div>
+        Wurden Sie bereits mit einem in Deutschland <b>nicht</b> zulässigen Corona-Impfstoff geimpft?
+    </div>)
+}
+
+export function Unregistered_vaccination_date_instruction(){
+    return(<div>
+        Wann haben Sie die letzte <b>nicht</b> zulässige Corona-Schutzimpfung erhalten?
+    </div>)
+}
+
+export function Symptoms_registered_instruction(){
+    return(<div>
+        Hatten oder haben Sie Symptome in Folge Ihrer Corona-Infektion entwickelt?
+    </div>)
+}
+
+export function Number_vaccinations_instruction(){
+    return(<div>
+        Wie viele zugelassene Corona-Schutzimpfungen haben Sie erhalten?
+    </div>)
+}
+
+export function Infection_date_instruction(){
+    return(<div>
+        Wann wurden Sie erstmalig positiv auf das Coronavirus getestet (kein Selbsttest)?
+    </div>)
+}
+
+export function Symptoms_end_date_instruction(){
+    return(<div>
+        Wann haben ihre Symptome aufgehört?
+    </div>)
+}
+
+export function Age_instruction(){
+    return(<div>
+        Wie alt sind Sie?
+    </div>)
+}
+
+export function Disclaimer(){
+    return(<div>
+        <b>Haftungsausschluss:</b> Die Inhalte dieser Seite dienen ausschließlich der allgemeinen Information der
+        Öffentlichkeit. mein-impfrechner.de übernimmt keine Verantwortung für die Richtigkeit und Vollständigkeit der
+        Daten und Informationen, die auf dieser Seite angegeben oder verlinkt werden, für Abweichungen von Originaldaten,
+        Übertragungsfehler oder Veränderung der Informationen durch Dritte.
+    </div>)
+}
+
+export function Start_header (){
+    return(<span>Impfrechner</span>)
+}
+
+export function Vaccination_1_header (){
+    return(<span>1. Corona-Schutzimpfung</span>)
+}
+
+export function Vaccination_2_header (){
+    return(<span>2. Corona-Schutzimpfung</span>)
+}
+
+export function Vaccinated_header (){
+    return(<span>Impfstatus</span>)
+}
+
+export function Pregnancy_week_header (){
+    return(<span>Schwangerschaftswoche</span>)
+}
+
+export function Past_infection_header (){
+    return(<span>Genesenenstatus</span>)
+}
+
+export function Risk_group_header (){
+    return(<span>Risikogruppe</span>)
+}
+
+export function Pregnant_header (){
+    return(<span>Schwangerschaft</span>)
+}
+
+export function Got_unregistered_vaccination_header (){
+    return(<span>Impfstoff ohne STIKO-Zulassung</span>)
+}
+
+export function Unregistered_vaccination_date_header (){
+    return(<span>Impfstoff ohne STIKO-Zulassung</span>)
+}
+
+export function Symptoms_registered_header (){
+    return(<div>Symptome</div>)
+}
+
+export function Number_vaccinations_header (){
+    return(<span>Anzahl Corona-Schutzimpfungen</span>)
+}
+
+export function Infection_date_header (){
+    return(<span>Erkrankungsdatum</span>)
+}
+
+export function Symptoms_end_date_header (){
+    return(<span>Ende der Symptomatik</span>)
+}
+
+export function Age_header (){
+    return(<span>Alter</span>)
+}
+
+
 export const texts_german = {
-    "start": {
-        "header": "Impfrechner",
-        "welcome": "Hier können Sie Ihren Impftermin berechnen",
-        "data_storage": "Alle Daten bleiben im Browser"
-    },
     "form_validation": {
         "valid": "Eingabe ist valide",
         "invalid" : "Bitte machen Sie eine valide Eingabe, um fortzufahren"
     },
     "vaccination_brand_date": {
-        "instructions": "Welcher Impfstoff wurde bei Ihrer letzten Corona-Schutzimpfung verimpft?",
         "vaccination_label": "Impfstoff",
-        "vaccination_instruction": "bitte auswählen",
-        "other_vaccines": "andere",
-        "info_vaccines": "Welcher Impfstoff, Erklärungen, ....",
+        "vaccination_default": "bitte auswählen",
         "date_labe": "Datum",
-        "info_date": "Welches Datum, warum, wie, was"// ggf. nicht benötigt
-    },
-    "vaccination_1": {
-        "header": "1. Corona-Schutzimpfung",
-    },
-    "vaccination_2": {
-        "header": "2. Corona-Schutzimpfung",
-    },
-    "vaccination_x": {
-        "header": "Erste Corona-Schutzimpfung", //muss angepasst werden, wenn 4 Impfungen zulässig werden.
-        "instructions": "Welcher Impfstoff wurde bei Ihrer ersten Corona-Schutzimpfung verimpft?",
-        "vaccination_label": "Impfstoff",
-        "vaccination_instruction": "bitte auswählen",
-        "other_vaccines": "andere",
-        "info_vaccines": "Welcher Impfstoff, Erklärungen, ...."
     },
     "vaccinated": {
-        "header": "Impfstatus",
-        "instructions": "Haben Sie bereits eine Impfung gegen das Coronavirus (SARS-CoV-2) erhalten?",
         "vaccinated_yes": "Ja",
         "vaccinated_no": "Nein"
     },
     "pregnancy_week": {
-        "header": "Schwangerschaftswoche",
         "short": "Erstes Schwangerschaftsdrittel",
-        "instructions": "Befinden Sie sich derzeit noch im ersten Schwangerschaftsdrittel (1.-13. Schwangerschaftswoche)?",
         "pregnancy_week_yes": "Ja",
         "pregnancy_week_no": "Nein"
     },
     "past_infection": {
-        "header": "Genesenenstatus",
-        "instructions": "Wurden Sie bereits positiv auf das Coronavirus (SARS-CoV-2) getestet (Kein Selbsttest)? ",
-        "info_past_infection": "Warum nur kein Selbsttest, was zählt, wie, was...",
         "past_infection_yes": "Ja",
         "past_infection_no": "Nein"
     },
     "risk_group": {
-        "header": "Risikogruppe",
-        "instructions": "Sind Sie zum aktuellen Zeitpunkt einer Risikogruppe angehörig oder haben Sie " +
-            "regelmäßig Kontakt zu Personen einer Risikogruppe?",
-        "info_risk_group": "Wann genau und warum ist man Teil einer Risikogruppe",
         "risk_group_yes": "Ja",
         "risk_group_no": "Nein"
     },
     "pregnant": {
-        "header": "Schwangerschaft",
-        "instructions": "Sind Sie zum aktuellen Zeitpunkt schwanger?",
-        "info_pregnant": "Warum ist eine Schwangerschaft relevant für die Impfreihe.",
         "pregnant_yes": "Ja",
         "pregnant_no": "Nein"
     },
     "got_unregistered_vaccination": {
-        "header": "Impfstoff ohne STIKO-Zulassung",
-        "instructions": "Wurden Sie bereits mit einem in Deutschland nicht zulässigen Corona-Impfstoff geimpft?",
-        "info_got_unregistered_vaccination": "Was, wann, warum problematisch?",
         "got_unregistered_vaccination_yes": "Ja",
         "got_unregistered_vaccination_no": "Nein"
     },
     "unregistered_vaccination_date": {
-        "header": "Impfstoff ohne STIKO-Zulassung",
-        "instructions": "Wann haben Sie die letzte nicht zulässige Corona-Schutzimpfung erhalten?",
         "label": "Datum"
     },
     "symptoms_registered": {
-        "header": "Symptome",
-        "instructions": "Hatten oder haben Sie Symptome in Folge Ihrer Corona-Infektion entwickelt?",
-        "info_symptoms_registered": "Was sind Symptome, was sind Spätfolgen und wie muss ich die angeben...?",
         "never": "Nein, ich hatte nie Symptome",
         "still": "Ja, ich habe immer noch Symptome",
         "past": "Ja, ich hatte Symptome"
     },
     "number_vaccinations": {
-        "header": "Anzahl Corona-Schutzimpfungen",
-        "instructions": "Wie viele zugelassene Corona-Schutzimpfungen haben Sie erhalten?",
         "one": "1",
         "two": "2",
         "three": "3"
     },
     "infection_date": {
-        "header": "Erkrankungsdatum",
-        "instructions": "Wann wurden Sie erstmalig positiv auf das Coronavirus getestet (kein Selbsttest)?",
         "label": "Datum"
     },
     "symptoms_end_date": {
-        "header": "Ende der Symptomatik",
-        "instructions": "Wann haben ihre Symptome aufgehört?",
         "label": "Datum"
     },
     "age": {
-        "header": "Alter",
         "instructions": "Wie alt sind Sie?",
         "age_placeholder": "Alter"
     },
