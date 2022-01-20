@@ -28,7 +28,7 @@ directory (on the `master` branch).
 * Domain Expert: [Ole Wienke](https://github.com/OleWienke)
 * Support: Marvin Bange(Figures)
 
-<img src="https://github.com/moritzblum/mein-impfrechner/blob/main/public/img/ASB-OWL-logo.png" width="100" height="100">
+<img src="https://github.com/moritzblum/mein-impfrechner/blob/main/public/img/ASB-OWL-logo.png" width="100" height="150">
 
 
 
