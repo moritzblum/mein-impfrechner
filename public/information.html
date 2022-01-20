@@ -2,167 +2,172 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html" style="min-height: 100%" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
-    <title>Informationen: mein-impfrechner.de</title>
-    <script src="https://kit.fontawesome.com/c783bd863b.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
-    <link rel="stylesheet" href="main.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informationen: mein-impfrechner.de</title>
+    <!-- The Open Graph protocol -->
+    <meta property="og:title" content="Mein Impfrechner: Informationen" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.mein-impfrechner.de/information.html" />
+    <meta property="og:site_name" content="Mein Impfrecher: Informationen" />
+    <meta property="og:image" content="img/page_preview.png" />
+    <meta property="og:description" content="Finden Sie heraus, ob Sie ausreichend gegen Corona geschützt sind, und ermitteln Sie Ihre persönliche Impfempfehlung mit mein-Impfrechner." />
 
+    <!-- Twitter -->
+    <meta name="twitter:title" content="Mein Impfrechner: Informationen">
+    <meta name="twitter:description" content="Finden Sie heraus, ob Sie ausreichend gegen Corona geschützt sind, und ermitteln Sie Ihre persönliche Impfempfehlung mit mein-Impfrechner.">
+    <meta name="twitter:image" content="img/page_preview.png">
+
+    <!-- Google Search -->
     <meta name="google-site-verification" content="7pQTV0GfuduC2kVGCfm9j4Mz63nBLIXlY7HAi4-MmPo" />
+    <meta name="description" content="Finden Sie heraus, ob Sie ausreichend gegen Corona geschützt sind, und ermitteln Sie Ihre persönliche Impfempfehlung mit mein-Impfrechner.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.mein-impfrechner.de/information.html" />
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/c783bd863b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Our style -->
+    <link rel="stylesheet" href="main.css" />
 </head>
 
-<style>
-    .body {background-image: url(img/mir_banner_ogfarben.svg);
-    background-repeat: no-repeat;
-    background-position: left top;}
-</style>
 
 <body style="min-height: 100%">
-<!-- navbar -->
-<nav>
-    <div id="navbar-lg">
-        <a href="index.html">
-            <img src="img/Spritze_1_gray.svg" style="height: 1.5em; width: 1.5em; color: gray">
-            Mein Impfrechner
-        </a>
-        <a href="faq.html">
-            &nbsp;<i class="fas fa-question"></i>
-            FAQs
-        </a>
-        <a href="information.html" style="color: black">
-            &nbsp; <i class="fas fa-info"></i>
-            Informationen
-        </a>
-    </div>
-
-    <div id="navbar-sm">
-        <div class="topnav">
-            <a href="index.html" style="font-weight: bold;"><img src="img/Spritze_1_gray.svg" style="height: 1.5em; width: 1.5em; color: gray"></i> Mein Impfrechner</a>
-            <!-- Navigation links (hidden by default) -->
-            <div id="myLinks">
-                <a href="faq.html">FAQs</a>
-                <a href="information.html" style="color: black">Informationen</a>
-                <a href="impressum.html">Impressum</a>
-                <a href="datenschutz.html">Datenschutz</a>
-            </div>
-
-
-            <a href="javascript:void(0);" class="icon" onclick="menubar()">
-                <i class="fa fa-bars"></i>
+    <script src="analytics.js"></script>
+    <!-- navbar -->
+    <nav>
+        <div id="navbar-lg">
+            <a href="index.html">
+                <img src="img/syringe_gray.svg" style="height: 1.5em; width: 1.5em; color: gray">
+                Mein Impfrechner
             </a>
+            <a href="faq.html">
+                &nbsp;<i class="fas fa-question"></i>
+                FAQs
+            </a>
+            <a href="information.html" style="color: black">
+                &nbsp; <i class="fas fa-info"></i>
+                Informationen
+            </a>
+        </div>
+        <div id="navbar-sm">
+            <div class="topnav">
+                <a href="index.html" style="font-weight: bold;"><img src="img/syringe_gray.svg" style="height: 1.5em; width: 1.5em; color: gray"></i> Mein Impfrechner</a>
+                <!-- Navigation links (hidden by default) -->
+                <div id="myLinks">
+                    <a href="faq.html">FAQs</a>
+                    <a href="information.html" style="color: black">Informationen</a>
+                    <a href="impressum.html">Impressum</a>
+                    <a href="datenschutz.html">Datenschutz</a>
+                </div>
+                <a href="javascript:void(0);" class="icon" onclick="menubar()">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <script>
+            function menubar() {
+                var x = document.getElementById("myLinks");
+                if (x.style.display === "block") {
+                    x.style.display = "none";
+                } else {
+                    x.style.display = "block";
+                }
+            }
+        </script>
+    </nav>
+
+    <div class="background">
+        <div class="virus">
+            <img  src = "img/Corona_1.svg"/>
         </div>
     </div>
 
-    <script>
-        function menubar() {
-            var x = document.getElementById("myLinks");
-            if (x.style.display === "block") {
-                x.style.display = "none";
-            } else {
-                x.style.display = "block";
-            }
-        }
-    </script>
-</nav>
-
-<div class="background">
-    <div class="virus">
-        <img  src = "img/Corona_1.svg"/>
+    <div class="background2">
+        <div class="virus2">
+            <img  src = "img/Corona_2.svg"/>
+        </div>
     </div>
-</div>
 
-<div class="background2">
-    <div class="virus2">
-        <img  src = "img/Corona_2.svg"/>
+    <br/>
+    <br/>
+
+    <div class="container main_page_text">
+        <h1 style="text-align: center; font-weight: bold">Informationen</h1>
+        <br>
+        <br>
+        <h2 id="dr">Fachwissenschaftliche Begleitung</h2>
+        Besonderer Dank gilt <b>Herrn Prof. Dr. med. Theodor Windhorst</b>, langjähriger Ehrenpräsident der Ärztekammer
+        Westfalen-Lippe und medizinischer Leiter des städtischen Impfzentrums Bielefeld,
+        für seine Unterstützung und fachliche Begleitung.
+        <br>
+        <br>
+        <br>
+        <h2>Datenschutz und Sicherheit</h2>
+            Es werden keine Daten an uns
+            oder Dritte übermittelt.
+            Ihre Daten (Cookies) werden nur im Zeitraum Ihres Besuchs im Browser
+            zwischengespeichert und anschließend gelöscht.
+            Darüber hinaus ist der Impfrechner durch ein HTTPS/SSL Zertifikat verschlüsselt,
+            damit niemand Ihre Daten abgreifen
+            oder manipulieren kann.
+            Unser Tool <a href="mein-impfrechner.de" style="color: white; font-weight: bold">mein-impfrechner.de</a> soll
+            Ihnen helfen, die Masse an Informationen zu bündeln und eine einfache
+            Lösung bieten, die für Sie passende Impfempfehlung zu ermitteln.
+            Wir möchten uns nicht bereichern, daher ist der Rechner für alle kostenlos
+            zugänglich (Open Source) und der
+            Programmcode im GitHub einsehbar.
+        <br>
+        <br>
+        <br>
+        <h2 style="font-weight: bold">Informationsquellen</h2>
+        <a target="_blank" href="https://www.infektionsschutz.de/coronavirus/schutzimpfung/">www.infektionsschutz.de</a> <br>
+        <b>Infektionsschutz</b> ist ein Informationsangebot der Bundeszentrale für gesundheitliche Aufklärung (BZgA) mit verlässlichen, fachlich fundierten und aktuellen Informationen.
+
+        <br>
+        <br>
+        <a target="_blank" href="https://www.bundesgesundheitsministerium.de/coronavirus.html">www.bundesgesundheitsministerium.de</a> <br>
+        Webseite des <b>Bundesministeriums für Gesundheit (BMG)</b>. Das BMG ist die oberste Bundesbehörde der Bundesrepublik Deutschland.
+        Das BMG hat die Dienst- und Fachaufsicht über folgende Behörden: Bundesinstitut für Arzneimittel und Medizinprodukte (BfArM),
+        Bundeszentrale für gesundheitliche Aufklärung (BZgA) in Köln, Paul-Ehrlich-Institut (PEI), Robert Koch-Institut (RKI)
+
+
+        <br>
+        <br>
+        <a target="_blank" href="https://www.rki.de/DE/Content/Infekt/Impfen/ImpfungenAZ/COVID-19/Impfempfehlung-Zusfassung.html">www.rki.de</a> <br>
+        Die <b> Ständige Impfkommission (STIKO)</b> ist Expertengruppe in der Bundesrepublik Deutschland, die beim Robert
+        Koch-Institut in Berlin angesiedelt ist. Die Kommission beschäftigt sich mit den gesundheitspolitisch wichtigen Fragen
+        zu Schutzimpfungen und Infektionskrankheiten in Forschung und Praxis und erarbeiten entsprechende Empfehlungen.
+
+        <br>
+        <br>
+        <a target="_blank" href="https://www.pei.de/DE/home/home-node.html">www.pei.de</a> <br>
+        Webseite des <b>Paul-Ehrlich-Instituts (PEI)</b>. Das PEI ist das deutsche Bundesinstitut für Impfstoffe und
+        biomedizinische Arzneimittel.
+
+        <br>
+        <br>
+        <a target="_blank" href="https://www.rki.de/DE/Home/homepage_node.html">www.rki.de</a> <br>
+        Das <b>Robert Koch-Institut (RKI)</b> erfasst kontinuierlich die aktuelle COVID-19-Lage, bewertet alle Informationen
+        und schätzt das Risiko für die Bevölkerung in Deutschland ein. Darüber hinaus stellt das RKI umfassende Empfehlungen
+        für die Fachöffentlichkeit zur Verfügung und gibt einen Überblick über eigene Forschungsvorhaben.
+
+        <br>
+        <br>
+        <a target="_blank" href="https://www.zusammengegencorona.de/">www.zusammengegencorona.de</a> <br>
+        <b>Zusammengegencorona</b> liefert und verlässliche Informationen rund um das Thema Corona. Zusammengegencorona
+        ist eine Initiative der BZgA.
     </div>
-</div>
-
-<br/>
-<br/>
-
-<div class="container main_page_text">
-    <h1 style="text-align: center; font-weight: bold">Informationen</h1>
-    <br>
-
-
-    <h2>Datenschutz und Sicherheit</h2>
-        </br>
-
-        Es werden keine Daten an uns
-        oder Dritte übermittelt.
-        Ihre Daten (Cookies) werden nur im Zeitraum Ihres Besuchs im Browser
-        zwischengespeichert und anschließend gelöscht.
-        Darüber hinaus ist der Impfrechner durch ein HTTPS/SSL Zertifikat verschlüsselt,
-        damit niemand Ihre Daten abgreifen
-        oder manipulieren kann.
-        Unser Tool <a href="mein-impfrechner.de" style="color: white; font-weight: bold">mein-impfrechner.de</a> soll
-        Ihnen helfen, die Masse an Informationen zu bündeln und eine einfache
-        Lösung bieten, die für Sie passende Impfempfehlung zu ermitteln.
-        Wir möchten uns nicht bereichern, daher ist der Rechner für alle kostenlos
-        zugänglich (Open Source) und der
-        Programmcode im GitHub einsehbar.
 
     <br>
     <br>
-    <br>
-
-    <h2 style="font-weight: bold">Informationsquellen</h2>
-    <br>
-
-    <a target="_blank" href="https://www.infektionsschutz.de/coronavirus/schutzimpfung/">www.infektionsschutz.de</a> <br>
-    <b>Infektionsschutz</b> ist ein Informationsangebot der Bundeszentrale für gesundheitliche Aufklärung (BZgA) mit verlässlichen, fachlich fundierten und aktuellen Informationen.
-
-    <br>
-    <br>
-    <a target="_blank" href="https://www.bundesgesundheitsministerium.de/coronavirus.html">www.bundesgesundheitsministerium.de</a> <br>
-    Webseite des <b>Bundesministeriums für Gesundheit (BMG)</b>. Das BMG ist die oberste Bundesbehörde der Bundesrepublik Deutschland.
-    Das BMG hat die Dienst- und Fachaufsicht über folgende Behörden: Bundesinstitut für Arzneimittel und Medizinprodukte (BfArM),
-    Bundeszentrale für gesundheitliche Aufklärung (BZgA) in Köln, Paul-Ehrlich-Institut (PEI), Robert Koch-Institut (RKI)
-
-
-    <br>
-    <br>
-    <a target="_blank" href="https://www.rki.de/DE/Content/Infekt/Impfen/ImpfungenAZ/COVID-19/Impfempfehlung-Zusfassung.html">www.rki.de</a> <br>
-    Die <b> Ständige Impfkommission (STIKO)</b> ist Expertengruppe in der Bundesrepublik Deutschland, die beim Robert
-    Koch-Institut in Berlin angesiedelt ist. Die Kommission beschäftigt sich mit den gesundheitspolitisch wichtigen Fragen
-    zu Schutzimpfungen und Infektionskrankheiten in Forschung und Praxis und erarbeiten entsprechende Empfehlungen.
-
-    <br>
-    <br>
-    <a target="_blank" href="https://www.pei.de/DE/home/home-node.html">www.pei.de</a> <br>
-    Webseite des <b>Paul-Ehrlich-Instituts (PEI)</b>. Das PEI ist das deutsche Bundesinstitut für Impfstoffe und
-    biomedizinische Arzneimittel.
-
-    <br>
-    <br>
-    <a target="_blank" href="https://www.rki.de/DE/Home/homepage_node.html">www.rki.de</a> <br>
-    Das <b>Robert Koch-Institut (RKI)</b> erfasst kontinuierlich die aktuelle COVID-19-Lage, bewertet alle Informationen
-    und schätzt das Risiko für die Bevölkerung in Deutschland ein. Darüber hinaus stellt das RKI umfassende Empfehlungen
-    für die Fachöffentlichkeit zur Verfügung und gibt einen Überblick über eigene Forschungsvorhaben.
-
-    <br>
-    <br>
-    <a target="_blank" href="https://www.zusammengegencorona.de/">www.zusammengegencorona.de</a> <br>
-    <b>Zusammengegencorona</b> liefert und verlässliche Informationen rund um das Thema Corona. Zusammengegencorona
-    ist eine Initiative der BZgA.
-
-
-
-
-</div>
-
-<br>
-<br>
-<div class="text-center">
-    <img alt="self-Logo" src="img/mir_banner_ogfarben.svg" width="300em" height="200em" style="padding-top: 0; padding-bottom: 0">
-</div>
-
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
+    <div class="text-center">
+        <img alt="self-Logo" src="img/banner_footer.svg" width="300em" height="225em" style="padding-top: 0; padding-bottom: 0">
+    </div>
 
 </body>
 

@@ -20,7 +20,37 @@ import {
     modal_symptoms_end_date_text,
     modal_pregnancy_week_title,
     modal_pregnancy_week_text,
-    Alternative
+    Alternative,
+    Got_unregistered_vaccination_instruction,
+    Disclaimer,
+    Vaccinated_instruction,
+    Pregnancy_week_instruction,
+    Past_infection_instruction,
+    Risk_group_instruction,
+    Pregnant_instruction,
+    Unregistered_vaccination_date_instruction,
+    Symptoms_registered_instruction,
+    Number_vaccinations_instruction,
+    Infection_date_instruction,
+    Symptoms_end_date_instruction,
+    Age_instruction,
+    Vaccination_1_instruction,
+    Vaccination_2_instruction,
+    Start_header,
+    Vaccination_1_header,
+    Vaccination_2_header,
+    Vaccinated_header,
+    Pregnancy_week_header,
+    Past_infection_header,
+    Infection_date_header,
+    Age_header,
+    Symptoms_registered_header,
+    Symptoms_end_date_header,
+    Risk_group_header,
+    Pregnant_header,
+    Number_vaccinations_header,
+    Got_unregistered_vaccination_header,
+    Unregistered_vaccination_date_header
 } from "./texts.js";
 import * as form_logic from "./form_logic.js";
 
@@ -38,11 +68,9 @@ class Card extends React.Component {
                         </div>
                     </div>
                     <div className="vc-card-body">
-
                         <form onSubmit={this.props.handler} className="needs-validation">
                             {this.props.form_body}
                         </form>
-
                         <div className="" style={{"position": "absolute", "bottom": "2%", "width":"96%"}}>
                             <div className="d-flex justify-content-between">
                                 <button className="button button_back" onClick={this.props.handler}
@@ -70,8 +98,7 @@ function Modal_popup(props) {
                 <div className="modal-content">
                     <div className="modal-header">
                         <h2 className="modal-title" id="exampleModalLabel" style={{"color": "gray", "fontWeight": "bold"}}>{props.title}</h2>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"/>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"/>
                     </div>
                     <div className="modal-body">
                         {props.text}
@@ -87,7 +114,7 @@ function Modal_popup(props) {
 }
 
 
-class Form_body_vaccination_brand_date_1 extends React.Component {
+class Form_body_vaccination_brand_date extends React.Component {
 
     constructor(props) {
         super(props);
@@ -97,10 +124,8 @@ class Form_body_vaccination_brand_date_1 extends React.Component {
         return (
             <div>
                 <div className="form-group">
-                    <div>{texts_german["vaccination_brand_date"]["instructions"]}</div>
+                    <div>{this.props.instruction}</div>
                     <br/>
-
-
                     <div className="container" style={{"width":"90%"}}>
                         <div className="row">
                             <div className="col">
@@ -109,14 +134,13 @@ class Form_body_vaccination_brand_date_1 extends React.Component {
                             <div className="col-md-auto">
                                 <select className="form-select select-validation"
                                         onChange={this.props.input_data_handler} name={this.props.input_name_vaccine} defaultValue="none">
-                                    <option value='none' disabled>{texts_german["vaccination_brand_date"]["vaccination_instruction"]}</option>
+                                    <option value='none' disabled>{texts_german["vaccination_brand_date"]["vaccination_default"]}</option>
                                     <option value={texts_german["vaccines"]["biontec"]}>{texts_german["vaccines"]["biontec"]}</option>
                                     <option value={texts_german["vaccines"]["moderna"]}>{texts_german["vaccines"]["moderna"]}</option>
                                     <option value={texts_german["vaccines"]["astra"]}>{texts_german["vaccines"]["astra"]}</option>
                                     <option value={texts_german["vaccines"]["johnson"]}>{texts_german["vaccines"]["johnson"]}</option>
                                     <option value={texts_german["vaccines"]["novavax"]}>{texts_german["vaccines"]["novavax"]}</option>
                                 </select>
-
                             </div>
                         </div>
                         <br/>
@@ -128,47 +152,8 @@ class Form_body_vaccination_brand_date_1 extends React.Component {
                                 <DatePicker onChange={this.props.input_data_handler}
                                             date_picker_name={this.props.input_name_vaccination_date}/>
                             </div>
-
                         </div>
                     </div>
-
-
-
-
-
-
-
-                </div>
-
-            </div>);
-    }
-}
-
-
-class Form_body_vaccination_x extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <div>
-                <div className="form-group">
-                    <div>{texts_german["vaccination_x"]["instructions"]}</div>
-                    <br/>
-                    <br/>
-                    <label>{texts_german["vaccination_x"]["vaccination_label"]}</label>
-                    <select className="form-select select-validation" id="exampleFormControlSelect1"
-                            onChange={this.props.input_data_handler} name={this.props.input_name_vaccine}>
-                        <option value>{texts_german["vaccination_x"]["vaccination_instruction"]}</option>
-                        <option>{texts_german["vaccines"]["biontec"]}</option>
-                        <option>{texts_german["vaccines"]["moderna"]}</option>
-                        <option>{texts_german["vaccines"]["astra"]}</option>
-                        <option>{texts_german["vaccines"]["johnson"]}</option>
-                        <option>{texts_german["vaccines"]["novavax"]}</option>
-                    </select>
-                    <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
-                    <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
                 </div>
             </div>);
     }
@@ -183,7 +168,7 @@ class Form_body_vaccinated extends React.Component {
         return (
             <div>
                 <div className="form-group">
-                    <label>{texts_german["vaccinated"]["instructions"]} <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_vaccinated"/></label>
+                    <label><Vaccinated_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_vaccinated"/></label>
                     <Modal_popup button_id="modal_vaccinated" title={modal_vaccinated_title} text={modal_vaccinated_text} />
                     <br/>
                     <br/>
@@ -211,7 +196,7 @@ class Form_body_pregnancy_week extends React.Component {
         return (
             <div>
                 <div className="form-group">
-                    <label>{texts_german["pregnancy_week"]["instructions"]} <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_pregnancy_week"/></label>
+                    <label><Pregnancy_week_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_pregnancy_week"/></label>
                     <Modal_popup button_id="modal_pregnancy_week" title={modal_pregnancy_week_title} text={modal_pregnancy_week_text} />
                     <br/>
                     <br/>
@@ -239,7 +224,7 @@ class Form_body_past_infection extends React.Component {
     render(){
         return(
             <div className="form-group">
-                <label>{texts_german["past_infection"]["instructions"]} <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_past_infection"/></label>
+                <label><Past_infection_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_past_infection"/></label>
                 <Modal_popup button_id="modal_past_infection" title={modal_past_infection_title} text={modal_past_infection_text} />
                 <br/>
                 <br/>
@@ -267,7 +252,7 @@ class Form_body_risk_group extends React.Component {
     render(){
         return(
             <div className="form-group">
-                <label>{texts_german["risk_group"]["instructions"]} <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_risk_group"/></label>
+                <label><Risk_group_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_risk_group"/></label>
                 <Modal_popup button_id="modal_risk_group" title={modal_risk_group_title} text={modal_risk_group_text} />
                 <br/>
                 <br/>
@@ -282,8 +267,6 @@ class Form_body_risk_group extends React.Component {
                     <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
                 </div>
             </div>
-
-
         );
     }
 }
@@ -297,7 +280,7 @@ class Form_body_pregnant extends React.Component {
     render(){
         return(
             <div className="form-group">
-                <label>{texts_german["pregnant"]["instructions"]} <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_pregnant"/></label>
+                <label><Pregnant_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_pregnant"/></label>
                 <Modal_popup button_id="modal_pregnant" title={modal_pregnant_title} text={modal_pregnant_text} />
                 <br/>
                 <br/>
@@ -312,8 +295,6 @@ class Form_body_pregnant extends React.Component {
                     <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
                 </div>
             </div>
-
-
         );
     }
 }
@@ -329,7 +310,7 @@ class Form_body_got_unregistered_vaccination extends React.Component {
     render(){
         return(
             <div className="form-group">
-                <label>{texts_german["got_unregistered_vaccination"]["instructions"]} <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_got_unregistered_vaccination"/></label>
+                <label><Got_unregistered_vaccination_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_got_unregistered_vaccination"/></label>
                 <Modal_popup button_id="modal_got_unregistered_vaccination" title={modal_got_unregistered_vaccination_title} text={modal_got_unregistered_vaccination_text} />
                 <br/>
                 <br/>
@@ -356,7 +337,7 @@ class Form_body_unregistered_vaccination_date extends React.Component {
     render() {
         return (
             <div>
-                <div>{texts_german["unregistered_vaccination_date"]["instructions"]}</div>
+                <div><Unregistered_vaccination_date_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_got_unregistered_vaccination"/></div>
                 <br/>
                 <br/>
                 <label htmlFor="datepicker_infection" data-bs-toggle="modal"
@@ -377,7 +358,7 @@ class Form_body_symptoms_registered extends React.Component {
     render(){
         return(
             <div className="form-group">
-                <label>{texts_german["symptoms_registered"]["instructions"]} <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_symptoms_registered"/></label>
+                <label><Symptoms_registered_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_symptoms_registered"/></label>
                 <Modal_popup button_id="modal_symptoms_registered" title={modal_symptoms_registered_text} text={modal_symptoms_registered_title} />
                 <br/>
                 <br/>
@@ -414,7 +395,7 @@ class Form_body_number_vaccinations extends React.Component {
     render(){
         return(
             <div className="form-group">
-                <label>{texts_german["number_vaccinations"]["instructions"]}</label>
+                <label><Number_vaccinations_instruction/></label>
                 <br/>
                 <br/>
                 <div className="form-check">
@@ -451,7 +432,7 @@ class Form_body_infection_date extends React.Component {
     render() {
         return (
             <div>
-                <label>{texts_german["infection_date"]["instructions"]} <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_infection_date"/></label>
+                <label><Infection_date_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_infection_date"/></label>
                 <Modal_popup button_id="modal_infection_date" title={modal_infection_date_title} text={modal_infection_date_text} />
                 <br/>
                 <br/>
@@ -473,7 +454,7 @@ class Form_body_symptoms_end_date extends React.Component {
     render() {
         return (
             <div>
-                <label>{texts_german["symptoms_end_date"]["instructions"]} <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_symptoms_end_date"/></label>
+                <label><Symptoms_end_date_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_symptoms_end_date"/></label>
                 <Modal_popup button_id="modal_symptoms_end_date" title={modal_symptoms_end_date_text} text={modal_symptoms_end_date_title} />
                 <br/>
                 <br/>
@@ -503,7 +484,7 @@ class Form_body_age extends React.Component {
     render(){
         return(
             <div className="vc-card-in">
-                <label>{texts_german["age"]["instructions"]}</label>
+                <label><Age_instruction/></label>
                 <br/>
                 <br/>
                 <input value={this.state.value}  type="number" min="0" max="1000" step="1" className="form-control" id="age_input_field" placeholder={texts_german["age"]["age_placeholder"]} onChange={this.input_filed_change} name={this.props.input_name_age} required/>
@@ -544,32 +525,29 @@ class DatePicker extends React.Component {
 }
 
 
-
 class Card_start extends React.Component {
     constructor(props) {
         super(props);
     }
-
 
     render() {
         return (
             <div>
                 <div className="main_page_text container" style={{"margin-top":"2%"}}>
                     Die Berechnung basiert auf den Empfehlungen der <a target="_blank" href="https://www.rki.de/DE/Content/Infekt/EpidBull/epid_bull_node.html" style={{"color":"white"}}>Ständigen Impfkommission (STIKO) des
-                    Robert-Koch Instituts.</a> <br/>
+                    RKI</a>  und wurde durch <a target="_blank" href="information.html#dr">Herrn Prof. Dr. Theodor Windhorst</a>  fachwissenschaftlich begleitet.
+                    <br/>
                     Wir bemühen uns, die Änderungen möglichst zeitnah nach der Veröffentlichung zu
                     berücksichtigen. Die aktuelle Version
                     bildet den Stand vom <a target="_blank" href="https://www.rki.de/DE/Content/Infekt/EpidBull/epid_bull_node.html" style={{"color": "white"}}>17.01.2022</a> ab.
                 </div>
-
                 <div className="vc-card vc-card-start container" id="card_start" >
                     <div className="row justify-content-md-center">
                             <div className="vc-card-header">
                                 <div className="col-sm" style={{textAlign: "center"}}>
-                                    <h1 className="card-title" >{texts_german["start"]["header"]}</h1>
+                                    <h1 className="card-title"><Start_header/></h1>
                                 </div>
                             </div>
-
                             <div className="vc-card-body">
                                 <div className="col" style={{"position": "relative", "textAlign": "center", "padding": "20% 0%"}}>
                                     <button type="button" className="button-start button_next" id="card_start_button_next"
@@ -579,7 +557,6 @@ class Card_start extends React.Component {
                             </div>
                     </div>
                 </div>
-
                 <div className="main_page_text container" style={{"margin-bottom":"2%"}}>
                     Die Sicherheit Ihrer Daten hat für uns große Priorität. <br/>
                     Mehr dazu erfahren Sie <a href="information.html" style={{"color": "white"}}>hier</a>...
@@ -589,6 +566,7 @@ class Card_start extends React.Component {
         );
     }
 }
+
 
 class Card_result extends React.Component {
     constructor(props) {
@@ -633,15 +611,11 @@ class Card_result extends React.Component {
                             <h1>Ihre Angaben</h1>
                             <div key="k3" style={{marginLeft: "20px"}}>{vis_user_data(this.props.user_data)}</div>
                             <br/>
-                            <div key="k2" style={{marginLeft: "20px"}}><b>Haftungsausschluss:</b> Die Inhalte dieser Seite dienen ausschließlich der allgemeinen Information der
-                                Öffentlichkeit. mein-impfrechner.de übernimmt keine Verantwortung für die Richtigkeit und Vollständigkeit der
-                                Daten und Informationen, die auf dieser Seite angegeben oder verlinkt werden, für Abweichungen von Originaldaten,
-                                Übertragungsfehler oder Veränderung der Informationen durch Dritte.</div>
+                            <div key="k2" style={{marginLeft: "20px"}}><Disclaimer/></div>
                             <br/>
                             <br/>
                             <br/>
                         </div>
-
                         <div className="" style={{"position": "absolute", "bottom": "2%", "top":"auto", "width":"100%"}}>
                             <div className="d-flex justify-content-between">
                                 <button className="button button_back" onClick={this.props.handler}
@@ -661,52 +635,52 @@ function vis_user_data (user_data) {
     let user_data_list = [];
 
     if ('age' in user_data['user_data']){
-        user_data_list.push(<li key='age'>{texts_german['age']["header"]}: {user_data['user_data']['age']['value']}</li>);
+        user_data_list.push(<li key='age'><Age_header/>: {user_data['user_data']['age']['value']}</li>);
     }
 
     if ('risk_group' in user_data['user_data']){
         if (user_data['user_data']['risk_group']['value']){
-            user_data_list.push(<li key='risk_group'>{texts_german['risk_group']["header"]}: {texts_german['risk_group']['risk_group_yes']}</li>);
+            user_data_list.push(<li key='risk_group'>{<Risk_group_header/>}: {texts_german['risk_group']['risk_group_yes']}</li>);
         }
     }
 
     if ('pregnant' in user_data['user_data']){
         if (user_data['user_data']['pregnant']['value']){
-            user_data_list.push(<li key='pregnant'>{texts_german['pregnant']["header"]}: {texts_german['pregnant']['pregnant_yes']}</li>);
+            user_data_list.push(<li key='pregnant'>{<Pregnant_header/>}: {texts_german['pregnant']['pregnant_yes']}</li>);
         }
     }
 
     if ('past_infection' in user_data['user_data']){
         if (user_data['user_data']['past_infection']['value']){
-            user_data_list.push(<li key='past_infection'>{texts_german['past_infection']["header"]}: {texts_german['past_infection']['past_infection_yes']}</li>);
+            user_data_list.push(<li key='past_infection'>{<Past_infection_header/>}: {texts_german['past_infection']['past_infection_yes']}</li>);
         }
     }
 
     if ('infection_date' in user_data['user_data']){
-        user_data_list.push(<li key='infection_date'>{texts_german['infection_date']["header"]}: {new Date(user_data['user_data']['infection_date']['date']).toLocaleDateString('de-DE')}</li>);
+        user_data_list.push(<li key='infection_date'>{<Infection_date_header/>}: {new Date(user_data['user_data']['infection_date']['date']).toLocaleDateString('de-DE')}</li>);
     }
 
     if ('symptoms_registered' in user_data['user_data']){
-        user_data_list.push(<li key='symptoms_registered'>{texts_german['symptoms_registered']["header"]}: {texts_german['symptoms_registered'][user_data['user_data']['symptoms_registered']['value']]}</li>);
+        user_data_list.push(<li key='symptoms_registered'>{<Symptoms_registered_header/>}: {texts_german['symptoms_registered'][user_data['user_data']['symptoms_registered']['value']]}</li>);
     }
 
     if ('symptoms_end_date' in user_data['user_data']){
-        user_data_list.push(<li key='symptoms_end_date'>{texts_german['symptoms_end_date']["header"]}: {new Date(user_data['user_data']['symptoms_end_date']['date']).toLocaleDateString('de-DE')}</li>);
+        user_data_list.push(<li key='symptoms_end_date'>{<Symptoms_end_date_header/>}: {new Date(user_data['user_data']['symptoms_end_date']['date']).toLocaleDateString('de-DE')}</li>);
     }
 
     if ('got_unregistered_vaccination' in user_data['user_data']){
         if (user_data['user_data']['got_unregistered_vaccination']['value']){
-            user_data_list.push(<li key='got_unregistered_vaccination'>{texts_german['got_unregistered_vaccination']["header"]}: {texts_german['got_unregistered_vaccination']['got_unregistered_vaccination_yes']}</li>);
+            user_data_list.push(<li key='got_unregistered_vaccination'>{<Got_unregistered_vaccination_header/>}: {texts_german['got_unregistered_vaccination']['got_unregistered_vaccination_yes']}</li>);
         }
     }
 
     if ('unregistered_vaccination_date' in user_data['user_data']){
-        user_data_list.push(<li key='unregistered_vaccination_date'>{texts_german['unregistered_vaccination_date']["header"]}: {new Date(user_data['user_data']['unregistered_vaccination_date']['date']).toLocaleDateString('de-DE')}</li>);
+        user_data_list.push(<li key='unregistered_vaccination_date'>{<Unregistered_vaccination_date_header/>}: {new Date(user_data['user_data']['unregistered_vaccination_date']['date']).toLocaleDateString('de-DE')}</li>);
     }
 
     if ('vaccinated' in user_data['user_data']){
         if (user_data['user_data']['vaccinated']['value']){
-            user_data_list.push(<li key='vaccinated'>{texts_german['vaccinated']["header"]}: {texts_german['vaccinated']['vaccinated_yes']}</li>);
+            user_data_list.push(<li key='vaccinated'>{<Vaccinated_header/>}: {texts_german['vaccinated']['vaccinated_yes']}</li>);
         }
     }
 
@@ -717,15 +691,16 @@ function vis_user_data (user_data) {
     }
 
     if ('vaccination_1' in user_data['user_data']){
-        user_data_list.push(<li key='vaccination_1'>Impfung 1: {user_data['user_data']['vaccination_1']['value']} am {new Date(user_data['user_data']['vaccination_1']['date']).toLocaleDateString('de-DE')}</li>);
+        user_data_list.push(<li key='vaccination_1'><Vaccination_1_header/>: {user_data['user_data']['vaccination_1']['value']} am {new Date(user_data['user_data']['vaccination_1']['date']).toLocaleDateString('de-DE')}</li>);
     }
 
     if ('vaccination_2' in user_data['user_data']){
-        user_data_list.push(<li key='vaccination_2'>Impfung 2: {user_data['user_data']['vaccination_1']['value']} am {new Date(user_data['user_data']['vaccination_1']['date']).toLocaleDateString('de-DE')}</li>);
+        user_data_list.push(<li key='vaccination_2'><Vaccination_2_header/>: {user_data['user_data']['vaccination_2']['value']} am {new Date(user_data['user_data']['vaccination_1']['date']).toLocaleDateString('de-DE')}</li>);
     }
 
     return <div>{user_data_list}</div>;
 }
+
 
 function button_id_2_card_id(button_id){
     if (button_id.includes('_start_')){
@@ -781,7 +756,6 @@ function button_id_2_card_id(button_id){
     }
 }
 
-
 class CardManager extends React.Component {
     constructor(props) {
         super(props);
@@ -794,7 +768,6 @@ class CardManager extends React.Component {
             user_data: {}
         };
     }
-
 
     control_click_handler(e) {
         let current_card_history = this.state.card_history;
@@ -814,13 +787,10 @@ class CardManager extends React.Component {
                             if (!isNaN(this.state.entered_data['value'])) {
                                 event.preventDefault();
                                 event.stopPropagation();
-
                             }
-
                             form.classList.add('was-validated')
                         }, false)
                     })
-
 
                 // form validation
                 // number text-field
@@ -915,7 +885,6 @@ class CardManager extends React.Component {
                 this.setState({step: last_step});
             }
         }
-
         e.preventDefault();
     }
 
@@ -951,31 +920,31 @@ class CardManager extends React.Component {
                 );
             case 'vaccination_1':
                 return (
-                    <Card title={texts_german["vaccination_1"]["header"]}
+                    <Card title={<Vaccination_1_header/>}
                           id_next={"card_vaccination_1_next"}
                           id_back={"card_vaccination_1_next"}
                           handler={this.control_click_handler}
-                          form_body={<Form_body_vaccination_brand_date_1 key="1"
+                          form_body={<Form_body_vaccination_brand_date key="1"
+                                                                         instruction={<Vaccination_1_instruction/>}
                                                                          input_data_handler={this.handleInputChange}
                                                                          input_name_vaccine='value'
                                                                          input_name_vaccination_date='date'/>}/>
                 );
             case 'vaccination_2':
                 return (
-
-                        <Card title={texts_german["vaccination_2"]["header"]}
+                        <Card title={<Vaccination_2_header/>}
                               id_next={"card_vaccination_2_next"}
                               id_back={"card_vaccination_2_next"}
                               handler={this.control_click_handler}
-                              form_body={<Form_body_vaccination_brand_date_1 key="2"
+                              form_body={<Form_body_vaccination_brand_date key="2"
+                                                                             instruction={<Vaccination_2_instruction/>}
                                                                              input_data_handler={this.handleInputChange}
                                                                              input_name_vaccine='value'
                                                                              input_name_vaccination_date='date'/>}/>
-
                 );
             case 'vaccinated':
                 return (
-                    <Card title={texts_german["vaccinated"]["header"]}
+                    <Card title={<Vaccinated_header/>}
                           id_next={"card_vaccinated_next"}
                           id_back={"card_vaccinated_back"}
                           handler={this.control_click_handler}
@@ -984,7 +953,7 @@ class CardManager extends React.Component {
                 );
             case 'pregnancy_week':
                 return (
-                    <Card title={texts_german["pregnancy_week"]["header"]}
+                    <Card title={<Pregnancy_week_header/>}
                           id_next={"card_pregnancy_week_next"}
                           id_back={"card_pregnancy_week_back"}
                           handler={this.control_click_handler}
@@ -993,7 +962,7 @@ class CardManager extends React.Component {
                 );
             case 'past_infection':
                 return (
-                    <Card title={texts_german["past_infection"]["header"]}
+                    <Card title={<Past_infection_header/>}
                           id_next={"card_past_infection_next"}
                           id_back={"card_past_infection_back"}
                           handler={this.control_click_handler}
@@ -1002,7 +971,7 @@ class CardManager extends React.Component {
                 );
             case 'infection_date':
                 return (
-                    <Card title={texts_german["infection_date"]["header"]}
+                    <Card title={<Infection_date_header/>}
                           id_next={"card_infection_date_next"}
                           id_back={"card_infection_date_back"}
                           handler={this.control_click_handler}
@@ -1011,7 +980,7 @@ class CardManager extends React.Component {
                 );
             case 'age':
                 return (
-                    <Card title={texts_german["age"]["header"]}
+                    <Card title={<Age_header/>}
                           id_next={"card_age_next"}
                           id_back={"card_age_back"}
                           handler={this.control_click_handler}
@@ -1020,7 +989,7 @@ class CardManager extends React.Component {
                 );
             case 'symptoms_registered':
                 return (
-                    <Card title={texts_german["symptoms_registered"]["header"]}
+                    <Card title={<Symptoms_registered_header/>}
                           id_next={"card_symptoms_registered_next"}
                           id_back={"card_symptoms_registered_back"}
                           handler={this.control_click_handler}
@@ -1029,7 +998,7 @@ class CardManager extends React.Component {
                 );
             case 'symptoms_end_date':
                 return (
-                    <Card title={texts_german["symptoms_end_date"]["header"]}
+                    <Card title={<Symptoms_end_date_header/>}
                           id_next={"card_symptoms_end_date_next"}
                           id_back={"card_symptoms_end_date_back"}
                           handler={this.control_click_handler}
@@ -1038,7 +1007,7 @@ class CardManager extends React.Component {
                 );
             case 'risk_group':
                 return (
-                    <Card title={texts_german["risk_group"]["header"]}
+                    <Card title={<Risk_group_header/>}
                           id_next={"card_risk_group_next"}
                           id_back={"card_risk_group_back"}
                           handler={this.control_click_handler}
@@ -1047,7 +1016,7 @@ class CardManager extends React.Component {
                 );
             case 'pregnant':
                 return (
-                    <Card title={texts_german["pregnant"]["header"]}
+                    <Card title={<Pregnant_header/>}
                           id_next={"card_pregnant_next"}
                           id_back={"card_pregnant_back"}
                           handler={this.control_click_handler}
@@ -1056,7 +1025,7 @@ class CardManager extends React.Component {
                 );
             case 'number_vaccinations':
                 return (
-                    <Card title={texts_german["number_vaccinations"]["header"]}
+                    <Card title={<Number_vaccinations_header/>}
                           id_next={"card_number_vaccinations_next"}
                           id_back={"card_number_vaccinations_back"}
                           handler={this.control_click_handler}
@@ -1065,7 +1034,7 @@ class CardManager extends React.Component {
                 );
             case 'got_unregistered_vaccination':
                 return (
-                    <Card title={texts_german["got_unregistered_vaccination"]["header"]}
+                    <Card title={<Got_unregistered_vaccination_header/>}
                           id_next={"card_got_unregistered_vaccination_next"}
                           id_back={"card_got_unregistered_vaccination_back"}
                           handler={this.control_click_handler}
@@ -1074,7 +1043,7 @@ class CardManager extends React.Component {
                 );
             case 'unregistered_vaccination_date':
                 return (
-                    <Card title={texts_german["unregistered_vaccination_date"]["header"]}
+                    <Card title={<Unregistered_vaccination_date_header/>}
                           id_next={"card_unregistered_vaccination_date_next"}
                           id_back={"card_unregistered_vaccination_date_back"}
                           handler={this.control_click_handler}
