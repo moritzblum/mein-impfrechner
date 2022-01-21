@@ -537,6 +537,7 @@ class Card_start extends React.Component {
                     Die Berechnung basiert auf den Empfehlungen der <a target="_blank" href="https://www.rki.de/DE/Content/Infekt/EpidBull/epid_bull_node.html" style={{"color":"white"}}>Ständigen Impfkommission (STIKO) des
                     RKI</a>  und wurde durch <a target="_blank" href="information.html#dr">Herrn Prof. Dr. Theodor Windhorst</a>  fachwissenschaftlich begleitet.
                     <br/>
+                    <br/>
                     Die aktuelle Version bildet den Stand vom <a target="_blank" href="https://www.rki.de/DE/Content/Infekt/EpidBull/epid_bull_node.html" style={{"color": "white"}}>20.01.2022</a> ab.
                 </div>
                 <div className="vc-card vc-card-start container" id="card_start" >
@@ -693,7 +694,7 @@ function vis_user_data (user_data) {
     }
 
     if ('vaccination_2' in user_data['user_data']){
-        user_data_list.push(<li key='vaccination_2'><Vaccination_2_header/>: {user_data['user_data']['vaccination_2']['value']} am {new Date(user_data['user_data']['vaccination_1']['date']).toLocaleDateString('de-DE')}</li>);
+        user_data_list.push(<li key='vaccination_2'><Vaccination_2_header/>: {user_data['user_data']['vaccination_2']['value']} am {new Date(user_data['user_data']['vaccination_2']['date']).toLocaleDateString('de-DE')}</li>);
     }
 
     return <div>{user_data_list}</div>;
