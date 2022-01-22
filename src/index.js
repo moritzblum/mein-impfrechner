@@ -778,6 +778,10 @@ class CardManager extends React.Component {
         if (e.target.classList !== undefined){
             if (e.target.classList.contains('button_next')) {
 
+                if (current_card_id === 'start'){
+                    window.scrollTo(0,0);
+                }
+
                 let forms = document.querySelectorAll('.needs-validation');
 
                 Array.prototype.slice.call(forms)
