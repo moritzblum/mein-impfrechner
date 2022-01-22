@@ -1,4 +1,25 @@
+.altert a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 4px 8px;
+}
 
+.altert a:hover {
+    background-color: #ddd !important;
+    color: black !important;
+    text-decoration: none !important;
+}
+
+.next {
+    background-color: #f1f1f1 !important;
+    color: black !important;
+}
+
+
+
+.round {
+    border-radius: 50%;
+}
 
 
 html {

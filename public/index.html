@@ -132,11 +132,26 @@
   <div id="root" class="app"></div>
 
   <div class="container main_page_text">
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      <strong>News:</strong> Auffrischimpfungen jetzt ab 12 Jahren empfohlen. (<a target="_blank" style="color: gray" href="https://www.rki.de/DE/Content/Kommissionen/STIKO/Empfehlungen/PM_2022-01-13.html">STIKO</a>)
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" style="font-size: 0.9em">
+      <strong>News:</strong> <span id="news"></span>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   </div>
+
+  <script>
+    let messages = [
+      '<span>Auffrischimpfungen jetzt ab 12 Jahren empfohlen. (<a target="_blank" style="color: gray" href="https://www.rki.de/DE/Content/Kommissionen/STIKO/Empfehlungen/PM_2022-01-13.html">STIKO</a>)</span>',
+      '<span>Janssen zur Zweitimpfung zugelassen, aber nicht empfohlen. (<a target="_blank" style="color: gray" href="https://www.rki.de/DE/Content/Kommissionen/STIKO/Empfehlungen/PM_2022-01-13.html">STIKO</a>)</span>'];
+    let i = 0;
+    document.getElementById('news').innerHTML = messages[i%messages.length];
+    window.setInterval(function() {
+      i += 1;
+      document.getElementById('news').innerHTML = messages[i%messages.length];
+
+
+    }, 10000);
+
+  </script>
 
   <br>
   <br>
