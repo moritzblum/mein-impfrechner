@@ -24,7 +24,10 @@ import {
     Next_possible_date_booster_alternative,
     Next_possible_date_booster_infection,
     Next_possible_date_booster_infection_alternative,
+    DATE_OPTIONS
 } from "./texts.js";
+
+
 
 
 export function get_next_card(card_history, user_data) {
@@ -127,7 +130,7 @@ export function get_next_card(card_history, user_data) {
         let first_possible_date = date_operations.get_latest_date([Date.now(),
             date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
             date_operations.add_weeks_2_date(infection_date, 4),
-            date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE');
+            date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE', DATE_OPTIONS);
 
         if (!past_infection) {
             // no past infection
@@ -290,19 +293,19 @@ export function get_next_card(card_history, user_data) {
             date_operations.add_weeks_2_date(vaccination_history_date[1], 3),
             date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
             date_operations.add_weeks_2_date(infection_date, 4),
-            date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE');
+            date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE', DATE_OPTIONS);
 ;
         let four_weeks_first_possible_date = date_operations.get_latest_date([Date.now(),
             date_operations.add_weeks_2_date(vaccination_history_date[1], 4),
             date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
             date_operations.add_weeks_2_date(infection_date, 4),
-            date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE');
+            date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE', DATE_OPTIONS);
 
         let last_possible_date = date_operations.get_latest_date([Date.now(),
             date_operations.add_weeks_2_date(vaccination_history_date[1], 6),
             date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
             date_operations.add_weeks_2_date(infection_date, 4),
-            date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE');
+            date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE', DATE_OPTIONS);
 
         if (!past_infection){
             // age <= 29
@@ -439,7 +442,7 @@ export function get_next_card(card_history, user_data) {
             date_operations.add_weeks_2_date(infection_date, 4),
             date_operations.add_weeks_2_date(symptoms_end_date, 4),
             date_operations.add_month_2_date(vaccination_history_date[1], 3)
-        ]).toLocaleDateString('de-DE');
+        ]).toLocaleDateString('de-DE', DATE_OPTIONS);
 
         if (!past_infection){
 

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {
     texts_german,
+    DATE_OPTIONS,
     modal_risk_group_title,
     modal_risk_group_text,
     modal_pregnant_title,
@@ -656,7 +657,7 @@ function vis_user_data (user_data) {
     }
 
     if ('infection_date' in user_data['user_data']){
-        user_data_list.push(<li key='infection_date'>{<Infection_date_header/>}: {new Date(user_data['user_data']['infection_date']['date']).toLocaleDateString('de-DE')}</li>);
+        user_data_list.push(<li key='infection_date'>{<Infection_date_header/>}: {new Date(user_data['user_data']['infection_date']['date']).toLocaleDateString('de-DE', DATE_OPTIONS)}</li>);
     }
 
     if ('symptoms_registered' in user_data['user_data']){
@@ -664,7 +665,7 @@ function vis_user_data (user_data) {
     }
 
     if ('symptoms_end_date' in user_data['user_data']){
-        user_data_list.push(<li key='symptoms_end_date'>{<Symptoms_end_date_header/>}: {new Date(user_data['user_data']['symptoms_end_date']['date']).toLocaleDateString('de-DE')}</li>);
+        user_data_list.push(<li key='symptoms_end_date'>{<Symptoms_end_date_header/>}: {new Date(user_data['user_data']['symptoms_end_date']['date']).toLocaleDateString('de-DE', DATE_OPTIONS)}</li>);
     }
 
     if ('got_unregistered_vaccination' in user_data['user_data']){
@@ -674,7 +675,7 @@ function vis_user_data (user_data) {
     }
 
     if ('unregistered_vaccination_date' in user_data['user_data']){
-        user_data_list.push(<li key='unregistered_vaccination_date'>{<Unregistered_vaccination_date_header/>}: {new Date(user_data['user_data']['unregistered_vaccination_date']['date']).toLocaleDateString('de-DE')}</li>);
+        user_data_list.push(<li key='unregistered_vaccination_date'>{<Unregistered_vaccination_date_header/>}: {new Date(user_data['user_data']['unregistered_vaccination_date']['date']).toLocaleDateString('de-DE', DATE_OPTIONS)}</li>);
     }
 
     if ('vaccinated' in user_data['user_data']){
@@ -690,11 +691,11 @@ function vis_user_data (user_data) {
     }
 
     if ('vaccination_1' in user_data['user_data']){
-        user_data_list.push(<li key='vaccination_1'><Vaccination_1_header/>: {user_data['user_data']['vaccination_1']['value']} am {new Date(user_data['user_data']['vaccination_1']['date']).toLocaleDateString('de-DE')}</li>);
+        user_data_list.push(<li key='vaccination_1'><Vaccination_1_header/>: {user_data['user_data']['vaccination_1']['value']} am {new Date(user_data['user_data']['vaccination_1']['date']).toLocaleDateString('de-DE', DATE_OPTIONS)}</li>);
     }
 
     if ('vaccination_2' in user_data['user_data']){
-        user_data_list.push(<li key='vaccination_2'><Vaccination_2_header/>: {user_data['user_data']['vaccination_2']['value']} am {new Date(user_data['user_data']['vaccination_2']['date']).toLocaleDateString('de-DE')}</li>);
+        user_data_list.push(<li key='vaccination_2'><Vaccination_2_header/>: {user_data['user_data']['vaccination_2']['value']} am {new Date(user_data['user_data']['vaccination_2']['date']).toLocaleDateString('de-DE', DATE_OPTIONS)}</li>);
     }
 
     return <div>{user_data_list}</div>;

@@ -1,3 +1,5 @@
+export const DATE_OPTIONS = { day: '2-digit', month: '2-digit', year: 'numeric' };
+
 export function Error(){
     return(<div>
         Basierend auf Ihren Angaben ist es uns derzeit nicht möglich, eine generelle Empfehlung auszusprechen. Ihre persönliche Situation erfordert eine ärztliche Einzelfallprüfung, um eine valide Aussage treffen zu können. Wir bitten um Ihr Verständnis.</div>)
