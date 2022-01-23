@@ -1,5 +1,6 @@
 <html lang="de" prefix="og: https://ogp.me/ns#">
 <head >
+  <base href="/">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>mein-impfrechner.de</title>
@@ -73,7 +74,7 @@
 </script>
 
 
-<!-- navbar -->
+<!-- navbar
 <nav>
   <div id="navbar-lg">
     <a href="index.html" style="color: black">
@@ -93,7 +94,7 @@
   <div id="navbar-sm">
     <div class="topnav">
       <a href="index.html" style="font-weight: bold; color: black"><img src="img/syringe_black.svg" style="height: 1.5em; width: 1.5em" alt="Spritze"> Mein Impfrechner</a>
-      <!-- Navigation links (hidden by default) -->
+
       <div id="myLinks">
         <a href="faq.html">FAQs</a>
         <a href="information.html">Informationen</a>
@@ -116,6 +117,18 @@
     }
   </script>
 </nav>
+-->
+
+<script type="text/javascript">
+  function menubar() {
+    var x = document.getElementById("myLinks");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+</script>
 
   <div class="background">
     <div class="virus">
@@ -127,10 +140,11 @@
       <img  src = "img/Corona_2.svg" alt="Virus"/>
     </div>
   </div>
-  <br>
+
 
   <div id="root" class="app"></div>
 
+<!--
   <div class="container main_page_text">
     <div class="alert alert-warning alert-dismissible fade show" role="alert" style="font-size: 0.9em">
       <strong>News:</strong> <span id="news"></span>
@@ -147,16 +161,10 @@
     window.setInterval(function() {
       i += 1;
       document.getElementById('news').innerHTML = messages[i%messages.length];
-
-
     }, 10000);
+  </script>-->
 
-  </script>
-
-  <br>
-  <br>
-
-  <!-- page end on large screens -->
+<!--
   <div class="" id="partner-lg" style="width: 99%; text-align: center" >
     <div class="row">
       <div class="col-3">
@@ -174,7 +182,6 @@
     </div>
   </div>
 
-  <!-- page end on large screens -->
   <div id="partner-sm" style="width:100%; text-align: center">
     <div style="text-align: center">
       <h5 style="text-align: center"><b>In Kooperation mit:</b></h5>
@@ -185,8 +192,10 @@
       <img alt="Logo ASB OWL" src="img/banner_footer.svg" width="300em" height="225em" style="padding-top: 0; padding-bottom: 0">
     </div>
   </div>
+  -->
 </body>
 
+<!--
 <footer class="bg-light py-4">
   <div class="container text-center">
     <p class="text-muted mb-0 py-2">
@@ -200,5 +209,6 @@
     </p>
   </div>
 </footer>
+-->
 
 </html>

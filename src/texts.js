@@ -1,5 +1,14 @@
 export const DATE_OPTIONS = { day: '2-digit', month: '2-digit', year: 'numeric' };
 
+export default function Appointment_bielefeld(){
+    return(
+        <div style={{textAlign: "center"}}>
+            <br/>
+            <button type="button" onClick={() => window.open( 'https://www.terminland.eu/1-2-impfung/', '_blank')} className="btn btn-warning" style={{"width": "50%", fontSize: "1em", backgroundColor:"#fff3cd", color: "#664d03", border:"none", borderColor: "#ffecb5", borderWidth: "3px"}}>Terminbuchung</button>
+        </div>
+    )
+}
+
 export function Error(){
     return(<div>
         Basierend auf Ihren Angaben ist es uns derzeit nicht möglich, eine generelle Empfehlung auszusprechen. Ihre persönliche Situation erfordert eine ärztliche Einzelfallprüfung, um eine valide Aussage treffen zu können. Wir bitten um Ihr Verständnis.</div>)
@@ -166,87 +175,93 @@ export function Alternative(){
 
 
 export function Vaccination_1_instruction(){
-    return(<div>
+    return(<span>
         Welcher Impfstoff wurde bei Ihrer <b>ersten</b> Corona-Schutzimpfung verimpft?
-    </div>)
+    </span>)
 }
 
 export function Vaccination_2_instruction(){
-    return(<div>
+    return(<span>
         Welcher Impfstoff wurde bei Ihrer <b>zweiten</b> Corona-Schutzimpfung verimpft?
-    </div>)
+    </span>)
 }
 
 export function Vaccinated_instruction(){
-    return(<div>
+    return(<span>
         Haben Sie bereits eine Impfung gegen das Coronavirus (SARS-CoV-2) erhalten?
-    </div>)
+    </span>)
 }
 
 export function Pregnancy_week_instruction(){
-    return(<div>
+    return(<span>
         Befinden Sie sich derzeit noch im ersten Schwangerschaftsdrittel (1.-13. Schwangerschaftswoche)?
-    </div>)
+    </span>)
 }
 
 export function Past_infection_instruction(){
-    return(<div>
+    return(<span>
         Wurden Sie bereits positiv auf das Coronavirus (SARS-CoV-2) getestet (Kein Selbsttest)?
-    </div>)
+    </span>)
 }
 
 export function Risk_group_instruction(){
-    return(<div>
-        Sind Sie zum aktuellen Zeitpunkt einer Risikogruppe angehörig oder haben Sie regelmäßig Kontakt zu Personen einer Risikogruppe?
-    </div>)
+    return(<span>
+        Sind Sie zum aktuellen Zeitpunkt einer Risikogruppe angehörig oder haben Sie regelmäßig Kontakt zu Personen einer Risikogruppe? <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_risk_group"/>
+    </span>)
 }
 
 export function Pregnant_instruction(){
-    return(<div>
+    return(<span>
         Sind Sie zum aktuellen Zeitpunkt schwanger?
-    </div>)
+    </span>)
 }
 
 export function Got_unregistered_vaccination_instruction(){
-    return(<div>
+    return(<span>
         Wurden Sie bereits mit einem in Deutschland <b>nicht</b> zulässigen Corona-Impfstoff geimpft?
-    </div>)
+    </span>)
 }
 
 export function Unregistered_vaccination_date_instruction(){
-    return(<div>
+    return(<span>
         Wann haben Sie die letzte <b>nicht</b> zulässige Corona-Schutzimpfung erhalten?
-    </div>)
+    </span>)
 }
 
 export function Symptoms_registered_instruction(){
-    return(<div>
+    return(<span>
         Hatten oder haben Sie Symptome in Folge Ihrer Corona-Infektion entwickelt?
-    </div>)
+    </span>)
 }
 
 export function Number_vaccinations_instruction(){
-    return(<div>
+    return(<span>
         Wie viele zugelassene Corona-Schutzimpfungen haben Sie erhalten?
-    </div>)
+    </span>)
 }
 
 export function Infection_date_instruction(){
-    return(<div>
+    return(<span>
         Wann wurden Sie erstmalig positiv auf das Coronavirus getestet (kein Selbsttest)?
-    </div>)
+    </span>)
 }
 
 export function Symptoms_end_date_instruction(){
-    return(<div>
+    return(<span>
         Wann haben ihre Symptome aufgehört?
-    </div>)
+    </span>)
 }
 
 export function Age_instruction(){
-    return(<div>
+    return(<span>
         Wie alt sind Sie?
-    </div>)
+    </span>)
+}
+
+export function Pregnancy_week_exact_instruction(){
+    return(<span>
+        In der wievielten Schwangerschaftswoche befinden Sie sich?
+    </span>)
 }
 
 export function Disclaimer(){
@@ -318,6 +333,10 @@ export function Age_header (){
     return(<span>Alter</span>)
 }
 
+export function Pregnancy_week_exact_header (){
+    return(<span>Schwangerschaftswoche</span>)
+}
+
 
 export const texts_german = {
     "form_validation": {
@@ -376,6 +395,9 @@ export const texts_german = {
     "age": {
         "instructions": "Wie alt sind Sie?",
         "age_placeholder": "Alter"
+    },
+    "pregnancy_week_exact": {
+        "pregnancy_week_exact_placeholder": "Schwangerschaftswoche"
     },
     "vaccines": {
         "biontec": "BioNTech (Comirnaty®)",

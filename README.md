@@ -23,6 +23,12 @@ For contribution, follow the following steps:
 Now you are ready for development. If you want to deploy the current version, run `npm run deploy` inside the project 
 directory (on the `master` branch).
 
+### Debugging on Mobile Devices
+1. Find out the IP of your development machine: `ifconfig | grep "inet " | grep -v 127.0.0.1`
+2. Disable Firewall: `sudo ufw disable`
+3. Open Node default port: `sudo ufw allow 3000`
+
+
 ## Contributors 
 * Technical Development: [Moritz Blum](https://github.com/moritzblum)
 * Domain Expert: [Ole Wienke](https://github.com/OleWienke)
