@@ -1,3 +1,5 @@
+import React from "react";
+
 export const DATE_OPTIONS = { day: '2-digit', month: '2-digit', year: 'numeric' };
 
 export default function Appointment_bielefeld(){
@@ -206,7 +208,7 @@ export function Past_infection_instruction(){
 
 export function Risk_group_instruction(){
     return(<span>
-        Sind Sie zum aktuellen Zeitpunkt einer Risikogruppe angehörig oder haben Sie regelmäßig Kontakt zu Personen einer Risikogruppe? <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_risk_group"/>
+        Sind Sie zum aktuellen Zeitpunkt einer Risikogruppe angehörig oder haben Sie regelmäßig Kontakt zu Personen einer Risikogruppe?
     </span>)
 }
 

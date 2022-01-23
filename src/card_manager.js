@@ -244,7 +244,7 @@ class Form_body_risk_group extends React.Component {
     render(){
         return(
             <div className="form-group">
-                <label><Risk_group_instruction/> </label>
+                <label><Risk_group_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_risk_group"/></label>
                 <Modal_popup button_id="modal_risk_group" title={modal_risk_group_title} text={modal_risk_group_text} />
                 <br/>
                 <br/>
