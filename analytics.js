@@ -40,3 +40,13 @@ fetch("https://sunto-it.de/server.php/", {
     },
     method: 'POST',
     body:JSON.stringify(info) });
+
+
+function menubar() {
+    var x = document.getElementById("myLinks");
+    if (x.style.display === "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
+}
