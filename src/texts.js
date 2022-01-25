@@ -2,7 +2,7 @@ import React from "react";
 
 export const DATE_OPTIONS = { day: '2-digit', month: '2-digit', year: 'numeric' };
 
-export default function Appointment_bielefeld(){
+export default function Appointment_asbowl(){
     return(
         <div style={{textAlign: "center"}}>
             <br/>
@@ -36,9 +36,9 @@ export function No_recommendation_too_young(){
     </div>)
 }
 
-export function No_recommendation_pregnant(){
+export function No_recommendation_too_young_past_infection(){
     return(<div>
-        Basierend auf der derzeitigen STIKO-Empfehlung wird für Sie aktuell <b>keine Impfempfehlung</b> ausgesprochen, da Sie sich im ersten Schwangerschaftsdrittel befinden. Die STIKO empfiehlt eine Impfung erst <b>ab der 13. Schwangerschaftswoche</b>. <br/>
+        Basierend auf der derzeitigen STIKO-Empfehlung wird für Sie aktuell <b>keine Impfempfehlung</b> ausgesprochen, <b>da Sie unter 12 Jahre alt und bereits genesen sind.</b>. <br/>
         * Im Zweifelsfall holen Sie sich ärztlichen Rat.
     </div>)
 }
@@ -386,7 +386,8 @@ export const texts_german = {
     "number_vaccinations": {
         "one": "1",
         "two": "2",
-        "three": "3"
+        "three": "3",
+        "four": "4"
     },
     "infection_date": {
         "label": "Datum"

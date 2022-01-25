@@ -2,11 +2,11 @@ import * as date_operations from './date_operations.js';
 import {
     texts_german,
     constants,
+    DATE_OPTIONS,
     Error,
     Really_old,
     No_further_recommendation,
     No_recommendation_too_young,
-    No_recommendation_pregnant,
     No_recommendation_symptoms,
     Contact_dr,
     Contact_dr_young,
@@ -24,7 +24,7 @@ import {
     Next_possible_date_booster_alternative,
     Next_possible_date_booster_infection,
     Next_possible_date_booster_infection_alternative,
-    DATE_OPTIONS
+    No_recommendation_too_young_past_infection,
 } from "./texts.js";
 
 
@@ -70,9 +70,6 @@ export function get_next_card(card_history, user_data) {
         if (!('pregnancy_week_exact' in user_data)) {
             return ['pregnancy_week_exact', {}];
         }
-        //else if (user_data['pregnancy_week_exact']['value'] <= 13) {
-        //    return create_output('result_2', [<No_recommendation_pregnant/>]);
-        //}
         user_pregnancy_week_exact = user_data['pregnancy_week_exact']['value'];
     }
 
@@ -131,7 +128,7 @@ export function get_next_card(card_history, user_data) {
 
         let first_possible_date = date_operations.get_latest_date([Date.now(),
             date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
-            date_operations.add_weeks_2_date(infection_date, 4),
+            date_operations.add_month_2_date(infection_date, 3),
             date_operations.add_weeks_2_date(new Date().toLocaleDateString('en-US'), Math.max(0, 13-((typeof user_pregnancy_week_exact === 'undefined') ? 13 : user_pregnancy_week_exact))),
             date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE', DATE_OPTIONS);
 
@@ -198,7 +195,7 @@ export function get_next_card(card_history, user_data) {
             // age <= 11
             if ((user_age <= constants['age_groups']['age_group_2'][1])) {
                 return create_output('result_2', [
-                    <No_recommendation_too_young/>
+                    <No_recommendation_too_young_past_infection/>
                 ]);
             }
 
@@ -233,7 +230,7 @@ export function get_next_card(card_history, user_data) {
     }
 
     // mit 3 Impfungen ist man auf jeden Fall durch
-    if (user_data['number_vaccinations']['value'] == 3){
+    if (user_data['number_vaccinations']['value'] == 3 || user_data['number_vaccinations']['value'] == 4 ){
         return create_output('result_8', [
             <No_further_recommendation/>]);
     }
@@ -292,30 +289,30 @@ export function get_next_card(card_history, user_data) {
     // second shot
     if (user_data['number_vaccinations']['value'] == 1) {
 
-        let three_weeks_first_possible_date = date_operations.get_latest_date([Date.now(),
-            date_operations.add_weeks_2_date(vaccination_history_date[1], 3),
-            date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
-            date_operations.add_weeks_2_date(infection_date, 4),
-            date_operations.add_weeks_2_date(new Date().toLocaleDateString('en-US'), Math.max(0, 13-((typeof user_pregnancy_week_exact === 'undefined') ? 13 : user_pregnancy_week_exact))),
-            date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE', DATE_OPTIONS);
-
-        let four_weeks_first_possible_date = date_operations.get_latest_date([Date.now(),
-            date_operations.add_weeks_2_date(vaccination_history_date[1], 4),
-            date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
-            date_operations.add_weeks_2_date(infection_date, 4),
-            date_operations.add_weeks_2_date(new Date().toLocaleDateString('en-US'), Math.max(0, 13-((typeof user_pregnancy_week_exact === 'undefined') ? 13 : user_pregnancy_week_exact))),
-            date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE', DATE_OPTIONS);
-
-        let last_possible_date = date_operations.get_latest_date([Date.now(),
-            date_operations.add_weeks_2_date(vaccination_history_date[1], 6),
-            date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
-            date_operations.add_weeks_2_date(infection_date, 4),
-            date_operations.add_weeks_2_date(new Date().toLocaleDateString('en-US'), Math.max(0, 13-((typeof user_pregnancy_week_exact === 'undefined') ? 13 : user_pregnancy_week_exact))),
-            date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE', DATE_OPTIONS);
-
         if (!past_infection){
+            let three_weeks_first_possible_date = date_operations.get_latest_date([Date.now(),
+                date_operations.add_weeks_2_date(vaccination_history_date[0], 3),
+                date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
+                date_operations.add_month_2_date(infection_date, 3),
+                date_operations.add_weeks_2_date(new Date().toLocaleDateString('en-US'), Math.max(0, 13-((typeof user_pregnancy_week_exact === 'undefined') ? 13 : user_pregnancy_week_exact))),
+                date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE', DATE_OPTIONS);
+
+            let four_weeks_first_possible_date = date_operations.get_latest_date([Date.now(),
+                date_operations.add_weeks_2_date(vaccination_history_date[0], 4),
+                date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
+                date_operations.add_month_2_date(infection_date, 3),
+                date_operations.add_weeks_2_date(new Date().toLocaleDateString('en-US'), Math.max(0, 13-((typeof user_pregnancy_week_exact === 'undefined') ? 13 : user_pregnancy_week_exact))),
+                date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE', DATE_OPTIONS);
+
+            let last_possible_date = date_operations.get_latest_date([Date.now(),
+                date_operations.add_weeks_2_date(vaccination_history_date[0], 6),
+                date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
+                date_operations.add_month_2_date(infection_date, 3),
+                date_operations.add_weeks_2_date(new Date().toLocaleDateString('en-US'), Math.max(0, 13-((typeof user_pregnancy_week_exact === 'undefined') ? 13 : user_pregnancy_week_exact))),
+                date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE', DATE_OPTIONS);
+
             // age <= 29
-            if ((user_age <= constants['age_groups']['age_group_4'][1]) ||pregnant) {
+            if ((user_age <= constants['age_groups']['age_group_4'][1]) || pregnant) {
                 if (vaccination_history[0] !== texts_german['vaccines']['biontec']){
                     // bei einer nicht Biontech Erstimpfung sollten mehr als 4 Wochen auf Biontech gewartet werden
                     return create_output('result_9', [
@@ -369,8 +366,17 @@ export function get_next_card(card_history, user_data) {
             }
         }
         else {
+            let three_month_first_possible_date = date_operations.get_latest_date([Date.now(),
+                date_operations.add_month_2_date(vaccination_history_date[0], 3),
+                date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
+                date_operations.add_month_2_date(infection_date, 3),
+                date_operations.add_weeks_2_date(new Date().toLocaleDateString('en-US'), Math.max(0, 13-((typeof user_pregnancy_week_exact === 'undefined') ? 13 : user_pregnancy_week_exact))),
+                date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE', DATE_OPTIONS);
+
+
             // Infektion innerhalb von 4 Wochen nach 1. Impfung
-            if ((vaccination_history_date[0] <= infection_date) && (infection_date <= date_operations.add_weeks_2_date(vaccination_history_date[0], 4))) {
+            if ((Date.parse(vaccination_history_date[0]) <= Date.parse(infection_date)) &&
+                (Date.parse(infection_date) <= Date.parse(date_operations.add_weeks_2_date(vaccination_history_date[0], 4)))) {
 
                 // age <= 11
                 if ((user_age <= constants['age_groups']['age_group_2'][1])) {
@@ -383,7 +389,7 @@ export function get_next_card(card_history, user_data) {
                 if ((user_age <= constants['age_groups']['age_group_4'][1]) || pregnant) {
                     return create_output('result_9', [
                         <Next_possible_date_second_dose_infection
-                            date={four_weeks_first_possible_date}
+                            date={three_month_first_possible_date}
                             vaccination_brand={texts_german['vaccines']['biontec']}
                         />
                     ]);
@@ -393,11 +399,11 @@ export function get_next_card(card_history, user_data) {
                 else {
                     return create_output('result_9', [
                         <Next_possible_date_second_dose_infection
-                            date={four_weeks_first_possible_date}
+                            date={three_month_first_possible_date}
                             vaccination_brand={texts_german['vaccines']['moderna']}
                         />,
                         <Next_possible_date_second_dose_infection_alternative
-                            date={four_weeks_first_possible_date}
+                            date={three_month_first_possible_date}
                             vaccination_brand={texts_german['vaccines']['biontec']}
                         />
                     ]);
@@ -416,7 +422,7 @@ export function get_next_card(card_history, user_data) {
                 if ((user_age <= constants['age_groups']['age_group_4'][1]) || pregnant) {
                     return create_output('result_9', [
                         <Next_possible_date_booster_infection
-                            date={four_weeks_first_possible_date}
+                            date={three_month_first_possible_date}
                             vaccination_brand={texts_german['vaccines']['biontec']}
                         />
                     ]);
@@ -426,11 +432,11 @@ export function get_next_card(card_history, user_data) {
                 else {
                     return create_output('result_9', [
                         <Next_possible_date_booster_infection
-                            date={four_weeks_first_possible_date}
+                            date={three_month_first_possible_date}
                             vaccination_brand={texts_german['vaccines']['biontec']}
                         />,
                         <Next_possible_date_booster_infection_alternative
-                            date={four_weeks_first_possible_date}
+                            date={three_month_first_possible_date}
                             vaccination_brand={texts_german['vaccines']['moderna']}
                         />
                     ]);
@@ -445,7 +451,7 @@ export function get_next_card(card_history, user_data) {
         let first_possible_date = date_operations.get_latest_date([
             Date.now(),
             date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
-            date_operations.add_weeks_2_date(infection_date, 4),
+            date_operations.add_month_2_date(infection_date, 3),
             date_operations.add_weeks_2_date(new Date().toLocaleDateString('en-US'), Math.max(0, 13-((typeof user_pregnancy_week_exact === 'undefined') ? 13 : user_pregnancy_week_exact))),
             date_operations.add_weeks_2_date(symptoms_end_date, 4),
             date_operations.add_month_2_date(vaccination_history_date[1], 3)
@@ -484,8 +490,11 @@ export function get_next_card(card_history, user_data) {
             }
         }
         else{
-            // Infektion innerhalb von 4 Wochen nach 1. Impfung
-            if ((vaccination_history_date[0] <= infection_date) && (infection_date <= date_operations.add_weeks_2_date(vaccination_history_date[0], 4))) {
+            console.log(Date.parse(vaccination_history_date[1]));
+            console.log(Date.parse(date_operations.add_weeks_2_date(vaccination_history_date[0], 6)));
+            // Infektion innerhalb von 4 Wochen nach 1. Impfung oder 2. Impfung zur Grundimmunisierung innerhalb von 6 Wochen nach Infektion
+            if ((vaccination_history_date[0] <= infection_date) && (infection_date <= date_operations.add_weeks_2_date(vaccination_history_date[0], 4)) ||
+                (Date.parse(vaccination_history_date[1]) <= Date.parse(date_operations.add_weeks_2_date(vaccination_history_date[0], 6)))) {
 
                 // age <= 11
                 if ((user_age <= constants['age_groups']['age_group_2'][1])) {
