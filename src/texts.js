@@ -38,7 +38,7 @@ export function No_recommendation_too_young(){
 
 export function No_recommendation_too_young_past_infection(){
     return(<div>
-        Basierend auf der derzeitigen STIKO-Empfehlung wird für Sie aktuell <b>keine Impfempfehlung</b> ausgesprochen, <b>da Sie unter 12 Jahre alt und bereits genesen sind.</b>. <br/>
+        Basierend auf der derzeitigen STIKO-Empfehlung wird für Sie aktuell <b>keine Impfempfehlung</b> ausgesprochen, <b>da Sie unter 12 Jahre alt und bereits genesen sind.</b><br/>
         * Im Zweifelsfall holen Sie sich ärztlichen Rat.
     </div>)
 }
@@ -306,6 +306,7 @@ export function Risk_group_header (){
 export function Pregnant_header (){
     return(<span>Schwangerschaft</span>)
 }
+
 
 export function Got_unregistered_vaccination_header (){
     return(<span>Impfstoff ohne STIKO-Zulassung</span>)

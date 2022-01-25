@@ -373,10 +373,15 @@ export function get_next_card(card_history, user_data) {
                 date_operations.add_weeks_2_date(new Date().toLocaleDateString('en-US'), Math.max(0, 13-((typeof user_pregnancy_week_exact === 'undefined') ? 13 : user_pregnancy_week_exact))),
                 date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE', DATE_OPTIONS);
 
-
+            console.log(Date.parse(vaccination_history_date[0]));
+            console.log(Date.parse(infection_date));
+            console.log(Date.parse(infection_date));
+            console.log(Date.parse(date_operations.add_weeks_2_date(vaccination_history_date[0], 4)));
             // Infektion innerhalb von 4 Wochen nach 1. Impfung
             if ((Date.parse(vaccination_history_date[0]) <= Date.parse(infection_date)) &&
                 (Date.parse(infection_date) <= Date.parse(date_operations.add_weeks_2_date(vaccination_history_date[0], 4)))) {
+
+                console.log('inside');
 
                 // age <= 11
                 if ((user_age <= constants['age_groups']['age_group_2'][1])) {
@@ -433,11 +438,11 @@ export function get_next_card(card_history, user_data) {
                     return create_output('result_9', [
                         <Next_possible_date_booster_infection
                             date={three_month_first_possible_date}
-                            vaccination_brand={texts_german['vaccines']['biontec']}
+                            vaccination_brand={texts_german['vaccines']['moderna']}
                         />,
                         <Next_possible_date_booster_infection_alternative
                             date={three_month_first_possible_date}
-                            vaccination_brand={texts_german['vaccines']['moderna']}
+                            vaccination_brand={texts_german['vaccines']['biontec']}
                         />
                     ]);
                 }
@@ -493,7 +498,7 @@ export function get_next_card(card_history, user_data) {
             console.log(Date.parse(vaccination_history_date[1]));
             console.log(Date.parse(date_operations.add_weeks_2_date(vaccination_history_date[0], 6)));
             // Infektion innerhalb von 4 Wochen nach 1. Impfung oder 2. Impfung zur Grundimmunisierung innerhalb von 6 Wochen nach Infektion
-            if ((vaccination_history_date[0] <= infection_date) && (infection_date <= date_operations.add_weeks_2_date(vaccination_history_date[0], 4)) ||
+            if ((Date.parse(vaccination_history_date[0]) <= Date.parse(infection_date)) && (Date.parse(infection_date) <= Date.parse(date_operations.add_weeks_2_date(vaccination_history_date[0], 4))) ||
                 (Date.parse(vaccination_history_date[1]) <= Date.parse(date_operations.add_weeks_2_date(vaccination_history_date[0], 6)))) {
 
                 // age <= 11
