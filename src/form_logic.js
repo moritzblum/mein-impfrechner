@@ -373,10 +373,6 @@ export function get_next_card(card_history, user_data) {
                 date_operations.add_weeks_2_date(new Date().toLocaleDateString('en-US'), Math.max(0, 13-((typeof user_pregnancy_week_exact === 'undefined') ? 13 : user_pregnancy_week_exact))),
                 date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE', DATE_OPTIONS);
 
-            console.log(Date.parse(vaccination_history_date[0]));
-            console.log(Date.parse(infection_date));
-            console.log(Date.parse(infection_date));
-            console.log(Date.parse(date_operations.add_weeks_2_date(vaccination_history_date[0], 4)));
             // Infektion innerhalb von 4 Wochen nach 1. Impfung
             if ((Date.parse(vaccination_history_date[0]) <= Date.parse(infection_date)) &&
                 (Date.parse(infection_date) <= Date.parse(date_operations.add_weeks_2_date(vaccination_history_date[0], 4)))) {

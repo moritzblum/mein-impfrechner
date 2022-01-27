@@ -1,4 +1,5 @@
 import React from "react";
+import {CreateDateStringModified, isToday} from "./date_operations";
 
 export const DATE_OPTIONS = { day: '2-digit', month: '2-digit', year: 'numeric' };
 
@@ -63,16 +64,18 @@ export function Contact_dr_young(){
 }
 
 export function Recommendation_young(props){
-    return(<div>
-        Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine Impfung ("Grundimmunisierung") durchzuführen. <br/><br/>
-        Sie können sich ab dem <b>{props.date}</b> impfen lassen. <br/>
-        Für Sie wird folgender Impfstoff empfohlen: <b>{props.vaccination_brand}</b>.</div>)
+    return(
+        <div>
+            Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine Impfung ("Grundimmunisierung") durchzuführen. <br/><br/>
+            Sie können sich ab <CreateDateStringModified date={props.date}/> impfen lassen. <br/>
+            Für Sie wird folgender Impfstoff empfohlen: <b>{props.vaccination_brand}</b>.
+        </div>)
 }
 
 export function Recommendation_young_no_risk_group(props){
     return(<div>
         Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben, liegt für Ihre Altersgruppe keine generelle Impfempfehlung vor. <br/>
-        Auf individuellen Wunsch der Kinder und Sorgeberechtigten ist eine Impfung nach ärztlicher Aufklärung ab dem <b>{props.date}</b> möglich. <br/>
+        Auf individuellen Wunsch der Kinder und Sorgeberechtigten ist eine Impfung nach ärztlicher Aufklärung ab <CreateDateStringModified date={props.date}/> möglich. <br/>
         Für Sie wird folgender Impfstoff empfohlen: <b>{props.vaccination_brand}</b>.
     </div>)
 }
@@ -80,35 +83,35 @@ export function Recommendation_young_no_risk_group(props){
 export function Next_possible_date_first(props){
     return(<div>
         Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine Impfung (Grundimmunisierung) durchzuführen. <br/><br/>
-        Sie können sich ab dem <b>{props.date}</b> impfen lassen. <br/>
+        Sie können sich ab <CreateDateStringModified date={props.date}/> impfen lassen. <br/>
         Für Sie wird folgender Impfstoff empfohlen: <b>{props.vaccination_brand}</b>.
     </div>)
 }
 
 export function Next_possible_date_first_alternative(props){
     return(<div>
-        Sie können sich mit <b>{props.vaccination_brand}</b> ab dem <b>{props.date}</b> impfen lassen.
+        Sie können sich mit <b>{props.vaccination_brand}</b> ab <CreateDateStringModified date={props.date}/> impfen lassen.
     </div>)
 }
 
 export function Next_possible_date_first_infection(props){
     return(<div>
         Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine Impfung (Grundimmunisierung) durchzuführen. <br/><br/>
-        Sie können sich ab dem <b>{props.date}</b> impfen lassen. <br/>
+        Sie können sich ab dem <CreateDateStringModified date={props.date}/> impfen lassen. <br/>
         Für Sie wird folgender Impfstoff empfohlen: <b>{props.vaccination_brand}</b>.
     </div>)
 }
 
 export function Next_possible_date_first_infection_alternative(props){
     return(<div>
-        Sie können sich mit <b>{props.vaccination_brand}</b> ab dem <b>{props.date}</b> impfen lassen.
+        Sie können sich mit <b>{props.vaccination_brand}</b> ab <CreateDateStringModified date={props.date}/> impfen lassen.
     </div>)
 }
 
 export function Second_vaccination_range(props){
     return(<div>
         Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine Impfung (Vervollständigung der Grundimmunisierung) durchzuführen. <br/><br/>
-        Sie können sich ab dem <b>{props.date_first}</b> impfen lassen.<br/>
+        Sie können sich ab <CreateDateStringModified date={props.date}/> impfen lassen.<br/>
         Idealerweise wählen Sie einen Termin im Zeitraum vom <b>{props.date_first}</b> bis zum <b>{props.date_second}.</b> <br/>
         Für Sie wird folgender Impfstoff empfohlen: <b>{props.vaccination_brand}.</b>
     </div>)
@@ -116,7 +119,7 @@ export function Second_vaccination_range(props){
 
 export function Second_vaccination_range_alternative(props){
     return(<div>
-        Sie können sich mit <b>{props.vaccination_brand}</b>  ab dem <b>{props.date_first}</b> impfen lassen. <br/>
+        Sie können sich mit <b>{props.vaccination_brand}</b>  ab <CreateDateStringModified date={props.date}/> impfen lassen. <br/>
         Idealerweise wählen Sie einen Termin im Zeitraum vom <b>{props.date_first}</b> bis zum <b>{props.date_second}</b>.
     </div>)
 }
@@ -124,42 +127,42 @@ export function Second_vaccination_range_alternative(props){
 export function Next_possible_date_second_dose_infection(props){
     return(<div>
         Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine Impfung (Vervollständigung der Grundimmunisierung) durchzuführen. <br/><br/>
-        Sie können sich ab dem <b>{props.date}</b> impfen lassen. <br/>
+        Sie können sich ab <CreateDateStringModified date={props.date}/> impfen lassen. <br/>
         Für Sie wird folgender Impfstoff empfohlen: <b>{props.vaccination_brand}.</b>
     </div>)
 }
 
 export function Next_possible_date_second_dose_infection_alternative(props){
     return(<div>
-        Sie können sich mit <b>{props.vaccination_brand}</b>  ab dem <b>{props.date_first}</b> impfen lassen.
+        Sie können sich mit <b>{props.vaccination_brand}</b>  ab <CreateDateStringModified date={props.date}/> impfen lassen.
     </div>)
 }
 
 export function Next_possible_date_booster(props){
     return(<div>
         Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine Impfung (Boosterimpfung/ Auffrischimpfung) durchzuführen. <br/><br/>
-        Sie können sich ab dem <b>{props.date} </b>impfen lassen. <br/>
+        Sie können sich ab <CreateDateStringModified date={props.date}/> impfen lassen. <br/>
         Für Sie wird folgender Impfstoff empfohlen: <b>{props.vaccination_brand}.</b>
     </div>)
 }
 
 export function Next_possible_date_booster_alternative(props){
     return(<div>
-        Sie können sich mit <b>{props.vaccination_brand}</b> ab dem <b>{props.date}</b> impfen lassen.
+        Sie können sich mit <b>{props.vaccination_brand}</b> ab <CreateDateStringModified date={props.date}/> impfen lassen.
     </div>)
 }
 
 export function Next_possible_date_booster_infection(props){
     return(<div>
         Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine „Booster-/Auffrischimpfung“ durchzuführen. <br/><br/>
-        Sie können sich ab dem <b>{props.date}</b> impfen lassen. <br/>
+        Sie können sich ab <CreateDateStringModified date={props.date}/> impfen lassen. <br/>
         Für Sie wird folgender Impfstoff empfohlen: <b>{props.vaccination_brand}.</b>
     </div>)
 }
 
 export function Next_possible_date_booster_infection_alternative(props){
     return(<div>
-        Sie können sich mit <b>{props.vaccination_brand}</b> ab dem <b>{props.date}</b> impfen lassen.
+        Sie können sich mit <b>{props.vaccination_brand}</b> ab <CreateDateStringModified date={props.date}/> impfen lassen.
     </div>)
 
 }

@@ -36,7 +36,7 @@ class Impressum extends React.Component {
                     <h1 style={{textAlign: "center", fontWeight: "bold"}}>Kontakt</h1>
                     <br/>
 
-                    Bei weiteren Fragen, melde dich gerne über unser Kontaktformular bei uns:
+                    Bei weiteren Fragen, melden Sie sich gerne über unser Kontaktformular bei uns:
                     <br/>
                     <br/>
 
