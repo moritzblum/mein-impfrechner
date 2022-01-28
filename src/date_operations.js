@@ -57,11 +57,11 @@ export function CreateDateStringModified(props){
     console.log(isToday(parseDate(props.date)));
 
     if(isToday(parseDate(props.date))){
-        return(<span><b>heute</b></span>)
+        return(<span><b>sofort</b></span>)
     }
 
     if(parseDate(props.date) <= today) {
-        return (<span><b>heute</b> (und bereits seit dem {props.date})</span>)
+        return (<span><b>sofort</b> (seit dem {props.date})</span>)
     }
 
     return(<span>dem <b>{props.date}</b></span>)
