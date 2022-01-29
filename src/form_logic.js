@@ -126,12 +126,16 @@ export function get_next_card(card_history, user_data) {
             }
         }
 
-        let first_possible_date = date_operations.get_latest_date([Date.now(),
+        let first_possible_date = date_operations.get_latest_date([
+            Date.now(),
             date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
             date_operations.add_month_2_date(infection_date, 3),
-            date_operations.add_weeks_2_date(new Date().toLocaleDateString('en-US'), Math.max(0, 13-((typeof user_pregnancy_week_exact === 'undefined') ? 13 : user_pregnancy_week_exact))),
+                ((pregnant) ?
+                    date_operations.add_weeks_2_date(new Date().toLocaleDateString('en-US'), (Math.max(0, 13-((typeof user_pregnancy_week_exact === 'undefined') ? 13 : user_pregnancy_week_exact))))
+                    : undefined),
             date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE', DATE_OPTIONS);
 
+        console.log(first_possible_date);
         if (!past_infection) {
             // no past infection
             // age <= 11
@@ -290,25 +294,31 @@ export function get_next_card(card_history, user_data) {
     if (user_data['number_vaccinations']['value'] == 1) {
 
         if (!past_infection){
-            let three_weeks_first_possible_date = date_operations.get_latest_date([Date.now(),
+            let three_weeks_first_possible_date = date_operations.get_latest_date([
                 date_operations.add_weeks_2_date(vaccination_history_date[0], 3),
                 date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
                 date_operations.add_month_2_date(infection_date, 3),
-                date_operations.add_weeks_2_date(new Date().toLocaleDateString('en-US'), Math.max(0, 13-((typeof user_pregnancy_week_exact === 'undefined') ? 13 : user_pregnancy_week_exact))),
+                ((pregnant) ?
+                    date_operations.add_weeks_2_date(new Date().toLocaleDateString('en-US'), (Math.max(0, 13-((typeof user_pregnancy_week_exact === 'undefined') ? 13 : user_pregnancy_week_exact))))
+                    : undefined),
                 date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE', DATE_OPTIONS);
 
-            let four_weeks_first_possible_date = date_operations.get_latest_date([Date.now(),
+            let four_weeks_first_possible_date = date_operations.get_latest_date([
                 date_operations.add_weeks_2_date(vaccination_history_date[0], 4),
                 date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
                 date_operations.add_month_2_date(infection_date, 3),
-                date_operations.add_weeks_2_date(new Date().toLocaleDateString('en-US'), Math.max(0, 13-((typeof user_pregnancy_week_exact === 'undefined') ? 13 : user_pregnancy_week_exact))),
+                ((pregnant) ?
+                    date_operations.add_weeks_2_date(new Date().toLocaleDateString('en-US'), (Math.max(0, 13-((typeof user_pregnancy_week_exact === 'undefined') ? 13 : user_pregnancy_week_exact))))
+                    : undefined),
                 date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE', DATE_OPTIONS);
 
-            let last_possible_date = date_operations.get_latest_date([Date.now(),
+            let last_possible_date = date_operations.get_latest_date([
                 date_operations.add_weeks_2_date(vaccination_history_date[0], 6),
                 date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
                 date_operations.add_month_2_date(infection_date, 3),
-                date_operations.add_weeks_2_date(new Date().toLocaleDateString('en-US'), Math.max(0, 13-((typeof user_pregnancy_week_exact === 'undefined') ? 13 : user_pregnancy_week_exact))),
+                ((pregnant) ?
+                    date_operations.add_weeks_2_date(new Date().toLocaleDateString('en-US'), (Math.max(0, 13-((typeof user_pregnancy_week_exact === 'undefined') ? 13 : user_pregnancy_week_exact))))
+                    : undefined),
                 date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE', DATE_OPTIONS);
 
             // age <= 29
@@ -366,11 +376,13 @@ export function get_next_card(card_history, user_data) {
             }
         }
         else {
-            let three_month_first_possible_date = date_operations.get_latest_date([Date.now(),
+            let three_month_first_possible_date = date_operations.get_latest_date([
                 date_operations.add_month_2_date(vaccination_history_date[0], 3),
                 date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
                 date_operations.add_month_2_date(infection_date, 3),
-                date_operations.add_weeks_2_date(new Date().toLocaleDateString('en-US'), Math.max(0, 13-((typeof user_pregnancy_week_exact === 'undefined') ? 13 : user_pregnancy_week_exact))),
+                ((pregnant) ?
+                    date_operations.add_weeks_2_date(new Date().toLocaleDateString('en-US'), (Math.max(0, 13-((typeof user_pregnancy_week_exact === 'undefined') ? 13 : user_pregnancy_week_exact))))
+                    : undefined),
                 date_operations.add_weeks_2_date(symptoms_end_date, 4)]).toLocaleDateString('de-DE', DATE_OPTIONS);
 
             // Infektion innerhalb von 4 Wochen nach 1. Impfung
@@ -450,10 +462,11 @@ export function get_next_card(card_history, user_data) {
     // third shot
     if (user_data['number_vaccinations']['value'] == 2) {
         let first_possible_date = date_operations.get_latest_date([
-            Date.now(),
             date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
             date_operations.add_month_2_date(infection_date, 3),
-            date_operations.add_weeks_2_date(new Date().toLocaleDateString('en-US'), Math.max(0, 13-((typeof user_pregnancy_week_exact === 'undefined') ? 13 : user_pregnancy_week_exact))),
+            ((pregnant) ?
+                date_operations.add_weeks_2_date(new Date().toLocaleDateString('en-US'), (Math.max(0, 13-((typeof user_pregnancy_week_exact === 'undefined') ? 13 : user_pregnancy_week_exact))))
+                : undefined),
             date_operations.add_weeks_2_date(symptoms_end_date, 4),
             date_operations.add_month_2_date(vaccination_history_date[1], 3)
         ]).toLocaleDateString('de-DE', DATE_OPTIONS);

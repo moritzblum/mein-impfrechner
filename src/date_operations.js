@@ -7,7 +7,6 @@ export function get_latest_date(dates) {
     return new Date(Math.max.apply(null, dates));
 }
 
-
 export function add_weeks_2_date(date, weeks) {
     if (date === undefined){
         return undefined
@@ -41,8 +40,9 @@ export function isToday(someDate){
         (someDate.getFullYear() == today.getFullYear()))
 }
 
+
 function parseDate(input) {
-    var parts = input.match(/(\d+)/g);
+    let parts = input.match(/(\d+)/g);
     // note parts[1]-1
     return new Date(parseInt(parts[2]) , parts[1]-1, parts[0]);
 }

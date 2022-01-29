@@ -1,5 +1,8 @@
 import React from "react";
 import * as form_logic from "./form_logic";
+import Modal from 'react-bootstrap';
+import * as Bootstrap from 'react-bootstrap'
+
 import {
     Age_header, Age_instruction, Alternative, DATE_OPTIONS, Disclaimer,
     Got_unregistered_vaccination_header,
@@ -44,6 +47,7 @@ import {
     Vaccination_2_header,
     Vaccination_2_instruction
 } from "./texts";
+import {show_popup} from "./date_operations";
 
 
 class Card extends React.Component {
@@ -397,7 +401,7 @@ class Form_body_symptoms_registered extends React.Component {
         return(
             <div className="form-group" id="symptoms_registered_input">
                 <label><Symptoms_registered_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_symptoms_registered"/></label>
-                <Modal_popup button_id="modal_symptoms_registered" title={modal_symptoms_registered_text} text={modal_symptoms_registered_title} />
+                <Modal_popup button_id="modal_symptoms_registered" title={modal_symptoms_registered_title} text={modal_symptoms_registered_text} />
                 <br/>
                 <br/>
                 <div className="form-check">
@@ -619,9 +623,16 @@ class DatePicker extends React.Component {
 }
 
 
+
+
 class Card_start extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        let myModal = new window.bootstrap.Modal(document.getElementById("startModal"), {});
+        myModal.show();
     }
 
     render() {
@@ -632,7 +643,7 @@ class Card_start extends React.Component {
                     RKI</a>  und wurde durch <a target="_blank" href="information.html#dr">Herrn Prof. Dr. Theodor Windhorst</a>  fachwissenschaftlich begleitet.
                     <br/>
                     <br/>
-                    Die aktuelle Version bildet den Stand vom <a target="_blank" href="https://www.rki.de/DE/Content/Infekt/EpidBull/epid_bull_node.html" style={{"color": "white"}}>25.01.2022</a> ab.
+                    Die aktuelle Version bildet den Stand vom <a target="_blank" href="https://www.rki.de/DE/Content/Infekt/EpidBull/epid_bull_node.html" style={{"color": "white"}}>29.01.2022</a> ab.
                 </div>
                 <div className="vc-card vc-card-start container" id="card_start" >
                     <div className="row justify-content-md-center">

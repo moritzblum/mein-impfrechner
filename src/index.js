@@ -14,6 +14,7 @@ import Datenschutz from "./datenschutz"
 import Faq from "./faq"
 import Information from "./information"
 import Appointment_asbowl from "./texts"
+import Quarantaenerechner from "./quarantaenerechner";
 
 
 
@@ -37,20 +38,23 @@ class Main extends React.Component {
 ReactDOM.render(
     <HashRouter>
         <Routes>
-            <Route path="/" element={ <Main subpage="" /> } />
-            <Route path="/asb-owl" element={ <Main subpage="/asb-owl" appointment={<Appointment_asbowl />}/> } />
+            <Route exact path="/" element={ <Main subpage="" /> } />
+            <Route exact path="/asb-owl" element={ <Main subpage="/asb-owl" appointment={<Appointment_asbowl />}/> } />
 
-            <Route path="/information" element={ <Information subpage="" /> } />
-            <Route path="/asb-owl/information" element={ <Information subpage="/asb-owl" /> } />
+            <Route exact path="/information" element={ <Information subpage="" /> } />
+            <Route exact path="/asb-owl/information" element={ <Information subpage="/asb-owl" /> } />
 
-            <Route path="/faq" element={ <Faq subpage="" /> } />
-            <Route path="/asb-owl/faq" element={ <Faq subpage="/asb-owl" /> } />
+            <Route exact path="/faq" element={ <Faq subpage="" /> } />
+            <Route exact path="/asb-owl/faq" element={ <Faq subpage="/asb-owl" /> } />
 
-            <Route path="/impressum" element={ <Impressum subpage="" /> } />
-            <Route path="/asb-owl/impressum" element={ <Impressum subpage="/asb-owl" /> } />
+            <Route exact path="/impressum" element={ <Impressum subpage="" /> } />
+            <Route exact path="/asb-owl/impressum" element={ <Impressum subpage="/asb-owl" /> } />
 
-            <Route path="/datenschutz" element={ <Datenschutz subpage="" /> } />
-            <Route path="/asb-owl/datenschutz" element={ <Datenschutz subpage="/asb-owl" /> } />
+            <Route exact path="/datenschutz" element={ <Datenschutz subpage="" /> } />
+            <Route exact path="/asb-owl/datenschutz" element={ <Datenschutz subpage="/asb-owl" /> } />
+
+
+            <Route exact path="/quarantaenerechner" element={ <Quarantaenerechner /> } />
         </Routes>
     </HashRouter>,
     document.getElementById("root")
