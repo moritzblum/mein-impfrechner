@@ -39,7 +39,7 @@ class DatePicker extends React.Component {
         return (
             <div>
                 <input id={this.props.date_picker_name} type="date" className="form-control date-validation" placeholder="bitte auswählen"
-                       ref="input_2" onChange={this.handle_manual_change} style={{fontSize:"1em"}}/>
+                       ref="input_2" onChange={this.handle_manual_change} style={{fontSize:"0.7em", width:"9em"}}/>
 
                 <div className="DatePicker" ref={this.datepickerContainer}/>
             </div>
@@ -203,7 +203,7 @@ class QuarantaeneCalculator extends React.Component {
             <div className="vc-card container" style={{height:"500px"}}>
                 <div className="vc-card-header">
                     <div className="col-sm" style={{textAlign: "center"}}>
-                        <h1 className="card-title"> <b>Corona-Quarantänerechner</b></h1>
+                        <h1 className="card-title" style={{marginTop:"0em"}}> <b>Corona-Quarantänerechner</b></h1>
                     </div>
                 </div>
 
@@ -211,55 +211,56 @@ class QuarantaeneCalculator extends React.Component {
                     <div className="vc-result" id="result-view" style={{"position": "relative", "height":"90%", "width":"100%", "overflowY": 'scroll'}}>
 
                         {/* Datum der positiven Testung */}
-                        <div className="row">
-                            <div className="col">
-                                <label htmlFor="datepicker_infection"><b>Testentnahmedatum <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_quarantine_test_date"/></b></label>
-                                <Modal_popup button_id="modal_quarantine_test_date" title={modal_quarantine_test_date_title} text={modal_quarantine_test_date_text} />
-                            </div>
-                            <div className="col">
-                                <DatePicker onChange={this.control_date_handler_test_date} date_picker_name="test_date"/>
-                            </div>
-                        </div>
-
-                        <br/>
-
-                        <div className="row">
-                            {/* Symptome*/}
-                            <div className="col">
-                                <label><b>Symptome <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_quarantine_symptoms"/></b></label>
-                                <Modal_popup button_id="modal_quarantine_symptoms" title={modal_symptoms_registered_title} text={modal_symptoms_registered_text} />
-
-                            </div>
-                            <div className="col">
-                                <div className="form-check-inline">
-                                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault8" onChange={this.control_click_handler_symptoms} value={true}/>
-                                    <label className="form-check-label" htmlFor="flexRadioDefault8">
-                                        &nbsp;Ja
-                                    </label>
+                        <div className="container" style={{"width":"100%"}}>
+                            <div className="row">
+                                <div className="col">
+                                    <label htmlFor="datepicker_infection"><b>Testentnahmedatum <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_quarantine_test_date"/></b></label>
+                                    <Modal_popup button_id="modal_quarantine_test_date" title={modal_quarantine_test_date_title} text={modal_quarantine_test_date_text} />
                                 </div>
-                                <div className="form-check-inline">
-                                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault9"  onChange={this.control_click_handler_symptoms} value={false}/>
-                                    <label className="form-check-label" htmlFor="flexRadioDefault9">
-                                        &nbsp;Nein
-                                    </label>
+                                <div className="col">
+                                    <DatePicker onChange={this.control_date_handler_test_date} date_picker_name="test_date"/>
                                 </div>
                             </div>
+
+                            <br/>
+
+                            <div className="row">
+                                {/* Symptome*/}
+                                <div className="col">
+                                    <label><b>Symptome <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_quarantine_symptoms"/></b></label>
+                                    <Modal_popup button_id="modal_quarantine_symptoms" title={modal_symptoms_registered_title} text={modal_symptoms_registered_text} />
+
+                                </div>
+                                <div className="col">
+                                    <div className="form-check-inline">
+                                        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault8" onChange={this.control_click_handler_symptoms} value={true}/>
+                                        <label className="form-check-label" htmlFor="flexRadioDefault8">
+                                            &nbsp;Ja
+                                        </label>
+                                    </div>
+                                    <div className="form-check-inline">
+                                        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault9"  onChange={this.control_click_handler_symptoms} value={false}/>
+                                        <label className="form-check-label" htmlFor="flexRadioDefault9">
+                                            &nbsp;Nein
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <Symptoms_start_date symptoms={this.state.symptoms} handler={this.control_date_handler_symptoms_date}/>
                         </div>
-
-
-                        <Symptoms_start_date symptoms={this.state.symptoms} handler={this.control_date_handler_symptoms_date}/>
-
                         <Result result={this.state.result}/>
 
 
                     </div>
                     <div className="" style={{"position": "absolute", "bottom": "2%", "width":"96%"}}>
                         <div className="d-flex justify-content-between">
-                            <button className="button button_back" onClick={this.control_click_handler_clear}
+                            <button className="button button_back" onClick={this.control_click_handler_clear} style={{width:"9em"}}
                                     id={this.props.id_back}>
-                                zurücksetzen
+                                zurück
                             </button>
-                            <button className="button button_next" type="submit" onClick={this.control_click_handler_calculate}
+                            <button className="button button_next" type="submit" onClick={this.control_click_handler_calculate} style={{width:"9em"}}
                                     id={this.props.id_next}>
                                 berechnen
                             </button>
@@ -275,7 +276,7 @@ class Quarantaenerechner extends React.Component {
 
     render() {
         return (
-            <div style={{height:"100%"}}>
+            <div style={{height:"100%", width: "100%"}}>
                 <div>
                     <nav style={{"position":"relative"}}>
                         <div id="navbar-lg">
@@ -327,7 +328,7 @@ class Quarantaenerechner extends React.Component {
                             <a href="https://www.mein-impfrechner.de" style={{position: "center"}}>Überprüfen Sie hier Ihren Impfstatus</a>
                             <br/>
                             <a href="https://www.mein-impfrechner.de">
-                                <img alt="Logo ASB OWL" src="img/banner_footer.svg" width="300em" height="225em"
+                                <img alt="Logo ASB OWL" src="img/banner_footer.svg" width="250em" height="190em"
                                  style={{"paddingTop": 0, "paddingBottom": 0}}/>
                             </a>
                         </div>
