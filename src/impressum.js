@@ -60,7 +60,7 @@ class Impressum extends React.Component {
                                    required className="form-check-input" id="exampleCheck1"/>
                             <label className="form-check-label" htmlFor="exampleCheck1">Beim
                                 Absenden werden deine Eingaben automatisch in
-                                dein E-Mail-Programm übernommen und eine E-Mail erstellt. Außerdem
+                                dein E-Mail Programm übernommen und eine E-Mail erstellt. Außerdem
                                 stimmst du hiermit unserer <Link to={this.props.subpage + "/datenschutz"}> <i
                                     className="fas fa-user-friends"/> Datenschutzerklärung</Link> zu.</label>
                         </div>
