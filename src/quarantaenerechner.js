@@ -93,9 +93,6 @@ class Result extends React.Component {
 
 
 
-
-
-
 class Symptoms_start_date extends React.Component {
     render() {
             if(this.props.symptoms === "true"){
@@ -119,6 +116,8 @@ class Symptoms_start_date extends React.Component {
     }
 }
 
+
+
 class QuarantaeneCalculator extends React.Component {
     constructor(props) {
         super(props);
@@ -126,13 +125,16 @@ class QuarantaeneCalculator extends React.Component {
             "result":  "",
             "symptoms": false,
             "symptom_date": undefined,
-            "test_date": undefined};
+            "test_date": undefined,
+            "view": "start"};
+
         this.control_click_handler_calculate = this.control_click_handler_calculate.bind(this);
         this.control_click_handler_clear = this.control_click_handler_clear.bind(this);
         this.control_date_handler_test_date = this.control_date_handler_test_date.bind(this);
         this.control_date_handler_symptoms_date = this.control_date_handler_symptoms_date.bind(this);
         this.control_click_handler_symptoms = this.control_click_handler_symptoms.bind(this);
-
+        this.control_click_handler_start_infection = this.control_click_handler_start_infection.bind(this);
+        this.control_click_handler_start_contact = this.control_click_handler_start_contact.bind(this);
     }
 
     componentDidMount() {
@@ -184,10 +186,16 @@ class QuarantaeneCalculator extends React.Component {
     }
 
     control_click_handler_clear(e) {
-        this.setState({"result":  "", "symptoms": undefined, "symptom_date": undefined, "test_date": undefined});
-        document.getElementById("flexRadioDefault8").checked = false;
-        document.getElementById("flexRadioDefault9").checked = false;
-        document.getElementById("test_date").value = undefined;
+        if(this.state.result !== "" || this.state.symptoms || this.state.symptom_date || this.state.test_date){
+            this.setState({"result":  "", "symptoms": undefined, "symptom_date": undefined, "test_date": undefined});
+            document.getElementById("flexRadioDefault8").checked = false;
+            document.getElementById("flexRadioDefault9").checked = false;
+            document.getElementById("test_date").value = undefined;
+        }
+        else {
+            this.setState({"view":  "start", "symptoms": undefined, "symptom_date": undefined, "test_date": undefined});
+        }
+
     }
 
     control_click_handler_symptoms(e) {
@@ -197,78 +205,229 @@ class QuarantaeneCalculator extends React.Component {
         this.setState({"result":  ""});
     }
 
+    control_click_handler_start_infection(e) {
+        this.setState({"view":  "infection"});
+
+    }
+
+    control_click_handler_start_contact(e) {
+        this.setState({"view":  "contact"});
+    }
+
 
     render(){
-        return(
-            <div className="vc-card container" style={{height:"500px"}}>
-                <div className="vc-card-header">
-                    <div className="col-sm" style={{textAlign: "center"}}>
-                        <h1 className="card-title" style={{marginTop:"0em"}}> <b>Corona-Quarantänerechner</b></h1>
-                    </div>
-                </div>
+        const step = this.state.view;
 
-                <div className="vc-card-body" >
-                    <div className="vc-result" id="result-view" style={{"position": "relative", "height":"90%", "width":"100%", "overflowY": 'scroll'}}>
-
-                        {/* Datum der positiven Testung */}
-                        <div className="container" style={{"width":"100%"}}>
-                            <div className="row">
-                                <div className="col">
-                                    <label htmlFor="datepicker_infection"><b>Testentnahmedatum <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_quarantine_test_date"/></b></label>
-                                    <Modal_popup button_id="modal_quarantine_test_date" title={modal_quarantine_test_date_title} text={modal_quarantine_test_date_text} />
-                                </div>
-                                <div className="col">
-                                    <DatePicker onChange={this.control_date_handler_test_date} date_picker_name="test_date"/>
+        switch (step) {
+            case 'start':
+                return (
+                    <div>
+                        <div className="vc-card container" style={{height: "500px"}}>
+                            <div className="vc-card-header">
+                                <div className="col-sm" style={{textAlign: "center"}}>
+                                    <h1 className="card-title" style={{marginTop: "0em"}}>
+                                        <b>Corona-Quarantänerechner</b></h1>
                                 </div>
                             </div>
 
-                            <br/>
-
-                            <div className="row">
-                                {/* Symptome*/}
-                                <div className="col">
-                                    <label><b>Symptome <i className="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal_quarantine_symptoms"/></b></label>
-                                    <Modal_popup button_id="modal_quarantine_symptoms" title={modal_symptoms_registered_title} text={modal_symptoms_registered_text} />
-
-                                </div>
-                                <div className="col">
-                                    <div className="form-check-inline">
-                                        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault8" onChange={this.control_click_handler_symptoms} value={true}/>
-                                        <label className="form-check-label" htmlFor="flexRadioDefault8">
-                                            &nbsp;Ja
-                                        </label>
-                                    </div>
-                                    <div className="form-check-inline">
-                                        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault9"  onChange={this.control_click_handler_symptoms} value={false}/>
-                                        <label className="form-check-label" htmlFor="flexRadioDefault9">
-                                            &nbsp;Nein
-                                        </label>
+                            <div className="vc-card-body">
+                                <div className="vc-result" id="result-view" style={{
+                                    "position": "relative",
+                                    "height": "90%",
+                                    "width": "100%",
+                                    "overflowY": 'scroll'
+                                }}>
+                                    Bitte wählen Sie, ob Sie infziert oder Kontakperson sind:
+                                    <div className="" style={{"position": "relative", "width": "96%", paddingTop:"2em"}}>
+                                        <div className="d-flex justify-content-between">
+                                            <button className="button button_back"
+                                                    onClick={this.control_click_handler_start_infection} style={{width: "9em"}}
+                                                    id="start_infected">
+                                                Infiziert
+                                            </button>
+                                            <button className="button button_next" type="submit"
+                                                    onClick={this.control_click_handler_start_contact} style={{width: "9em"}}
+                                                    id="start_contact">
+                                                Kontaktperson
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-
-                            <Symptoms_start_date symptoms={this.state.symptoms} handler={this.control_date_handler_symptoms_date}/>
-                        </div>
-                        <Result result={this.state.result}/>
-
-
-                    </div>
-                    <div className="" style={{"position": "absolute", "bottom": "2%", "width":"96%"}}>
-                        <div className="d-flex justify-content-between">
-                            <button className="button button_back" onClick={this.control_click_handler_clear} style={{width:"9em"}}
-                                    id={this.props.id_back}>
-                                zurück
-                            </button>
-                            <button className="button button_next" type="submit" onClick={this.control_click_handler_calculate} style={{width:"9em"}}
-                                    id={this.props.id_next}>
-                                berechnen
-                            </button>
                         </div>
                     </div>
-                </div>
-            </div>
-        )
+                );
+            case 'infection':
+                return (
+                    <div className="vc-card container" style={{height: "500px"}}>
+                        <div className="vc-card-header">
+                            <div className="col-sm" style={{textAlign: "center"}}>
+                                <h1 className="card-title" style={{marginTop: "0em"}}>
+                                    <b>Corona-Quarantänerechner</b></h1>
+                            </div>
+                        </div>
+
+                        <div className="vc-card-body">
+                            <div className="vc-result" id="result-view" style={{
+                                "position": "relative",
+                                "height": "90%",
+                                "width": "100%",
+                                "overflowY": 'scroll'
+                            }}>
+
+                                {/* Datum der positiven Testung */}
+                                <div className="container" style={{"width": "100%"}}>
+                                    <div className="row">
+                                        <div className="col">
+                                            <label htmlFor="datepicker_infection"><b>Testentnahmedatum <i
+                                                className="fas fa-info-circle" data-bs-toggle="modal"
+                                                data-bs-target="#modal_quarantine_test_date"/></b></label>
+                                            <Modal_popup button_id="modal_quarantine_test_date"
+                                                         title={modal_quarantine_test_date_title}
+                                                         text={modal_quarantine_test_date_text}/>
+                                        </div>
+                                        <div className="col">
+                                            <DatePicker onChange={this.control_date_handler_test_date}
+                                                        date_picker_name="test_date"/>
+                                        </div>
+                                    </div>
+
+                                    <br/>
+
+                                    <div className="row">
+                                        {/* Symptome*/}
+                                        <div className="col">
+                                            <label><b>Symptome <i className="fas fa-info-circle"
+                                                                  data-bs-toggle="modal"
+                                                                  data-bs-target="#modal_quarantine_symptoms"/></b></label>
+                                            <Modal_popup button_id="modal_quarantine_symptoms"
+                                                         title={modal_symptoms_registered_title}
+                                                         text={modal_symptoms_registered_text}/>
+
+                                        </div>
+                                        <div className="col">
+                                            <div className="form-check-inline">
+                                                <input className="form-check-input" type="radio"
+                                                       name="flexRadioDefault" id="flexRadioDefault8"
+                                                       onChange={this.control_click_handler_symptoms} value={true}/>
+                                                <label className="form-check-label" htmlFor="flexRadioDefault8">
+                                                    &nbsp;Ja
+                                                </label>
+                                            </div>
+                                            <div className="form-check-inline">
+                                                <input className="form-check-input" type="radio"
+                                                       name="flexRadioDefault" id="flexRadioDefault9"
+                                                       onChange={this.control_click_handler_symptoms}
+                                                       value={false}/>
+                                                <label className="form-check-label" htmlFor="flexRadioDefault9">
+                                                    &nbsp;Nein
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <Symptoms_start_date symptoms={this.state.symptoms}
+                                                         handler={this.control_date_handler_symptoms_date}/>
+                                </div>
+                                <Result result={this.state.result}/>
+
+
+                            </div>
+                            <div className="" style={{"position": "absolute", "bottom": "2%", "width": "96%"}}>
+                                <div className="d-flex justify-content-between">
+                                    <button className="button button_back"
+                                            onClick={this.control_click_handler_clear} style={{width: "9em"}}
+                                            id={this.props.id_back}>
+                                        zurück
+                                    </button>
+                                    <button className="button button_next" type="submit"
+                                            onClick={this.control_click_handler_calculate} style={{width: "9em"}}
+                                            id={this.props.id_next}>
+                                        berechnen
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            case 'contact':
+                return (
+                    <div className="vc-card container" style={{height: "500px"}}>
+                        <div className="vc-card-header">
+                            <div className="col-sm" style={{textAlign: "center"}}>
+                                <h1 className="card-title" style={{marginTop: "0em"}}>
+                                    <b>Corona-Quarantänerechner</b></h1>
+                            </div>
+                        </div>
+
+                        <div className="vc-card-body">
+                            <div className="vc-result" id="result-view" style={{
+                                "position": "relative",
+                                "height": "90%",
+                                "width": "100%",
+                                "overflowY": 'scroll'
+                            }}>
+                                Hier für Kontaktpersonen:
+                                {/* Datum der positiven Testung */}
+                                <div className="container" style={{"width": "100%"}}>
+                                    <div className="row">
+                                        <div className="col">
+                                            <label htmlFor="datepicker_infection"><b>Testentnahmedatum <i
+                                                className="fas fa-info-circle" data-bs-toggle="modal"
+                                                data-bs-target="#modal_quarantine_test_date"/></b></label>
+                                            <Modal_popup button_id="modal_quarantine_test_date"
+                                                         title={modal_quarantine_test_date_title}
+                                                         text={modal_quarantine_test_date_text}/>
+                                        </div>
+                                        <div className="col">
+                                            <DatePicker onChange={this.control_date_handler_test_date}
+                                                        date_picker_name="test_date"/>
+                                        </div>
+                                    </div>
+
+                                    <br/>
+
+                                    <div className="row">
+
+                                    </div>
+
+
+                                    <Symptoms_start_date symptoms={this.state.symptoms}
+                                                         handler={this.control_date_handler_symptoms_date}/>
+                                </div>
+                                <Result result={this.state.result}/>
+
+
+                            </div>
+                            <div className="" style={{"position": "absolute", "bottom": "2%", "width": "96%"}}>
+                                <div className="d-flex justify-content-between">
+                                    <button className="button button_back"
+                                            onClick={this.control_click_handler_clear} style={{width: "9em"}}
+                                            id={this.props.id_back}>
+                                        zurück
+                                    </button>
+                                    <button className="button button_next" type="submit"
+                                            onClick={this.control_click_handler_calculate} style={{width: "9em"}}
+                                            id={this.props.id_next}>
+                                        berechnen
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+
+            default:
+                console.log('React rendering ERROR: Rendering default.')
+                return (
+
+                    <div>
+                        ERROR: Not a render case!
+                    </div>
+                )
+        }
+
     }
 }
 
@@ -294,7 +453,7 @@ class Quarantaenerechner extends React.Component {
 
                 </div>
 
-                <div className="container main_page_text" style={{height:"100%"}}>
+                <div className="container main_page_text" >
                     <br/>
                     <br/>
                     Die Empfehlung basiert auf der aktuellen Corona-Test-und-Quarantäneverordnung des Landes Nordrhein-Westfalen und Ihren Angaben.
@@ -312,46 +471,51 @@ class Quarantaenerechner extends React.Component {
                     Weiterhin haben Sie die Möglichkeit die Corona-Hotline des Landes zu nutzen.<br/>
                     (Deutsch): 0211 / 9119-1001<br/>
                     (Fremdsprachen): 0211 / 468-44996<br/>
+
                     <br/>
                     <br/>
                     <br/>
-                    <div id="partner-sm" style={{"width":"100%", "textAlign": "center", paddingTop:"60px"}}>
-                        <div style={{"textAlign": "center"}}>
-                            <h5 style={{"textAlign": "center"}}><b>In Kooperation mit:</b></h5>
-                            <a href="https://www.kreis-guetersloh.de/aktuelles/corona/" target="_blank">
-                                <img alt="Frau impft junge Frau." src="img/KGT-Logo-4c-100_20_90.svg" width="200em" height="100em"
-                                     style={{"paddingTop": 0, "paddingBottom": 0, "textAlign": "center"}}/>
-                            </a>
-                            <br/>
-                            <br/>
-                            <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                </div>
+
+                <div id="partner-sm" style={{"width":"100%", "textAlign": "center", paddingTop:"60px"}}>
+                    <div style={{"textAlign": "center"}}>
+                        <h5 style={{"textAlign": "center"}}><b>In Kooperation mit:</b></h5>
+                        <a href="https://www.kreis-guetersloh.de/aktuelles/corona/" target="_blank">
+                            <img alt="Frau impft junge Frau." src="img/KGT-Logo-4c-100_20_90.svg" width="200em" height="100em"
+                                 style={{"paddingTop": 0, "paddingBottom": 0, "textAlign": "center"}}/>
+                        </a>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <a href="https://www.mein-impfrechner.de" style={{position: "center"}}>Überprüfen Sie hier Ihren Impfstatus</a>
+                        <br/>
+                        <a href="https://www.mein-impfrechner.de">
+                            <img alt="Logo ASB OWL" src="img/banner_footer.svg" width="250em" height="190em"
+                                 style={{"paddingTop": 0, "paddingBottom": 0}}/>
+                        </a>
+                    </div>
+                </div>
+                <div className="" id="partner-lg" style={{"width": "99%", "textAlign": "center"}}>
+                    <div className="row">
+                        <div className="col-3">
+                        </div>
+                        <div className="col-6" style={{"textAlign": "center"}}>
                             <a href="https://www.mein-impfrechner.de" style={{position: "center"}}>Überprüfen Sie hier Ihren Impfstatus</a>
                             <br/>
                             <a href="https://www.mein-impfrechner.de">
-                                <img alt="Logo ASB OWL" src="img/banner_footer.svg" width="250em" height="190em"
-                                 style={{"paddingTop": 0, "paddingBottom": 0}}/>
+                                <img alt="Frau impft junge Frau." src="img/banner_footer.svg" width="300em" height="225em"
+                                     style={{"paddingTop": 0, "paddingBottom": 0}}/>
                             </a>
                         </div>
-                    </div>
-                    <div className="" id="partner-lg" style={{"width": "99%", "textAlign": "center"}}>
-                        <div className="row">
-                            <div className="col-3">
-                            </div>
-                            <div className="col-6" style={{"textAlign": "center"}}>
-                                <a href="https://www.mein-impfrechner.de" style={{position: "center"}}>Überprüfen Sie hier Ihren Impfstatus</a>
-                                <br/>
-                                <a href="https://www.mein-impfrechner.de">
-                                    <img alt="Frau impft junge Frau." src="img/banner_footer.svg" width="300em" height="225em"
-                                     style={{"paddingTop": 0, "paddingBottom": 0}}/>
-                                </a>
-                            </div>
-                            <div className="col-3">
-                                <h5 style={{"marginBottom": "10px"}}><b>In Kooperation mit:</b></h5>
-                                <a href="https://www.kreis-guetersloh.de/aktuelles/corona/" target="_blank">
-                                    <img alt="Logo ASB OWL" src="img/KGT-Logo-4c-100_20_90.svg" width="200em" height="100em"
-                                         style={{"paddingTop": 0, "paddingBottom": 0, "textAlign": "right", "marginBottom": 0}}/>
-                                </a>
-                            </div>
+                        <div className="col-3">
+                            <h5 style={{"marginBottom": "10px"}}><b>In Kooperation mit:</b></h5>
+                            <a href="https://www.kreis-guetersloh.de/aktuelles/corona/" target="_blank">
+                                <img alt="Logo ASB OWL" src="img/KGT-Logo-4c-100_20_90.svg" width="200em" height="100em"
+                                     style={{"paddingTop": 0, "paddingBottom": 0, "textAlign": "right", "marginBottom": 0}}/>
+                            </a>
                         </div>
                     </div>
                 </div>
