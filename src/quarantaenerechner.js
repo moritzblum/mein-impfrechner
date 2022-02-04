@@ -38,14 +38,16 @@ class DatePicker extends React.Component {
     render() {
         return (
             <div>
-                <input id={this.props.date_picker_name} type="date" className="form-control date-validation" placeholder="bitte auswählen"
-                       ref="input_2" onChange={this.handle_manual_change} style={{fontSize:"0.7em", width:"9em"}}/>
+                <input id={this.props.date_picker_name} type="date" className="form-control date-validation"
+                       placeholder="bitte auswählen"
+                       ref="input_2" onChange={this.handle_manual_change} style={{fontSize: "0.7em", width: "9em"}}/>
 
                 <div className="DatePicker" ref={this.datepickerContainer}/>
             </div>
         );
     }
 }
+
 function Modal_popup(props) {
     return (
         <div className="modal fade " id={props.button_id} tabIndex="-1" aria-labelledby="exampleModalLabel"
@@ -53,7 +55,8 @@ function Modal_popup(props) {
             <div className="modal-dialog modal-lg">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h2 className="modal-title" id="exampleModalLabel" style={{"color": "gray", "fontWeight": "bold"}}>{props.title}</h2>
+                        <h2 className="modal-title" id="exampleModalLabel"
+                            style={{"color": "gray", "fontWeight": "bold"}}>{props.title}</h2>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"/>
                     </div>
                     <div className="modal-body">
@@ -70,10 +73,9 @@ function Modal_popup(props) {
 }
 
 
-
 class Result extends React.Component {
     render() {
-        if(this.props.result != ""){
+        if (this.props.result != "") {
             return (
                 <div>
                     <br/>
@@ -83,50 +85,47 @@ class Result extends React.Component {
                     <br/>
                 </div>
             );
-        }
-        else {
-            return(<div> </div>)
+        } else {
+            return (<div></div>)
         }
     }
 }
-
-
 
 
 class Symptoms_start_date extends React.Component {
     render() {
-            if(this.props.symptoms === "true"){
-                return (
-                    <div>
-                        <br/>
-                        <div className="row">
-                            {/* Datum der positiven Testung */}
-                            <div className="col">
-                                <label htmlFor="datepicker_symptoms"><b>Symptombeginn</b></label></div>
-                            <div className="col">
-                                <DatePicker onChange={this.props.handler} date_picker_name="symptom_date"/>
-                            </div>
+        if (this.props.symptoms === "true") {
+            return (
+                <div>
+                    <br/>
+                    <div className="row">
+                        {/* Datum der positiven Testung */}
+                        <div className="col">
+                            <label htmlFor="datepicker_symptoms"><b>Symptombeginn</b></label></div>
+                        <div className="col">
+                            <DatePicker onChange={this.props.handler} date_picker_name="symptom_date"/>
                         </div>
                     </div>
-                );
-            }
-            else {
-                return (<div> </div>)
-            }
+                </div>
+            );
+        } else {
+            return (<div></div>)
+        }
     }
 }
-
 
 
 class QuarantaeneCalculator extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            "result":  "",
+            "result": "",
             "symptoms": false,
             "symptom_date": undefined,
             "test_date": undefined,
-            "view": "start"};
+            "school": undefined,
+            "view": "start"
+        };
 
         this.control_click_handler_calculate = this.control_click_handler_calculate.bind(this);
         this.control_click_handler_clear = this.control_click_handler_clear.bind(this);
@@ -149,73 +148,78 @@ class QuarantaeneCalculator extends React.Component {
     control_click_handler_calculate(e) {
         console.log('Starte Berechnung:');
 
-        if (this.state.test_date===undefined || this.state.symptoms===undefined || (this.state.symptoms==="true" && this.state.symptom_date===undefined)){
-            this.setState({result:  "Wir bitten um eine valide Eingabe, sonst ist eine Berechnung nicht möglich."});
-        }
-        else{
+        if (this.state.test_date === undefined || this.state.symptoms === undefined || (this.state.symptoms === "true" && this.state.symptom_date === undefined)) {
+            this.setState({result: "Wir bitten um eine valide Eingabe, sonst ist eine Berechnung nicht möglich."});
+        } else {
             let end;
             let test_date = new Date(this.state["test_date"]);
             let raustesten = new Date(test_date.setDate(test_date.getDate() + 7));
 
-            if (this.state.symptoms === "false"){
+            if (this.state.symptoms === "false") {
                 end = new Date(test_date.setDate(test_date.getDate() + 10));
-            }
-            else {
+            } else {
                 let symptom_date = new Date(this.state["symptom_date"]);
                 // nur relevant, wenn Symptome vor positivem Test, sonst sind es null Tage
-                let days_between = Math.max(Math.round((test_date-symptom_date)/(1000*60*60*24)), 0);
+                let days_between = Math.max(Math.round((test_date - symptom_date) / (1000 * 60 * 60 * 24)), 0);
                 end = new Date(test_date.setDate(test_date.getDate() + (10 - Math.max(0, Math.min(2, days_between)))));
             }
 
-            this.setState({result:  "Quarantäne bis einschließlich: "
+            this.setState({
+                result: "Quarantäne bis einschließlich: "
                     + end.toLocaleDateString('de-DE', DATE_OPTIONS)
                     + ", die Quarantäne ist fortzusetzen, solange weiterhin Symptome bestehen. Freitesten möglich ab: "
-                    + raustesten.toLocaleDateString('de-DE',  DATE_OPTIONS)
-                    + ", sofern seit 48h symptomfrei"});
+                    + raustesten.toLocaleDateString('de-DE', DATE_OPTIONS)
+                    + ", sofern seit 48h symptomfrei"
+            });
         }
     }
 
-    control_date_handler_test_date(e){
-        this.setState({"test_date":  e});
-        this.setState({"result":  ""});
+    control_date_handler_test_date(e) {
+        this.setState({"test_date": e});
+        this.setState({"result": ""});
     }
 
-    control_date_handler_symptoms_date(e){
-        this.setState({"symptom_date":  e});
-        this.setState({"result":  ""});
+    control_date_handler_symptoms_date(e) {
+        this.setState({"symptom_date": e});
+        this.setState({"result": ""});
     }
 
     control_click_handler_clear(e) {
-        if(this.state.result !== "" || this.state.symptoms || this.state.symptom_date || this.state.test_date){
-            this.setState({"result":  "", "symptoms": undefined, "symptom_date": undefined, "test_date": undefined});
+        if (this.state.result !== "" || this.state.symptoms || this.state.symptom_date || this.state.test_date) {
+            this.setState({"result": "", "symptoms": undefined, "symptom_date": undefined, "test_date": undefined});
             document.getElementById("flexRadioDefault8").checked = false;
             document.getElementById("flexRadioDefault9").checked = false;
             document.getElementById("test_date").value = undefined;
+        } else {
+            this.setState({"view": "start", "symptoms": undefined, "symptom_date": undefined, "test_date": undefined});
         }
-        else {
-            this.setState({"view":  "start", "symptoms": undefined, "symptom_date": undefined, "test_date": undefined});
-        }
-
     }
 
     control_click_handler_symptoms(e) {
         const target = e.target;
         let value = target.value;
         this.setState({"symptoms": value})
-        this.setState({"result":  ""});
+        this.setState({"result": ""});
+    }
+
+    control_click_handler_school(e) {
+        const target = e.target;
+        let value = target.value;
+        this.setState({"school": value})
+        this.setState({"result": ""});
     }
 
     control_click_handler_start_infection(e) {
-        this.setState({"view":  "infection"});
+        this.setState({"view": "infection"});
 
     }
 
     control_click_handler_start_contact(e) {
-        this.setState({"view":  "contact"});
+        this.setState({"view": "contact"});
     }
 
 
-    render(){
+    render() {
         const step = this.state.view;
 
         switch (step) {
@@ -234,24 +238,31 @@ class QuarantaeneCalculator extends React.Component {
                                 <div className="vc-result" id="result-view" style={{
                                     "position": "relative",
                                     "height": "90%",
-                                    "width": "100%",
                                     "overflowY": 'scroll'
                                 }}>
-                                    Bitte wählen Sie, ob Sie infziert oder Kontakperson sind:
-                                    <div className="" style={{"position": "relative", "width": "96%", paddingTop:"2em"}}>
+                                    Bitte wählen Sie, ob Sie infziert oder Kontakperson sind*:
+                                    <div className=""
+                                         style={{"position": "relative", paddingTop: "1.5em"}}>
                                         <div className="d-flex justify-content-between">
                                             <button className="button button_back"
-                                                    onClick={this.control_click_handler_start_infection} style={{width: "9em"}}
+                                                    onClick={this.control_click_handler_start_infection}
+                                                    style={{width: "9em"}}
                                                     id="start_infected">
                                                 Infiziert
                                             </button>
                                             <button className="button button_next" type="submit"
-                                                    onClick={this.control_click_handler_start_contact} style={{width: "9em"}}
+                                                    onClick={this.control_click_handler_start_contact}
+                                                    style={{width: "9em"}}
                                                     id="start_contact">
                                                 Kontaktperson
                                             </button>
                                         </div>
                                     </div>
+                                    <br/>
+
+                                    * Unter bestimmten  vorraussetzungen sind Sie als Haushaltskontakt von der Quarantäne befreit: <i
+                                    className="fas fa-info-circle" data-bs-toggle="modal"
+                                    data-bs-target="#modal_quarantine_test_date"/>
                                 </div>
                             </div>
                         </div>
@@ -276,7 +287,7 @@ class QuarantaeneCalculator extends React.Component {
                             }}>
 
                                 {/* Datum der positiven Testung */}
-                                <div className="container" style={{"width": "100%"}}>
+                                <div className="container" >
                                     <div className="row">
                                         <div className="col">
                                             <label htmlFor="datepicker_infection"><b>Testentnahmedatum <i
@@ -370,10 +381,43 @@ class QuarantaeneCalculator extends React.Component {
                             }}>
                                 Hier für Kontaktpersonen:
                                 {/* Datum der positiven Testung */}
-                                <div className="container" style={{"width": "100%"}}>
+                                <div className="container">
+
+                                    {/* Kleinkind/Schulkind */}
+
+                                    <div className="row" >
+                                        <label><b>Kleinkind/Schulpflichtig <i className="fas fa-info-circle"
+                                                                              data-bs-toggle="modal"
+                                                                              data-bs-target="#modal_quarantine_school"/></b></label>
+                                        <Modal_popup button_id="modal_quarantine_school"
+                                                     title={modal_symptoms_registered_title}
+                                                     text={modal_symptoms_registered_text}/>
+                                    </div>
+                                    <div className="row">
+                                        <div className="form-check-inline">
+                                            <div className="form-check-inline">
+                                                <input className="form-check-input" type="radio"
+                                                       name="flexRadioDefault" id="flexRadioDefault8"
+                                                       onChange={this.control_click_handler_school} value={true}/>
+                                                <label className="form-check-label" htmlFor="flexRadioDefault8">
+                                                    &nbsp;Ja
+                                                </label>
+                                            </div>
+                                            <div className="form-check-inline">
+                                                <input className="form-check-input" type="radio"
+                                                       name="flexRadioDefault" id="flexRadioDefault9"
+                                                       onChange={this.control_click_handler_school} value={false}/>
+                                                <label className="form-check-label" htmlFor="flexRadioDefault9">
+                                                    &nbsp;Nein
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    Angaben über die infizierte Person:
                                     <div className="row">
                                         <div className="col">
-                                            <label htmlFor="datepicker_infection"><b>Testentnahmedatum <i
+                                            <label htmlFor="datepicker_infection"><b>Testentnahmedatum<i
                                                 className="fas fa-info-circle" data-bs-toggle="modal"
                                                 data-bs-target="#modal_quarantine_test_date"/></b></label>
                                             <Modal_popup button_id="modal_quarantine_test_date"
@@ -385,18 +429,47 @@ class QuarantaeneCalculator extends React.Component {
                                                         date_picker_name="test_date"/>
                                         </div>
                                     </div>
-
                                     <br/>
-
                                     <div className="row">
+                                        {/* Symptome*/}
+                                        <div className="col">
+                                            <label><b>Symptome <i className="fas fa-info-circle"
+                                                                  data-bs-toggle="modal"
+                                                                  data-bs-target="#modal_quarantine_symptoms"/></b></label>
+                                            <Modal_popup button_id="modal_quarantine_symptoms"
+                                                         title={modal_symptoms_registered_title}
+                                                         text={modal_symptoms_registered_text}/>
 
+                                        </div>
+                                        <div className="col">
+                                            <div className="form-check-inline">
+                                                <input className="form-check-input" type="radio"
+                                                       name="flexRadioDefault" id="flexRadioDefault8"
+                                                       onChange={this.control_click_handler_symptoms} value={true}/>
+                                                <label className="form-check-label" htmlFor="flexRadioDefault8">
+                                                    &nbsp;Ja
+                                                </label>
+                                            </div>
+                                            <div className="form-check-inline">
+                                                <input className="form-check-input" type="radio"
+                                                       name="flexRadioDefault" id="flexRadioDefault9"
+                                                       onChange={this.control_click_handler_symptoms}
+                                                       value={false}/>
+                                                <label className="form-check-label" htmlFor="flexRadioDefault9">
+                                                    &nbsp;Nein
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
-
-
                                     <Symptoms_start_date symptoms={this.state.symptoms}
                                                          handler={this.control_date_handler_symptoms_date}/>
+
+                                    <br/>
+                                    <br/>
+                                    <br/>
+
+
                                 </div>
-                                <Result result={this.state.result}/>
 
 
                             </div>
@@ -435,16 +508,23 @@ class Quarantaenerechner extends React.Component {
 
     render() {
         return (
-            <div style={{height:"100%", width: "100%"}}>
+            <div style={{height: "100%", width: "100%"}}>
                 <div>
-                    <nav style={{"position":"relative"}}>
+                    <nav style={{"position": "relative"}}>
                         <div id="navbar-lg">
-                                <img src="img/Corona_1.svg" style={{"height": "1.5em", "width": "1.5em"}} alt="Virus"/>
-                                <span style={{color:"gray"}}>Quarantänerechner</span>
+                            <img src="img/Corona_1.svg" style={{"height": "1.5em", "width": "1.5em"}} alt="Virus"/>
+                            <span style={{color: "gray"}}>Quarantänerechner</span>
                         </div>
                         <div id="navbar-sm">
                             <div className="topnav">
-                                <h3 style={{"fontWeight": "bold", "color": "gray", height:"3.8em",  paddingTop: "1em", paddingLeft: "1em"}}><img src="img/Corona_1.svg" style={{"height": "1.5em", "width": "1.5em"}} alt="Virus"/>Quarantänerechner</h3>
+                                <h3 style={{
+                                    "fontWeight": "bold",
+                                    "color": "gray",
+                                    height: "3.8em",
+                                    paddingTop: "1em",
+                                    paddingLeft: "1em"
+                                }}><img src="img/Corona_1.svg" style={{"height": "1.5em", "width": "1.5em"}}
+                                        alt="Virus"/>Quarantänerechner</h3>
 
 
                             </div>
@@ -453,19 +533,23 @@ class Quarantaenerechner extends React.Component {
 
                 </div>
 
-                <div className="container main_page_text" >
+                <div className="container main_page_text">
                     <br/>
                     <br/>
-                    Die Empfehlung basiert auf der aktuellen Corona-Test-und-Quarantäneverordnung des Landes Nordrhein-Westfalen und Ihren Angaben.
+                    Die Empfehlung basiert auf der aktuellen Corona-Test-und-Quarantäneverordnung des Landes
+                    Nordrhein-Westfalen und Ihren Angaben.
                     <br/>
                     <br/>
-                    Die aktuelle Version bildet den Stand vom 29.01.2022 und damit die vom 24.11.2021 in der ab dem 26.01.2022 gültigen Fassung der Corona-Test-und-Quarantäneverordnung ab.
+                    Die aktuelle Version bildet den Stand vom 29.01.2022 und damit die vom 24.11.2021 in der ab dem
+                    26.01.2022 gültigen Fassung der Corona-Test-und-Quarantäneverordnung ab.
                     <br/>
                     <br/>
-                    <QuarantaeneCalculator style={{height:"100%"}}/>
+                    <QuarantaeneCalculator style={{height: "100%"}}/>
                     <br/>
                     <br/>
-                    Weiterführende Informationen zur Quarantäne sowie den Regeln, Maßnahmen und aktuellen Verordnungen erhalten Sie auf der Webseite der Landesregierung Nordrhein-Westfalen (<a href="https://www.land.nrw/corona" target='_blank'>NRW</a>):
+                    Weiterführende Informationen zur Quarantäne sowie den Regeln, Maßnahmen und aktuellen Verordnungen
+                    erhalten Sie auf der Webseite der Landesregierung Nordrhein-Westfalen (<a
+                    href="https://www.land.nrw/corona" target='_blank'>NRW</a>):
                     <br/>
                     <br/>
                     Weiterhin haben Sie die Möglichkeit die Corona-Hotline des Landes zu nutzen.<br/>
@@ -480,17 +564,19 @@ class Quarantaenerechner extends React.Component {
                     <br/>
                 </div>
 
-                <div id="partner-sm" style={{"width":"100%", "textAlign": "center", paddingTop:"60px"}}>
+                <div id="partner-sm" style={{"width": "100%", "textAlign": "center", paddingTop: "60px"}}>
                     <div style={{"textAlign": "center"}}>
                         <h5 style={{"textAlign": "center"}}><b>In Kooperation mit:</b></h5>
                         <a href="https://www.kreis-guetersloh.de/aktuelles/corona/" target="_blank">
-                            <img alt="Frau impft junge Frau." src="img/KGT-Logo-4c-100_20_90.svg" width="200em" height="100em"
+                            <img alt="Frau impft junge Frau." src="img/KGT-Logo-4c-100_20_90.svg" width="200em"
+                                 height="100em"
                                  style={{"paddingTop": 0, "paddingBottom": 0, "textAlign": "center"}}/>
                         </a>
                         <br/>
                         <br/>
                         <br/>
-                        <a href="https://www.mein-impfrechner.de" style={{position: "center"}}>Überprüfen Sie hier Ihren Impfstatus</a>
+                        <a href="https://www.mein-impfrechner.de" style={{position: "center"}}>Überprüfen Sie hier Ihren
+                            Impfstatus</a>
                         <br/>
                         <a href="https://www.mein-impfrechner.de">
                             <img alt="Logo ASB OWL" src="img/banner_footer.svg" width="250em" height="190em"
@@ -503,10 +589,12 @@ class Quarantaenerechner extends React.Component {
                         <div className="col-3">
                         </div>
                         <div className="col-6" style={{"textAlign": "center"}}>
-                            <a href="https://www.mein-impfrechner.de" style={{position: "center"}}>Überprüfen Sie hier Ihren Impfstatus</a>
+                            <a href="https://www.mein-impfrechner.de" style={{position: "center"}}>Überprüfen Sie hier
+                                Ihren Impfstatus</a>
                             <br/>
                             <a href="https://www.mein-impfrechner.de">
-                                <img alt="Frau impft junge Frau." src="img/banner_footer.svg" width="300em" height="225em"
+                                <img alt="Frau impft junge Frau." src="img/banner_footer.svg" width="300em"
+                                     height="225em"
                                      style={{"paddingTop": 0, "paddingBottom": 0}}/>
                             </a>
                         </div>
@@ -514,18 +602,24 @@ class Quarantaenerechner extends React.Component {
                             <h5 style={{"marginBottom": "10px"}}><b>In Kooperation mit:</b></h5>
                             <a href="https://www.kreis-guetersloh.de/aktuelles/corona/" target="_blank">
                                 <img alt="Logo ASB OWL" src="img/KGT-Logo-4c-100_20_90.svg" width="200em" height="100em"
-                                     style={{"paddingTop": 0, "paddingBottom": 0, "textAlign": "right", "marginBottom": 0}}/>
+                                     style={{
+                                         "paddingTop": 0,
+                                         "paddingBottom": 0,
+                                         "textAlign": "right",
+                                         "marginBottom": 0
+                                     }}/>
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <footer className="bg-light py-4" style={{position : "relative", bottom : "0", width: "100%", marginTop : "0px"}}>
+                <footer className="bg-light py-4"
+                        style={{position: "relative", bottom: "0", width: "100%", marginTop: "0px"}}>
                     <div className="container text-center">
                         <p className="text-muted mb-0 py-2">
-                            <Link to={"/impressum"} > <i className="fas fa-user-friends"/> Impressum</Link>
+                            <Link to={"/impressum"}> <i className="fas fa-user-friends"/> Impressum</Link>
                             &nbsp;
-                            <Link to={"/datenschutz"} > <i className="fas fa-user-shield"/> Datenschutz</Link>
+                            <Link to={"/datenschutz"}> <i className="fas fa-user-shield"/> Datenschutz</Link>
                         </p>
                     </div>
                 </footer>
