@@ -1,53 +1,6 @@
 import React from "react";
 import * as form_logic from "./form_logic";
-import Modal from 'react-bootstrap';
-import * as Bootstrap from 'react-bootstrap'
-
-import {
-    Age_header, Age_instruction, Alternative, DATE_OPTIONS, Disclaimer,
-    Got_unregistered_vaccination_header,
-    Got_unregistered_vaccination_instruction,
-    Infection_date_header,
-    Infection_date_instruction,
-    texts_german,
-    modal_got_unregistered_vaccination_text,
-    modal_got_unregistered_vaccination_title, modal_infection_date_text, modal_infection_date_title,
-    modal_past_infection_text,
-    modal_past_infection_title,
-    modal_pregnancy_week_text,
-    modal_pregnancy_week_title,
-    modal_pregnant_text,
-    modal_pregnant_title,
-    modal_risk_group_text,
-    modal_risk_group_title, modal_symptoms_end_date_text, modal_symptoms_end_date_title,
-    modal_symptoms_registered_text,
-    modal_symptoms_registered_title,
-    modal_vaccinated_text,
-    modal_vaccinated_title,
-    Number_vaccinations_header,
-    Number_vaccinations_instruction,
-    Past_infection_header,
-    Past_infection_instruction,
-    Pregnancy_week_exact_header, Pregnancy_week_exact_instruction,
-    Pregnancy_week_header,
-    Pregnancy_week_instruction,
-    Pregnant_header,
-    Pregnant_instruction,
-    Risk_group_header,
-    Risk_group_instruction, Start_header,
-    Symptoms_end_date_header, Symptoms_end_date_instruction,
-    Symptoms_registered_header,
-    Symptoms_registered_instruction,
-    Unregistered_vaccination_date_header,
-    Unregistered_vaccination_date_instruction,
-    Vaccinated_header,
-    Vaccinated_instruction,
-    Vaccination_1_header,
-    Vaccination_1_instruction,
-    Vaccination_2_header,
-    Vaccination_2_instruction
-} from "./texts";
-import {show_popup} from "./date_operations";
+import * as constants from "./texts";
 
 
 class Card extends React.Component {
@@ -86,7 +39,7 @@ class Card extends React.Component {
 }
 
 function on_enter_next(input_field_id, next_button_id) {
-    var input = document.getElementById(input_field_id);
+    let input = document.getElementById(input_field_id);
 
     input.addEventListener("keyup", function (event) {
         // Number 13 is the "Enter" key on the keyboard
@@ -139,34 +92,34 @@ class Form_body_vaccination_brand_date extends React.Component {
                     <div className="container" style={{"width": "90%"}}>
                         <div className="row">
                             <div className="col">
-                                <label>{texts_german["vaccination_brand_date"]["vaccination_label"]}:</label>
+                                <label>{constants.texts_german["vaccination_brand_date"]["vaccination_label"]}:</label>
                             </div>
                             <div className="col-md-auto">
                                 <select className="form-select select-validation"
                                         onChange={this.props.input_data_handler} name="value"
                                         defaultValue="none">
                                     <option value='none'
-                                            disabled>{texts_german["vaccination_brand_date"]["vaccination_default"]}</option>
+                                            disabled>{constants.texts_german["vaccination_brand_date"]["vaccination_default"]}</option>
                                     <option
-                                        value={texts_german["vaccines"]["biontec"]}>{texts_german["vaccines"]["biontec"]}</option>
+                                        value={constants.texts_german["vaccines"]["biontec"]}>{constants.texts_german["vaccines"]["biontec"]}</option>
                                     <option
-                                        value={texts_german["vaccines"]["moderna"]}>{texts_german["vaccines"]["moderna"]}</option>
+                                        value={constants.texts_german["vaccines"]["moderna"]}>{constants.texts_german["vaccines"]["moderna"]}</option>
                                     <option
-                                        value={texts_german["vaccines"]["astra"]}>{texts_german["vaccines"]["astra"]}</option>
+                                        value={constants.texts_german["vaccines"]["astra"]}>{constants.texts_german["vaccines"]["astra"]}</option>
                                     <option
-                                        value={texts_german["vaccines"]["johnson"]}>{texts_german["vaccines"]["johnson"]}</option>
+                                        value={constants.texts_german["vaccines"]["johnson"]}>{constants.texts_german["vaccines"]["johnson"]}</option>
                                     <option
-                                        value={texts_german["vaccines"]["novavax"]}>{texts_german["vaccines"]["novavax"]}</option>
+                                        value={constants.texts_german["vaccines"]["novavax"]}>{constants.texts_german["vaccines"]["novavax"]}</option>
                                 </select>
                             </div>
                         </div>
                         <br/>
                         <div className="row">
                             <div className="col">
-                                <label>{texts_german["vaccination_brand_date"]["date_labe"]}:</label>
+                                <label>{constants.texts_german["vaccination_brand_date"]["date_labe"]}:</label>
                             </div>
                             <div className="col-md-auto">
-                                <DatePicker onChange={this.props.input_data_handler} />
+                                <DatePicker onChange={this.props.input_data_handler}/>
                             </div>
                         </div>
                     </div>
@@ -175,242 +128,90 @@ class Form_body_vaccination_brand_date extends React.Component {
     }
 }
 
-class Form_body_vaccinated extends React.Component {
+class Form_body_choice_check extends React.Component {
     constructor(props) {
         super(props);
     }
 
     componentDidMount() {
-        on_enter_next("vaccinated_input", "card_vaccinated_next")
+        on_enter_next("choice_check_input", "card_choice_check_next")
     }
 
     render() {
         return (
             <div>
-                <div className="form-group" id="vaccinated_input">
-                    <label><Vaccinated_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal"
-                                                        data-bs-target="#modal_vaccinated"/></label>
-                    <Modal_popup button_id="modal_vaccinated" title={modal_vaccinated_title}
-                                 text={modal_vaccinated_text}/>
-                    <br/>
-                    <br/>
+                <constants.Exception_instruction/>
+
+                <div className="form-group" id="choice_check_input">
                     <div className="form-check">
-                        <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault1"
-                               onChange={this.props.input_data_handler} name="value"
-                               value={true}/>
-                        <label className="form-check-label"
-                               htmlFor="flexRadioDefault1"> {texts_german["vaccinated"]["vaccinated_yes"]} </label>
+                        <input className="form-check-input" type="checkbox" name="immun_def" value={true}
+                               id="choice_check_1" onChange={this.props.input_data_handler}/>
+                        <label className="form-check-label" htmlFor="flexCheckDefault">
+                            {constants.texts_german["exception"]["label_immun_def"]}
+                        </label>
                     </div>
                     <div className="form-check">
-                        <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault2"
-                               onChange={this.props.input_data_handler} name="value"
-                               value={false}/>
-                        <label className="form-check-label"
-                               htmlFor="flexRadioDefault2"> {texts_german["vaccinated"]["vaccinated_no"]} </label>
-                        <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
-                        <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
-                    </div>
-                </div>
-            </div>
-        )
-    }
-}
-
-class Form_body_pregnancy_week extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    componentDidMount() {
-        on_enter_next("pregnancy_week_input", "card_pregnancy_week_next")
-    }
-
-    render() {
-        return (
-            <div>
-                <div className="form-group" id="pregnancy_week_input">
-                    <label><Pregnancy_week_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal"
-                                                            data-bs-target="#modal_pregnancy_week"/></label>
-                    <Modal_popup button_id="modal_pregnancy_week" title={modal_pregnancy_week_title}
-                                 text={modal_pregnancy_week_text}/>
-                    <br/>
-                    <br/>
-                    <div className="form-check">
-                        <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault1"
-                               onChange={this.props.input_data_handler} name="value"
-                               value={true}/>
-                        <label className="form-check-label"
-                               htmlFor="flexRadioDefault1"> {texts_german["pregnancy_week"]["pregnancy_week_yes"]} </label>
+                        <input className="form-check-input" type="checkbox" name="healthcare_staff" value={true}
+                               id="choice_check_2" onChange={this.props.input_data_handler}/>
+                        <label className="form-check-label" htmlFor="flexCheckChecked">
+                            {constants.texts_german["exception"]["label_healthcare_staff"]}
+                        </label>
                     </div>
                     <div className="form-check">
-                        <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault2"
-                               onChange={this.props.input_data_handler} name="value"
-                               value={false}/>
-                        <label className="form-check-label"
-                               htmlFor="flexRadioDefault2"> {texts_german["pregnancy_week"]["pregnancy_week_no"]} </label>
-                        <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
-                        <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
+                        <input className="form-check-input" type="checkbox" name="risk_group_contact" value={true}
+                               id="choice_check_3" onChange={this.props.input_data_handler}/>
+                        <label className="form-check-label" htmlFor="flexCheckChecked">
+                            {constants.texts_german["exception"]["label_risk_group_contact"]}
+                        </label>
                     </div>
                 </div>
             </div>
-        )
-    }
-}
 
-
-class Form_body_past_infection extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    componentDidMount() {
-        on_enter_next("past_infection_input", "card_past_infection_next")
-    }
-
-    render() {
-        return (
-            <div className="form-group" id="past_infection_input">
-                <label><Past_infection_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal"
-                                                        data-bs-target="#modal_past_infection"/></label>
-                <Modal_popup button_id="modal_past_infection" title={modal_past_infection_title}
-                             text={modal_past_infection_text}/>
-                <br/>
-                <br/>
-                <div className="form-check">
-                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault3"
-                           onChange={this.props.input_data_handler} name="value"
-                           value={true}/>
-                    <label className="form-check-label"
-                           htmlFor="flexRadioDefault3"> {texts_german["past_infection"]["past_infection_yes"]} </label>
-                </div>
-                <div className="form-check">
-                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault4"
-                           onChange={this.props.input_data_handler} name="value"
-                           value={false}/>
-                    <label className="form-check-label"
-                           htmlFor="flexRadioDefault4"> {texts_german["past_infection"]["past_infection_no"]} </label>
-                    <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
-                    <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
-                </div>
-            </div>
         );
     }
 }
 
 
-class Form_body_risk_group extends React.Component {
+class Form_choice_radio extends React.Component {
     constructor(props) {
         super(props);
     }
 
     componentDidMount() {
-        on_enter_next("risk_group_input", "card_risk_group_next")
+        on_enter_next(this.props.input_id, this.props.next_button_id)
+    }
+
+    validation(i) {
+        if (i === this.props.choices.length - 1) {
+            return (
+                [<div className="valid-feedback">{constants.texts_german["form_validation"]["valid"]}</div>,
+                    <div className="invalid-feedback">{constants.texts_german["form_validation"]["invalid"]}</div>]
+            );
+        }
     }
 
     render() {
-        return (
-            <div className="form-group" id="risk_group_input">
-                <label><Risk_group_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal"
-                                                    data-bs-target="#modal_risk_group"/></label>
-                <Modal_popup button_id="modal_risk_group" title={modal_risk_group_title} text={modal_risk_group_text}/>
-                <br/>
-                <br/>
+        let choices = [];
+
+        for (let i = 0; i < this.props.choices.length; i++) {
+            choices.push(
                 <div className="form-check">
-                    <input className="form-check-input radio-validation" type="radio" id="risk_group_1_input"
-                           onChange={this.props.input_data_handler} name="value"
-                           value={true}/>
-                    <label className="form-check-label"
-                           htmlFor="risk_group_1_input"> {texts_german["risk_group"]["risk_group_yes"]} </label>
-                </div>
-                <div className="form-check">
-                    <input className="form-check-input radio-validation" type="radio" id="risk_group_2_input"
-                           onChange={this.props.input_data_handler} name="value"
-                           value={false}/>
-                    <label className="form-check-label"
-                           htmlFor="risk_group_2_input"> {texts_german["risk_group"]["risk_group_no"]} </label>
-                    <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
-                    <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
-                </div>
-            </div>
-        );
-    }
-}
-
-
-class Form_body_pregnant extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    componentDidMount() {
-        on_enter_next("pregnant_input", "card_pregnant_next")
-    }
-
-    render() {
-        return (
-            <div className="form-group" id="pregnant_input">
-                <label><Pregnant_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal"
-                                                  data-bs-target="#modal_pregnant"/></label>
-                <Modal_popup button_id="modal_pregnant" title={modal_pregnant_title} text={modal_pregnant_text}/>
-                <br/>
-                <br/>
-                <div className="form-check">
-                    <input className="form-check-input radio-validation" type="radio" id="pregnant_1_input"
-                           onChange={this.props.input_data_handler} name="value" value={true}/>
-                    <label className="form-check-label"
-                           htmlFor="pregnant_1_input"> {texts_german["pregnant"]["pregnant_yes"]} </label>
-                </div>
-                <div className="form-check">
-                    <input className="form-check-input radio-validation" type="radio" id="pregnant_2_input"
-                           onChange={this.props.input_data_handler} name="value"
-                           value={false}/>
-                    <label className="form-check-label"
-                           htmlFor="pregnant_2_input"> {texts_german["pregnant"]["pregnant_no"]} </label>
-                    <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
-                    <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
-                </div>
-            </div>
-        );
-    }
-}
-
-
-class Form_body_got_unregistered_vaccination extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    componentDidMount() {
-        on_enter_next("got_unregistered_vaccination_input", "card_got_unregistered_vaccination_next")
-    }
-
-    render() {
-        return (
-            <div className="form-group" id="got_unregistered_vaccination_input">
-                <label><Got_unregistered_vaccination_instruction/> <i className="fas fa-info-circle"
-                                                                      data-bs-toggle="modal"
-                                                                      data-bs-target="#modal_got_unregistered_vaccination"/></label>
-                <Modal_popup button_id="modal_got_unregistered_vaccination"
-                             title={modal_got_unregistered_vaccination_title}
-                             text={modal_got_unregistered_vaccination_text}/>
-                <br/>
-                <br/>
-                <div className="form-check">
-                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault3"
+                    <input className="form-check-input radio-validation" type="radio" id={"flexRadioDefault" + i}
                            onChange={this.props.input_data_handler}
-                           name="value" value={true}/>
+                           name="value"
+                           value={this.props.choices[i][0]}/>
                     <label className="form-check-label"
-                           htmlFor="flexRadioDefault3"> {texts_german["got_unregistered_vaccination"]["got_unregistered_vaccination_yes"]} </label>
+                           htmlFor={"flexRadioDefault" + i}> {this.props.choices[i][1]} </label>
+                    {this.validation(i)}
                 </div>
-                <div className="form-check">
-                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault4"
-                           onChange={this.props.input_data_handler}
-                           name="value" value={false}/>
-                    <label className="form-check-label"
-                           htmlFor="flexRadioDefault4"> {texts_german["got_unregistered_vaccination"]["got_unregistered_vaccination_no"]} </label>
-                    <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
-                    <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
-                </div>
+            );
+        }
+
+        return (
+            <div className="form-group" id={this.props.input_id} key={this.props.input_id}>
+                {this.props.intro}
+                <br/>
+                {choices}
             </div>
         );
     }
@@ -429,124 +230,19 @@ class Form_body_unregistered_vaccination_date extends React.Component {
     render() {
         return (
             <div>
-                <div><Unregistered_vaccination_date_instruction/> <i className="fas fa-info-circle"
+                <div><constants.Unregistered_vaccination_date_instruction/> <i className="fas fa-info-circle"
                                                                      data-bs-toggle="modal"
                                                                      data-bs-target="#modal_got_unregistered_vaccination"/>
                 </div>
                 <br/>
                 <br/>
                 <label htmlFor="datepicker_infection" data-bs-toggle="modal"
-                       data-bs-target="#modal_datum_postest">{texts_german["unregistered_vaccination_date"]["label"]}</label>
-                <DatePicker onChange={this.props.input_data_handler} />
+                       data-bs-target="#modal_datum_postest">{constants.texts_german["unregistered_vaccination_date"]["label"]}</label>
+                <DatePicker onChange={this.props.input_data_handler}/>
             </div>
         );
     }
 }
-
-
-class Form_body_symptoms_registered extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    componentDidMount() {
-        on_enter_next("symptoms_registered_input", "card_symptoms_registered_next")
-    }
-
-    render() {
-        return (
-            <div className="form-group" id="symptoms_registered_input">
-                <label><Symptoms_registered_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal"
-                                                             data-bs-target="#modal_symptoms_registered"/></label>
-                <Modal_popup button_id="modal_symptoms_registered" title={modal_symptoms_registered_title}
-                             text={modal_symptoms_registered_text}/>
-                <br/>
-                <br/>
-                <div className="form-check">
-                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault3"
-                           onChange={this.props.input_data_handler} name="value"
-                           value={'never'}/>
-                    <label className="form-check-label" htmlFor="flexRadioDefault3">
-                        {texts_german["symptoms_registered"]["never"]}
-                    </label>
-                </div>
-                <div className="form-check">
-                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault4"
-                           onChange={this.props.input_data_handler} name="value"
-                           value={'still'}/>
-                    <label className="form-check-label" htmlFor="flexRadioDefault4">
-                        {texts_german["symptoms_registered"]["still"]}
-                    </label>
-                </div>
-                <div className="form-check">
-                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault5"
-                           onChange={this.props.input_data_handler} name="value"
-                           value={'past'}/>
-                    <label className="form-check-label" htmlFor="flexRadioDefault5">
-                        {texts_german["symptoms_registered"]["past"]}
-                    </label>
-                    <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
-                    <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
-                </div>
-            </div>
-        );
-    }
-}
-
-class Form_body_number_vaccinations extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    componentDidMount() {
-        on_enter_next("number_vaccinations_input", "card_number_vaccinations_next")
-    }
-
-    render() {
-        return (
-            <div className="form-group" id="number_vaccinations_input">
-                <label><Number_vaccinations_instruction/></label>
-                <br/>
-                <br/>
-                <div className="form-check">
-                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault3"
-                           onChange={this.props.input_data_handler} name="value"
-                           value={1}/>
-                    <label className="form-check-label" htmlFor="flexRadioDefault3">
-                        {texts_german["number_vaccinations"]["one"]}
-                    </label>
-                </div>
-                <div className="form-check">
-                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault4"
-                           onChange={this.props.input_data_handler} name="value"
-                           value={2}/>
-                    <label className="form-check-label" htmlFor="flexRadioDefault4">
-                        {texts_german["number_vaccinations"]["two"]}
-                    </label>
-                </div>
-                <div className="form-check">
-                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault4"
-                           onChange={this.props.input_data_handler} name="value"
-                           value={3}/>
-                    <label className="form-check-label" htmlFor="flexRadioDefault4">
-                        {texts_german["number_vaccinations"]["three"]}
-                    </label>
-                </div>
-                <div className="form-check">
-                    <input className="form-check-input radio-validation" type="radio" id="flexRadioDefault5"
-                           onChange={this.props.input_data_handler} name="value"
-                           value={4}/>
-                    <label className="form-check-label" htmlFor="flexRadioDefault5">
-                        {texts_german["number_vaccinations"]["four"]}
-                    </label>
-                    <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
-                    <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
-                </div>
-            </div>
-        );
-    }
-}
-
 
 class Form_body_infection_date extends React.Component {
     constructor(props) {
@@ -560,15 +256,15 @@ class Form_body_infection_date extends React.Component {
     render() {
         return (
             <div>
-                <label><Infection_date_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal"
+                <label><constants.Infection_date_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal"
                                                         data-bs-target="#modal_infection_date"/></label>
-                <Modal_popup button_id="modal_infection_date" title={modal_infection_date_title}
-                             text={modal_infection_date_text}/>
+                <Modal_popup button_id="modal_infection_date" title={constants.modal_infection_date_title}
+                             text={constants.modal_infection_date_text}/>
                 <br/>
                 <br/>
                 <label htmlFor="datepicker_infection" data-bs-toggle="modal"
-                       data-bs-target="#modal_datum_postest">{texts_german["infection_date"]["label"]}</label>
-                <DatePicker onChange={this.props.input_data_handler} />
+                       data-bs-target="#modal_datum_postest">{constants.texts_german["infection_date"]["label"]}</label>
+                <DatePicker onChange={this.props.input_data_handler}/>
             </div>
         );
     }
@@ -587,15 +283,15 @@ class Form_body_symptoms_end_date extends React.Component {
     render() {
         return (
             <div>
-                <label><Symptoms_end_date_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal"
+                <label><constants.Symptoms_end_date_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal"
                                                            data-bs-target="#modal_symptoms_end_date"/></label>
-                <Modal_popup button_id="modal_symptoms_end_date" title={modal_symptoms_end_date_text}
-                             text={modal_symptoms_end_date_title}/>
+                <Modal_popup button_id="modal_symptoms_end_date" title={constants.modal_symptoms_end_date_text}
+                             text={constants.modal_symptoms_end_date_title}/>
                 <br/>
                 <br/>
                 <label htmlFor="datepicker_infection" data-bs-toggle="modal"
-                       data-bs-target="#modal_datum_postest">{texts_german["symptoms_end_date"]["label"]}</label>
-                <DatePicker onChange={this.props.input_data_handler} />
+                       data-bs-target="#modal_datum_postest">{constants.texts_german["symptoms_end_date"]["label"]}</label>
+                <DatePicker onChange={this.props.input_data_handler}/>
             </div>
         );
     }
@@ -606,7 +302,7 @@ class Form_body_age extends React.Component {
     constructor(props) {
         super(props);
         this.input_filed_change = this.input_filed_change.bind(this);
-        this.state = {value: texts_german["age"]["age_placeholder"]};
+        this.state = {value: constants.texts_german["age"]["age_placeholder"]};
         this.props.input_data_handler({target: {value: [this.state.value], name: 'value'}});
     }
 
@@ -622,14 +318,14 @@ class Form_body_age extends React.Component {
     render() {
         return (
             <div className="vc-card-in">
-                <label><Age_instruction/></label>
+                <label><constants.Age_instruction/></label>
                 <br/>
                 <br/>
                 <input value={this.state.value} type="number" min="0" max="1000" step="1" className="form-control"
-                       id="age_input_field" placeholder={texts_german["age"]["age_placeholder"]}
+                       id="age_input_field" placeholder={constants.texts_german["age"]["age_placeholder"]}
                        onChange={this.input_filed_change} name="value" required/>
-                <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
-                <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
+                <div className="valid-feedback">{constants.texts_german["form_validation"]["valid"]}</div>
+                <div className="invalid-feedback">{constants.texts_german["form_validation"]["invalid"]}</div>
             </div>
         )
     }
@@ -640,7 +336,7 @@ class Form_body_pregnancy_week_exact extends React.Component {
     constructor(props) {
         super(props);
         this.input_filed_change = this.input_filed_change.bind(this);
-        this.state = {value: texts_german["pregnancy_week_exact"]["pregnancy_week_exact_placeholder"]};
+        this.state = {value: constants.texts_german["pregnancy_week_exact"]["pregnancy_week_exact_placeholder"]};
         this.props.input_data_handler({target: {value: [this.state.value], name: 'value'}});
     }
 
@@ -662,18 +358,18 @@ class Form_body_pregnancy_week_exact extends React.Component {
     render() {
         return (
             <div className="vc-card-in">
-                <label><Pregnancy_week_exact_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal"
+                <label><constants.Pregnancy_week_exact_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal"
                                                               data-bs-target="#modal_pregnancy_week"/></label>
-                <Modal_popup button_id="modal_pregnancy_week" title={modal_pregnancy_week_title}
-                             text={modal_pregnancy_week_text}/>
+                <Modal_popup button_id="modal_pregnancy_week" title={constants.modal_pregnancy_week_title}
+                             text={constants.modal_pregnancy_week_text}/>
                 <br/>
                 <br/>
                 <input value={this.state.value} type="number" min="0" max="1000" step="1" className="form-control"
                        id="pregnancy_week_exact_input_field"
-                       placeholder={texts_german["pregnancy_week_exact"]["pregnancy_week_exact_placeholder"]}
+                       placeholder={constants.texts_german["pregnancy_week_exact"]["pregnancy_week_exact_placeholder"]}
                        onChange={this.input_filed_change} name="value" required/>
-                <div className="valid-feedback">{texts_german["form_validation"]["valid"]}</div>
-                <div className="invalid-feedback">{texts_german["form_validation"]["invalid"]}</div>
+                <div className="valid-feedback">{constants.texts_german["form_validation"]["valid"]}</div>
+                <div className="invalid-feedback">{constants.texts_german["form_validation"]["invalid"]}</div>
             </div>
         )
     }
@@ -740,7 +436,7 @@ class Card_start extends React.Component {
                     <div className="row justify-content-md-center">
                         <div className="vc-card-header">
                             <div className="col-sm" style={{textAlign: "center"}}>
-                                <h1 className="card-title"><Start_header/></h1>
+                                <h1 className="card-title"><constants.Start_header/></h1>
                             </div>
                         </div>
                         <div className="vc-card-body">
@@ -775,7 +471,7 @@ class Card_maintenance extends React.Component {
                     <div className="row justify-content-md-center">
                         <div className="vc-card-header">
                             <div className="col-sm" style={{textAlign: "center"}}>
-                                <h1 className="card-title"><Start_header/></h1>
+                                <h1 className="card-title"><constants.Start_header/></h1>
                             </div>
                         </div>
                         <div className="vc-card-body">
@@ -817,7 +513,7 @@ class Card_result extends React.Component {
 
             result_text.push(options[0]);
             result_text.push(<div><br/></div>);
-            result_text.push(<Alternative/>);
+            result_text.push(<constants.Alternative/>);
 
             let result_text_alternatives = [];
             for (let i = 1; i < options.length; i++) {
@@ -844,7 +540,7 @@ class Card_result extends React.Component {
                         <h1>Ihre Angaben</h1>
                         <div key="k3" style={{marginLeft: "20px"}}>{vis_user_data(this.props.user_data)}</div>
                         <br/>
-                        <div key="k2" style={{marginLeft: "20px"}}><Disclaimer/></div>
+                        <div key="k2" style={{marginLeft: "20px"}}><constants.Disclaimer/></div>
                         <br/>
                         <br/>
                         <br/>
@@ -867,88 +563,116 @@ class Card_result extends React.Component {
 function vis_user_data(user_data) {
     let user_data_list = [];
 
+
+
     if ('age' in user_data['user_data']) {
-        user_data_list.push(<li key='age'><Age_header/>: {user_data['user_data']['age']['value']}</li>);
+        user_data_list.push(<li key='age'><constants.Age_header/>: {user_data['user_data']['age']['value']}</li>);
     }
 
     if ('risk_group' in user_data['user_data']) {
         if (user_data['user_data']['risk_group']['value']) {
             user_data_list.push(<li key='risk_group'>{
-                <Risk_group_header/>}: {texts_german['risk_group']['risk_group_yes']}</li>);
+                <constants.Risk_group_header/>}: {constants.texts_german['yes']}</li>);
         }
+    }
+
+    if ('immun_def' in user_data['user_data']) {
+        user_data_list.push(<li key='immun_def'>{constants.texts_german["exception"]["label_immun_def"]}: {user_data['user_data']['immun_def']['value']}</li>);
+    }
+
+    if ('healthcare_staff' in user_data['user_data']) {
+        user_data_list.push(<li key='healthcare_staff'>{constants.texts_german["exception"]["label_healthcare_staff"]}: {user_data['user_data']['healthcare_staff']['value']}</li>);
+    }
+
+    if ('risk_group_contact' in user_data['user_data']) {
+        user_data_list.push(<li key='risk_group_contact'>{constants.texts_german["exception"]["label_risk_group_contact"]}: {user_data['user_data']['risk_group_contact']['value']}</li>);
     }
 
     if ('pregnant' in user_data['user_data']) {
         if (user_data['user_data']['pregnant']['value']) {
             user_data_list.push(<li key='pregnant'>{
-                <Pregnant_header/>}: {texts_german['pregnant']['pregnant_yes']}</li>);
+                <constants.Pregnant_header/>}: {constants.texts_german['yes']}</li>);
         }
     }
 
     if ('past_infection' in user_data['user_data']) {
         if (user_data['user_data']['past_infection']['value']) {
             user_data_list.push(<li key='past_infection'>{
-                <Past_infection_header/>}: {texts_german['past_infection']['past_infection_yes']}</li>);
+                <constants.Past_infection_header/>}: {constants.texts_german['yes']}</li>);
         }
     }
 
     if ('infection_date' in user_data['user_data']) {
         user_data_list.push(<li key='infection_date'>{
-            <Infection_date_header/>}: {new Date(user_data['user_data']['infection_date']['date']).toLocaleDateString('de-DE', DATE_OPTIONS)}</li>);
+            <constants.Infection_date_header/>}: {new Date(user_data['user_data']['infection_date']['date']).toLocaleDateString('de-DE', constants.DATE_OPTIONS)}</li>);
     }
 
     if ('symptoms_registered' in user_data['user_data']) {
         user_data_list.push(<li key='symptoms_registered'>{
-            <Symptoms_registered_header/>}: {texts_german['symptoms_registered'][user_data['user_data']['symptoms_registered']['value']]}</li>);
+            <constants.Symptoms_registered_header/>}: {constants.texts_german['symptoms_registered'][user_data['user_data']['symptoms_registered']['value']]}</li>);
     }
 
     if ('symptoms_end_date' in user_data['user_data']) {
         user_data_list.push(<li key='symptoms_end_date'>{
-            <Symptoms_end_date_header/>}: {new Date(user_data['user_data']['symptoms_end_date']['date']).toLocaleDateString('de-DE', DATE_OPTIONS)}</li>);
+            <constants.Symptoms_end_date_header/>}: {new Date(user_data['user_data']['symptoms_end_date']['date']).toLocaleDateString('de-DE', constants.DATE_OPTIONS)}</li>);
     }
 
     if ('got_unregistered_vaccination' in user_data['user_data']) {
         if (user_data['user_data']['got_unregistered_vaccination']['value']) {
             user_data_list.push(<li key='got_unregistered_vaccination'>{
-                <Got_unregistered_vaccination_header/>}: {texts_german['got_unregistered_vaccination']['got_unregistered_vaccination_yes']}</li>);
+                <constants.Got_unregistered_vaccination_header/>}: {constants.texts_german['yes']}</li>);
+        }
+    }
+
+    if ('breast_feeding' in user_data['user_data']) {
+        if (user_data['user_data']['breast_feeding']['value']) {
+            user_data_list.push(<li key='breast_feeding'>{
+                <constants.Breast_feeding_header/>}: {constants.texts_german['yes']}</li>);
         }
     }
 
     if ('unregistered_vaccination_date' in user_data['user_data']) {
         user_data_list.push(<li key='unregistered_vaccination_date'>{
-            <Unregistered_vaccination_date_header/>}: {new Date(user_data['user_data']['unregistered_vaccination_date']['date']).toLocaleDateString('de-DE', DATE_OPTIONS)}</li>);
+            <constants.Unregistered_vaccination_date_header/>}: {new Date(user_data['user_data']['unregistered_vaccination_date']['date']).toLocaleDateString('de-DE', constants.DATE_OPTIONS)}</li>);
     }
 
     if ('vaccinated' in user_data['user_data']) {
         if (user_data['user_data']['vaccinated']['value']) {
             user_data_list.push(<li key='vaccinated'>{
-                <Vaccinated_header/>}: {texts_german['vaccinated']['vaccinated_yes']}</li>);
+                <constants.Vaccinated_header/>}: {constants.texts_german['yes']}</li>);
         }
     }
 
     if ('pregnancy_week' in user_data['user_data']) {
         if (user_data['user_data']['pregnancy_week']['value']) {
             user_data_list.push(<li
-                key='pregnancy_week'>{texts_german['pregnancy_week']["short"]}: {texts_german['pregnancy_week']['pregnancy_week_yes']}</li>);
+                key='pregnancy_week'>{constants.texts_german['pregnancy_week']["short"]}: {constants.texts_german['yes']}</li>);
         }
     }
 
     if ('pregnancy_week_exact' in user_data['user_data']) {
         if (user_data['user_data']['pregnant']['value']) {
             user_data_list.push(<li key='pregnancy_week_exact'>{
-                <Pregnancy_week_exact_header/>}: {user_data['user_data']['pregnancy_week_exact']['value']}</li>);
+                <constants.Pregnancy_week_exact_header/>}: {user_data['user_data']['pregnancy_week_exact']['value']}</li>);
+        }
+    }
+
+    if ('number_vaccinations' in user_data['user_data']) {
+        if (user_data['user_data']['number_vaccinations']['value']) {
+            user_data_list.push(<li key='number_vaccinations'>{
+                <constants.Number_vaccinations_instruction/>}: {user_data['user_data']['number_vaccinations']['value']}</li>);
         }
     }
 
     if ('vaccination_1' in user_data['user_data']) {
         user_data_list.push(<li key='vaccination_1'>
-            <Vaccination_1_header/>: {user_data['user_data']['vaccination_1']['value']} am {new Date(user_data['user_data']['vaccination_1']['date']).toLocaleDateString('de-DE', DATE_OPTIONS)}
+            <constants.Vaccination_1_header/>: {user_data['user_data']['vaccination_1']['value']} am {new Date(user_data['user_data']['vaccination_1']['date']).toLocaleDateString('de-DE', constants.DATE_OPTIONS)}
         </li>);
     }
 
     if ('vaccination_2' in user_data['user_data']) {
         user_data_list.push(<li key='vaccination_2'>
-            <Vaccination_2_header/>: {user_data['user_data']['vaccination_2']['value']} am {new Date(user_data['user_data']['vaccination_2']['date']).toLocaleDateString('de-DE', DATE_OPTIONS)}
+            <constants.Vaccination_2_header/>: {user_data['user_data']['vaccination_2']['value']} am {new Date(user_data['user_data']['vaccination_2']['date']).toLocaleDateString('de-DE', constants.DATE_OPTIONS)}
         </li>);
     }
 
@@ -962,6 +686,12 @@ function button_id_2_card_id(button_id) {
     }
     if (button_id.includes('_got_unregistered_vaccination_')) {
         return 'got_unregistered_vaccination';
+    }
+    if (button_id.includes('_exception_')) {
+        return 'exception';
+    }
+    if (button_id.includes('_breast_feeding_')) {
+        return 'breast_feeding';
     }
     if (button_id.includes('_unregistered_vaccination_date_')) {
         return 'unregistered_vaccination_date';
@@ -1077,7 +807,7 @@ export default class CardManager extends React.Component {
                     }
                 }
                 // radio-button selection
-                if (['pregnancy_week', 'vaccinated', 'past_infection', 'symptoms_registered', 'risk_group', 'pregnant', 'number_vaccinations', 'got_unregistered_vaccination'].includes(current_card_id)) {
+                if (['pregnancy_week', 'vaccinated', 'past_infection', 'symptoms_registered', 'risk_group', 'pregnant', 'number_vaccinations', 'got_unregistered_vaccination', 'breast_feeding'].includes(current_card_id)) {
                     let element = document.getElementsByClassName("radio-validation");
 
                     if (this.state.entered_data['value'] === undefined) {
@@ -1135,7 +865,14 @@ export default class CardManager extends React.Component {
                 }
 
                 current_card_history.push(current_card_id);
-                current_user_data[current_card_id] = this.state.entered_data;
+                if (current_card_id === 'exception') {
+                    current_user_data[current_card_id] = {'value': true};
+                    Object.entries(this.state.entered_data).map(([key, value]) => {
+                        current_user_data[key] = {'value': value};
+                    })
+                } else {
+                    current_user_data[current_card_id] = this.state.entered_data;
+                }
                 let next_card = form_logic.get_next_card(current_card_history, current_user_data);
                 this.setState({card_history: this.state.card_history});
                 this.setState({user_data: current_user_data});
@@ -1145,7 +882,14 @@ export default class CardManager extends React.Component {
         if (e.target.classList !== undefined) {
             if (e.target.classList.contains('button_back')) {
                 let last_step = current_card_history.pop();
+                if (last_step === 'exception') {
+                    delete current_user_data['immun_def']
+                    delete current_user_data['healthcare_staff']
+                    delete current_user_data['risk_group_contact']
+                }
+
                 delete current_user_data[current_card_id];
+                delete current_user_data[last_step];
 
                 this.setState({card_history: current_card_history});
                 this.setState({user_data: current_user_data});
@@ -1189,147 +933,300 @@ export default class CardManager extends React.Component {
                 );
             case 'vaccination_1':
                 return (
-                    <Card title={<Vaccination_1_header/>}
+                    <Card title={<constants.Vaccination_1_header/>}
                           id_next={"card_vaccination_1_next"}
                           id_back={"card_vaccination_1_next"}
                           handler={this.control_click_handler}
                           form_body={<Form_body_vaccination_brand_date key="1"
-                                                                       instruction={<Vaccination_1_instruction/>}
-                                                                       input_data_handler={this.handleInputChange} />}/>
+                                                                       instruction={<constants.Vaccination_1_instruction/>}
+                                                                       input_data_handler={this.handleInputChange}/>}/>
                 );
             case 'vaccination_2':
                 return (
-                    <Card title={<Vaccination_2_header/>}
+                    <Card title={<constants.Vaccination_2_header/>}
                           id_next={"card_vaccination_2_next"}
                           id_back={"card_vaccination_2_next"}
                           handler={this.control_click_handler}
                           form_body={<Form_body_vaccination_brand_date key="2"
-                                                                       instruction={<Vaccination_2_instruction/>}
-                                                                       input_data_handler={this.handleInputChange} />}/>
+                                                                       instruction={<constants.Vaccination_2_instruction/>}
+                                                                       input_data_handler={this.handleInputChange}/>}/>
                 );
             case 'vaccinated':
                 return (
-                    <Card title={<Vaccinated_header/>}
+                    <Card title={<constants.Vaccinated_header/>}
                           id_next={"card_vaccinated_next"}
                           id_back={"card_vaccinated_back"}
                           handler={this.control_click_handler}
-                          form_body={<Form_body_vaccinated input_data_handler={this.handleInputChange} />}/>
-                );
+                          form_body={
+                              <Form_choice_radio input_id="vaccinated_input"
+                                                 next_button_id="card_vaccinated_next"
+                                                 choices={[
+                                                     [true, constants.texts_german["yes"]],
+                                                     [false, constants.texts_german["no"]]]}
+                                                 input_data_handler={this.handleInputChange}
+                                                 intro={<div>
+                                                     <label>
+                                                         <constants.Vaccinated_instruction/> <i
+                                                         className="fas fa-info-circle"
+                                                         data-bs-toggle="modal"
+                                                         data-bs-target="#modal_vaccinated"/>
+                                                     </label>
+                                                     <Modal_popup button_id="modal_vaccinated"
+                                                                  title={constants.modal_vaccinated_title}
+                                                                  text={constants.modal_vaccinated_text}/>
+                                                 </div>}/>}
+                    />);
             case 'pregnancy_week':
                 return (
-                    <Card title={<Pregnancy_week_header/>}
+                    <Card title={<constants.Pregnancy_week_header/>}
                           id_next={"card_pregnancy_week_next"}
                           id_back={"card_pregnancy_week_back"}
                           handler={this.control_click_handler}
-                          form_body={<Form_body_pregnancy_week input_data_handler={this.handleInputChange} />}/>
-                );
+                          form_body={
+                              <Form_choice_radio input_id="pregnancy_week_input"
+                                                 next_button_id="card_past_infection_next"
+                                                 choices={[
+                                                     [true, constants.texts_german["yes"]],
+                                                     [false, constants.texts_german["no"]]]}
+                                                 input_data_handler={this.handleInputChange}
+                                                 intro={<div>
+                                                     <label>
+                                                         <constants.Pregnancy_week_instruction/> <i
+                                                         className="fas fa-info-circle"
+                                                         data-bs-toggle="modal"
+                                                         data-bs-target="#modal_pregnancy_week"/>
+                                                     </label>
+                                                     <Modal_popup button_id="modal_pregnancy_week"
+                                                                  title={constants.modal_pregnancy_week_title}
+                                                                  text={constants.modal_pregnancy_week_text}/>
+                                                 </div>}/>}
+                    />);
             case 'pregnancy_week_exact':
                 return (
-                    <Card title={<Pregnancy_week_exact_header/>}
+                    <Card title={<constants.Pregnancy_week_exact_header/>}
                           id_next={"card_pregnancy_week_exact_next"}
                           id_back={"card_pregnancy_week_exact_back"}
                           handler={this.control_click_handler}
-                          form_body={<Form_body_pregnancy_week_exact input_data_handler={this.handleInputChange} />}/>
+                          form_body={<Form_body_pregnancy_week_exact input_data_handler={this.handleInputChange}/>}/>
                 );
             case 'past_infection':
                 return (
-                    <Card title={<Past_infection_header/>}
+                    <Card title={<constants.Past_infection_header/>}
                           id_next={"card_past_infection_next"}
                           id_back={"card_past_infection_back"}
                           handler={this.control_click_handler}
-                          form_body={<Form_body_past_infection input_data_handler={this.handleInputChange} />}/>
-                );
+                          form_body={
+                              <Form_choice_radio input_id="past_infection_input"
+                                                 next_button_id="card_past_infection_next"
+                                                 choices={[
+                                                     [true, constants.texts_german["yes"]],
+                                                     [false, constants.texts_german["no"]]]}
+                                                 input_data_handler={this.handleInputChange}
+                                                 intro={<div>
+                                                     <label>
+                                                         <constants.Past_infection_instruction/> <i
+                                                         className="fas fa-info-circle"
+                                                         data-bs-toggle="modal"
+                                                         data-bs-target="#modal_past_infection"/>
+                                                     </label>
+                                                     <Modal_popup button_id="modal_past_infection"
+                                                                  title={constants.modal_past_infection_title}
+                                                                  text={constants.modal_past_infection_text}/>
+                                                 </div>}/>}
+                    />);
             case 'infection_date':
                 return (
-                    <Card title={<Infection_date_header/>}
+                    <Card title={<constants.Infection_date_header/>}
                           id_next={"card_infection_date_next"}
                           id_back={"card_infection_date_back"}
                           handler={this.control_click_handler}
-                          form_body={<Form_body_infection_date input_data_handler={this.handleInputChange} />}/>
+                          form_body={<Form_body_infection_date input_data_handler={this.handleInputChange}/>}/>
                 );
             case 'age':
                 return (
-                    <Card title={<Age_header/>}
+                    <Card title={<constants.Age_header/>}
                           id_next={"card_age_next"}
                           id_back={"card_age_back"}
                           handler={this.control_click_handler}
-                          form_body={<Form_body_age input_data_handler={this.handleInputChange} />}/>
+                          form_body={<Form_body_age input_data_handler={this.handleInputChange}/>}/>
                 );
             case 'symptoms_registered':
                 return (
-                    <Card title={<Symptoms_registered_header/>}
+                    <Card title={<constants.Symptoms_registered_header/>}
                           id_next={"card_symptoms_registered_next"}
                           id_back={"card_symptoms_registered_back"}
                           handler={this.control_click_handler}
-                          form_body={<Form_body_symptoms_registered input_data_handler={this.handleInputChange} />}/>
-                );
+                          form_body={
+                              <Form_choice_radio input_id="symptoms_registered_input"
+                                                 next_button_id="symptoms_registered_next"
+                                                 choices={[
+                                                     ["never", constants.texts_german["symptoms_registered"]["never"]],
+                                                     ["still", constants.texts_german["symptoms_registered"]["still"]],
+                                                     ["past", constants.texts_german["symptoms_registered"]["past"]]]}
+                                                 input_data_handler={this.handleInputChange}
+                                                 intro={<div>
+                                                     <label>
+                                                         <constants.Symptoms_registered_instruction/> <i
+                                                         className="fas fa-info-circle"
+                                                         data-bs-toggle="modal"
+                                                         data-bs-target="#modal_symptoms_registered"/>
+                                                     </label>
+                                                     <Modal_popup button_id="modal_symptoms_registered"
+                                                                  title={constants.modal_symptoms_registered_title}
+                                                                  text={constants.modal_symptoms_registered_text}/>
+                                                 </div>}/>}
+                    />);
+
             case 'symptoms_end_date':
                 return (
-                    <Card title={<Symptoms_end_date_header/>}
+                    <Card title={<constants.Symptoms_end_date_header/>}
                           id_next={"card_symptoms_end_date_next"}
                           id_back={"card_symptoms_end_date_back"}
                           handler={this.control_click_handler}
-                          form_body={<Form_body_symptoms_end_date input_data_handler={this.handleInputChange} />}/>
+                          form_body={<Form_body_symptoms_end_date input_data_handler={this.handleInputChange}/>}/>
                 );
             case 'risk_group':
                 return (
-                    <Card title={<Risk_group_header/>}
+                    <Card title={<constants.Risk_group_header/>}
                           id_next={"card_risk_group_next"}
                           id_back={"card_risk_group_back"}
                           handler={this.control_click_handler}
-                          form_body={<Form_body_risk_group input_data_handler={this.handleInputChange} />}/>
-                );
+                          form_body={
+                              <Form_choice_radio input_id="pregnant_input"
+                                                 next_button_id="card_risk_group_next"
+                                                 choices={[
+                                                     [true, constants.texts_german["yes"]],
+                                                     [false, constants.texts_german["no"]]]}
+                                                 input_data_handler={this.handleInputChange}
+                                                 intro={<div>
+                                                     <label>
+                                                         <constants.Risk_group_instruction/> <i
+                                                         className="fas fa-info-circle"
+                                                         data-bs-toggle="modal"
+                                                         data-bs-target="#modal_risk_group"/>
+                                                     </label>
+                                                     <Modal_popup button_id="modal_risk_group"
+                                                                  title={constants.modal_risk_group_title}
+                                                                  text={constants.modal_risk_group_text}/>
+                                                 </div>}/>}
+                    />);
             case 'pregnant':
                 return (
-                    <Card title={<Pregnant_header/>}
+                    <Card title={<constants.Pregnant_header/>}
                           id_next={"card_pregnant_next"}
                           id_back={"card_pregnant_back"}
                           handler={this.control_click_handler}
-                          form_body={<Form_body_pregnant input_data_handler={this.handleInputChange} />}/>
-                );
+                          form_body={
+                              <Form_choice_radio input_id="pregnant_input"
+                                                 next_button_id="card_pregnant_next"
+                                                 choices={[
+                                                     [true, constants.texts_german["yes"]],
+                                                     [false, constants.texts_german["no"]]]}
+                                                 input_data_handler={this.handleInputChange}
+                                                 intro={<div>
+                                                     <label>
+                                                         <constants.Pregnant_instruction/> <i
+                                                         className="fas fa-info-circle"
+                                                         data-bs-toggle="modal"
+                                                         data-bs-target="#modal_pregnant"/>
+                                                     </label>
+                                                     <Modal_popup button_id="modal_pregnant"
+                                                                  title={constants.modal_pregnant_title}
+                                                                  text={constants.modal_pregnant_text}/>
+                                                 </div>}/>}
+                    />);
             case 'number_vaccinations':
                 return (
-                    <Card title={<Number_vaccinations_header/>}
+                    <Card title={<constants.Number_vaccinations_header/>}
                           id_next={"card_number_vaccinations_next"}
                           id_back={"card_number_vaccinations_back"}
                           handler={this.control_click_handler}
-                          form_body={<Form_body_number_vaccinations input_data_handler={this.handleInputChange} />}/>
-                );
+                          form_body={
+                              <Form_choice_radio input_id="number_vaccinations_input"
+                                                 next_button_id="card_number_vaccinations_next"
+                                                 choices={[
+                                                     [1, constants.texts_german["number_vaccinations"]["one"]],
+                                                     [2, constants.texts_german["number_vaccinations"]["two"]],
+                                                     [3, constants.texts_german["number_vaccinations"]["three"]],
+                                                     [4, constants.texts_german["number_vaccinations"]["four"]]]}
+                                                 input_data_handler={this.handleInputChange}
+                                                 intro={<div>
+                                                     <label>
+                                                         <constants.Number_vaccinations_instruction/>
+                                                     </label>
+                                                 </div>}/>}
+                    />);
+
             case 'got_unregistered_vaccination':
                 return (
-                    <Card title={<Got_unregistered_vaccination_header/>}
+                    <Card title={<constants.Got_unregistered_vaccination_header/>}
                           id_next={"card_got_unregistered_vaccination_next"}
                           id_back={"card_got_unregistered_vaccination_back"}
                           handler={this.control_click_handler}
-                          form_body={<Form_body_got_unregistered_vaccination input_data_handler={this.handleInputChange} />}/>
-                );
+                          form_body={
+                              <Form_choice_radio input_id="got_unregistered_vaccination_input"
+                                                 next_button_id="card_got_unregistered_vaccination_next"
+                                                 choices={[
+                                                     [true, constants.texts_german["yes"]],
+                                                     [false, constants.texts_german["no"]]]}
+                                                 input_data_handler={this.handleInputChange}
+                                                 intro={<div>
+                                                     <label>
+                                                         <constants.Got_unregistered_vaccination_instruction/> <i
+                                                         className="fas fa-info-circle"
+                                                         data-bs-toggle="modal"
+                                                         data-bs-target="#modal_got_unregistered_vaccination"/>
+                                                     </label>
+                                                     <Modal_popup button_id="modal_got_unregistered_vaccination"
+                                                                  title={constants.modal_got_unregistered_vaccination_title}
+                                                                  text={constants.modal_got_unregistered_vaccination_text}/>
+                                                 </div>}/>}
+                    />);
             case 'unregistered_vaccination_date':
                 return (
-                    <Card title={<Unregistered_vaccination_date_header/>}
+                    <Card title={<constants.Unregistered_vaccination_date_header/>}
                           id_next={"card_unregistered_vaccination_date_next"}
                           id_back={"card_unregistered_vaccination_date_back"}
                           handler={this.control_click_handler}
                           form_body={<Form_body_unregistered_vaccination_date
-                              input_data_handler={this.handleInputChange} />}/>
+                              input_data_handler={this.handleInputChange}/>}/>
                 );
             /* --- NEW --- */
+            case 'exception':
+                return (<Card title={<constants.Exception_header/>}
+                              id_next={"card_exception_next"}
+                              id_back={"card_exception_back"}
+                              handler={this.control_click_handler}
+                              form_body={<Form_body_choice_check
+                                  input_data_handler={this.handleInputChange}/>}/>
+                );
+
+
             case 'breast_feeding':
                 return (
-                    <div>Stillend?</div>
-                );
-            case 'healthcare_staff':
-                return (
-                    <div>med. Personal?</div>
-                );
-            /*case 'risk_group_contact':
-                return (
-                    <Card title={<Risk_group_contact_header/>}
-                          id_next={"card_risk_group_contact_next"}
-                          id_back={"card_risk_group_contact_back"}
+                    <Card title={<constants.Breast_feeding_header/>}
+                          id_next={"card_breast_feeding_next"}
+                          id_back={"card_breast_feeding_back"}
                           handler={this.control_click_handler}
-                          form_body={<Form_body_risk_group_contact input_data_handler={this.handleInputChange}
-                                                           input_name_risk_group_contact='value'/>}/>
-                );*/
+                          form_body={
+                              <Form_choice_radio input_id="breast_feeding_input"
+                                                 next_button_id="card_breast_feeding_next"
+                                                 choices={[
+                                                     [true, constants.texts_german["yes"]],
+                                                     [false, constants.texts_german["no"]]]}
+                                                 input_data_handler={this.handleInputChange}
+                                                 intro={<div>
+                                                     <label>
+                                                         <constants.Breast_feeding_instruction/> <i className="fas fa-info-circle"
+                                                                                          data-bs-toggle="modal"
+                                                                                          data-bs-target="#modal_pregnant"/>
+                                                     </label>
+                                                     <Modal_popup button_id="modal_pregnant"
+                                                                  title={constants.modal_pregnant_title}
+                                                                  text={constants.modal_pregnant_text}/>
+                                                 </div>}/>}
+                    />
+                );
             case 'result':
                 return (
                     <Card_result handler={this.control_click_handler} appointment={this.props.appointment} user_data={{

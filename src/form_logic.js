@@ -7,6 +7,7 @@ import {
     Really_old,
     No_further_recommendation,
     No_recommendation_too_young,
+    No_recommendation_too_young_past_infection,
     No_recommendation_symptoms,
     Contact_dr,
     Contact_dr_young,
@@ -24,7 +25,6 @@ import {
     Next_possible_date_booster_alternative,
     Next_possible_date_booster_infection,
     Next_possible_date_booster_infection_alternative,
-    No_recommendation_too_young_past_infection,
 } from "./texts.js";
 
 
@@ -44,6 +44,7 @@ export function get_next_card(card_history, user_data) {
     if (card_history.length === 0) {
         return ['start', {}];
     }
+
     if (!('age' in user_data)) {
         return ['age', {}];
     }
@@ -61,6 +62,20 @@ export function get_next_card(card_history, user_data) {
     if (!('risk_group' in user_data)) {
         return ['risk_group', {}];
     }
+    let risk_group = (user_data['risk_group']['value'] == true);
+
+    // --- new start ---
+    if(risk_group){
+        if (!('exception' in user_data)) {
+            return ['exception', {}];
+        }
+    }
+
+
+    if (!('breast_feeding' in user_data)) {
+        return ['breast_feeding', {}];
+    }
+    // --- new end ---
 
     if (!('pregnant' in user_data)) {
         return ['pregnant', {}];
@@ -73,8 +88,6 @@ export function get_next_card(card_history, user_data) {
         user_pregnancy_week_exact = user_data['pregnancy_week_exact']['value'];
     }
 
-
-    let risk_group = (user_data['risk_group']['value'] == true);
     let pregnant = (user_data['pregnant']['value'] == true);
 
     if (!('past_infection' in user_data)) {

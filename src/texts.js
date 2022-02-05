@@ -1,5 +1,5 @@
 import React from "react";
-import {CreateDateStringModified, isToday} from "./date_operations";
+import {CreateDateStringModified, parseDate} from "./date_operations";
 
 export const DATE_OPTIONS = {day: '2-digit', month: '2-digit', year: 'numeric'};
 
@@ -138,19 +138,20 @@ export function Next_possible_date_first_infection_alternative(props) {
 export function Second_vaccination_range(props) {
 
     let now = new Date();
-    now.setHours(0,0,0,0);
+    now.setHours(0, 0, 0, 0);
 
     if (parseDate(props.date_second) < now) {
         return (<div>
-            Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine Impfung
+            Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine
+            Impfung
             (Vervollständigung der Grundimmunisierung) durchzuführen. <br/><br/>
             Sie können sich ab <CreateDateStringModified date={props.date_first}/> impfen lassen.<br/><br/>
             Für Sie wird folgender Impfstoff empfohlen: <b>{props.vaccination_brand}.</b>
         </div>)
-    }
-    else{
+    } else {
         return (<div>
-            Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine Impfung
+            Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine
+            Impfung
             (Vervollständigung der Grundimmunisierung) durchzuführen. <br/><br/>
             Sie können sich ab <CreateDateStringModified date={props.date_first}/> impfen lassen.<br/>
             Idealerweise wählen Sie einen Termin im Zeitraum vom <b>{props.date_first}</b> bis
@@ -158,33 +159,27 @@ export function Second_vaccination_range(props) {
             Für Sie wird folgender Impfstoff empfohlen: <b>{props.vaccination_brand}.</b>
         </div>)
     }
-
 }
 
-function parseDate(input) {
-    let parts = input.match(/(\d+)/g);
-    // note parts[1]-1
-    return new Date(parseInt(parts[2]) , parts[1]-1, parts[0]);
-}
 
 export function Second_vaccination_range_alternative(props) {
 
     let now = new Date();
-    now.setHours(0,0,0,0);
+    now.setHours(0, 0, 0, 0);
 
     if (parseDate(props.date_second) < now) {
-        return(<div>            Sie können sich mit <b>{props.vaccination_brand}</b> ab <CreateDateStringModified date={props.date_first}/> impfen
+        return (<div> Sie können sich mit <b>{props.vaccination_brand}</b> ab <CreateDateStringModified
+            date={props.date_first}/> impfen
             lassen. </div>)
     } else {
         return (<div>
-            Sie können sich mit <b>{props.vaccination_brand}</b> ab <CreateDateStringModified date={props.date_first}/> impfen
+            Sie können sich mit <b>{props.vaccination_brand}</b> ab <CreateDateStringModified
+            date={props.date_first}/> impfen
             lassen. <br/>
             Idealerweise wählen Sie einen Termin im Zeitraum vom <b>{props.date_first}</b> bis
             zum <b>{props.date_second}</b>.
         </div>)
     }
-
-
 }
 
 export function Next_possible_date_second_dose_infection(props) {
@@ -255,6 +250,12 @@ export function Vaccination_2_instruction() {
     </span>)
 }
 
+export function Vaccination_3_instruction() {
+    return (<span>
+        Welcher Impfstoff wurde bei Ihrer <b>dritten</b> Corona-Schutzimpfung verimpft?
+    </span>)
+}
+
 export function Vaccinated_instruction() {
     return (<span>
         Haben Sie bereits eine Impfung gegen das Coronavirus (SARS-CoV-2) erhalten?
@@ -275,7 +276,7 @@ export function Past_infection_instruction() {
 
 export function Risk_group_instruction() {
     return (<span>
-        Sind Sie zum aktuellen Zeitpunkt einer Risikogruppe angehörig oder haben Sie regelmäßig Kontakt zu Personen einer Risikogruppe?
+        Sie sind aktuell einer Risikogruppe angehörig oder haben regelmäßig Kontakt zu Personen einer Risikogruppe?
     </span>)
 }
 
@@ -285,9 +286,21 @@ export function Pregnant_instruction() {
     </span>)
 }
 
+export function Exception_instruction() {
+    return (<span>
+        Bitte geben Sie an ob eine oder mehrere der folgenden Optionen auf Sie zutreffen (Mehrfachauswahl möglich):
+    </span>)
+}
+
 export function Got_unregistered_vaccination_instruction() {
     return (<span>
         Wurden Sie bereits mit einem in Deutschland <b>nicht</b> zulässigen Corona-Impfstoff geimpft?
+    </span>)
+}
+
+export function Breast_feeding_instruction() {
+    return (<span>
+        Sind sie momentan am stillen?
     </span>)
 }
 
@@ -359,6 +372,10 @@ export function Vaccinated_header() {
     return (<span>Impfstatus</span>)
 }
 
+export function Exception_header() {
+    return (<span>Besonders gefährdete Personen</span>)
+}
+
 export function Pregnancy_week_header() {
     return (<span>Schwangerschaftswoche</span>)
 }
@@ -375,9 +392,12 @@ export function Pregnant_header() {
     return (<span>Schwangerschaft</span>)
 }
 
-
 export function Got_unregistered_vaccination_header() {
     return (<span>Impfstoff ohne STIKO-Zulassung</span>)
+}
+
+export function Breast_feeding_header() {
+    return (<span>Stillend</span>)
 }
 
 export function Unregistered_vaccination_date_header() {
@@ -410,6 +430,11 @@ export function Pregnancy_week_exact_header() {
 
 
 export const texts_german = {
+    "exception": {
+        "label_immun_def": "leiden an Immunschwäche",
+        "label_healthcare_staff": "in einer medizinischen oder pflegerischen Einrichtung betreut oder wohnhaft",
+        "label_risk_group_contact": "in einer medizinischen oder pflegerischen Einrichtung tätig",
+    },
     "form_validation": {
         "valid": "Eingabe ist valide",
         "invalid": "Bitte machen Sie eine valide Eingabe, um fortzufahren"
@@ -419,31 +444,8 @@ export const texts_german = {
         "vaccination_default": "bitte auswählen",
         "date_labe": "Datum",
     },
-    "vaccinated": {
-        "vaccinated_yes": "Ja",
-        "vaccinated_no": "Nein"
-    },
-    "pregnancy_week": {
-        "short": "Erstes Schwangerschaftsdrittel",
-        "pregnancy_week_yes": "Ja",
-        "pregnancy_week_no": "Nein"
-    },
-    "past_infection": {
-        "past_infection_yes": "Ja",
-        "past_infection_no": "Nein"
-    },
-    "risk_group": {
-        "risk_group_yes": "Ja",
-        "risk_group_no": "Nein"
-    },
-    "pregnant": {
-        "pregnant_yes": "Ja",
-        "pregnant_no": "Nein"
-    },
-    "got_unregistered_vaccination": {
-        "got_unregistered_vaccination_yes": "Ja",
-        "got_unregistered_vaccination_no": "Nein"
-    },
+    "yes": "Ja",
+    "no": "Nein",
     "unregistered_vaccination_date": {
         "label": "Datum"
     },
@@ -564,19 +566,35 @@ export const modal_risk_group_text = <div>
     <br/>
 </div>;
 
-export const modal_pregnant_title = "Schwangerschaft";
+export const modal_pregnant_title = "Schwangerschaft und Stillzeit";
 export const modal_pregnant_text = <div>
-    Die STIKO empfiehlt eine Corona-Schutzimpfung für ungeimpfte Schwangere ab dem 2. Trimenon (bzw. ab der 13.
-    Schwangerschaftswoche) sowie für ungeimpfte Stillende.
-    Die Grundimmunisierung soll mit zwei Dosen des COVID-19 Impfstoffs Comirnaty (Biontech) erfolgen.
-    Schwangere sollen altersunabhängig mit Comirnaty (Biontech) und <b>nicht</b> mit (Moderna) geimpft werden. Wenn die
-    Schwangerschaft nach bereits erfolgter Erstimpfung festgestellt wurde, sollte die Zweitimpfung dennoch erst ab dem
-    2. Trimenon durchgeführt werden.
-    Schwangeren Frauen, die bereits ihre Grundimmunisierung abgeschlossen haben, soll unabhängig vom Alter ab dem 2.
-    Trimenon eine Auffrischimpfung mit dem mRNA-Impfstoff Comirnaty im Abstand von mindestens 3 Monaten zur letzten
-    Impfstoffdosis angeboten werden.
-    Stillenden sollen entsprechend der Altersempfehlung mit einem der Impfstoffe Comirnaty (Biontech) oder Spikevax
-    (Moderna) geimpft werden.
+    <b>Corona-Schutzimpfung für Schwangere:
+    </b>
+    <br/>
+    <br/>
+    Schwangere Frauen haben ein erhöhtes Risiko für einen schweren Krankheitsverlauf im Vergleich zu Nicht-Schwangeren.
+    Im Falle von zusätzlich vorliegenden Vorerkrankungen erhöht sich das Risiko weiter. Die Corona-Schutzimpfung bietet
+    Schwangeren einen wirksamen Schutz gegen schwere Krankheitsverläufe.
+    <br/>
+    <br/>
+    Die STIKO empfiehlt die Corona-Schutzimpfung generell für Schwangere ab dem zweiten Schwangerschaftsdrittel (13.
+    SSW). Die Empfehlung gilt gleichermaßen für ungeimpfte als auch unvollständig geimpfte Schwangere.
+    Wenn die Schwangerschaft nach der bereits erfolgten Impfung festgestellt wurde, sollte die zweite Impfung ab dem
+    zweiten Schwangerschaftsdrittel durchgeführt werden. Darüber hinaus wird auch Schwangeren eine Auffrischimpfung mit
+    einem Mindestabstand von 3 Monaten zur letzten Impfstoffdosis empfohlen. Die Impfung sollte unabhängig vom Alter mit
+    dem mRNA-Impfstoff Comirnaty® von BioNTech/Pfizer erfolgen.
+    <br/>
+    <br/>
+    <b>Corona-Schutzimpfung für Stillende:
+    </b>
+    <br/>
+    <br/>
+    Die STIKO empfiehlt allen Stillenden eine Corona-Schutzimpfung während der Stillzeit. Die Impfung sollte unter
+    Berücksichtigung der Altersgrenze mit einem der mRNA-Impfstoffe Comirnaty® (von BioNTech/Pfizer) oder Spikevax® (von
+    Moderna) erfolgen.
+    Eine Corona-Schutzimpfung von Stillenden ist bei unkompliziertem Verlauf auch im Wochenbett möglich.
+    Darüber hinaus wird auch Stillenden eine Auffrischimpfung mit einem Mindestabstand von 3 Monaten zur letzten
+    Impfstoffdosis empfohlen.
     <br/>
     <br/>
     Quelle: &nbsp;
@@ -586,7 +604,7 @@ export const modal_pregnant_text = <div>
 </div>;
 
 
-export const modal_vaccinated_title = "Impfung in der Schwangerschaft";
+export const modal_vaccinated_title = "Impfung";
 export const modal_vaccinated_text = <div>
     Aktuell sind die Impfstoffe der folgenden Pharmaunternehmen für Deutschland zulässig:
     <ul>
@@ -594,7 +612,7 @@ export const modal_vaccinated_text = <div>
         <li>Moderna (Spikevax)</li>
         <li>AstraZeneca (Vaxeriva)</li>
         <li>Janssen-Cilag (Janssen)</li>
-        <li>Novavax (Nuvaxovid)</li>
+        <li>Novovax (Nuvaxovid)</li>
     </ul>
     *Die o.g. Impfstoffe sind Präparate, die eine gültige Zulassung der Europäischen Kommission besitzen. <b>Sie gibt
     keine Auskunft darüber, ob die Präparate auf dem Markt verfügbar sind.</b>
@@ -653,6 +671,7 @@ export const modal_got_unregistered_vaccination_text = <div>
     </a>
 </div>;
 
+
 export const modal_past_infection_title = "Genesen";
 export const modal_past_infection_text = <div>
     Neben der Corona-Schutzimpfung wird auch durch eine durchgemachte Corona (SARS-CoV-2) -Erkrankung ein körpereigener
@@ -683,7 +702,8 @@ export const modal_infection_date_text = <div>
     Bitte geben Sie hier das Datum Ihrer gesicherten Corona- Infektion an.
     <br/>
     <br/>
-    Das Datum bezieht sich auf das Ausstellungsdatums Ihres <b>ersten positiven Erregernachweises</b> (PCR-, PoC-PCR-Befund etc.). Bitte beachten Sie, dass Antigen- bzw. Schnelltests und Selbsttests unzulässig sind.
+    Das Datum bezieht sich auf das Ausstellungsdatums Ihres <b>ersten positiven Erregernachweises</b> (PCR-,
+    PoC-PCR-Befund etc.). Bitte beachten Sie, dass Antigen- bzw. Schnelltests und Selbsttests unzulässig sind.
     <br/>
     <br/>
     Quelle: &nbsp;
@@ -701,7 +721,8 @@ export const modal_quarantine_test_date_text = <div>
     <b>(Kein Selbsttest!)</b>
     <br/>
     <br/>
-    Nach aktueller <a target="_blank" href="https://www.land.nrw/corona">Corona-Test-und-Quarantäneverordnung</a> verpflichten
+    Nach aktueller <a target="_blank"
+                      href="https://www.land.nrw/corona">Corona-Test-und-Quarantäneverordnung</a> verpflichten
     positive Testergebnisse von PCR-, PoC-PCR- und Schnelltests zur Quarantäne.
     <br/>
     <br/>

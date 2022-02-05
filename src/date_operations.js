@@ -41,11 +41,12 @@ export function isToday(someDate){
 }
 
 
-function parseDate(input) {
+export function parseDate(input) {
     let parts = input.match(/(\d+)/g);
     // note parts[1]-1
     return new Date(parseInt(parts[2]) , parts[1]-1, parts[0]);
 }
+
 
 
 export function CreateDateStringModified(props){
