@@ -896,7 +896,8 @@ export default class CardManager extends React.Component {
                           id_back={"card_vaccinated_back"}
                           handler={this.control_click_handler}
                           form_body={
-                              <Form_choice_radio input_id="vaccinated_input"
+                              <Form_choice_radio key="vaccinated"
+                                                 input_id="vaccinated_input"
                                                  next_button_id="card_vaccinated_next"
                                                  choices={[
                                                      [true, constants.texts_german["yes"]],
@@ -921,7 +922,8 @@ export default class CardManager extends React.Component {
                           id_back={"card_pregnancy_week_back"}
                           handler={this.control_click_handler}
                           form_body={
-                              <Form_choice_radio input_id="pregnancy_week_input"
+                              <Form_choice_radio key="pregnancy_week"
+                                                 input_id="pregnancy_week_input"
                                                  next_button_id="card_past_infection_next"
                                                  choices={[
                                                      [true, constants.texts_german["yes"]],
@@ -954,7 +956,8 @@ export default class CardManager extends React.Component {
                           id_back={"card_past_infection_back"}
                           handler={this.control_click_handler}
                           form_body={
-                              <Form_choice_radio input_id="past_infection_input"
+                              <Form_choice_radio key="past_infection"
+                                                 input_id="past_infection_input"
                                                  next_button_id="card_past_infection_next"
                                                  choices={[
                                                      [true, constants.texts_german["yes"]],
@@ -979,6 +982,7 @@ export default class CardManager extends React.Component {
                           id_back={"card_infection_date_back"}
                           handler={this.control_click_handler}
                           form_body={<Form_date
+                              key="infection_date"
                               next_button_id="card_infection_date_next"
                               intro={<div><constants.Symptoms_end_date_instruction/> <i className="fas fa-info-circle"
                                                                                         data-bs-toggle="modal"
@@ -1004,7 +1008,8 @@ export default class CardManager extends React.Component {
                           id_back={"card_symptoms_registered_back"}
                           handler={this.control_click_handler}
                           form_body={
-                              <Form_choice_radio input_id="symptoms_registered_input"
+                              <Form_choice_radio key="symptoms_registered"
+                                                 input_id="symptoms_registered_input"
                                                  next_button_id="symptoms_registered_next"
                                                  choices={[
                                                      ["never", constants.texts_german["symptoms_registered"]["never"]],
@@ -1031,6 +1036,7 @@ export default class CardManager extends React.Component {
                           id_back={"card_symptoms_end_date_back"}
                           handler={this.control_click_handler}
                           form_body={<Form_date
+                              key="symptoms_end_date"
                               next_button_id="card_unregistered_vaccination_date_next"
                               intro={<div><constants.Symptoms_end_date_instruction/> <i className="fas fa-info-circle"
                                                                                                     data-bs-toggle="modal"
@@ -1048,7 +1054,8 @@ export default class CardManager extends React.Component {
                           id_back={"card_risk_group_back"}
                           handler={this.control_click_handler}
                           form_body={
-                              <Form_choice_radio input_id="pregnant_input"
+                              <Form_choice_radio key="risk_group"
+                                                 input_id="risk_group_input"
                                                  next_button_id="card_risk_group_next"
                                                  choices={[
                                                      [true, constants.texts_german["yes"]],
@@ -1073,7 +1080,8 @@ export default class CardManager extends React.Component {
                           id_back={"card_pregnant_back"}
                           handler={this.control_click_handler}
                           form_body={
-                              <Form_choice_radio input_id="pregnant_input"
+                              <Form_choice_radio key="pregnant"
+                                                 input_id="pregnant_input"
                                                  next_button_id="card_pregnant_next"
                                                  choices={[
                                                      [true, constants.texts_german["yes"]],
@@ -1098,7 +1106,8 @@ export default class CardManager extends React.Component {
                           id_back={"card_number_vaccinations_back"}
                           handler={this.control_click_handler}
                           form_body={
-                              <Form_choice_radio input_id="number_vaccinations_input"
+                              <Form_choice_radio key="number_vaccinations"
+                                                 input_id="number_vaccinations_input"
                                                  next_button_id="card_number_vaccinations_next"
                                                  choices={[
                                                      [1, constants.texts_german["number_vaccinations"]["one"]],
@@ -1120,7 +1129,8 @@ export default class CardManager extends React.Component {
                           id_back={"card_got_unregistered_vaccination_back"}
                           handler={this.control_click_handler}
                           form_body={
-                              <Form_choice_radio input_id="got_unregistered_vaccination_input"
+                              <Form_choice_radio key="got_unregistered_vaccination"
+                                                 input_id="got_unregistered_vaccination_input"
                                                  next_button_id="card_got_unregistered_vaccination_next"
                                                  choices={[
                                                      [true, constants.texts_german["yes"]],
@@ -1145,6 +1155,7 @@ export default class CardManager extends React.Component {
                           id_back={"card_unregistered_vaccination_date_back"}
                           handler={this.control_click_handler}
                           form_body={<Form_date
+                              key="unregistered_vaccination_date"
                               next_button_id="card_unregistered_vaccination_date_next"
                               intro={<div><constants.Unregistered_vaccination_date_instruction/> <i className="fas fa-info-circle"
                                                                                                     data-bs-toggle="modal"
@@ -1162,6 +1173,7 @@ export default class CardManager extends React.Component {
                               id_back={"card_exception_back"}
                               handler={this.control_click_handler}
                               form_body={<Form_body_choice_check
+                                  key="exception"
                                   input_id="choice_check_input"
                                   next_button_id="card_exception_next"
                                   choices={[["immun_def", constants.texts_german["exception"]["label_immun_def"]],["healthcare_staff", constants.texts_german["exception"]["label_healthcare_staff"]],["risk_group_contact", constants.texts_german["exception"]["label_risk_group_contact"]]]}
@@ -1177,7 +1189,8 @@ export default class CardManager extends React.Component {
                           id_back={"card_breast_feeding_back"}
                           handler={this.control_click_handler}
                           form_body={
-                              <Form_choice_radio input_id="breast_feeding_input"
+                              <Form_choice_radio key="breast_feeding"
+                                                 input_id="breast_feeding_input"
                                                  next_button_id="card_breast_feeding_next"
                                                  choices={[
                                                      [true, constants.texts_german["yes"]],
