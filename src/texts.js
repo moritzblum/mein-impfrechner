@@ -23,6 +23,7 @@ export default function Appointment_asbowl() {
 }
 
 export function Error() {
+    // #1
     return (<div>
         Basierend auf Ihren Angaben ist es uns derzeit nicht möglich, eine generelle Empfehlung auszusprechen. Ihre
         persönliche Situation erfordert eine ärztliche Einzelfallprüfung, um eine valide Aussage treffen zu können. Wir
@@ -30,6 +31,7 @@ export function Error() {
 }
 
 export function Really_old() {
+    // #2
     return (<div>
         <b>Bitte überprüfen Sie Ihre Angaben</b>. Wenn Sie schon so lange gelebt haben, dann haut Sie auch Corona nicht
         mehr aus den Socken.
@@ -38,6 +40,7 @@ export function Really_old() {
 }
 
 export function No_further_recommendation() {
+    // #3
     return (<div>
         Basierend auf der derzeitigen STIKO-Empfehlung und Ihren Angaben wird für Sie <b>keine
         Impfempfehlung</b> ausgesprochen, da Sie aktuell <b>ausreichend geschützt</b> sind.
@@ -45,6 +48,7 @@ export function No_further_recommendation() {
 }
 
 export function No_recommendation_too_young() {
+    // #4
     return (<div>
         Basierend auf der derzeitigen STIKO-Empfehlung wird für Sie aktuell <b>keine
         Impfempfehlung</b> ausgesprochen, <b>da Sie unter 5 Jahre alt sind</b>. <br/>
@@ -52,15 +56,9 @@ export function No_recommendation_too_young() {
     </div>)
 }
 
-export function No_recommendation_too_young_past_infection() {
-    return (<div>
-        Basierend auf der derzeitigen STIKO-Empfehlung wird für Sie aktuell <b>keine
-        Impfempfehlung</b> ausgesprochen, <b>da Sie unter 12 Jahre alt und bereits genesen sind.</b><br/>
-        * Im Zweifelsfall holen Sie sich ärztlichen Rat.
-    </div>)
-}
 
 export function No_recommendation_symptoms() {
+    // #6
     return (<div>
         Basierend auf der derzeitigen STIKO-Empfehlung sollten Sie mit der Impfung warten, bis die Symptome abklingen.
         Aktuell wird ein Impftermin <b>vier Wochen nach Ihrem individuellen Symptomende empfohlen</b>. <br/>
@@ -69,6 +67,7 @@ export function No_recommendation_symptoms() {
 }
 
 export function Contact_dr() {
+    // #7
     return (<div>
         Basierend auf der derzeitigen STIKO- Empfehlung und Ihren Angaben, können wir leider keine generelle
         Impfempfehlung aussprechen. Bitte besprechen Sie Ihre persönliche Situation mit einer Ärztin / einem Arzt.
@@ -76,6 +75,7 @@ export function Contact_dr() {
 }
 
 export function Contact_dr_young() {
+    // #8
     return (<div>
         Basierend auf der derzeitigen STIKO-Empfehlung und Ihren Angaben können wir leider keine generelle
         Impfempfehlung aussprechen. Bitte besprechen Sie Ihre persönliche Situation mit einer Kinderärztin / einem
@@ -84,6 +84,7 @@ export function Contact_dr_young() {
 }
 
 export function Recommendation_young(props) {
+    // #9
     return (
         <div>
             Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine
@@ -94,6 +95,7 @@ export function Recommendation_young(props) {
 }
 
 export function Recommendation_young_no_risk_group(props) {
+    // #10
     return (<div>
         Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben, liegt für Ihre Altersgruppe keine
         generelle Impfempfehlung vor. <br/>
@@ -104,6 +106,7 @@ export function Recommendation_young_no_risk_group(props) {
 }
 
 export function Next_possible_date_first(props) {
+    // #11
     return (<div>
         Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine Impfung
         (Grundimmunisierung) durchzuführen. <br/><br/>
@@ -113,6 +116,7 @@ export function Next_possible_date_first(props) {
 }
 
 export function Next_possible_date_first_alternative(props) {
+    // #12
     return (<div>
         Sie können sich mit <b>{props.vaccination_brand}</b> ab <CreateDateStringModified date={props.date}/> impfen
         lassen.
@@ -120,6 +124,7 @@ export function Next_possible_date_first_alternative(props) {
 }
 
 export function Next_possible_date_first_infection(props) {
+    // #13
     return (<div>
         Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine Impfung
         (Grundimmunisierung) durchzuführen. <br/><br/>
@@ -129,6 +134,7 @@ export function Next_possible_date_first_infection(props) {
 }
 
 export function Next_possible_date_first_infection_alternative(props) {
+    // #14
     return (<div>
         Sie können sich mit <b>{props.vaccination_brand}</b> ab <CreateDateStringModified date={props.date}/> impfen
         lassen.
@@ -141,6 +147,7 @@ export function Second_vaccination_range(props) {
     now.setHours(0, 0, 0, 0);
 
     if (parseDate(props.date_second) < now) {
+        // 15.1
         return (<div>
             Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine
             Impfung
@@ -149,6 +156,7 @@ export function Second_vaccination_range(props) {
             Für Sie wird folgender Impfstoff empfohlen: <b>{props.vaccination_brand}.</b>
         </div>)
     } else {
+        // 15.2
         return (<div>
             Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine
             Impfung
@@ -168,10 +176,12 @@ export function Second_vaccination_range_alternative(props) {
     now.setHours(0, 0, 0, 0);
 
     if (parseDate(props.date_second) < now) {
+        // #16.1
         return (<div> Sie können sich mit <b>{props.vaccination_brand}</b> ab <CreateDateStringModified
             date={props.date_first}/> impfen
             lassen. </div>)
     } else {
+        // #16.2
         return (<div>
             Sie können sich mit <b>{props.vaccination_brand}</b> ab <CreateDateStringModified
             date={props.date_first}/> impfen
@@ -183,6 +193,7 @@ export function Second_vaccination_range_alternative(props) {
 }
 
 export function Next_possible_date_second_dose_infection(props) {
+    // #17
     return (<div>
         Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine Impfung
         (Vervollständigung der Grundimmunisierung) durchzuführen. <br/><br/>
@@ -192,6 +203,7 @@ export function Next_possible_date_second_dose_infection(props) {
 }
 
 export function Next_possible_date_second_dose_infection_alternative(props) {
+    // #18
     return (<div>
         Sie können sich mit <b>{props.vaccination_brand}</b> ab <CreateDateStringModified date={props.date}/> impfen
         lassen.
@@ -199,6 +211,7 @@ export function Next_possible_date_second_dose_infection_alternative(props) {
 }
 
 export function Next_possible_date_booster(props) {
+    // #19
     return (<div>
         Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine Impfung
         (Boosterimpfung/ Auffrischimpfung) durchzuführen. <br/><br/>
@@ -208,6 +221,7 @@ export function Next_possible_date_booster(props) {
 }
 
 export function Next_possible_date_booster_alternative(props) {
+    // #20
     return (<div>
         Sie können sich mit <b>{props.vaccination_brand}</b> ab <CreateDateStringModified date={props.date}/> impfen
         lassen.
@@ -215,6 +229,7 @@ export function Next_possible_date_booster_alternative(props) {
 }
 
 export function Next_possible_date_booster_infection(props) {
+    // #21
     return (<div>
         Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine
         „Booster-/Auffrischimpfung“ durchzuführen. <br/><br/>
@@ -224,6 +239,7 @@ export function Next_possible_date_booster_infection(props) {
 }
 
 export function Next_possible_date_booster_infection_alternative(props) {
+    // #22
     return (<div>
         Sie können sich mit <b>{props.vaccination_brand}</b> ab <CreateDateStringModified date={props.date}/> impfen
         lassen.
@@ -232,121 +248,173 @@ export function Next_possible_date_booster_infection_alternative(props) {
 }
 
 export function Alternative() {
+    // #23
     return (<div>
         Weiterhin kommt für Sie folgende Option in Betracht:
     </div>)
 }
 
 
+export function No_recommendation_too_young_past_infection() {
+    // #24
+    return (<div>
+        Basierend auf der derzeitigen STIKO-Empfehlung wird für Sie aktuell <b>keine
+        Impfempfehlung</b> ausgesprochen, <b>da Sie unter 12 Jahre alt und bereits genesen sind.</b><br/>
+        * Im Zweifelsfall holen Sie sich ärztlichen Rat.
+    </div>)
+}
+
+export function Next_possible_date_booster_2(props) {
+    // #25
+    return (<div>
+        Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen
+        wir Ihnen, eine "2. Booster-/Auffrischimpfung" durchzuführen. <br/><br/>
+        Sie können sich ab <CreateDateStringModified date={props.date}/> impfen lassen.<br/>
+        Für Sie wird folgender Impfstoff empfohlen: <b>{props.vaccination_brand}.</b>
+    </div>)
+}
+
+export function Next_possible_date_booster_2_alternative(props) {
+    // #26
+    return (<div>
+        Sie können sich mit <b>{props.vaccination_brand}</b> ab <CreateDateStringModified date={props.date}/> impfen
+        lassen.
+    </div>)
+}
+
+
+
+
+
+
 export function Vaccination_1_instruction() {
+    // #27
     return (<span>
         Welcher Impfstoff wurde bei Ihrer <b>ersten</b> Corona-Schutzimpfung verimpft?
     </span>)
 }
 
 export function Vaccination_2_instruction() {
+    // #28
     return (<span>
         Welcher Impfstoff wurde bei Ihrer <b>zweiten</b> Corona-Schutzimpfung verimpft?
     </span>)
 }
 
 export function Vaccination_3_instruction() {
+    // #29
     return (<span>
         Welcher Impfstoff wurde bei Ihrer <b>dritten</b> Corona-Schutzimpfung verimpft?
     </span>)
 }
 
 export function Vaccinated_instruction() {
+    // #30
     return (<span>
         Haben Sie bereits eine Impfung gegen das Coronavirus (SARS-CoV-2) erhalten?
     </span>)
 }
 
 export function Pregnancy_week_instruction() {
+    // #31
     return (<span>
         Befinden Sie sich derzeit noch im ersten Schwangerschaftsdrittel (1.-13. Schwangerschaftswoche)?
     </span>)
 }
 
 export function Past_infection_instruction() {
+    // #32
     return (<span>
         Wurden Sie bereits positiv auf das Coronavirus (SARS-CoV-2) getestet (Kein Selbsttest)?
     </span>)
 }
 
 export function Risk_group_instruction() {
+    // #33
     return (<span>
         Sie sind aktuell einer Risikogruppe angehörig oder haben regelmäßig Kontakt zu Personen einer Risikogruppe?
     </span>)
 }
 
 export function Pregnant_instruction() {
+    // #34
     return (<span>
         Sind Sie zum aktuellen Zeitpunkt schwanger?
     </span>)
 }
 
 export function Exception_instruction() {
+    // #35
     return (<span>
         Bitte geben Sie an ob eine oder mehrere der folgenden Optionen auf Sie zutreffen (Mehrfachauswahl möglich):
     </span>)
 }
 
 export function Got_unregistered_vaccination_instruction() {
+    // #36
     return (<span>
         Wurden Sie bereits mit einem in Deutschland <b>nicht</b> zulässigen Corona-Impfstoff geimpft?
     </span>)
 }
 
 export function Breast_feeding_instruction() {
+    // #37
     return (<span>
         Sind sie momentan am stillen?
     </span>)
 }
 
 export function Unregistered_vaccination_date_instruction() {
+    // #38
     return (<span>
         Wann haben Sie die letzte <b>nicht</b> zulässige Corona-Schutzimpfung erhalten?
     </span>)
 }
 
 export function Symptoms_registered_instruction() {
+    // #39
     return (<span>
         Hatten oder haben Sie Symptome in Folge Ihrer Corona-Infektion entwickelt?
     </span>)
 }
 
 export function Number_vaccinations_instruction() {
+    // #40
     return (<span>
         Wie viele zugelassene Corona-Schutzimpfungen haben Sie erhalten?
     </span>)
 }
 
 export function Infection_date_instruction() {
+    // #41
     return (<span>
         Wann wurden Sie erstmalig positiv auf das Coronavirus getestet (kein Selbsttest)?
     </span>)
 }
 
 export function Symptoms_end_date_instruction() {
+    // #42
     return (<span>
         Wann haben ihre Symptome aufgehört?
     </span>)
 }
 
 export function Age_instruction() {
+    // #43
     return (<span>
         Wie alt sind Sie?
     </span>)
 }
 
 export function Pregnancy_week_exact_instruction() {
+    // #44
     return (<span>
         In der wievielten Schwangerschaftswoche befinden Sie sich?
     </span>)
 }
 
 export function Disclaimer() {
+    // #45
     return (<div>
         <b>Haftungsausschluss:</b> Die Inhalte dieser Seite dienen ausschließlich der allgemeinen Information der
         Öffentlichkeit. mein-impfrechner.de übernimmt keine Verantwortung für die Richtigkeit und Vollständigkeit der
@@ -357,79 +425,98 @@ export function Disclaimer() {
 }
 
 export function Start_header() {
+    // #46
     return (<span>Impfrechner</span>)
 }
 
 export function Vaccination_1_header() {
+    // #47
     return (<span>1. Corona-Schutzimpfung</span>)
 }
 
 export function Vaccination_2_header() {
+    // #48
     return (<span>2. Corona-Schutzimpfung</span>)
 }
 
 export function Vaccinated_header() {
+    // #49
     return (<span>Impfstatus</span>)
 }
 
 export function Exception_header() {
+    // #50
     return (<span>Besonders gefährdete Personen</span>)
 }
 
 export function Pregnancy_week_header() {
+    // #51
     return (<span>Schwangerschaftswoche</span>)
 }
 
 export function Past_infection_header() {
+    // #52
     return (<span>Genesenenstatus</span>)
 }
 
 export function Risk_group_header() {
+    // #53
     return (<span>Risikogruppe</span>)
 }
 
 export function Pregnant_header() {
+    // #54
     return (<span>Schwangerschaft</span>)
 }
 
 export function Got_unregistered_vaccination_header() {
+    // #55
     return (<span>Impfstoff ohne STIKO-Zulassung</span>)
 }
 
 export function Breast_feeding_header() {
+    // #56
     return (<span>Stillend</span>)
 }
 
 export function Unregistered_vaccination_date_header() {
+    // #57
     return (<span>Impfstoff ohne STIKO-Zulassung</span>)
 }
 
 export function Symptoms_registered_header() {
+    // #58
     return (<span>Symptome</span>)
 }
 
 export function Number_vaccinations_header() {
+    // #59
     return (<span>Anzahl Corona-Schutzimpfungen</span>)
 }
 
 export function Infection_date_header() {
+    // #60
     return (<span>Erkrankungsdatum</span>)
 }
 
 export function Symptoms_end_date_header() {
+    // #61
     return (<span>Ende der Symptomatik</span>)
 }
 
 export function Age_header() {
+    // #62
     return (<span>Alter</span>)
 }
 
 export function Pregnancy_week_exact_header() {
+    // #63
     return (<span>Schwangerschaftswoche</span>)
 }
 
 
 export const texts_german = {
+    "date_label": "Datum",
     "exception": {
         "label_immun_def": "leiden an Immunschwäche",
         "label_healthcare_staff": "in einer medizinischen oder pflegerischen Einrichtung betreut oder wohnhaft",
@@ -446,9 +533,6 @@ export const texts_german = {
     },
     "yes": "Ja",
     "no": "Nein",
-    "unregistered_vaccination_date": {
-        "label": "Datum"
-    },
     "symptoms_registered": {
         "never": "Nein, ich hatte nie Symptome",
         "still": "Ja, ich habe immer noch Symptome",
@@ -460,14 +544,7 @@ export const texts_german = {
         "three": "3",
         "four": "4"
     },
-    "infection_date": {
-        "label": "Datum"
-    },
-    "symptoms_end_date": {
-        "label": "Datum"
-    },
     "age": {
-        "instructions": "Wie alt sind Sie?",
         "age_placeholder": "Alter"
     },
     "pregnancy_week_exact": {
@@ -480,10 +557,8 @@ export const texts_german = {
         "johnson": "Janssen-Cilag (Janssen®)",
         "novavax": "Novavax (Nuvaxovid®)"
     },
-    "disclaimer": "Haftungsausschluss: Die Inhalte dieser Seite dienen ausschließlich der allgemeinen Information der " +
-        "Öffentlichkeit. mein-impfrechner.de übernimmt keine Verantwortung für die Richtigkeit und Vollständigkeit der " +
-        "Daten und Informationen, die auf dieser Seite angegeben oder verlinkt werden, für Abweichungen von Originaldaten, " +
-        "Übertragungsfehler oder Veränderung der Informationen durch Dritte."  // hardcoded in impressum.html, too
+    "recommendation": "Empfehlung",
+    "your_data": "Ihre Angaben"
 };
 
 export const constants = {
@@ -502,27 +577,6 @@ export const constants = {
         'still': 1,
         'past': 2
     },
-    'registered_vaccination_brands': ['biontec', 'moderna', 'astra', 'johnson'],
-    'registered_vaccination_brands_two_shots': ['biontec', 'moderna', 'astra'],
-    'registered_vaccination_brands_one_shots': ['johnson'],
-    'time_gap': {
-        'other': {
-            'other': 'min 4 weeks'
-        },
-        'immunization': {
-            'biontec': '3-6 weeks',
-            'moderna': '4-6 weeks',
-            'astra': '8-10 weeks', // ?
-            'other': 'min 4 weeks'
-        },
-        'booster': {
-            'biontec': '5 month',
-            'moderna': '5 month',
-            'astra': '5 month',
-            'johnson': '5 month',
-            'other': 'min 4 weeks'
-        }
-    }
 }
 
 export const modal_risk_group_title = "Risikogruppe Corona";

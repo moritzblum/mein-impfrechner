@@ -134,37 +134,31 @@ class Form_body_choice_check extends React.Component {
     }
 
     componentDidMount() {
-        on_enter_next("choice_check_input", "card_choice_check_next")
+        on_enter_next(this.props.input_id, this.props.next_button_id)
     }
 
     render() {
-        return (
-            <div>
-                <constants.Exception_instruction/>
+        let choices = [];
 
-                <div className="form-group" id="choice_check_input">
+        for (let i = 0; i < this.props.choices.length; i++) {
+            choices.push(
                     <div className="form-check">
-                        <input className="form-check-input" type="checkbox" name="immun_def" value={true}
-                               id="choice_check_1" onChange={this.props.input_data_handler}/>
+                        <input className="form-check-input" type="checkbox" name={this.props.choices[i][0]} value={true}
+                               id={"choice_check" + i} onChange={this.props.input_data_handler}/>
                         <label className="form-check-label" htmlFor="flexCheckDefault">
-                            {constants.texts_german["exception"]["label_immun_def"]}
+                            {this.props.choices[i][1]}
                         </label>
                     </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="checkbox" name="healthcare_staff" value={true}
-                               id="choice_check_2" onChange={this.props.input_data_handler}/>
-                        <label className="form-check-label" htmlFor="flexCheckChecked">
-                            {constants.texts_german["exception"]["label_healthcare_staff"]}
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="checkbox" name="risk_group_contact" value={true}
-                               id="choice_check_3" onChange={this.props.input_data_handler}/>
-                        <label className="form-check-label" htmlFor="flexCheckChecked">
-                            {constants.texts_german["exception"]["label_risk_group_contact"]}
-                        </label>
-                    </div>
-                </div>
+            );
+        }
+
+
+        return (
+            <div className="form-group" id={this.props.input_id} key={this.props.input_id}>
+                {this.props.intro}
+                <br/>
+                <br/>
+                {choices}
             </div>
 
         );
@@ -217,86 +211,30 @@ class Form_choice_radio extends React.Component {
     }
 }
 
-class Form_body_unregistered_vaccination_date extends React.Component {
+
+
+class Form_date extends React.Component {
     constructor(props) {
         super(props);
     }
 
     componentDidMount() {
-        on_enter_next("date", "card_unregistered_vaccination_date_next")
+        on_enter_next("date", this.props.next_button_id)
     }
 
 
     render() {
         return (
             <div>
-                <div><constants.Unregistered_vaccination_date_instruction/> <i className="fas fa-info-circle"
-                                                                     data-bs-toggle="modal"
-                                                                     data-bs-target="#modal_got_unregistered_vaccination"/>
-                </div>
+                {this.props.intro}
                 <br/>
                 <br/>
-                <label htmlFor="datepicker_infection" data-bs-toggle="modal"
-                       data-bs-target="#modal_datum_postest">{constants.texts_german["unregistered_vaccination_date"]["label"]}</label>
+                <label>{constants.texts_german["date_label"]}</label>
                 <DatePicker onChange={this.props.input_data_handler}/>
             </div>
         );
     }
 }
-
-class Form_body_infection_date extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    componentDidMount() {
-        on_enter_next("date", "card_infection_date_next")
-    }
-
-    render() {
-        return (
-            <div>
-                <label><constants.Infection_date_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal"
-                                                        data-bs-target="#modal_infection_date"/></label>
-                <Modal_popup button_id="modal_infection_date" title={constants.modal_infection_date_title}
-                             text={constants.modal_infection_date_text}/>
-                <br/>
-                <br/>
-                <label htmlFor="datepicker_infection" data-bs-toggle="modal"
-                       data-bs-target="#modal_datum_postest">{constants.texts_german["infection_date"]["label"]}</label>
-                <DatePicker onChange={this.props.input_data_handler}/>
-            </div>
-        );
-    }
-}
-
-
-class Form_body_symptoms_end_date extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    componentDidMount() {
-        on_enter_next("date", "card_symptoms_end_date_next")
-    }
-
-    render() {
-        return (
-            <div>
-                <label><constants.Symptoms_end_date_instruction/> <i className="fas fa-info-circle" data-bs-toggle="modal"
-                                                           data-bs-target="#modal_symptoms_end_date"/></label>
-                <Modal_popup button_id="modal_symptoms_end_date" title={constants.modal_symptoms_end_date_text}
-                             text={constants.modal_symptoms_end_date_title}/>
-                <br/>
-                <br/>
-                <label htmlFor="datepicker_infection" data-bs-toggle="modal"
-                       data-bs-target="#modal_datum_postest">{constants.texts_german["symptoms_end_date"]["label"]}</label>
-                <DatePicker onChange={this.props.input_data_handler}/>
-            </div>
-        );
-    }
-}
-
 
 class Form_body_age extends React.Component {
     constructor(props) {
@@ -533,11 +471,11 @@ class Card_result extends React.Component {
                 <div className="vc-card-body">
                     <div className="vc-result"
                          style={{"position": "relative", "height": "90%", "width": "100%", "overflowY": 'scroll'}}>
-                        <h1>Empfehlung</h1>
+                        <h1>{constants.texts_german["recommendation"]}</h1>
                         <div key="k1" style={{marginLeft: "20px"}}>{result_text}</div>
                         {this.props.appointment}
                         <br/>
-                        <h1>Ihre Angaben</h1>
+                        <h1>{constants.texts_german["your_data"]}</h1>
                         <div key="k3" style={{marginLeft: "20px"}}>{vis_user_data(this.props.user_data)}</div>
                         <br/>
                         <div key="k2" style={{marginLeft: "20px"}}><constants.Disclaimer/></div>
@@ -1040,7 +978,16 @@ export default class CardManager extends React.Component {
                           id_next={"card_infection_date_next"}
                           id_back={"card_infection_date_back"}
                           handler={this.control_click_handler}
-                          form_body={<Form_body_infection_date input_data_handler={this.handleInputChange}/>}/>
+                          form_body={<Form_date
+                              next_button_id="card_infection_date_next"
+                              intro={<div><constants.Symptoms_end_date_instruction/> <i className="fas fa-info-circle"
+                                                                                        data-bs-toggle="modal"
+                                                                                        data-bs-target="#modal_infection_date"/>
+                                  <Modal_popup button_id="modal_infection_date"
+                                               title={constants.modal_infection_date_title}
+                                               text={constants.modal_infection_date_text}/>
+                              </div>}
+                              input_data_handler={this.handleInputChange}/>}/>
                 );
             case 'age':
                 return (
@@ -1083,7 +1030,16 @@ export default class CardManager extends React.Component {
                           id_next={"card_symptoms_end_date_next"}
                           id_back={"card_symptoms_end_date_back"}
                           handler={this.control_click_handler}
-                          form_body={<Form_body_symptoms_end_date input_data_handler={this.handleInputChange}/>}/>
+                          form_body={<Form_date
+                              next_button_id="card_unregistered_vaccination_date_next"
+                              intro={<div><constants.Symptoms_end_date_instruction/> <i className="fas fa-info-circle"
+                                                                                                    data-bs-toggle="modal"
+                                                                                                    data-bs-target="#modal_symptoms_end_date"/>
+                                  <Modal_popup button_id="modal_symptoms_end_date"
+                                               title={constants.modal_symptoms_end_date_title}
+                                               text={constants.modal_symptoms_end_date_text}/>
+                              </div>}
+                              input_data_handler={this.handleInputChange}/>}/>
                 );
             case 'risk_group':
                 return (
@@ -1188,7 +1144,15 @@ export default class CardManager extends React.Component {
                           id_next={"card_unregistered_vaccination_date_next"}
                           id_back={"card_unregistered_vaccination_date_back"}
                           handler={this.control_click_handler}
-                          form_body={<Form_body_unregistered_vaccination_date
+                          form_body={<Form_date
+                              next_button_id="card_unregistered_vaccination_date_next"
+                              intro={<div><constants.Unregistered_vaccination_date_instruction/> <i className="fas fa-info-circle"
+                                                                                                    data-bs-toggle="modal"
+                                                                                                    data-bs-target="#modal_got_unregistered_vaccination"/>
+                                  <Modal_popup button_id="modal_got_unregistered_vaccination"
+                                               title={constants.modal_got_unregistered_vaccination_title}
+                                               text={constants.modal_got_unregistered_vaccination_text}/>
+                              </div>}
                               input_data_handler={this.handleInputChange}/>}/>
                 );
             /* --- NEW --- */
@@ -1198,6 +1162,10 @@ export default class CardManager extends React.Component {
                               id_back={"card_exception_back"}
                               handler={this.control_click_handler}
                               form_body={<Form_body_choice_check
+                                  input_id="choice_check_input"
+                                  next_button_id="card_exception_next"
+                                  choices={[["immun_def", constants.texts_german["exception"]["label_immun_def"]],["healthcare_staff", constants.texts_german["exception"]["label_healthcare_staff"]],["risk_group_contact", constants.texts_german["exception"]["label_risk_group_contact"]]]}
+                                  intro={<constants.Exception_instruction/>}
                                   input_data_handler={this.handleInputChange}/>}/>
                 );
 

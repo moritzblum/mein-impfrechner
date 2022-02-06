@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import Leiste from "./leiste";
 import Footer from "./footer";
+import {Disclaimer} from "./texts";
 
 class Impressum extends React.Component {
 
@@ -22,13 +23,7 @@ class Impressum extends React.Component {
                     Website: www.mein-impfrechner.de
                     <br/>
                     <br/>
-                    <div id="disclaimer"><span style={{color: "white"}}><b>Haftungsausschluss</b></span>: Die Inhalte dieser
-                        Seite dienen ausschließlich der allgemeinen Information der
-                        Öffentlichkeit. mein-impfrechner.de übernimmt keine Verantwortung für die Richtigkeit und
-                        Vollständigkeit der
-                        Daten und Informationen, die auf dieser Seite angegeben oder verlinkt werden, für Abweichungen von
-                        Originaldaten
-                        Übertragungsfehler oder Veränderung der Informationen durch Dritte.
+                    <div id="disclaimer">{Disclaimer}
                     </div>
 
                     <br/>
