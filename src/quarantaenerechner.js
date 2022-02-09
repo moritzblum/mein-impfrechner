@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import Leiste from "./leiste";
+import Navbar from "./navbar";
 import Footer from "./footer";
 import $ from 'jquery';
 

@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-class Leiste extends React.Component {
+class Navbar extends React.Component {
 
     constructor(props) {
         super(props);
@@ -37,7 +37,7 @@ class Leiste extends React.Component {
                                 <Link to={this.props.subpage + '/impressum/'}>Impressum</Link>
                                 <Link to={this.props.subpage + '/datenschutz/'}>Datenschutz</Link>
                             </div>
-                            <a href="javascript:void(0);" className="icon" onClick={window.menubar}>
+                            <a className="icon" onClick={window.menubar}>
                                 <i className="fa fa-bars"/>
                             </a>
                         </div>
@@ -50,4 +50,4 @@ class Leiste extends React.Component {
     }
 }
 
-export default Leiste;
+export default Navbar;

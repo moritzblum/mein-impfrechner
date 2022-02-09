@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import Leiste from "./leiste";
+import Navbar from "./navbar";
 import Footer from "./footer";
 import {Disclaimer} from "./texts";
 
@@ -10,7 +10,7 @@ class Impressum extends React.Component {
         window.scrollTo(0, 0);
         return (
             <div>
-                <Leiste subpage={this.props.subpage} style={{"position":"relative"}}/>
+                <Navbar subpage={this.props.subpage} style={{"position":"relative"}}/>
 
                 <div className="container main_page_text">
                     <h1 style={{textAlign: "center", fontWeight: "bold"}}>Impressum</h1>
@@ -24,8 +24,7 @@ class Impressum extends React.Component {
                     Website: www.mein-impfrechner.de
                     <br/>
                     <br/>
-                    <div id="disclaimer">{Disclaimer}
-                    </div>
+                    <div id="disclaimer"><Disclaimer/></div>
 
                     <br/>
                     <br/>
@@ -41,19 +40,18 @@ class Impressum extends React.Component {
                         <div className="mb-3">
                             <label htmlFor="field_terms">Ihr Name:</label>
                             <input id="field_terms" type="text" className="form-control" name="NameVorname"
-                                   size="30" maxLength="50" onChange={console.log}/>
+                                   size="30" maxLength="50" />
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="exampleFormControlTextarea1">Ihr Anliegen:</label>
                             <textarea style={{fontSize: "1em"}} className="form-control" name="Message"
-                                      id="exampleFormControlTextarea1" rows="4"/>
+                                      id="exampleFormControlTextarea1" rows="4" />
                         </div>
                         <br/>
                         <div className="mb-3 form-check">
-                            <input type="checkbox" onChange="this.setCustomValidity('')"
-                                   onInvalid="this.setCustomValidity('Bitte zustimmen, um fortzufahren.')"
-                                   required className="form-check-input" id="exampleCheck1"/>
+                            <input type="checkbox"
+                                   required className="form-check-input" id="exampleCheck1" />
                             <label className="form-check-label" htmlFor="exampleCheck1">Beim
                                 Absenden werden deine Eingaben automatisch in
                                 dein E-Mail Programm übernommen und eine E-Mail erstellt. Außerdem

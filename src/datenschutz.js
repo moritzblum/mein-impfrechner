@@ -1,5 +1,5 @@
 import React from "react";
-import Leiste from "./leiste";
+import Navbar from "./navbar";
 import Footer from "./footer";
 
 class Datenschutz extends React.Component {
@@ -12,7 +12,7 @@ class Datenschutz extends React.Component {
         window.scrollTo(0, 0);
         return(
             <div>
-                <Leiste subpage={this.props.subpage} style={{"position":"relative"}}/>
+                <Navbar subpage={this.props.subpage} style={{"position":"relative"}}/>
 
 
 

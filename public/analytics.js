@@ -30,7 +30,7 @@ var info={
     scrPixelDepth: screen.pixelDepth,
 };
 
-console.log('Es werden folgende Daten Übermittelt:');
+console.log('The following data is sent to us for analytics:');
 console.log(JSON.stringify(info));
 
 fetch("https://sunto-it.de/server.php/", {

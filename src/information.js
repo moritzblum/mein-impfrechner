@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import Leiste from "./leiste";
+import Navbar from "./navbar";
 import Footer from "./footer";
 
 class Information extends React.Component {
@@ -9,11 +9,26 @@ class Information extends React.Component {
         super(props);
     }
 
+    componentDidMount() {
+        const { hash } = window.location;
+        if (hash !== '') {
+            setTimeout(() => {
+                const id = hash.replace('#', '').slice(-2);
+                const element = document.getElementById(id);
+                console.log(id);
+                if (element) element.scrollIntoView();
+            }, 0);
+        }
+
+    }
+
+
+
     render(){
         window.scrollTo(0, 0);
         return(
             <div>
-                <Leiste subpage={this.props.subpage}  main_page={"gray"} faq={"gray"} information={"black"}  style={{"position":"relative"}}/>
+                <Navbar subpage={this.props.subpage} main_page={"gray"} faq={"gray"} information={"black"} style={{"position":"relative"}}/>
             <div style={{"position":"relative"}}>
                 <div className="container main_page_text">
                     <h1 style={{textAlign: "center", fontWeight: "bold"}}>Informationen</h1>

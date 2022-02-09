@@ -62,7 +62,7 @@ export function get_next_card(card_history, user_data) {
     if (!('risk_group' in user_data)) {
         return ['risk_group', {}];
     }
-    let risk_group = (user_data['risk_group']['value'] == true);
+    let risk_group = (user_data['risk_group']['value'] === true);
 
     // --- new start ---
     if(risk_group){
@@ -88,7 +88,7 @@ export function get_next_card(card_history, user_data) {
         user_pregnancy_week_exact = user_data['pregnancy_week_exact']['value'];
     }
 
-    let pregnant = (user_data['pregnant']['value'] == true);
+    let pregnant = (user_data['pregnant']['value'] === true);
 
     if (!('past_infection' in user_data)) {
         return ['past_infection', {}];
@@ -247,20 +247,20 @@ export function get_next_card(card_history, user_data) {
     }
 
     // mit 3 Impfungen ist man auf jeden Fall durch
-    if (user_data['number_vaccinations']['value'] == 3 || user_data['number_vaccinations']['value'] == 4 ){
+    if (user_data['number_vaccinations']['value'] === '3' || user_data['number_vaccinations']['value'] === '4' ){
         return create_output('result_8', [
             <No_further_recommendation/>]);
     }
 
     // collect vaccination information
 
-    if (user_data['number_vaccinations']['value'] == 1) {
+    if (user_data['number_vaccinations']['value'] === '1') {
         if (!('vaccination_1' in user_data)) {
             return ['vaccination_1', {}];
         }
     }
 
-    if (user_data['number_vaccinations']['value'] == 2) {
+    if (user_data['number_vaccinations']['value'] === '2') {
         if (!('vaccination_1' in user_data)) {
             return ['vaccination_1', {}];
         }
@@ -304,7 +304,7 @@ export function get_next_card(card_history, user_data) {
 
 
     // second shot
-    if (user_data['number_vaccinations']['value'] == 1) {
+    if (user_data['number_vaccinations']['value'] === '1') {
 
         if (!past_infection){
             let three_weeks_first_possible_date = date_operations.get_latest_date([
@@ -473,7 +473,7 @@ export function get_next_card(card_history, user_data) {
 
 
     // third shot
-    if (user_data['number_vaccinations']['value'] == 2) {
+    if (user_data['number_vaccinations']['value'] === '2') {
         let first_possible_date = date_operations.get_latest_date([
             date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
             date_operations.add_month_2_date(infection_date, 3),

@@ -1,6 +1,7 @@
 import React from "react";
 import * as form_logic from "./form_logic";
 import * as constants from "./texts";
+import {Link} from "react-router-dom";
 
 
 class Card extends React.Component {
@@ -23,11 +24,11 @@ class Card extends React.Component {
                     <div className="" style={{"position": "absolute", "bottom": "2%", "width": "96%"}}>
                         <div className="d-flex justify-content-between">
                             <button className="button button_back" onClick={this.props.handler}
-                                    id={this.props.id_back}>
+                                    name={this.props.card_name}>
                                 zurück
                             </button>
                             <button className="button button_next" type="submit" onClick={this.props.handler}
-                                    id={this.props.id_next}>
+                                    name={this.props.card_name}>
                                 weiter
                             </button>
                         </div>
@@ -357,13 +358,13 @@ class Card_start extends React.Component {
     render() {
         return (
             <div>
-                <div className="main_page_text container" style={{"margin-top": "2%"}}>
+                <div className="main_page_text container" style={{"marginTop": "2%"}}>
                     Die Berechnung basiert auf den Empfehlungen der <a target="_blank"
                                                                        href="https://www.rki.de/DE/Content/Infekt/EpidBull/epid_bull_node.html"
                                                                        style={{"color": "white"}}>Ständigen
                     Impfkommission (STIKO) des
-                    RKI</a> und wurde durch <a target="_blank" href="information.html#dr">Herrn Prof. Dr. Theodor
-                    Windhorst</a> fachwissenschaftlich begleitet.
+                    RKI</a> und wurde durch <Link to={this.props.subpage + "/information#dr"}>Herrn Prof. Dr. Theodor
+                    Windhorst</Link> fachwissenschaftlich begleitet.
                     <br/>
                     <br/>
                     Die aktuelle Version bildet den Stand vom <a target="_blank"
@@ -387,9 +388,9 @@ class Card_start extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="main_page_text container" style={{"margin-bottom": "2%"}}>
+                <div className="main_page_text container" style={{"marginBottom": "2%"}}>
                     Die Sicherheit Ihrer Daten hat für uns große Priorität. <br/>
-                    Mehr dazu erfahren Sie <a href="information.html" style={{"color": "white"}}>hier</a>...
+                    Mehr dazu erfahren Sie <Link to={this.props.subpage + "/information"}>hier</Link>...
                 </div>
 
             </div>
@@ -438,6 +439,10 @@ class Card_result extends React.Component {
         super(props);
     }
 
+    handle_arrow_down(e){
+        document.getElementById("vc-result").scrollTop = document.getElementById("vc-result").scrollHeight;
+    }
+
     render() {
         let result_text = [];
 
@@ -469,7 +474,7 @@ class Card_result extends React.Component {
                 </div>
 
                 <div className="vc-card-body">
-                    <div className="vc-result"
+                    <div className="vc-result" id="vc-result"
                          style={{"position": "relative", "height": "90%", "width": "100%", "overflowY": 'scroll'}}>
                         <h1>{constants.texts_german["recommendation"]}</h1>
                         <div key="k1" style={{marginLeft: "20px"}}>{result_text}</div>
@@ -489,6 +494,7 @@ class Card_result extends React.Component {
                                     id={this.props.id_back}>
                                 Zurück
                             </button>
+                            <p style={{textAlign:"right", marginRight:"5%"}} onClick={this.handle_arrow_down}><i className="fa fa-arrow-down"/></p>
                         </div>
                     </div>
                 </div>
@@ -698,7 +704,7 @@ export default class CardManager extends React.Component {
     control_click_handler(e) {
         let current_card_history = this.state.card_history;
         let current_user_data = this.state.user_data;
-        let current_card_id = button_id_2_card_id(e.target.id);
+        let current_card_id = e.target.name;
 
         let invalid = false;
 
@@ -866,14 +872,13 @@ export default class CardManager extends React.Component {
         switch (step) {
             case 'start':
                 return (
-                    <Card_start handler={this.control_click_handler}/>
+                    <Card_start handler={this.control_click_handler} subpage={this.props.subpage}/>
                     //<Card_maintenance />
                 );
             case 'vaccination_1':
                 return (
                     <Card title={<constants.Vaccination_1_header/>}
-                          id_next={"card_vaccination_1_next"}
-                          id_back={"card_vaccination_1_next"}
+                          card_name={"vaccination_1"}
                           handler={this.control_click_handler}
                           form_body={<Form_body_vaccination_brand_date key="1"
                                                                        instruction={<constants.Vaccination_1_instruction/>}
@@ -882,8 +887,7 @@ export default class CardManager extends React.Component {
             case 'vaccination_2':
                 return (
                     <Card title={<constants.Vaccination_2_header/>}
-                          id_next={"card_vaccination_2_next"}
-                          id_back={"card_vaccination_2_next"}
+                          card_name={"vaccination_2"}
                           handler={this.control_click_handler}
                           form_body={<Form_body_vaccination_brand_date key="2"
                                                                        instruction={<constants.Vaccination_2_instruction/>}
@@ -892,8 +896,8 @@ export default class CardManager extends React.Component {
             case 'vaccinated':
                 return (
                     <Card title={<constants.Vaccinated_header/>}
-                          id_next={"card_vaccinated_next"}
-                          id_back={"card_vaccinated_back"}
+
+                          card_name={"vaccinated"}
                           handler={this.control_click_handler}
                           form_body={
                               <Form_choice_radio key="vaccinated"
@@ -918,8 +922,7 @@ export default class CardManager extends React.Component {
             case 'pregnancy_week':
                 return (
                     <Card title={<constants.Pregnancy_week_header/>}
-                          id_next={"card_pregnancy_week_next"}
-                          id_back={"card_pregnancy_week_back"}
+                          card_name={"pregnancy_week"}
                           handler={this.control_click_handler}
                           form_body={
                               <Form_choice_radio key="pregnancy_week"
@@ -944,16 +947,14 @@ export default class CardManager extends React.Component {
             case 'pregnancy_week_exact':
                 return (
                     <Card title={<constants.Pregnancy_week_exact_header/>}
-                          id_next={"card_pregnancy_week_exact_next"}
-                          id_back={"card_pregnancy_week_exact_back"}
+                          card_name={"pregnancy_week_exact"}
                           handler={this.control_click_handler}
                           form_body={<Form_body_pregnancy_week_exact input_data_handler={this.handleInputChange}/>}/>
                 );
             case 'past_infection':
                 return (
                     <Card title={<constants.Past_infection_header/>}
-                          id_next={"card_past_infection_next"}
-                          id_back={"card_past_infection_back"}
+                          card_name={"past_infection"}
                           handler={this.control_click_handler}
                           form_body={
                               <Form_choice_radio key="past_infection"
@@ -978,8 +979,7 @@ export default class CardManager extends React.Component {
             case 'infection_date':
                 return (
                     <Card title={<constants.Infection_date_header/>}
-                          id_next={"card_infection_date_next"}
-                          id_back={"card_infection_date_back"}
+                          card_name={"infection_date"}
                           handler={this.control_click_handler}
                           form_body={<Form_date
                               key="infection_date"
@@ -996,16 +996,14 @@ export default class CardManager extends React.Component {
             case 'age':
                 return (
                     <Card title={<constants.Age_header/>}
-                          id_next={"card_age_next"}
-                          id_back={"card_age_back"}
+                          card_name={"age"}
                           handler={this.control_click_handler}
                           form_body={<Form_body_age input_data_handler={this.handleInputChange}/>}/>
                 );
             case 'symptoms_registered':
                 return (
                     <Card title={<constants.Symptoms_registered_header/>}
-                          id_next={"card_symptoms_registered_next"}
-                          id_back={"card_symptoms_registered_back"}
+                          card_name={"symptoms_registered"}
                           handler={this.control_click_handler}
                           form_body={
                               <Form_choice_radio key="symptoms_registered"
@@ -1032,8 +1030,7 @@ export default class CardManager extends React.Component {
             case 'symptoms_end_date':
                 return (
                     <Card title={<constants.Symptoms_end_date_header/>}
-                          id_next={"card_symptoms_end_date_next"}
-                          id_back={"card_symptoms_end_date_back"}
+                          card_name={"symptoms_end_date"}
                           handler={this.control_click_handler}
                           form_body={<Form_date
                               key="symptoms_end_date"
@@ -1050,8 +1047,7 @@ export default class CardManager extends React.Component {
             case 'risk_group':
                 return (
                     <Card title={<constants.Risk_group_header/>}
-                          id_next={"card_risk_group_next"}
-                          id_back={"card_risk_group_back"}
+                          card_name={"risk_group"}
                           handler={this.control_click_handler}
                           form_body={
                               <Form_choice_radio key="risk_group"
@@ -1076,8 +1072,7 @@ export default class CardManager extends React.Component {
             case 'pregnant':
                 return (
                     <Card title={<constants.Pregnant_header/>}
-                          id_next={"card_pregnant_next"}
-                          id_back={"card_pregnant_back"}
+                          card_name={"pregnant"}
                           handler={this.control_click_handler}
                           form_body={
                               <Form_choice_radio key="pregnant"
@@ -1102,8 +1097,7 @@ export default class CardManager extends React.Component {
             case 'number_vaccinations':
                 return (
                     <Card title={<constants.Number_vaccinations_header/>}
-                          id_next={"card_number_vaccinations_next"}
-                          id_back={"card_number_vaccinations_back"}
+                          card_name={"number_vaccinations"}
                           handler={this.control_click_handler}
                           form_body={
                               <Form_choice_radio key="number_vaccinations"
@@ -1125,8 +1119,7 @@ export default class CardManager extends React.Component {
             case 'got_unregistered_vaccination':
                 return (
                     <Card title={<constants.Got_unregistered_vaccination_header/>}
-                          id_next={"card_got_unregistered_vaccination_next"}
-                          id_back={"card_got_unregistered_vaccination_back"}
+                          card_name={"got_unregistered_vaccination"}
                           handler={this.control_click_handler}
                           form_body={
                               <Form_choice_radio key="got_unregistered_vaccination"
@@ -1151,8 +1144,7 @@ export default class CardManager extends React.Component {
             case 'unregistered_vaccination_date':
                 return (
                     <Card title={<constants.Unregistered_vaccination_date_header/>}
-                          id_next={"card_unregistered_vaccination_date_next"}
-                          id_back={"card_unregistered_vaccination_date_back"}
+                          card_name={"unregistered_vaccination_date"}
                           handler={this.control_click_handler}
                           form_body={<Form_date
                               key="unregistered_vaccination_date"
@@ -1169,8 +1161,7 @@ export default class CardManager extends React.Component {
             /* --- NEW --- */
             case 'exception':
                 return (<Card title={<constants.Exception_header/>}
-                              id_next={"card_exception_next"}
-                              id_back={"card_exception_back"}
+                              card_name={"exception"}
                               handler={this.control_click_handler}
                               form_body={<Form_body_choice_check
                                   key="exception"
@@ -1185,8 +1176,7 @@ export default class CardManager extends React.Component {
             case 'breast_feeding':
                 return (
                     <Card title={<constants.Breast_feeding_header/>}
-                          id_next={"card_breast_feeding_next"}
-                          id_back={"card_breast_feeding_back"}
+                          card_name={"breast_feeding"}
                           handler={this.control_click_handler}
                           form_body={
                               <Form_choice_radio key="breast_feeding"

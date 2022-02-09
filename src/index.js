@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 
 import './main.css'
-import Leiste from "./leiste";
+import Navbar from "./navbar";
 import News from "./news";
 import Footer from "./footer";
 import CardManager from "./card_manager"
@@ -26,8 +26,8 @@ class Main extends React.Component {
     render(){
         return(
             <div>
-                <Leiste subpage={this.props.subpage} main_page={"black"} faq={"gray"} information={"gray"} style={{"position":"relative"}}/>
-                <CardManager appointment={this.props.appointment}/>
+                <Navbar subpage={this.props.subpage} main_page={"black"} faq={"gray"} information={"gray"} style={{"position":"relative"}}/>
+                <CardManager subpage={this.props.subpage} appointment={this.props.appointment}/>
                 <News />
                 <Footer subpage={this.props.subpage} />
             </div>

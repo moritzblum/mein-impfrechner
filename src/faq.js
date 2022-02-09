@@ -1,5 +1,5 @@
 import React from "react";
-import Leiste from "./leiste";
+import Navbar from "./navbar";
 import Footer from "./footer";
 
 class Faq extends React.Component {
@@ -31,7 +31,7 @@ class Faq extends React.Component {
         window.scrollTo(0, 0);
         return (
             <div>
-                <Leiste subpage={this.props.subpage} main_page={"gray"} faq={"black"} information={"gray"}
+                <Navbar subpage={this.props.subpage} main_page={"gray"} faq={"black"} information={"gray"}
                         style={{"position": "relative"}}/>
                 <div style={{"position": "relative"}}>
                     <h1 style={{textAlign: "center", fontWeight: "bold"}}>FAQs</h1>
