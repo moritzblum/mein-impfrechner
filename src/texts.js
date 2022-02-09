@@ -360,7 +360,7 @@ export function Got_unregistered_vaccination_instruction() {
 export function Breast_feeding_instruction() {
     // #37
     return (<span>
-        Sind sie momentan am stillen?
+        Befinden Sie sich aktuell in Stillzeit?
     </span>)
 }
 
