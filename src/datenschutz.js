@@ -9,6 +9,7 @@ class Datenschutz extends React.Component {
     }
 
     render(){
+        window.scrollTo(0, 0);
         return(
             <div>
                 <Leiste subpage={this.props.subpage} style={{"position":"relative"}}/>

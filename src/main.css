@@ -40,9 +40,8 @@ a:hover {
     text-decoration: underline;
 }
 
-#navbar-lg a:hover {
+#navbar-lg .navbar_link:hover {
     color: black !important;
-    text-decoration: underline;
 }
 
 textarea{

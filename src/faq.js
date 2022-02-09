@@ -28,6 +28,7 @@ class Faq extends React.Component {
 
 
     render() {
+        window.scrollTo(0, 0);
         return (
             <div>
                 <Leiste subpage={this.props.subpage} main_page={"gray"} faq={"black"} information={"gray"}

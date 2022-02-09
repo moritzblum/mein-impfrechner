@@ -7,6 +7,7 @@ import {Disclaimer} from "./texts";
 class Impressum extends React.Component {
 
     render() {
+        window.scrollTo(0, 0);
         return (
             <div>
                 <Leiste subpage={this.props.subpage} style={{"position":"relative"}}/>
@@ -40,7 +41,7 @@ class Impressum extends React.Component {
                         <div className="mb-3">
                             <label htmlFor="field_terms">Ihr Name:</label>
                             <input id="field_terms" type="text" className="form-control" name="NameVorname"
-                                   value="" size="30" maxLength="50"/>
+                                   size="30" maxLength="50" onChange={console.log}/>
                         </div>
 
                         <div className="form-group">
