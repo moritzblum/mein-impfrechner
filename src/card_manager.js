@@ -28,7 +28,7 @@ class Card extends React.Component {
                                 zurück
                             </button>
                             <button className="button button_next" type="submit" onClick={this.props.handler}
-                                    name={this.props.card_name}>
+                                    name={this.props.card_name} id="next_button_id">
                                 weiter
                             </button>
                         </div>
@@ -39,16 +39,17 @@ class Card extends React.Component {
     }
 }
 
-function on_enter_next(input_field_id, next_button_id) {
+function on_enter_next(input_field_id) {
     let input = document.getElementById(input_field_id);
 
     input.addEventListener("keyup", function (event) {
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
+            console.log("pressed enter");
             // Cancel the default action, if needed
             event.preventDefault();
             // Trigger the button element with a click
-            document.getElementById(next_button_id).click();
+            document.getElementById("next_button_id").click();
         }
     });
 }
@@ -129,13 +130,14 @@ class Form_body_vaccination_brand_date extends React.Component {
     }
 }
 
+
 class Form_body_choice_check extends React.Component {
     constructor(props) {
         super(props);
     }
 
     componentDidMount() {
-        on_enter_next(this.props.input_id, this.props.next_button_id)
+        on_enter_next(this.props.input_id)
     }
 
     render() {
@@ -152,7 +154,6 @@ class Form_body_choice_check extends React.Component {
                     </div>
             );
         }
-
 
         return (
             <div className="form-group" id={this.props.input_id} key={this.props.input_id}>
@@ -173,7 +174,7 @@ class Form_choice_radio extends React.Component {
     }
 
     componentDidMount() {
-        on_enter_next(this.props.input_id, this.props.next_button_id)
+        on_enter_next(this.props.input_id)
     }
 
     validation(i) {
@@ -213,16 +214,10 @@ class Form_choice_radio extends React.Component {
 }
 
 
-
 class Form_date extends React.Component {
     constructor(props) {
         super(props);
     }
-
-    componentDidMount() {
-        on_enter_next("date", this.props.next_button_id)
-    }
-
 
     render() {
         return (
@@ -251,7 +246,7 @@ class Form_body_age extends React.Component {
     }
 
     componentDidMount() {
-        on_enter_next("age_input_field", "card_age_next")
+        on_enter_next("age_input_field")
     }
 
     render() {
@@ -290,9 +285,8 @@ class Form_body_pregnancy_week_exact extends React.Component {
     }
 
     componentDidMount() {
-        on_enter_next("pregnancy_week_exact_input_field", "card_pregnancy_week_exact_next")
+        on_enter_next("pregnancy_week_exact_input_field")
     }
-
 
     render() {
         return (
@@ -329,6 +323,10 @@ class DatePicker extends React.Component {
 
     handle_manual_change(event) {
         this.handle_date_selection_internal(event.target.value);
+    }
+
+    componentDidMount() {
+        on_enter_next("date")
     }
 
     render() {
@@ -439,7 +437,7 @@ class Card_result extends React.Component {
         super(props);
     }
 
-    handle_arrow_down(e){
+    handle_arrow_down(){
         document.getElementById("vc-result").scrollTop = document.getElementById("vc-result").scrollHeight;
     }
 
@@ -617,70 +615,6 @@ function vis_user_data(user_data) {
 }
 
 
-function button_id_2_card_id(button_id) {
-    if (button_id.includes('_start_')) {
-        return 'start';
-    }
-    if (button_id.includes('_got_unregistered_vaccination_')) {
-        return 'got_unregistered_vaccination';
-    }
-    if (button_id.includes('_exception_')) {
-        return 'exception';
-    }
-    if (button_id.includes('_breast_feeding_')) {
-        return 'breast_feeding';
-    }
-    if (button_id.includes('_unregistered_vaccination_date_')) {
-        return 'unregistered_vaccination_date';
-    }
-    if (button_id.includes('_vaccination_last_')) {
-        return 'vaccination_last';
-    }
-    if (button_id.includes('_vaccination_1_')) {
-        return 'vaccination_1';
-    }
-    if (button_id.includes('_vaccination_2_')) {
-        return 'vaccination_2';
-    }
-    if (button_id.includes('_vaccinated_')) {
-        return 'vaccinated';
-    }
-    if (button_id.includes('_pregnancy_week_exact_')) {
-        return 'pregnancy_week_exact';
-    }
-    if (button_id.includes('_pregnancy_week_')) {
-        return 'pregnancy_week';
-    }
-    if (button_id.includes('_past_infection_')) {
-        return 'past_infection';
-    }
-    if (button_id.includes('_infection_date_')) {
-        return 'infection_date';
-    }
-    if (button_id.includes('_age_')) {
-        return 'age';
-    }
-    if (button_id.includes('_symptoms_end_date_')) {
-        return 'symptoms_end_date';
-    }
-    if (button_id.includes('_symptoms_registered_')) {
-        return 'symptoms_registered';
-    }
-    if (button_id.includes('_risk_group_')) {
-        return 'risk_group';
-    }
-    if (button_id.includes('_pregnant_')) {
-        return 'pregnant';
-    }
-    if (button_id.includes('_number_vaccinations_')) {
-        return 'number_vaccinations';
-    }
-    if (button_id.includes('_result_')) {
-        return 'result';
-    }
-}
-
-
 export default class CardManager extends React.Component {
     constructor(props) {
         super(props);
@@ -708,6 +642,8 @@ export default class CardManager extends React.Component {
                     window.scrollTo(0, 0);
                 }
 
+
+                /* Probybly not longer required
                 let forms = document.querySelectorAll('.needs-validation');
 
                 Array.prototype.slice.call(forms)
@@ -719,7 +655,7 @@ export default class CardManager extends React.Component {
                             }
                             form.classList.add('was-validated')
                         }, false)
-                    })
+                    })*/
 
                 // form validation
                 // number text-field
@@ -895,7 +831,6 @@ export default class CardManager extends React.Component {
                           form_body={
                               <Form_choice_radio key="vaccinated"
                                                  input_id="vaccinated_input"
-                                                 next_button_id="card_vaccinated_next"
                                                  choices={[
                                                      [true, constants.texts_german["yes"]],
                                                      [false, constants.texts_german["no"]]]}
@@ -920,7 +855,6 @@ export default class CardManager extends React.Component {
                           form_body={
                               <Form_choice_radio key="pregnancy_week"
                                                  input_id="pregnancy_week_input"
-                                                 next_button_id="card_past_infection_next"
                                                  choices={[
                                                      [true, constants.texts_german["yes"]],
                                                      [false, constants.texts_german["no"]]]}
@@ -952,7 +886,6 @@ export default class CardManager extends React.Component {
                           form_body={
                               <Form_choice_radio key="past_infection"
                                                  input_id="past_infection_input"
-                                                 next_button_id="card_past_infection_next"
                                                  choices={[
                                                      [true, constants.texts_german["yes"]],
                                                      [false, constants.texts_german["no"]]]}
@@ -976,7 +909,6 @@ export default class CardManager extends React.Component {
                           handler={this.control_click_handler}
                           form_body={<Form_date
                               key="infection_date"
-                              next_button_id="card_infection_date_next"
                               intro={<div><constants.Symptoms_end_date_instruction/> <i className="fas fa-info-circle"
                                                                                         data-bs-toggle="modal"
                                                                                         data-bs-target="#modal_infection_date"/>
@@ -1001,7 +933,6 @@ export default class CardManager extends React.Component {
                           form_body={
                               <Form_choice_radio key="symptoms_registered"
                                                  input_id="symptoms_registered_input"
-                                                 next_button_id="symptoms_registered_next"
                                                  choices={[
                                                      ["never", constants.texts_german["symptoms_registered"]["never"]],
                                                      ["still", constants.texts_german["symptoms_registered"]["still"]],
@@ -1027,7 +958,6 @@ export default class CardManager extends React.Component {
                           handler={this.control_click_handler}
                           form_body={<Form_date
                               key="symptoms_end_date"
-                              next_button_id="card_unregistered_vaccination_date_next"
                               intro={<div><constants.Symptoms_end_date_instruction/> <i className="fas fa-info-circle"
                                                                                                     data-bs-toggle="modal"
                                                                                                     data-bs-target="#modal_symptoms_end_date"/>
@@ -1045,7 +975,6 @@ export default class CardManager extends React.Component {
                           form_body={
                               <Form_choice_radio key="risk_group"
                                                  input_id="risk_group_input"
-                                                 next_button_id="card_risk_group_next"
                                                  choices={[
                                                      [true, constants.texts_german["yes"]],
                                                      [false, constants.texts_german["no"]]]}
@@ -1070,7 +999,6 @@ export default class CardManager extends React.Component {
                           form_body={
                               <Form_choice_radio key="pregnant"
                                                  input_id="pregnant_input"
-                                                 next_button_id="card_pregnant_next"
                                                  choices={[
                                                      [true, constants.texts_german["yes"]],
                                                      [false, constants.texts_german["no"]]]}
@@ -1095,7 +1023,6 @@ export default class CardManager extends React.Component {
                           form_body={
                               <Form_choice_radio key="number_vaccinations"
                                                  input_id="number_vaccinations_input"
-                                                 next_button_id="card_number_vaccinations_next"
                                                  choices={[
                                                      [1, constants.texts_german["number_vaccinations"]["one"]],
                                                      [2, constants.texts_german["number_vaccinations"]["two"]],
@@ -1117,7 +1044,6 @@ export default class CardManager extends React.Component {
                           form_body={
                               <Form_choice_radio key="got_unregistered_vaccination"
                                                  input_id="got_unregistered_vaccination_input"
-                                                 next_button_id="card_got_unregistered_vaccination_next"
                                                  choices={[
                                                      [true, constants.texts_german["yes"]],
                                                      [false, constants.texts_german["no"]]]}
@@ -1141,7 +1067,6 @@ export default class CardManager extends React.Component {
                           handler={this.control_click_handler}
                           form_body={<Form_date
                               key="unregistered_vaccination_date"
-                              next_button_id="card_unregistered_vaccination_date_next"
                               intro={<div><constants.Unregistered_vaccination_date_instruction/> <i className="fas fa-info-circle"
                                                                                                     data-bs-toggle="modal"
                                                                                                     data-bs-target="#modal_got_unregistered_vaccination"/>
@@ -1159,7 +1084,6 @@ export default class CardManager extends React.Component {
                               form_body={<Form_body_choice_check
                                   key="exception"
                                   input_id="choice_check_input"
-                                  next_button_id="card_exception_next"
                                   choices={[["immun_def", constants.texts_german["exception"]["label_immun_def"]],["healthcare_staff", constants.texts_german["exception"]["label_healthcare_staff"]],["risk_group_contact", constants.texts_german["exception"]["label_risk_group_contact"]]]}
                                   intro={<constants.Exception_instruction/>}
                                   input_data_handler={this.handleInputChange}/>}/>
@@ -1174,7 +1098,6 @@ export default class CardManager extends React.Component {
                           form_body={
                               <Form_choice_radio key="breast_feeding"
                                                  input_id="breast_feeding_input"
-                                                 next_button_id="card_breast_feeding_next"
                                                  choices={[
                                                      [true, constants.texts_german["yes"]],
                                                      [false, constants.texts_german["no"]]]}
