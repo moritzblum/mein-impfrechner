@@ -518,9 +518,9 @@ export function Pregnancy_week_exact_header() {
 export const texts_german = {
     "date_label": "Datum",
     "exception": {
-        "label_immun_def": "leiden an Immunschwäche",
-        "label_healthcare_staff": "in einer medizinischen oder pflegerischen Einrichtung betreut oder wohnhaft",
-        "label_risk_group_contact": "in einer medizinischen oder pflegerischen Einrichtung tätig",
+        "label_immun_def": "Vorliegen einer Immunschwäche",
+        "label_healthcare_staff": "Betreut bzw. wohnhaft in medizinischer oder pflegerischer Einrichtung",
+        "label_risk_group_contact": "Tätigkeit in medizinischer oder pflegerischer Einrichtung",
     },
     "form_validation": {
         "valid": "Eingabe ist valide",

@@ -539,13 +539,6 @@ function vis_user_data(user_data) {
         }
     }
 
-    if ('past_infection' in user_data['user_data']) {
-        if (user_data['user_data']['past_infection']['value']) {
-            user_data_list.push(<li key='past_infection'>{
-                <constants.Past_infection_header/>}: {constants.texts_german['yes']}</li>);
-        }
-    }
-
     if ('infection_date' in user_data['user_data']) {
         user_data_list.push(<li key='infection_date'>{
             <constants.Infection_date_header/>}: {new Date(user_data['user_data']['infection_date']['date']).toLocaleDateString('de-DE', constants.DATE_OPTIONS)}</li>);

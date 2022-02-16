@@ -69,7 +69,7 @@ class Faq extends React.Component {
                             <br/>
                         </div>
 
-                        <button className="accordion">Unterscheidung Corona-Testverfahren</button>
+                        <button className="accordion">Welche Corona-Testverfahren gibt es?</button>
                         <div className="panel">
                             <br/>
                             <br/>
@@ -212,7 +212,7 @@ class Faq extends React.Component {
                             <br/>
                         </div>
 
-                        <button className="accordion">Genesenennachweis</button>
+                        <button className="accordion">Was ist ein Genesenennachweis?</button>
                         <div className="panel">
                             <br/>
                             Personen, die eine bestätigte Infektion mit dem Coronavirus SARS-CoV-2 durchgemacht haben,
@@ -239,7 +239,7 @@ class Faq extends React.Component {
                             <br/>
                         </div>
 
-                        <button className="accordion">Warum soll ich mich impfen lassen?</button>
+                        <button className="accordion">Warum sollte ich mich impfen lassen?</button>
                         <div className="panel">
                             <br/>
                             Niemand kann vorhersagen, ob eine COVID-19-Erkrankung mild oder schwer verläuft. Am

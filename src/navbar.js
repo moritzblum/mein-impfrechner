@@ -14,14 +14,14 @@ class Navbar extends React.Component {
                     <div id="navbar-lg">
                         <Link to={this.props.subpage + '/'} style={{"color:": "green"}}>
                             <img src="img/mein-impfrechner-logo.svg" style={{"height": "1.5em", "width": "1.5em"}} alt="Spritze"/>
-                            <span style={{color:this.props.main_page}} className="navbar_link">Mein Impfrechner</span>
+                            <span style={{color:this.props.main_page}} className="navbar_link">Mein-Impfrechner</span>
                         </Link>
-                        &nbsp;
+                        &nbsp;&nbsp;
                         <Link to={this.props.subpage + '/faq/'} >
                             {/*&nbsp;<i style={{color:this.props.faq}} className="fas fa-question"/>*/}
                             <span style={{color:this.props.faq}} className="navbar_link">FAQs</span>
                         </Link>
-                        &nbsp;
+                        &nbsp;&nbsp;
                         <Link to={this.props.subpage + '/information/'}>
                             {/*&nbsp;<i style={{color:this.props.information}} className="fas fa-info"/>*/}
                             <span style={{color:this.props.information}} className="navbar_link">Informationen</span>
