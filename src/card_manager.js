@@ -45,7 +45,6 @@ function on_enter_next(input_field_id) {
     input.addEventListener("keyup", function (event) {
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
-            console.log("pressed enter");
             // Cancel the default action, if needed
             event.preventDefault();
             // Trigger the button element with a click
@@ -1115,6 +1114,7 @@ export default class CardManager extends React.Component {
                     />
                 );
             case 'result':
+                console.log(this.state.user_data);
                 return (
                     <Card_result handler={this.control_click_handler} appointment={this.props.appointment} user_data={{
                         'user_data': this.state.user_data,
