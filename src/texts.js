@@ -146,7 +146,7 @@ export function Second_vaccination_range(props) {
     let now = new Date();
     now.setHours(0, 0, 0, 0);
 
-    if (parseDate(props.date_second) < now) {
+    if ((parseDate(props.date_second) <= now) || (parseDate(props.date_second) === undefined)) {
         // 15.1
         return (<div>
             Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine
@@ -514,13 +514,18 @@ export function Pregnancy_week_exact_header() {
     return (<span>Schwangerschaftswoche</span>)
 }
 
+// todo new: add number
+export function Vaccination_3_header() {
+    return (<span>3. Corona-Schutzimpfung</span>)
+}
+
 
 export const texts_german = {
     "date_label": "Datum",
     "exception": {
         "label_immun_def": "Vorliegen einer Immunschwäche",
-        "label_healthcare_staff": "Betreut bzw. wohnhaft in medizinischer oder pflegerischer Einrichtung",
-        "label_risk_group_contact": "Tätigkeit in medizinischer oder pflegerischer Einrichtung",
+        "label_healthcare": "Betreut bzw. wohnhaft in medizinischer oder pflegerischer Einrichtung",
+        "label_healthcare_staff": "Tätigkeit in medizinischer oder pflegerischer Einrichtung",
     },
     "form_validation": {
         "valid": "Eingabe ist valide",
@@ -533,6 +538,13 @@ export const texts_german = {
     },
     "yes": "Ja",
     "no": "Nein",
+    "yes_single": "Ja, ein mal",
+    "yes_multiple": "Ja, mehrfach",
+    "past_infection": {
+        "no": "Nein",
+        "yes_single": "Ja, ein mal",
+        "yes_multiple": "Ja, mehrfach",
+    },
     "symptoms_registered": {
         "never": "Nein, ich hatte nie Symptome",
         "still": "Ja, ich habe immer noch Symptome",

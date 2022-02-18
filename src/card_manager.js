@@ -144,7 +144,7 @@ class Form_body_choice_check extends React.Component {
 
         for (let i = 0; i < this.props.choices.length; i++) {
             choices.push(
-                    <div className="form-check">
+                    <div className="form-check" key={"choice_div" + i}>
                         <input className="form-check-input" type="checkbox" name={this.props.choices[i][0]} value={true}
                                id={"choice_check" + i} onChange={this.props.input_data_handler}/>
                         <label className="form-check-label" htmlFor="flexCheckDefault">
@@ -179,8 +179,8 @@ class Form_choice_radio extends React.Component {
     validation(i) {
         if (i === this.props.choices.length - 1) {
             return (
-                [<div className="valid-feedback">{constants.texts_german["form_validation"]["valid"]}</div>,
-                    <div className="invalid-feedback">{constants.texts_german["form_validation"]["invalid"]}</div>]
+                [<div key="valid" className="valid-feedback">{constants.texts_german["form_validation"]["valid"]}</div>,
+                    <div key="invalid" className="invalid-feedback">{constants.texts_german["form_validation"]["invalid"]}</div>]
             );
         }
     }
@@ -190,7 +190,7 @@ class Form_choice_radio extends React.Component {
 
         for (let i = 0; i < this.props.choices.length; i++) {
             choices.push(
-                <div className="form-check">
+                <div className="form-check" key={"radio_div" + i}>
                     <input className="form-check-input radio-validation" type="radio" id={"flexRadioDefault" + i}
                            onChange={this.props.input_data_handler}
                            name="value"
@@ -418,7 +418,7 @@ class Card_maintenance extends React.Component {
                                 garantieren können, ist es notwendig, den Impfrechner regelmäßig zu aktualisieren. <br/><br/>
 
                                 Der Impfrechner ist schon bald wieder für Sie erreichbar. Die Wartungsarbeiten sind
-                                spätestens am 26.01.2022 abgeschlossen. Wir danken Ihnen für Ihr Verständnis!
+                                voraussichtlich am 19.02.2022 abgeschlossen. Wir danken Ihnen für Ihr Verständnis!
                                 <br/>
                                 Bleiben Sie gesund.
                             </div>
@@ -452,14 +452,14 @@ class Card_result extends React.Component {
             const options = this.props.user_data["entered_data"]["value"];
 
             result_text.push(options[0]);
-            result_text.push(<div><br/></div>);
-            result_text.push(<constants.Alternative/>);
+            result_text.push(<div key="new_line"><br/></div>);
+            result_text.push(<constants.Alternative key="alternative_text"/>);
 
             let result_text_alternatives = [];
             for (let i = 1; i < options.length; i++) {
                 result_text_alternatives.push(<li key={i}>{options[i]}</li>);
             }
-            result_text.push(<ul>{result_text_alternatives}</ul>);
+            result_text.push(<ul key='list_start'>{result_text_alternatives}</ul>);
         }
 
         return (
@@ -504,8 +504,6 @@ class Card_result extends React.Component {
 function vis_user_data(user_data) {
     let user_data_list = [];
 
-
-
     if ('age' in user_data['user_data']) {
         user_data_list.push(<li key='age'><constants.Age_header/>: {user_data['user_data']['age']['value']}</li>);
     }
@@ -518,15 +516,15 @@ function vis_user_data(user_data) {
     }
 
     if ('immun_def' in user_data['user_data']) {
-        user_data_list.push(<li key='immun_def'>{constants.texts_german["exception"]["label_immun_def"]}: {user_data['user_data']['immun_def']['value']}</li>);
+        user_data_list.push(<li key='immun_def'>{constants.texts_german["exception"]["label_immun_def"]}: {constants.texts_german['yes']}</li>);
     }
 
     if ('healthcare_staff' in user_data['user_data']) {
-        user_data_list.push(<li key='healthcare_staff'>{constants.texts_german["exception"]["label_healthcare_staff"]}: {user_data['user_data']['healthcare_staff']['value']}</li>);
+        user_data_list.push(<li key='healthcare_staff'>{constants.texts_german["exception"]["label_healthcare_staff"]}: {constants.texts_german['yes']}</li>);
     }
 
-    if ('risk_group_contact' in user_data['user_data']) {
-        user_data_list.push(<li key='risk_group_contact'>{constants.texts_german["exception"]["label_risk_group_contact"]}: {user_data['user_data']['risk_group_contact']['value']}</li>);
+    if ('healthcare' in user_data['user_data']) {
+        user_data_list.push(<li key='healthcare'>{constants.texts_german["exception"]["label_healthcare"]}: {constants.texts_german['yes']}</li>);
     }
 
     if ('pregnant' in user_data['user_data']) {
@@ -607,6 +605,12 @@ function vis_user_data(user_data) {
     if ('vaccination_2' in user_data['user_data']) {
         user_data_list.push(<li key='vaccination_2'>
             <constants.Vaccination_2_header/>: {user_data['user_data']['vaccination_2']['value']} am {new Date(user_data['user_data']['vaccination_2']['date']).toLocaleDateString('de-DE', constants.DATE_OPTIONS)}
+        </li>);
+    }
+
+    if ('vaccination_3' in user_data['user_data']) {
+        user_data_list.push(<li key='vaccination_3'>
+            <constants.Vaccination_2_header/>: {user_data['user_data']['vaccination_3']['value']} am {new Date(user_data['user_data']['vaccination_3']['date']).toLocaleDateString('de-DE', constants.DATE_OPTIONS)}
         </li>);
     }
 
@@ -821,6 +825,15 @@ export default class CardManager extends React.Component {
                                                                        instruction={<constants.Vaccination_2_instruction/>}
                                                                        input_data_handler={this.handleInputChange}/>}/>
                 );
+            case 'vaccination_3':
+                return (
+                    <Card title={<constants.Vaccination_3_header/>}
+                          card_name={"vaccination_3"}
+                          handler={this.control_click_handler}
+                          form_body={<Form_body_vaccination_brand_date key="3"
+                                                                       instruction={<constants.Vaccination_3_instruction/>}
+                                                                       input_data_handler={this.handleInputChange}/>}/>
+                );
             case 'vaccinated':
                 return (
                     <Card title={<constants.Vaccinated_header/>}
@@ -886,8 +899,9 @@ export default class CardManager extends React.Component {
                               <Form_choice_radio key="past_infection"
                                                  input_id="past_infection_input"
                                                  choices={[
-                                                     [true, constants.texts_german["yes"]],
-                                                     [false, constants.texts_german["no"]]]}
+                                                     ["no", constants.texts_german["past_infection"]["no"]],
+                                                     ["yes_single", constants.texts_german["past_infection"]["yes_single"]],
+                                                     ["yes_multiple", constants.texts_german["past_infection"]["yes_multiple"]]]}
                                                  input_data_handler={this.handleInputChange}
                                                  intro={<div>
                                                      <label>
@@ -908,7 +922,7 @@ export default class CardManager extends React.Component {
                           handler={this.control_click_handler}
                           form_body={<Form_date
                               key="infection_date"
-                              intro={<div><constants.Symptoms_end_date_instruction/> <i className="fas fa-info-circle"
+                              intro={<div><constants.Infection_date_instruction/> <i className="fas fa-info-circle"
                                                                                         data-bs-toggle="modal"
                                                                                         data-bs-target="#modal_infection_date"/>
                                   <Modal_popup button_id="modal_infection_date"
@@ -1083,7 +1097,7 @@ export default class CardManager extends React.Component {
                               form_body={<Form_body_choice_check
                                   key="exception"
                                   input_id="choice_check_input"
-                                  choices={[["immun_def", constants.texts_german["exception"]["label_immun_def"]],["healthcare_staff", constants.texts_german["exception"]["label_healthcare_staff"]],["risk_group_contact", constants.texts_german["exception"]["label_risk_group_contact"]]]}
+                                  choices={[["immun_def", constants.texts_german["exception"]["label_immun_def"]],["healthcare", constants.texts_german["exception"]["label_healthcare"]],["healthcare_staff", constants.texts_german["exception"]["label_healthcare_staff"]]]}
                                   intro={<constants.Exception_instruction/>}
                                   input_data_handler={this.handleInputChange}/>}/>
                 );

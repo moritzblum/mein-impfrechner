@@ -33,15 +33,20 @@ export function add_month_2_date(date, month) {
     return new Date(date.setMonth(date.getMonth() + month));
 }
 
+
 export function isToday(someDate){
     const today = new Date()
-    return ((someDate.getDay() == today.getDay()) &&
-        (someDate.getMonth() == today.getMonth()) &&
-        (someDate.getFullYear() == today.getFullYear()))
+    return ((someDate.getDay() === today.getDay()) &&
+        (someDate.getMonth() === today.getMonth()) &&
+        (someDate.getFullYear() === today.getFullYear()))
 }
 
 
+
 export function parseDate(input) {
+    if(input===undefined){
+        return undefined;
+    }
     let parts = input.match(/(\d+)/g);
     // note parts[1]-1
     return new Date(parseInt(parts[2]) , parts[1]-1, parts[0]);
@@ -52,10 +57,6 @@ export function parseDate(input) {
 export function CreateDateStringModified(props){
     const today = new Date()
     today.setHours(23, 59, 59);
-
-    console.log(parseDate(props.date).toLocaleDateString());
-    console.log(today.toLocaleDateString());
-    console.log(isToday(parseDate(props.date)));
 
     if(isToday(parseDate(props.date))){
         return(<span><b>sofort</b></span>)
