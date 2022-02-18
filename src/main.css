@@ -107,6 +107,17 @@ input[type="text"]
     border-radius: 5px;
 }
 
+.needs-validation{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    padding: 2%;
+}
+
+.needs-validation::-webkit-scrollbar {
+    display: none;
+    padding: 2%;
+}
+
 .vc-result::-webkit-scrollbar {
     display: none;
     padding: 2%;

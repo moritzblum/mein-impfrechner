@@ -61,7 +61,7 @@ export function No_recommendation_symptoms() {
     // #6
     return (<div>
         Basierend auf der derzeitigen STIKO-Empfehlung sollten Sie mit der Impfung warten, bis die Symptome abklingen.
-        Aktuell wird ein Impftermin <b>vier Wochen nach Ihrem individuellen Symptomende empfohlen</b>. <br/>
+        Aktuell wird ein Impftermin <b>vier Wochen nach Ihrem individuellen Symptomende empfohlen</b>. <br/><br/>
         *Sollten Ihre Symptome länger andauern, besprechen Sie Ihre persönliche Situation mit einer Ärztin / einem Arzt.
     </div>)
 }
@@ -146,7 +146,8 @@ export function Second_vaccination_range(props) {
     let now = new Date();
     now.setHours(0, 0, 0, 0);
 
-    if ((parseDate(props.date_second) <= now) || (parseDate(props.date_second) === undefined)) {
+    // todo wenn zwei gleiche Tage, dann sollte in diesen Fall gegangen werden
+    if ((parseDate(props.date_second) <= now) || (parseDate(props.date_second) === undefined) || (parseDate(props.date_first).getDate() === parseDate(props.date_second).getDate())) {
         // 15.1
         return (<div>
             Basierend auf der derzeitigen STIKO-Empfehlung und Ihren persönlichen Angaben empfehlen wir Ihnen, eine
@@ -175,7 +176,7 @@ export function Second_vaccination_range_alternative(props) {
     let now = new Date();
     now.setHours(0, 0, 0, 0);
 
-    if (parseDate(props.date_second) < now) {
+    if ((parseDate(props.date_second) <= now) || (parseDate(props.date_second) === undefined) || (parseDate(props.date_first).getDate() === parseDate(props.date_second).getDate())) {
         // #16.1
         return (<div> Sie können sich mit <b>{props.vaccination_brand}</b> ab <CreateDateStringModified
             date={props.date_first}/> impfen
@@ -526,6 +527,7 @@ export const texts_german = {
         "label_immun_def": "Vorliegen einer Immunschwäche",
         "label_healthcare": "Betreut bzw. wohnhaft in medizinischer oder pflegerischer Einrichtung",
         "label_healthcare_staff": "Tätigkeit in medizinischer oder pflegerischer Einrichtung",
+        "other": "Sonstiges"
     },
     "form_validation": {
         "valid": "Eingabe ist valide",
@@ -538,11 +540,9 @@ export const texts_german = {
     },
     "yes": "Ja",
     "no": "Nein",
-    "yes_single": "Ja, ein mal",
-    "yes_multiple": "Ja, mehrfach",
     "past_infection": {
         "no": "Nein",
-        "yes_single": "Ja, ein mal",
+        "yes_single": "Ja, einmal",
         "yes_multiple": "Ja, mehrfach",
     },
     "symptoms_registered": {

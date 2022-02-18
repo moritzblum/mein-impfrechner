@@ -9,6 +9,7 @@ class Card extends React.Component {
         super(props);
     }
 
+
     render() {
         return (
             <div className="vc-card container">
@@ -18,7 +19,7 @@ class Card extends React.Component {
                     </div>
                 </div>
                 <div className="vc-card-body">
-                    <form onSubmit={this.props.handler} className="needs-validation">
+                    <form onSubmit={this.props.handler} className="needs-validation" style={{ "height": "90%", "overflowY": 'scroll'}}>
                         {this.props.form_body}
                     </form>
                     <div className="" style={{"position": "absolute", "bottom": "2%", "width": "96%"}}>
@@ -160,6 +161,9 @@ class Form_body_choice_check extends React.Component {
                 <br/>
                 <br/>
                 {choices}
+                <br/>
+                <br/>
+                <br/>
             </div>
 
         );
@@ -366,7 +370,7 @@ class Card_start extends React.Component {
                     <br/>
                     Die aktuelle Version bildet den Stand vom <a target="_blank"
                                                                  href="https://www.rki.de/DE/Content/Infekt/EpidBull/epid_bull_node.html"
-                                                                 style={{"color": "white"}}>29.01.2022</a> ab.
+                                                                 style={{"color": "white"}}>17.02.2022</a> ab.
                 </div>
                 <div className="vc-card vc-card-start container" id="card_start">
                     <div className="row justify-content-md-center">
@@ -378,7 +382,7 @@ class Card_start extends React.Component {
                         <div className="vc-card-body">
                             <div className="col"
                                  style={{"position": "relative", "textAlign": "center", "padding": "20% 0%"}}>
-                                <button type="button" className="button-start button_next" id="card_start_button_next"
+                                <button type="button" name="start" className="button-start button_next" id="card_start_button_next"
                                         onClick={this.props.handler} style={{"fontSize": "40px"}}> Starten
                                 </button>
                             </div>
@@ -739,7 +743,6 @@ export default class CardManager extends React.Component {
                 if (invalid) {
                     return null;
                 }
-
                 current_card_history.push(current_card_id);
                 if (current_card_id === 'exception') {
                     current_user_data[current_card_id] = {'value': true};
@@ -1097,7 +1100,7 @@ export default class CardManager extends React.Component {
                               form_body={<Form_body_choice_check
                                   key="exception"
                                   input_id="choice_check_input"
-                                  choices={[["immun_def", constants.texts_german["exception"]["label_immun_def"]],["healthcare", constants.texts_german["exception"]["label_healthcare"]],["healthcare_staff", constants.texts_german["exception"]["label_healthcare_staff"]]]}
+                                  choices={[["immun_def", constants.texts_german["exception"]["label_immun_def"]],["healthcare", constants.texts_german["exception"]["label_healthcare"]],["healthcare_staff", constants.texts_german["exception"]["label_healthcare_staff"]], ["other", constants.texts_german["exception"]["other"]]]}
                                   intro={<constants.Exception_instruction/>}
                                   input_data_handler={this.handleInputChange}/>}/>
                 );

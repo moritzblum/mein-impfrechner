@@ -49,7 +49,7 @@ export function get_next_card(card_history, user_data) {
         return ['age', {}];
     }
 
-    user_age = user_data['age']['value'];
+    user_age = Math.floor(user_data['age']['value']);
 
     if (user_age >= constants['age_groups']['age_group_7'][0]) {
         return create_output('result_1', [<Really_old/>]);
@@ -91,7 +91,7 @@ export function get_next_card(card_history, user_data) {
         return ['past_infection', {}];
     }
 
-    let past_infection = user_data['past_infection']['value'];
+    let past_infection = user_data['past_infection']['value']==='yes_single' || user_data['past_infection']['value']==='yes_multiple';
 
     if (user_data['past_infection']['value'] === "yes_single") {
         if (!('infection_date' in user_data)) {
@@ -132,7 +132,7 @@ export function get_next_card(card_history, user_data) {
         }
 
         if (user_data['number_vaccinations']['value'] === '4') {
-            if (user_data["immun_def"]["value"]) {
+            if ('immun_def' in user_data) {
                 return create_output('result_8', [
                     <Contact_dr/>
                 ]);
@@ -245,7 +245,7 @@ export function get_next_card(card_history, user_data) {
         let first_vaccination_possibilities = [];
 
         // age <= 29 or pregnant
-        if ((user_age <= constants['age_groups']['age_group_4'][1])) {
+        if ((user_age <= constants['age_groups']['age_group_4'][1]) || pregnant) {
             first_vaccination_possibilities = [
                 <Next_possible_date_first
                     key='biontec'
@@ -255,7 +255,7 @@ export function get_next_card(card_history, user_data) {
         }
 
         // age <= 59
-        if ((user_age <= constants['age_groups']['age_group_5'][1]) || user_data['breast_feeding']['value']) {
+        else if ((user_age <= constants['age_groups']['age_group_5'][1]) || user_data['breast_feeding']['value']) {
             first_vaccination_possibilities = [
                 <Next_possible_date_first
                     key='moderna'
@@ -304,9 +304,16 @@ export function get_next_card(card_history, user_data) {
 
     if (def_status === 1) {
         if ((user_age <= constants['age_groups']['age_group_2'][1]) && past_infection) {
-            return create_output('result_8', [
-                <Contact_dr/>
-            ]);
+            if (risk_group){
+                return create_output('result_8', [
+                    <Contact_dr/>
+                ]);
+            }
+            else{
+                return create_output('result_8', [
+                    <No_further_recommendation/>
+                ]);
+            }
         }
 
         let first_possible_date = date_operations.get_latest_date([
@@ -330,7 +337,7 @@ export function get_next_card(card_history, user_data) {
         // if 1. dose biontech, only wait 3 weeks for next dose biontech
         let first_possible_date_biontech = first_possible_date;
         if (vaccination_history.length === 1) {
-            if (vaccination_history[0] === texts_german['vaccines']['biontec']) {
+            if (vaccination_history[0] === texts_german['vaccines']['biontec'] || vaccination_history[0] === texts_german['vaccines']['novavax']) {
                 first_possible_date_biontech = date_operations.get_latest_date([
                     date_operations.add_weeks_2_date(vaccination_history_date[0], 3),
                     date_operations.add_weeks_2_date(unregistered_vaccination_date, 4),
@@ -349,7 +356,7 @@ export function get_next_card(card_history, user_data) {
                 return create_output('result_9', [
                     <Second_vaccination_range
                         key='novavax'
-                        date_first={first_possible_date}
+                        date_first={first_possible_date_biontech}
                         date_second={undefined}
                         vaccination_brand={texts_german['vaccines']['novavax']}
                     />]);
@@ -397,13 +404,22 @@ export function get_next_card(card_history, user_data) {
                 />];
         }
 
+        if(past_infection){
+            second_vaccination_possibilities.push(<Second_vaccination_range_alternative
+                key='novavax'
+                date_first={first_possible_date}
+                date_second={undefined}
+                vaccination_brand={texts_german['vaccines']['novavax']}
+            />)
+        }
+
         return create_output('result_5', second_vaccination_possibilities);
 
     }
 
     if (def_status === 2) {
         if ((user_age <= constants['age_groups']['age_group_2'][1])) {
-            if (user_data["immun_def"]["value"]) {
+            if (risk_group) {
                 return create_output('result_8', [
                     <Contact_dr/>
                 ]);
@@ -454,19 +470,13 @@ export function get_next_card(card_history, user_data) {
             month_to_wait = 3;
         }
         if ('immun_def' in user_data){
-            if (user_data["immun_def"]["value"] ) {
-                month_to_wait = 3;
-            }
+            month_to_wait = 3;
         }
         if('healthcare' in user_data){
-            if (user_data["healthcare"]["value"]) {
-                month_to_wait = 3;
-            }
+            month_to_wait = 3;
         }
         if('healthcare_staff' in user_data) {
-            if (user_data["healthcare_staff"]["value"]) {
-                month_to_wait = 6;
-            }
+            month_to_wait = 6;
         }
 
         if(month_to_wait === 0) {
@@ -510,7 +520,7 @@ export function get_next_card(card_history, user_data) {
     }
 
     if (def_status === 4) {
-        if (user_data["immun_def"]["value"]) {
+        if ('immun_def' in user_data) {
             return create_output('result_8', [
                 <Contact_dr/>
             ]);
