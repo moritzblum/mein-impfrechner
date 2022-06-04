@@ -416,15 +416,11 @@ class Card_maintenance extends React.Component {
                         </div>
                         <div className="vc-card-body">
                             <div style={{fontsize: "0.7 em"}}>
-                                Achtung - Wartungsmodus: <br/>
-
-                                Unsere Webseite wird derzeit überarbeitet. Damit wir Ihnen eine korrekte Impfempfehlung
-                                garantieren können, ist es notwendig, den Impfrechner regelmäßig zu aktualisieren. <br/><br/>
-
-                                Der Impfrechner ist schon bald wieder für Sie erreichbar. Die Wartungsarbeiten sind
-                                voraussichtlich am 19.02.2022 abgeschlossen. Wir danken Ihnen für Ihr Verständnis!
-                                <br/>
-                                Bleiben Sie gesund.
+                                Hallo zusammen,<br/><br/>
+                                wir sind überwältigt von der Resonanz, für unser gemeinnütziges, unentgeltliches Projekt.
+                                Insgesamt haben sich rund <b>15.000 Personen</b> über Ihre Corona-Schutzimpfung informiert.
+                                Damit könnten wir die halbe Schüco-Arena füllen! <br/><br/>
+                                In diesem Sinne, <b> Danke </b> für Ihr Vertrauen und die Nutzung von Mein-Impfrechner!
                             </div>
                         </div>
                     </div>
@@ -807,8 +803,8 @@ export default class CardManager extends React.Component {
         switch (step) {
             case 'start':
                 return (
-                    <Card_start handler={this.control_click_handler} subpage={this.props.subpage}/>
-                    //<Card_maintenance />
+                    //<Card_start handler={this.control_click_handler} subpage={this.props.subpage}/>
+                    <Card_maintenance />
                 );
             case 'vaccination_1':
                 return (
